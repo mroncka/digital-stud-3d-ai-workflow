@@ -1,0 +1,173 @@
+{
+  "_comment": "ComfyUI Wan2.2 TI2V-5B image-to-video workflow — digital-stud standard pipeline",
+  "_version": "1.0",
+  "_updated": "2026-03-11",
+  "_docs": "https://docs.comfy.org/tutorials/video/wan/wan2_2",
+  "last_node_id": 22,
+  "last_link_id": 28,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "WanVideoModelLoader",
+      "pos": [50, 50],
+      "size": {"0": 340, "1": 106},
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {"name": "MODEL", "type": "WAN_MODEL", "links": [1], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "WanVideoModelLoader"},
+      "widgets_values": ["wan2.2_ti2v_5B_fp8_scaled.safetensors", "fp8_e4m3fn", "offload_device"]
+    },
+    {
+      "id": 2,
+      "type": "WanVideoVAELoader",
+      "pos": [50, 200],
+      "size": {"0": 340, "1": 78},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {"name": "VAE", "type": "WAN_VAE", "links": [2], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "WanVideoVAELoader"},
+      "widgets_values": ["wan_2.2_vae.safetensors"]
+    },
+    {
+      "id": 3,
+      "type": "CLIPLoader",
+      "pos": [50, 320],
+      "size": {"0": 340, "1": 78},
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {"name": "CLIP", "type": "CLIP", "links": [3], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPLoader"},
+      "widgets_values": ["umt5-xxl-encoder-bf16.safetensors", "wan"]
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [50, 450],
+      "size": {"0": 315, "1": 314},
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [4], "slot_index": 0},
+        {"name": "MASK", "type": "MASK", "links": [], "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "LoadImage"},
+      "widgets_values": ["INPUT_IMAGE_FILENAME.png", "image"]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [430, 320],
+      "size": {"0": 422, "1": 164},
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [{"name": "clip", "type": "CLIP", "link": 3}],
+      "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [5]}],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["MOTION_DESCRIPTION_HERE, smooth camera movement, cinematic, highly detailed"]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [430, 520],
+      "size": {"0": 422, "1": 164},
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [{"name": "clip", "type": "CLIP", "link": 3}],
+      "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [6]}],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["blurry, deformed, low quality, watermark, text, artifacts, flickering"]
+    },
+    {
+      "id": 7,
+      "type": "WanImageToVideoSampler",
+      "pos": [900, 250],
+      "size": {"0": 380, "1": 300],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "WAN_MODEL", "link": 1},
+        {"name": "vae", "type": "WAN_VAE", "link": 2},
+        {"name": "image", "type": "IMAGE", "link": 4},
+        {"name": "positive", "type": "CONDITIONING", "link": 5},
+        {"name": "negative", "type": "CONDITIONING", "link": 6}
+      ],
+      "outputs": [{"name": "LATENT", "type": "LATENT", "links": [7], "slot_index": 0}],
+      "properties": {"Node name for S&R": "WanImageToVideoSampler"},
+      "widgets_values": [42, "fixed", 50, 6.0, "unipc", "beta", 81, 1280, 720, 24]
+    },
+    {
+      "id": 8,
+      "type": "WanVideoVAEDecode",
+      "pos": [1330, 250],
+      "size": {"0": 210, "1": 78},
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {"name": "latent", "type": "LATENT", "link": 7},
+        {"name": "vae", "type": "WAN_VAE", "link": 2}
+      ],
+      "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [8]}],
+      "properties": {"Node name for S&R": "WanVideoVAEDecode"}
+    },
+    {
+      "id": 9,
+      "type": "VHS_VideoCombine",
+      "pos": [1580, 250],
+      "size": {"0": 315, "1": 240},
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [{"name": "images", "type": "IMAGE", "link": 8}],
+      "properties": {"Node name for S&R": "VHS_VideoCombine"},
+      "widgets_values": [24, 1, "mp4", "digital-stud/wan22_output", "video/h264-mp4", false, true, 0, "", "none", false]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 7, 0, "WAN_MODEL"],
+    [2, 2, 0, 7, 1, "WAN_VAE"],
+    [3, 3, 0, 5, 0, "CLIP"],
+    [4, 4, 0, 7, 2, "IMAGE"],
+    [5, 5, 0, 7, 3, "CONDITIONING"],
+    [6, 6, 0, 7, 4, "CONDITIONING"],
+    [7, 7, 0, 8, 0, "LATENT"],
+    [8, 8, 0, 9, 0, "IMAGE"]
+  ],
+  "groups": [
+    {"title": "Model Loaders", "bounding": [30, 30, 400, 420], "color": "#3f789e"},
+    {"title": "Input Image", "bounding": [30, 440, 400, 350], "color": "#346434"},
+    {"title": "Text Prompts", "bounding": [420, 300, 460, 410], "color": "#a1309b"},
+    {"title": "Sampling + Decode + Export", "bounding": [880, 230, 1050, 310], "color": "#8a6f2e"}
+  ],
+  "config": {},
+  "extra": {
+    "ds": {"scale": 0.75, "offset": {"0": 0, "1": 0}},
+    "workflow_notes": [
+      "INPUT_IMAGE_FILENAME.png: place your source image in ComfyUI/input/ and update the filename",
+      "MOTION_DESCRIPTION_HERE: describe the motion you want (e.g. 'she turns her head slowly, hair flowing')",
+      "Default: 81 frames @ 24fps = ~3.4 second clip at 1280x720",
+      "Steps: 50, CFG: 6.0 — good defaults for Wan2.2 TI2V",
+      "Reduce to 720x480 if running on RTX 3090 (24GB) to avoid OOM",
+      "Requires ComfyUI-VideoHelperSuite (VHS) for video export node",
+      "Models (download to ComfyUI/models/wan/):",
+      "  - wan2.2_ti2v_5B_fp8_scaled.safetensors (from HF: Wan-AI/Wan2.2-TI2V-5B)",
+      "  - wan_2.2_vae.safetensors",
+      "  - umt5-xxl-encoder-bf16.safetensors",
+      "Official ComfyUI docs: https://docs.comfy.org/tutorials/video/wan/wan2_2",
+      "FLF2V variant: swap WanImageToVideoSampler for WanFirstLastFrameToVideoSampler and add last frame input"
+    ]
+  }
+}
