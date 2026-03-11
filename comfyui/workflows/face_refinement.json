@@ -1,0 +1,265 @@
+{
+  "_meta": {
+    "title": "Face Refinement + IP-Adapter FaceID + DWPose — digital-stud",
+    "description": "ComfyUI workflow: face identity preservation via IP-Adapter FaceID Plus, optional DWPose conditioning, and a face detailer/refinement pass. Use after initial generation to sharpen and lock in facial identity.",
+    "version": "1.0.0",
+    "updated": "2026-03-11",
+    "requires": [
+      "ComfyUI",
+      "comfyui_ipadapter_plus",
+      "comfyui-impact-pack",
+      "comfyui-controlnet-aux",
+      "ComfyUI-Advanced-ControlNet",
+      "rgthree-comfy"
+    ],
+    "models": [
+      "ip-adapter-faceid-plusv2_flux.bin (or sdxl variant)",
+      "clip_vision/EVA02-CLIP-L-14-336.safetensors",
+      "controlnet/flux-pose-controlnet.safetensors",
+      "face_restore/GFPGANv1.4.pth (optional)"
+    ]
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "title": "Load Base Generation",
+      "_comment": "Input: result from image_gen_flux.json or any prior generation",
+      "inputs": {},
+      "outputs": [{"name": "IMAGE", "slot": 0}, {"name": "MASK", "slot": 1}],
+      "widgets_values": ["base_generation.png", "image"],
+      "pos": [50, 100]
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "title": "Load Face Reference",
+      "_comment": "Input: clean face reference photo — front facing, good lighting, 512px+",
+      "inputs": {},
+      "outputs": [{"name": "IMAGE", "slot": 0}, {"name": "MASK", "slot": 1}],
+      "widgets_values": ["face_reference.png", "image"],
+      "pos": [50, 300]
+    },
+    {
+      "id": 3,
+      "type": "CheckpointLoaderSimple",
+      "title": "Load Flux Model",
+      "inputs": {},
+      "outputs": [
+        {"name": "MODEL", "slot": 0},
+        {"name": "CLIP", "slot": 1},
+        {"name": "VAE", "slot": 2}
+      ],
+      "widgets_values": ["flux1-dev.safetensors"],
+      "pos": [50, 500]
+    },
+    {
+      "id": 4,
+      "type": "IPAdapterFaceID",
+      "title": "IP-Adapter FaceID Plus",
+      "_comment": "Injects face identity from reference into model. weight=0.8-1.0 for strong identity. Use FaceID Plus v2 for Flux or XL.",
+      "inputs": [
+        {"name": "model", "link": {"node": 3, "slot": 0}},
+        {"name": "image", "link": {"node": 2, "slot": 0}}
+      ],
+      "outputs": [{"name": "MODEL", "slot": 0}, {"name": "face_image", "slot": 1}],
+      "widgets_values": [
+        "ip-adapter-faceid-plusv2_flux.bin",
+        "EVA02-CLIP-L-14-336.safetensors",
+        0.85,
+        "linear",
+        "faceid_plus",
+        true
+      ],
+      "pos": [400, 400]
+    },
+    {
+      "id": 5,
+      "type": "DWPreprocessor",
+      "title": "DWPose Extractor",
+      "_comment": "Extracts body+face pose from base image. Used to preserve pose during refinement. Set detect_hand=enable, detect_body=enable, detect_face=enable.",
+      "inputs": [
+        {"name": "image", "link": {"node": 1, "slot": 0}}
+      ],
+      "outputs": [{"name": "IMAGE", "slot": 0}],
+      "widgets_values": ["enable", "enable", "enable", 512, "dwpose_dw-ll-ucoco-384.onnx"],
+      "pos": [400, 100]
+    },
+    {
+      "id": 6,
+      "type": "ControlNetLoader",
+      "title": "Load Pose ControlNet",
+      "inputs": {},
+      "outputs": [{"name": "CONTROL_NET", "slot": 0}],
+      "widgets_values": ["flux-pose-controlnet.safetensors"],
+      "pos": [400, 250]
+    },
+    {
+      "id": 7,
+      "type": "ACN_AdvancedControlNetApply",
+      "title": "Apply Pose ControlNet",
+      "_comment": "Strength 0.5-0.7 for refinement pass — lower than initial gen to allow face improvement while holding pose",
+      "inputs": [
+        {"name": "positive", "link": {"node": 10, "slot": 0}},
+        {"name": "negative", "link": {"node": 11, "slot": 0}},
+        {"name": "control_net", "link": {"node": 6, "slot": 0}},
+        {"name": "image", "link": {"node": 5, "slot": 0}},
+        {"name": "model_optional", "link": {"node": 4, "slot": 0}}
+      ],
+      "outputs": [
+        {"name": "positive", "slot": 0},
+        {"name": "negative", "slot": 1},
+        {"name": "model_optional", "slot": 2}
+      ],
+      "widgets_values": [0.6, 0.0, 1.0],
+      "pos": [750, 300]
+    },
+    {
+      "id": 8,
+      "type": "VAEEncode",
+      "title": "Encode Base Image (img2img)",
+      "_comment": "Encode the base generation for img2img refinement. Use denoise 0.4-0.6 for subtle face fix.",
+      "inputs": [
+        {"name": "pixels", "link": {"node": 1, "slot": 0}},
+        {"name": "vae", "link": {"node": 3, "slot": 2}}
+      ],
+      "outputs": [{"name": "LATENT", "slot": 0}],
+      "pos": [750, 100]
+    },
+    {
+      "id": 9,
+      "type": "CLIPTextEncodeFlux",
+      "title": "Positive Prompt",
+      "_comment": "Keep same prompt as original generation. Add 'detailed face, sharp eyes, photorealistic skin' for face boost.",
+      "inputs": [
+        {"name": "clip", "link": {"node": 3, "slot": 1}}
+      ],
+      "outputs": [{"name": "CONDITIONING", "slot": 0}],
+      "widgets_values": [
+        "photorealistic portrait, detailed face, sharp eyes, perfect skin texture, soft studio lighting",
+        "photorealistic portrait, detailed face, sharp eyes, perfect skin texture",
+        3.5
+      ],
+      "pos": [400, 600]
+    },
+    {
+      "id": 10,
+      "type": "CLIPTextEncodeFlux",
+      "title": "Negative Prompt (Flux)",
+      "_comment": "Flux uses guidance scale instead of true negative — keep blank or minimal",
+      "inputs": [
+        {"name": "clip", "link": {"node": 3, "slot": 1}}
+      ],
+      "outputs": [{"name": "CONDITIONING", "slot": 0}],
+      "widgets_values": [
+        "blurry face, deformed eyes, bad anatomy, watermark",
+        "",
+        1.0
+      ],
+      "pos": [400, 750]
+    },
+    {
+      "id": 11,
+      "type": "KSampler",
+      "title": "Face Refinement Sampler",
+      "_comment": "denoise=0.45: subtle fix. denoise=0.6: stronger face rework. steps=20 sufficient for refinement.",
+      "inputs": [
+        {"name": "model", "link": {"node": 7, "slot": 2}},
+        {"name": "positive", "link": {"node": 7, "slot": 0}},
+        {"name": "negative", "link": {"node": 7, "slot": 1}},
+        {"name": "latent_image", "link": {"node": 8, "slot": 0}}
+      ],
+      "outputs": [{"name": "LATENT", "slot": 0}],
+      "widgets_values": [42, "euler", "beta", 20, 3.5, "disabled", 0.45],
+      "pos": [1100, 300]
+    },
+    {
+      "id": 12,
+      "type": "VAEDecode",
+      "title": "Decode Result",
+      "inputs": [
+        {"name": "samples", "link": {"node": 11, "slot": 0}},
+        {"name": "vae", "link": {"node": 3, "slot": 2}}
+      ],
+      "outputs": [{"name": "IMAGE", "slot": 0}],
+      "pos": [1400, 300]
+    },
+    {
+      "id": 13,
+      "type": "FaceDetailer",
+      "title": "Face Detailer (Impact Pack)",
+      "_comment": "Optional but recommended: crops face region, upscales 2x, rerenders at higher detail, pastes back. guide_size=512, denoise=0.35.",
+      "inputs": [
+        {"name": "image", "link": {"node": 12, "slot": 0}},
+        {"name": "model", "link": {"node": 4, "slot": 0}},
+        {"name": "clip", "link": {"node": 3, "slot": 1}},
+        {"name": "vae", "link": {"node": 3, "slot": 2}},
+        {"name": "positive", "link": {"node": 9, "slot": 0}},
+        {"name": "negative", "link": {"node": 10, "slot": 0}}
+      ],
+      "outputs": [
+        {"name": "image", "slot": 0},
+        {"name": "cropped_refined", "slot": 1},
+        {"name": "mask", "slot": 2}
+      ],
+      "widgets_values": [
+        512, "Ultralytics/segm/face_yolov8m-seg_60.pt",
+        0.5, 10, true, 512, 1024, 2,
+        42, 20, 3.5, "euler", "beta", 0.35,
+        "ComfyUI", "", "jpg", 95, false
+      ],
+      "pos": [1400, 500]
+    },
+    {
+      "id": 14,
+      "type": "SaveImage",
+      "title": "Save Refined Output",
+      "inputs": [
+        {"name": "images", "link": {"node": 13, "slot": 0}}
+      ],
+      "outputs": [],
+      "widgets_values": ["face_refined/output"],
+      "pos": [1700, 500]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Inputs",
+      "bounding": [30, 70, 330, 550],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Identity Conditioning (IP-Adapter FaceID)",
+      "bounding": [370, 360, 380, 280],
+      "color": "#a1309b"
+    },
+    {
+      "title": "Pose Conditioning (DWPose + ControlNet)",
+      "bounding": [370, 70, 380, 280],
+      "color": "#1a6b3a"
+    },
+    {
+      "title": "Refinement Pass",
+      "bounding": [730, 70, 680, 800],
+      "color": "#7a4f1e"
+    },
+    {
+      "title": "Face Detailer (Impact Pack)",
+      "bounding": [1380, 460, 350, 280],
+      "color": "#5c1a1a"
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {"scale": 0.7, "offset": [0, 0]}
+  },
+  "version": 0.4,
+  "_usage_notes": [
+    "PIPELINE POSITION: Run after image_gen_flux.json to refine faces",
+    "TYPICAL SETTINGS: IPAdapter weight=0.85, ControlNet strength=0.6, KSampler denoise=0.45",
+    "FACE DETAILER: Most impactful node — adds sharpness and fixes anatomy even without FaceID",
+    "FLUX NOTES: Use CLIPTextEncodeFlux (not CLIPTextEncode). Flux ignores negative prompts — use cfg=3.5",
+    "ALTERNATIVE: Replace IPAdapterFaceID with InstantID node for stronger (but less flexible) identity",
+    "VRAM: ~16GB for Flux Dev + FaceID + FaceDetailer at 1024px. Use flux1-schnell for 8GB."
+  ]
+}
