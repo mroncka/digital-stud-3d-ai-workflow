@@ -1,11 +1,11 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-11 22:32 (Prague / CET) | Run #3
+> Last updated: 2026-03-12 00:03 (Prague / CET) | Run #6
 
 ---
 
-## 🏆 Image Generation SOTA — March 2026
+## 🖼️ Image Generation SOTA — March 2026
 
 ### Top Models by Category
 
@@ -68,6 +68,7 @@
 | **Open Source Lightweight** | HunyuanVideo 1.5 | 8.3B | 14GB | Local + fal.ai | SSTA attention, 1.87x faster, 1080p upscale |
 | **Audio-Video (new)** | LTX-2.3 | — | — | Local (ComfyUI native) | 9:16 portrait, audio-video, better motion, NVFP4 support |
 | **Commercial Best** | Kling 2.5 / 3.0 | — | API only | Kling API, fal.ai | Best character consistency, multi-angle |
+| **Kling Motion Control** | Kling 3.0 MC | — | API only | ComfyUI native | **Motion Control 3.0 nodes live in ComfyUI (Mar 2026)** |
 | **Budget Commercial** | Kling 2.1 | — | API only | Kling API | ~$0.14/clip |
 | **Open Mid-tier** | CogVideoX-1.5 | 5B | 12-16GB | Local + HF | 1360×768, LoRA support, DDIM Inverse editing |
 | **Free via Colab** | CogVideoX 5B | 5B | T4 (Colab) | Google Colab | 6s clips, 720×480, 8fps |
@@ -89,6 +90,7 @@
 ### Wan2.2 — Priority Model for This Workflow
 
 - MoE architecture, TI2V-5B: unified text+image → video, 720P/24fps, RTX 4090
+- **Memory optimization update (March 2026)**: improved efficiency; LoRAs from Wan2.1 still compatible
 - Extensions: `Wan2.2-Animate`, `Wan2.2-S2V`, `FLF2V`
 - [docs.comfy.org](https://docs.comfy.org/tutorials/video/wan/wan2_2) | Apache 2.0
 
@@ -99,7 +101,7 @@
 ### Video API Pricing (March 2026)
 
 | Provider | Model | Price/sec | Free Tier |
-|----------|-------|-----------|----------|
+|----------|-------|-----------|-----------|
 | Replicate | Wan 2.2 A14B | ~$0.05/sec | Small credits |
 | fal.ai | HunyuanVideo 1.5 | TBC | Signup credits |
 | fal.ai | Kling 2.1 | ~$0.14/5s clip | Signup credits |
@@ -108,7 +110,7 @@
 
 ---
 
-## 🧠 LoRA Training SOTA — March 2026
+## 🧪 LoRA Training SOTA — March 2026
 
 ### Training Tools Comparison
 
@@ -125,6 +127,13 @@
 > **Klein consistency LoRA** (March 2026): New official consistency LoRA for Flux 2 Klein — improves character consistency across generations without full character LoRA training.
 
 > **Community note:** OneTrainer gaining ground over AI-Toolkit for character LoRAs (significantly less overfitting). musubi-tuner preferred for newer Flux variants.
+
+### Video LoRA — Updated March 2026
+
+- **Video2LoRA** (arxiv 2603.08210): per-reference-video LoRA for semantic-controlled video gen
+- **finetrainers** (CogVideoX factory): CogVideoX + Mochi video LoRA training
+- **Flimmer** (**NEW March 2026**): Dedicated video LoRA toolkit for diffusion transformers — cleaner API than AI-Toolkit ZIT, supports Wan2.2 + HunyuanVideo; growing community adoption
+- **AI-Toolkit ZIT**: Still viable for video LoRA; Flimmer emerging as preferred alternative
 
 ### Optimal Hyperparameters — Flux Dev Character LoRA
 
@@ -168,13 +177,6 @@ mixed_precision: fp16 or bf16
 | **LoHa** | Medium | Hadamard product; different parameter distribution |
 | **GLoRA / GLoKR** | Varies | Generalized; more flexible parameter targeting |
 
-### Video LoRA (Emerging)
-
-- **Video2LoRA** (arxiv 2603.08210): per-reference-video LoRA for semantic-controlled video gen
-- **finetrainers** (CogVideoX factory): CogVideoX + Mochi video LoRA training
-- **Flimmer**: Video LoRA toolkit for diffusion transformers (new, March 2026)
-- **AI-Toolkit ZIT**: Preferred for video LoRA currently
-
 ---
 
 ## 📍 Pose Estimation SOTA — March 2026
@@ -183,13 +185,15 @@ mixed_precision: fp16 or bf16
 
 | Model | Type | Keypoints | Speed | Best For |
 |-------|------|-----------|-------|----------|
-| **YOLO26-Pose** | Single-stage | 17 (COCO) + custom | 30+ FPS | Real-time multi-person, custom keypoints, end-to-end (no NMS) |
+| **YOLO26-Pose** | Single-stage, NMS-free | 17 (COCO) + custom | 30+ FPS | Real-time multi-person, custom keypoints, **43% faster CPU than YOLO11-N** |
 | **RTMPose** | Two-stage | 17-133 | 30+ FPS | Production speed/accuracy balance |
 | **DWPose** | Two-stage whole-body | 133 (body+hand+face) | Medium | **Best for ComfyUI ControlNet** |
 | **ViTPose / ViTPose++** | ViT-based | 17-133 | Slower | Research; highest mAP |
 | **Sapiens2** | Foundation (0.4-5B) | 308 body + face | Slow | SOTA whole-body, 1K-4K, multi-task; ICLR 2026 |
 | **MediaPipe Holistic** | Lightweight | 33+21/hand+468 face | 30+ FPS mobile | Mobile/browser |
 | **SDPose-OOD** | Robust | 17+ | Medium | ComfyUI; robust out-of-distribution |
+
+> **YOLO26-Pose key upgrade (Jan 2026)**: NMS-free end-to-end inference, non-human keypoint support for custom schemas, ProgLoss + STAL for small/occluded targets. mAP 57.2% (nano) to 71.6% (XL).
 
 ### New: HTP Framework — 3D Video Pose Efficiency (2026)
 
@@ -216,7 +220,7 @@ mixed_precision: fp16 or bf16
 ### ComfyUI Pose Nodes Ecosystem
 
 | Node / Tool | What It Does |
-|-------------|---------------|
+|-------------|-------------|
 | `comfyui_controlnet_aux` | DWPose, OpenPose, MediaPipe preprocessors |
 | `Yedp Action Director v9.2` | FBX/GLB/BVH → ControlNet conditioning (NEW) |
 | `ComfyUI Open Pose Editor` | Visual skeleton editor |
@@ -224,6 +228,7 @@ mixed_precision: fp16 or bf16
 | `ComfyUI-SDPose-OOD` | Robust OOD pose estimation |
 | `Ubisoft CHORD` | Character pose reference + image editing |
 | `Pose Studio Node` | One image → infinite pose variations |
+| `Save Pose Keypoints Node` | Export keypoints for reuse (updated in `comfyui_controlnet_aux`) |
 
 ### Pose-to-Image Workflow (This Project)
 
@@ -272,10 +277,13 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 - **SageAttention 2++** — Advanced attention optimization (requires CUDA Toolkit + MSVC)
 - **Comfy Cloud free tier** (March 3) — 400 monthly credits, no credit card, 900+ models
 - **ComfyUI-Manager integrated** into core ComfyUI (no separate install)
-- **Wan2.2 native support** — Official templates in ComfyUI menu
+- **Wan2.2 native support** — Official templates in ComfyUI menu; memory optimization update
 - **IP-Adapter** — Updated for Flux
 - **ControlNet Flux nodes** — pose, depth, canny
 - **CHORD (Ubisoft, open-sourced)** — Character pose reference + image editing
+- **Kling 3.0 Motion Control** — Available now as ComfyUI partner nodes
+- **Qwen Image ControlNet + LoRA** — DiffSynth ControlNet Union support; EasyCache for KV-cache efficiency
+- **Dynamic VRAM** — New memory optimization enabled by default (replaces manual --lowvram flags)
 
 ---
 
@@ -292,9 +300,9 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 
 ---
 
-## 🔌 Key APIs Summary
+## 🔑 Key APIs Summary
 
-| Platform | Speciality | Free Tier | URL |
+| Platform | Specialty | Free Tier | URL |
 |----------|-----------|-----------|-----|
 | fal.ai | Fastest inference, 1000+ models | Signup credits | https://fal.ai |
 | Replicate | Largest open-source library | Small trial credits | https://replicate.com |
