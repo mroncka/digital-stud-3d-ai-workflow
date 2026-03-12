@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 05:03 (Prague / CET) | Run #16
+> Last updated: 2026-03-12 05:32 (Prague / CET) | Run #17
 
 ---
 
@@ -95,13 +95,17 @@
 
 - **GLM-Image** (Jan 2026, Zhipu AI) — First open-source autoregressive (non-diffusion) image model; Apache 2.0; industrial text rendering; best CVTG-2k score
 - **Seedream 5.0 Lite** (Feb 2026, ByteDance) — Superior multilingual text, in-image translation
+- **GLM-Image** (Jan 14 2026, Zhipu AI) — 16B params; **90.5% text rendering accuracy**; open-source autoregressive model; **Apache 2.0**; best CVTG-2k score; strong open-source alternative to proprietary text-in-image leaders
 - **Z Image Turbo** (Nov 2025, Alibaba Qwen) — S3-DiT, Apache 2.0, 10–20× cheaper than DALL-E 3
+- **MiniMax Image-01** (Feb 2026) — **$0.01/image** cinematic quality; among cheapest quality-per-dollar API options
 - **FireRed-Image-Edit 1.1** — Open-source SOTA for image editing, beats Qwen edit
+- **Flux.1 Fill + Flux Klein masked inpaint** — Community-confirmed (Reddit March 2026) best inpainting combo: `flux1 fill onereward` for quality + Klein masked inpaint node for targeted region work
 - **Recraft V4** — Now in ComfyUI via custom node
 - **Grok Imagining** (Mar 2026, xAI) — Four-agent architecture, 10s 720p video gen also available; ~$0.02/img
 - **MiniMax Image-01** (Feb 2026) — $0.01/img, extremely competitive
 - **MAI-Image-1** (Microsoft) — First in-house Microsoft image model; free via Bing
-- - **DeepSeek V4** (imminent, Apache 2.0) — 1T total / 37B active params (MoE); native image + video gen competing with DALL-E 3 / Midjourney; Engram Memory (1M token retrieval); consumer-friendly quantization (1× RTX 5090 INT4, 2× RTX 4090 INT8); V4 Lite appeared March 9 — full release imminent; expected to pressure proprietary image API pricing significantly
+- - **FLUX Kontext** (BFL, March 2026) — Subject consistency across scene transformations; Flux-native approach to character/object consistency without IP-Adapter overhead
+- **DeepSeek V4** (imminent, Apache 2.0) — 1T total / 37B active params (MoE); native image + video gen competing with DALL-E 3 / Midjourney; Engram Memory (1M token retrieval); consumer-friendly quantization (1× RTX 5090 INT4, 2× RTX 4090 INT8); V4 Lite appeared March 9 — full release imminent; expected to pressure proprietary image API pricing significantly
 - **FLUX Image to Video** ⭐ NEW March 2026 — BFL releasing Flux-native image-to-video capability
 - **FLUX.2 Pro v1.1** ⭐ NEW — 1265 Elo at $0.055/img; refined over v1.0
 - **Gemini 3 Pro Image** ⭐ — $0.134/img; 50% batch discount; advanced reasoning + 4K res
@@ -244,6 +248,8 @@
 > **Best practice (LoRA + ControlNet + IP-Adapter combo)**: New community documentation published March 2026 confirming three-way combo as production standard for pose + style + identity control simultaneously.
 
 > **ComfyUI inpainting standard (March 2026)**: `comfyui-impact-pack` SEGS Detailer confirmed as production standard for targeted face/body inpainting within existing workflows. PersephoneFlux + DoomFlux combo emerging for layered character workflows.
+
+> **Reflective Flow Sampling Enhancement** (arxiv 2603.06165, March 2026): New technique for flow-matching models (Flux). Improves sampling quality by incorporating reflective guidance — potentially applicable to ComfyUI custom samplers.
 
 ### Key Training Advances (March 2026)
 
@@ -393,6 +399,16 @@ mixed_precision: fp16 or bf16
 ---
 
 ## 🛠️ ComfyUI Ecosystem — Notable Nodes/Updates (March 2026)
+
+### 🆕 ComfyUI v0.16.1 (March 5, 2026) — New Nodes & Features
+
+- **ResolutionSelector** node with aspect ratio presets; **CURVE** type for parameter control; **BBox** widget for precise region selection
+- **3-band EQ** audio node; **GLSL shader** node (PyOpenGL); **ElevenLabs API** text-to-speech nodes
+- **Model support**: LTXAV 2.3, LongCat-Image (native), ACE-Step 1.5, **SDPose-OOD** pose models
+- **Veo3 video generation** node (audio-visual synthesis); **Moonvalley V2V** (video-to-video); **Rodin3D Gen-2** (image-to-3D API)
+- **Dynamic VRAM now default** — massive RAM reduction on NVIDIA hardware (Windows + Linux)
+- **⚠️ OOM regression**: v0.16.3/0.16.4 reports CUDA OOM errors on some setups (GitHub #12823) — check version before upgrading
+- **Comfy Cloud out of beta**: 90% of local custom nodes accessible; Workflow API deployment (production APIs from workflows) coming soon
 
 ### 🆕 Major: App Mode, App Builder & ComfyHub (March 10, 2026)
 
