@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 15:30 (Prague / CET) | Run #37
+> Last updated: 2026-03-12 16:02 (Prague / CET) | Run #38
 
 ---
 
@@ -370,6 +370,15 @@
 - Fine-tunes diffusion models with RLHF-style reward signal to improve pose accuracy in generated images
 - Reduces anatomy errors (twisted limbs, inverted joints) common in FLUX / SD3.5 outputs
 - Digital-Stud relevance: key technique for training pose-aware LoRAs and evaluating pose ControlNet quality
+
+### 🆕 Color Fidelity Benchmark & CFR (arXiv 2603.10990, March 11 2026)
+
+- **"Too Vivid to Be Real?"** — addresses persistent oversaturation in T2I models (FLUX, SDXL, Midjourney, etc.)
+- **Color Fidelity Dataset (CFD)**: 1.3M+ images with real-world color reference ground truth
+- **Color Fidelity Metric (CFM)**: training-free evaluation of perceptual color authenticity vs. real photographs
+- **Color Fidelity Refinement (CFR)**: training-free post-processing to bring generated image colors closer to real-world distribution — no retraining or fine-tuning needed
+- Code + dataset on GitHub
+- Digital-Stud relevance: drop-in CFR post-process for any FLUX or SDXL output to reduce "AI look" in photorealistic character renders
 
 ## 🎬 Video Generation SOTA — March 2026
 
@@ -1551,6 +1560,25 @@ Available at comfy.org/workflows:
 - Fully automated pipeline producing short comedic videos (SNL-style sketch comedy)
 - Uses LLM agents for scripting + video diffusion for scene generation
 - Demonstrates multi-shot narrative video generation from pure text intent
+
+### OCpose — Optimal Transport Multi-Person Pose Evaluation (arXiv 2603.10398, March 11 2026)
+
+- Fixes fundamental flaws in standard mAP for multi-person pose: high-confidence false positives escape penalization in traditional metrics
+- **Optimal Transportation (OT)** matching: penalizes false positives globally regardless of confidence score
+- Confidence-weighted keypoint matching + pixel-wise masks (not bounding boxes) for precise evaluation
+- **83.3% agreement with human preference** vs. existing metrics — Toyota Technological Institute
+- Digital-Stud relevance: rigorous benchmark for DWPose / RTMPose / O26-Pose output quality in ControlNet workflows
+
+### Motion Forcing — Decoupled Video Generation via Point-Shape-Appearance (arXiv 2603.10408, March 11 2026)
+
+- Addresses the video generation trilemma: visual quality + physical consistency + controllability simultaneously
+- **Point-Shape-Appearance (PSA) hierarchical paradigm**:
+  - *Points* — sparse geometric anchors tracking object trajectories
+  - *Shape* — dynamic depth maps for 3D geometry verification
+  - *Appearance* — high-fidelity texture rendering conditioned on geometry
+- **Masked Point Recovery (MPR)**: active physical reasoning for occluded trajectory inference
+- HKUST-GZ; outperforms prior pose-conditioned video gen on autonomous driving & robotics
+- Digital-Stud relevance: PSA decoupling enables independent control of character body trajectory (points) from clothing/appearance — direct unlock for character animation
 
 ### DiT4DiT — Coupled Video + Action Diffusion Transformer (arXiv 2603.10448)
 
