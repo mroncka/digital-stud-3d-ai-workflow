@@ -1,3 +1,55 @@
+## 🔄 Run #55 Delta — 2026-03-13 00:30 Prague
+
+### 🎬 Video Gen SOTA
+- **Wan 2.2** (Alibaba Tongyi): World's first open-source MoE video generation model. 27B total / ~14B active params. 480p-720p, min 8.19GB VRAM. VBench 84.7%+. Free on GitHub: `Wan-Video/Wan2.2`. Key: high-noise + low-noise experts for separate denoising stages.
+- **LTX-2 (Lightricks)**: 19B params, native 4K at 50fps, 20s videos, synchronized audio. Apache 2.0 + free commercial use <$10M ARR. NVFP8 quant = ~30% size reduction. **Day-0 ComfyUI support confirmed.**
+- **HunyuanVideo 1.5**: Compact 8.3B, outperforms RunwayGen-3 + Luma 1.6. 720p in 75s on RTX 4090 (13.6GB VRAM). Text alignment 68.5%, visual quality 96.4%.
+- **Kling 2.6** (Kuaishou): Simultaneous audio-visual generation (video + voiceover + SFX in one pass). Up to 2min @ 1080p 30fps. Diffusion transformer + 3D VAE.
+- **Runway Gen-4.5**: Top Artificial Analysis benchmark. Native audio, long-form multi-shot, motion brushes. $315M Series E @ $5.3B valuation (Feb 2026). From $12/mo.
+- **Google Veo 3.1** (Jan 2026): Native 4K, vertical video for Shorts, "Ingredients to Video" (up to 4 reference images). SynthID watermarking. Gemini Advanced $19.99/mo.
+- **Sora 2** (OpenAI): Up to 60s, physics simulation, Disney 200+ licensed characters, synchronized audio. $20/mo Plus / $200/mo Pro.
+- **Seedance 1.5 Pro**: Noted for fast, precise AI video in 2026 benchmarks. API available via fal.ai / Replicate.
+- **Pika 2.5**: 74% usable output rate, Pikaswaps/Pikaffects/Pikaframes/Pikaformance. Near real-time generation.
+- **Luma Ray3**: Hi-Fi 4K HDR, photorealistic, from $7.99/mo.
+- **FREE LOCAL**: Wan 2.2 and HunyuanVideo 1.5 are the current open-source leaders.
+
+### 🖼️ Image Gen SOTA
+- **Flux.2 Klein 9B**: Active development, community LoRA ecosystem growing. Anime2Real LoRA for Klein 9B reported strong character identity preservation (March 2026 Reddit).
+- **Nano Banana 2**: Can replace LoRA training for fast-turnaround production workflows where single reference image anchors identity (RunDiffusion). No training required.
+- **Recraft V3 / Ideogram 3**: Still competitive in commercial image gen tier.
+- **Free APIs**: fal.ai, Replicate (Wan, HunyuanVideo, FLUX), WaveSpeed.ai (FLUX/SDXL training cloud).
+
+### 🧩 ComfyUI New Nodes & Platform (March 2026)
+- **App Mode + App Builder + ComfyHub** (launched Mar 10, 2026): Convert any workflow → shareable browser app, no node graph needed. ComfyHub = marketplace for workflows/apps. **Major UX shift.**
+- **LTX-2.3 Day-0 native support**: Updated VAE (sharper textures), 9:16 portrait support, improved audio quality, better I2V consistency.
+- **ElevenLabs Partner Nodes** (Mar 8, 2026): Voice cloning/synthesis directly in node graph. `#ComfyUI #aivoice`.
+- **Hunyuan 3D Advanced** (via Partner Nodes): 3D Parts Decomposition, UV Unwrapping, Smart Topology — production-ready post-processing pipeline.
+- **3D Scene Builder Node**: Load chars → environment → Mixamo animation → compose shots → export video. AI filmmaking node.
+- **Node Replacement API**: Custom node devs can now evolve nodes without breaking user workflows.
+- **ComfyUI-OpenClaw 2026.3.2**: Security-first orchestration, SecretRef expanded to 64 credential targets (Stripe, Slack, GitHub etc.). "Trust & Tools" stable release.
+- **LTX2EasyPrompt** (community): Simplified prompt configuration node for LTX-2 video gen.
+- **ComfyUI-Pollinations**: New custom node wrapping Pollinations open-source image platform.
+- **Comfy Cloud out of beta**: ~90% custom nodes available on cloud. Supports RTX 5090 + AMD RX 9070 XT.
+- **Video-to-Motion Capture**: Community node extracts SMPL body params from video → FBX rigged character → retargeted animation. Useful for Digital-Stud animation pipeline.
+
+### 🤸 Pose Estimation SOTA
+- **DWPose / RTMPose**: Still dominant for ComfyUI ControlNet pose conditioning. No major new releases detected this cycle.
+- **YOLO-based pose**: Active in real-time pipelines. YOLOv11/v12 variants in community ComfyUI nodes.
+- **Video-to-Motion Capture ComfyUI node**: SMPL body parameter extraction from video footage → FBX export + animation retargeting. Direct pipeline integration for DS character animation.
+- **ComfyUI-SAM3**: Interactive click-to-segment, useful for character masking pre-pose. (Previously noted in r53.)
+
+### 🔁 LoRA Training SOTA
+- **Kohya_ss v0.10.1** (Feb 13, 2026): Added Anima Preview model support for LoRA training + fine-tuning. Still most popular tool for character SDXL LoRA (30-50 images, rank 32, lr 5e-5, Prodigy optimizer).
+- **OneTrainer rising fast**: 2x performance vs AI-Toolkit on RTX 5060 Ti. Proper train/val split, TensorBoard loss tracking, prevents overfitting. Preferred by serious trainers over AI-Toolkit.
+- **Flux.2 Klein 9B LoRA**: Community reports mixed results (30+ checkpoint testing, careful HP tuning needed). Anime2Real LoRA for Klein 9B is exception — strong identity preservation.
+- **AI-Toolkit**: Still popular but criticized for missing train/val split and limited optimizer options for newer models.
+- **Z-Image LoRA + AI-Toolkit**: Z-Image base model LoRA training workflow documented with full local setup (YouTube tutorial active March 2026).
+- **ID-LoRA** (research): Identity-Driven Audio-Video Personalization — reference audio clip + first-frame image + text prompt → consistent audio-visual identity. Cutting-edge convergence direction.
+- **FedMomentum** (arxiv 2603.08014): SVD-based aggregation preserving LoRA training momentum in federated fine-tuning. Faster convergence. Research breakthrough.
+- **SFed-LoRA** (arxiv 2603.08058): Prevents high-rank collapse in distributed LoRA training, significantly improved stability.
+- **Nano Banana 2**: Zero-training character consistency — single reference image anchors identity. Replaces LoRA for fast turnaround production.
+- **WaveSpeed.ai**: Cloud GPU LoRA/checkpoint training for FLUX + SDXL. Free tier available.
+
 # Image & Video Generation SOTA
 
 
