@@ -1,11 +1,17 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 09:30 (Prague / CET) | Run #25
+> Last updated: 2026-03-12 10:04 (Prague / CET) | Run #26
 
 ---
 
 ## 🖼️ Image Generation SOTA — March 2026
+
+### 🆕 Luma Uni-1 — Location Accuracy Leader (March 2026)
+
+- Outperforms Nano Banana 2 on **real-world location / scene accuracy** (Marina Bay, landmarks, specific venues)
+- Slightly slower than NB2; weaker multi-subject consistency
+- Use case: architectural / travel / location-specific renders where NB2 drifts on geography
 
 ### Top Models by Category
 
@@ -158,6 +164,12 @@
 
 ## 🎬 Video Generation SOTA — March 2026
 
+### 🆕 Luma Uni-1 — Location Accuracy Leader (March 2026)
+
+- Outperforms Nano Banana 2 on **real-world location / scene accuracy** (Marina Bay, landmarks, specific venues)
+- Slightly slower than NB2; weaker multi-subject consistency
+- Use case: architectural / travel / location-specific renders where NB2 drifts on geography
+
 ### Top Models by Category
 
 | Category | Model | Params | VRAM | API/Local | Notes |
@@ -281,6 +293,13 @@
 - Per-second pricing structure hinted (720P ~¥0.6/sec based on `wan-2-6-i2v` listings)
 - **Digital-Stud action**: Update `wan22_img2vid.json` workflow to Wan2.6 API endpoint when weights release
 
+### 🆕 Seedance 2.0 — Reference Cluster & Character Consistency (Feb 2026)
+
+- **Reference Cluster System**: up to **12 multimodal inputs** (9 images + 3 videos); @-tag syntax for identity/motion binding
+- **Golden Ratio Method**: 70% identity ref + 30% motion ref weighting → prevents character drift across shots
+- Consistency script workflow enables >30-second sequences with same character
+- Digital-Stud verdict: currently best for multi-shot consistent character video; API: Replicate, fal.ai, ByteDance API
+
 ### 🆕 Seedance 2.0 — Commercial API Pricing Disclosed
 
 - ByteDance disclosed commercial API pricing via LinkedIn (Asteris AI, March 2026)
@@ -306,6 +325,13 @@
 - **16GB VRAM** (RTX 4080, 5070 Ti): Use I2V 14B Q6; T2V works with int8
 - **Wan2.2 T2V + LightX2V LoRA**: Working combo for motion effects; some artifact risk when stacking LoRAs
 - **Warning**: Multiple LoRAs stacked on Wan2.2 → visual artifacts; use single LoRA per generation pass
+
+### WanGP API — Headless Backend Service Mode (v10.987+)
+
+- New **internal API** exposed for using WanGP as a backend video generation service
+- **LTX Desktop WanGP**: reference app built on WanGP API; reduces VRAM floor from 32GB
+- Enables batch/headless generation without GUI; scriptable via Python
+- Digital-Stud relevance: pipeline-level video batch generation for automated character content
 
 ### 🆕 WanGP v10.987 (March 10, 2026)
 
@@ -603,6 +629,33 @@ mixed_precision: fp16 or bf16
 - **"Text-to-Skeleton Cascade"** approach addresses training data scarcity for human motion generation
 - **Digital-Stud relevance**: Type in motion description → get pose sequence → feed to Wan/LTX → character video
 
+### 🆕 Depth Anything V3 — SOTA Monocular Depth (March 2026)
+
+- Unifies monocular + multi-view geometric constraints; production-deployed in ROS2, video plugins
+- **Recommendation**: use V3 for depth-conditioned ControlNet maps; use Depth Pro for metric accuracy
+- Available: HuggingFace `depth-anything/Depth-Anything-V3-*`; included in Depth Scanner 2 AE plugin
+- Outperforms Depth Anything V2 on consistency; Depth Pro still sharper for absolute metric tasks
+
+### 🆕 CyanPuppets — 1B-Param Blender/UE5 AI Motion Capture (March 2026)
+
+- Converts camera footage / uploaded video → real-time 3D motion data (Blender + Unreal Engine)
+- 1B-parameter model; MetaHuman interface compatible; no mocap suit required
+- Digital-Stud pipeline fit: generate portrait image → refine with LoRA → CyanPuppets for 3D motion → video
+
+### 🆕 SIMSPINE — 3D Spine Motion from Ordinary Video (March 2026)
+
+- Extracts vertebral-level 3D spine motion from standard video (monocular, no sensors)
+- Novel granularity beyond full-body pose (DWPose/OpenPose miss spinal detail)
+- Research code available; paper: arXiv / Instagram @DVnK9m-Gl1I
+
+### 🆕 KDMR — Kinodynamic Motion Retargeting (arXiv 2603.09956, March 10 2026)
+
+- Humanoid locomotion retargeting via multi-contact whole-body trajectory optimisation
+- Enforces rigid-body dynamics + contact complementarity constraints vs kinematic-only (GMR) baselines
+- Auto heel-toe contact detection; integrates GRF measurements; outperforms GMR
+- **Pipeline open-sourced upon publication** — watch arXiv 2603.09956
+- Digital-Stud relevance: physics-accurate character motion retargeting from video/mocap sources
+
 ### ControlNet-Union FLUX — Pose Conditioning Quality Guide
 
 - **OpenPose**: Still widely recommended for ComfyUI FLUX workflows; fast, well-tested
@@ -678,6 +731,25 @@ mixed_precision: fp16 or bf16
 - **UV Unwrapping**: Automatic UV layout generation for easier texturing pipelines
 - **Smart Topology**: Convert dense geometry into cleaner, production-ready meshes
 - **Workflow integration**: Ready-to-run workflows available on Comfy Cloud — useful for Digital-Stud character asset prep
+
+### ComfyUI Desktop v0.8.x Release Cadence (March 2026)
+
+- **v0.8.18** (Mar 7): bundles core 0.16.4; fixes compiled-bad-node regression
+- **v0.8.16** (Mar 6): core 0.16.3; audio encoder stability
+- **v0.8.15** (Mar 5): general stability pass
+- Cadence: ~2 releases/week — always update before LTX-2.3 / Wan2.2 workflows
+- To use core 0.16.4 in Desktop 0.8.16: update internal component separately (GitHub issue #12828)
+
+### 🆕 NVIDIA NVFP4 / FP8 — ComfyUI Native Quantization (GDC 2026)
+
+- **FLUX.2 Klein 4B & 9B NVFP4 weights**: available now (NVIDIA RTX AI Garage)
+- **LTX-2.3 NVFP4**: coming soon
+- **Speed/VRAM gains (RTX 5090)**:
+  - NVFP4: **2.5× faster, 60% lower VRAM**
+  - FP8: **1.7× faster, 40% lower VRAM**
+- WanGP addition: NVFP4 for LTX-2 & FLUX.2; +30% speed on RTX 50xx w/ PyTorch 2.9.1 / CUDA 13
+- Load directly from HuggingFace via ComfyUI Template Browser
+- Digital-Stud relevance: run FLUX.2 Klein 9B on 8GB VRAM cards with NVFP4
 
 ### 🆕 Major: App Mode, App Builder & ComfyHub (March 10, 2026)
 - **ComfyUI v0.16.1 / v0.16.2** — LTX-2.3 native support; Desktop v0.8.15 bump; resolves `split_with_sizes` prompt error
