@@ -3,6 +3,187 @@
 
 ---
 
+## 🔄 Run #52 Delta — 2026-03-12 23:03 Prague
+
+### 🆕 Seedance 2.0 (ByteDance Seed Lab) — Cinema-Grade Video at $0.14/sec
+
+- **Released**: February 2026; community peak activity March 12 (Kling 3.0 vs Seedance 2.0 comparisons trending)
+- **Capabilities**: End-to-end video generation, multi-camera simulation, cinema-grade output
+- **Cost**: Below **$0.14 per second of video** — most cost-effective cinema-quality commercial model currently
+- **Architecture**: Multimodal foundation (text+image→video), supports complex scene continuity
+- **Quality**: Trending comparisons show competitive with Kling 3.0 on VFX/model video tasks (March 12 Instagram reel "ashartco": "feels like a game changer")
+- **Digital-Stud relevance**: ⭐⭐⭐ At $0.14/sec, Seedance 2.0 undercuts Kling 3.0 Pro on cost while matching quality for many use cases. Add to `api_test_fal.py` for direct cost-per-second benchmarking. For bulk character animation or VFX renders, Seedance 2.0 may be more economical than Kling 3.0.
+
+### 🆕 Sora 1 Sunset + Sora 2 Preview API (March 13, 2026)
+
+- **Sora 1**: Deprecated in US starting **March 13, 2026** — end-of-life
+- **Sora integration**: Sora technology integrating directly into ChatGPT interface (no separate app)
+- **Sora 2 Preview API**: Reportedly in development; expected to offer significantly improved quality over Sora 1
+- **Implication**: fal.ai and Replicate Sora 1 API endpoints will likely be deprecated; update `api_test_fal.py` to remove Sora 1 references after March 13
+- **Digital-Stud relevance**: ⭐⭐ Audit `api_test_fal.py` and `api_test_replicate.py` — remove Sora 1 endpoint tests; add Sora 2 when Preview API becomes available. Seedance 2.0 and SkyReels-V4 are the recommended Sora 1 replacements at current pricing.
+
+### 🆕 Wan 2.7 — Imminent Release (March 2026)
+
+- **Source**: Reddit r/StableDiffusion post March 12, 2026 (0 votes, original poster with insider knowledge)
+- **Claimed features**:
+  - Comprehensive upgrades over Wan 2.6
+  - **Video generation from start+end frames** (bidirectional temporal conditioning) — new capability
+  - **3×3 grid image input** for multi-reference video generation
+  - Subject reference control (consistent character from image)
+  - Voice reference control (audio-conditioned video generation)
+  - Significant image quality improvements over 2.6
+- **Note**: Community reception cautious ("No one cares unless it can be run locally") — indicates expectation of open weights
+- **Status**: NOT yet released as of March 12; scheduled "this month" (March 2026)
+- **Digital-Stud relevance**: ⭐⭐⭐ Wan 2.7 start+end frame generation = direct upgrade for character animation sequences (set start pose + end pose, model fills motion). Monitor `Wan-AI/Wan2.7` on HuggingFace for release. When released, update `wan22_img2vid.json` to Wan 2.7.
+
+### 🆕 LTX-2 vs LTX-2.3 Clarification — #1 Open-Source A/V on HuggingFace
+
+- **Clarification**: LTX-2 (base model, `Lightricks/LTX-2`) and LTX-2.3 (latest architecture release) are distinct:
+  - LTX-2 = Lightricks' open-source A/V foundation model; confirmed **#1 ranked open-source audio+video model on HuggingFace** (co-founder interview, March 2026)
+  - LTX-2.3 = latest architecture update released early March 2026 (rebuilt VAE, IC-LoRA, portrait support)
+  - LTX Desktop = free production video editor built on LTX-2.3
+- **Digital-Stud relevance**: ⭐⭐ Use LTX-2 for stable production; LTX-2.3 for latest features. For LoRA training, use LTX-2.3 + IC-LoRA (DiffSynth-Studio confirmed training support March 12).
+
+### 🆕 Free Local LTX-2.3 Video Captioner (r/StableDiffusion)
+
+- **Source**: r/StableDiffusion post ~March 12, 2026; open source
+- **Capability**: Batch processes videos + images + mixed folders; generates captions specifically tuned for LTX-2.3 training data curation
+- **Features**: Accepts any mix of video/image inputs; produces LTX-2.3-optimized caption format
+- **Digital-Stud relevance**: ⭐⭐⭐ Direct workflow improvement for LTX-2.3 LoRA training. Use for captioning character reference footage before IC-LoRA training. Zero cost, runs locally. Search r/StableDiffusion for latest repo link.
+
+### 🆕 SkyReels V4 in ComfyUI — Confirmed Parameters
+
+- **Source**: ComfyUI official sitemap blog post + community tracking
+- **ComfyUI support specs**: 1080p resolution, 32 FPS, 15-second duration supported natively
+- **Architecture reminder**: Dual-stream MMDiT (video+audio parallel generation), ranked #3 on Artificial Analysis T2V+Audio
+- **Status**: ComfyUI node available (V3 node likely compatible pending V4 weight release)
+- **Digital-Stud relevance**: ⭐⭐⭐ SkyReels V4 @ 1080p/32fps/15s = production-ready spec for character video. When V4 weights release on HuggingFace (monitor `SkyReels-AI/SkyReels-V4`), this becomes the primary local long-form video generation tool.
+
+### 🆕 ComfyUI App Mode — Confirmed Launch Date: March 10, 2026
+
+- **Correction from r51**: Launch was March 10 (GlobeNewswire PR 12:00 ET March 10); Gigazine article timestamped 20:00 March 12 = Japanese media coverage delay, not a second launch
+- **Comfy-Org CEO Yoland Yan** confirmed in Reddit r/StableDiffusion: 917 upvotes, 162 comments — strong community adoption
+- **ComfyHub**: Live at comfy.org/workflows with browse/search for community workflows and apps
+- **Clarification**: App Mode = free (local ComfyUI); Comfy Cloud = paid hosted execution; ComfyHub = distribution for both
+- **Digital-Stud relevance**: ⭐⭐ No change from r51. App Mode launch confirmed; now stable for production use.
+
+### 🆕 ComfyUI v0.16.0 — Full March 5 Changelog
+
+- **Source**: docs.comfy.org/changelog (March 5, 2026)
+- **New capabilities**:
+  - `ResolutionSelector` node: aspect ratio presets (1:1, 16:9, 9:16, 4:3, etc.) — replaces manual width/height calculation
+  - `CURVE` type: advanced parameter control for animation/easing curves in workflows
+  - **Dynamic VRAM mode now default** — adaptive VRAM management; less OOM errors on consumer GPUs
+  - **LoRA requantization for non-QuantizedTensor fp8** — fp8 LoRAs now work with quantized base models
+  - **LongCat-Image native implementation** — long context image generation support (tiled/stitched generation)
+  - Enhanced dynamic offload heuristics — smarter CPU-GPU offload for large models
+  - Z-image pixel space support added
+  - xAI models updated + Kling 3.0 Motion Control enabled in API Nodes
+- **Digital-Stud relevance**: ⭐⭐ Update local ComfyUI to v0.16.0. Dynamic VRAM default = fewer crashes on 24GB/8GB workflows. `ResolutionSelector` replaces manual dimension nodes in all character gen workflows.
+
+### 🆕 Kling 3.0 Now Available as ComfyUI Native Nodes
+
+- **Source**: blog.comfy.org ("Kling 3.0 Models Are Now Available in ComfyUI!")
+- **Access**: Native ComfyUI nodes via API (requires Kling API key); Standard + Pro motion control modes
+- **Modes in ComfyUI**: T2V, I2V, and Motion Control (Pro) — all accessible via node graph
+- **Digital-Stud relevance**: ⭐⭐ Kling 3.0 + SkyReels V4 + LTX-2.3 now all accessible in one ComfyUI workflow graph. Build unified character pipeline: LTX-2.3 for quick local preview → Kling 3.0 Pro for final 4K delivery.
+
+### 🆕 A²-Edit (arXiv 2603.10685) — Generalized Reference-Guided Image Inpainting
+
+- **Title**: "A²-Edit: A Highly Generalized Reference-Guided Image Inpainting Framework"
+- **Core**: Breaks constraints of domain-specific editing and rigid reference matching; works across arbitrary image domains
+- **Application**: Reference image → intelligent inpainting that respects reference style/content without domain restriction
+- **Digital-Stud relevance**: ⭐ Once code releases, A²-Edit enables reference-consistent face/body inpainting without domain-specific models. Useful for replacing faces/outfits in character renders while preserving background. Monitor arXiv 2603.10685 for GitHub link.
+
+### 🆕 DiffSynth-Studio LTX-2.3 IC-LoRA — March 12 Confirmation
+
+- **Source**: DiffSynth-Studio GitHub README (confirmed March 12, 2026 update)
+- **Capabilities**: Identity-consistent LoRA (IC-LoRA) for LTX-2.3 A/V generation
+  - text-to-audio/video with IC-LoRA conditioning
+  - image-to-audio/video with IC-LoRA conditioning
+  - audio-video inpainting with LoRA control
+  - full training + inference support
+- **Pipeline**: Reference image → IC-LoRA extract identity → condition LTX-2.3 generation → consistent character video
+- **Digital-Stud relevance**: ⭐⭐⭐ This is the most practical character-consistent video LoRA available today. DiffSynth-Studio + LTX-2.3 IC-LoRA = the recommended pipeline for Digital-Stud character video generation. Steps: (1) caption reference clips with free LTX-2.3 captioner, (2) train IC-LoRA via DiffSynth-Studio, (3) generate consistent character video via LTX-2.3.
+
+### 🆕 Musubi LoRA Trainer Node for ComfyUI (Floyo, March 6)
+
+- **Source**: Floyo release notes, March 6, 2026
+- **Capability**: In-browser LoRA training via ComfyUI node on Floyo cloud platform
+- **No local install**: Training runs on Floyo's cloud infrastructure
+- **Node type**: ComfyUI custom node that exposes Musubi LoRA training as a workflow step
+- **Digital-Stud relevance**: ⭐⭐ Zero-setup LoRA training in ComfyUI workflow = no separate training environment needed. Useful for rapid character LoRA iteration without Kohya SS or DiffSynth-Studio local setup. Check floyo.ai pricing for training compute costs.
+
+### 🆕 Depth Anything 3 (ByteDance-Seed) — November 2025 Release, Now Mature
+
+- **Released**: November 12, 2025 (not new, but now production-mature with growing ComfyUI integration)
+- **Architecture**: Predicts spatially consistent geometry from arbitrary visual inputs (monocular, stereo, or multi-view)
+- **DA3-Streaming**: Handles ultra-long video sequences with <12GB VRAM via sliding-window streaming
+- **Key advantage over DA2**: Multi-view spatial consistency — maintains coherent depth across multiple input views
+- **ComfyUI integration**: Growing in 2026; custom nodes for DA3 depth maps available
+- **Digital-Stud relevance**: ⭐⭐ DA3 > DA2 for character video depth estimation — consistent depth across video frames. Use DA3 depth maps as ControlNet conditioning for consistent 3D-aware character poses. DA3-Streaming enables depth estimation on full-length character clips with consumer VRAM.
+
+### 🆕 SAM 3 (Meta) — Unified Detection + Segmentation + Tracking
+
+- **Source**: ai.meta.com/blog/segment-anything-model-3
+- **Architecture**: Unified model for detection, segmentation, and tracking in images AND videos
+- **Performance**: Doubles accuracy of SAM 2 in both image and video prediction tasks
+- **Prompts**: Text prompts + visual prompts (point/box/mask) — SAM 2 only had visual prompts
+- **Deployment**: Coming to Instagram Edits; research weights expected soon
+- **Digital-Stud relevance**: ⭐⭐⭐ SAM 3 text-prompted segmentation = automatic character mask extraction from video without manual clicking. For Digital-Stud pipeline: SAM 3 extracts character → background replacement → SkyReels V4 for animated version. Critical upgrade to `face_refinement.json` workflow.
+
+### 🆕 DINOv3 (Meta) — Universal Vision Backbone
+
+- **Source**: ai.meta.com/blog/dinov3-self-supervised-vision-model + arXiv 2603.02974
+- **Architecture**: Self-supervised learning for universal vision backbones; scales DINOv2 with additional objectives
+- **Performance**: SOTA on image classification, dense prediction, depth estimation, anomaly detection
+- **Application in 2026**: Used as backbone for pose estimation, anomaly detection, and image-to-3D pipelines
+- **arXiv 2603.02974**: Spatial autoregressive modeling of DINOv3 embeddings for unsupervised anomaly detection
+- **Digital-Stud relevance**: ⭐ DINOv3 as backbone for future pose/depth ComfyUI nodes. Not directly actionable today but watch for DINOv3-based ControlNet and pose estimation nodes in ComfyUI ecosystem (replaces DINOv2 backbones in newer models).
+
+### 🆕 InfinityStory (HuggingFace papers, March 4, 2026)
+
+- **Paper**: arXiv 2603.03646 — "InfinityStory: Unlimited Video Generation with World Consistency and Character-Aware Shot Transitions"
+- **Core capability**: Background-consistent pipeline maintaining visual coherence across scenes while preserving character identity
+- **Key feature**: Character-aware shot transitions — character stays visually consistent even when camera cuts
+- **Digital-Stud relevance**: ⭐⭐ The core pain point in Digital-Stud character video = character drift between shots. InfinityStory directly addresses this. Monitor for code release on HuggingFace (paper is from March 4; code may follow). This technique could be integrated as a post-processing pass in the character video pipeline.
+
+### 🆕 FLUX.2 Klein + BFS LoRA Face-Swap Workflow (March 2026)
+
+- **Source**: YouTube tutorial March 2026 ("Best Face Swap in ComfyUI 2026: FLUX.2 Klein 9B + BFS LoRA")
+- **Method**: FLUX.2 Klein 9B with BFS (Black Forest Swap) LoRA for face identity injection
+- **Advantage**: Significantly better hair-edge blending vs ReactorFace and older FaceSwap methods
+- **Architecture**: Uses FLUX.2 Klein's multi-reference consistency + BFS LoRA for identity injection
+- **Digital-Stud relevance**: ⭐⭐⭐ For Digital-Stud character face consistency, FLUX.2 Klein + BFS LoRA > ReactorFace/older methods. Update `face_refinement.json` to include FLUX.2 Klein BFS workflow as primary face-swap method. Better for realistic skin, hair edges, and lighting consistency than InstantID on SDXL.
+
+### 🆕 XLabs-AI FLUX ControlNet Collections
+
+- **Source**: HuggingFace `XLabs-AI/flux-controlnet-collections` — active, updated collection
+- **Variants available**: Depth ControlNet, Canny ControlNet, Pose ControlNet for FLUX.1-dev
+- **Note on compatibility**: ControlNet cannot be used on FLUX DiT models directly (FLUX is DiT-based); XLabs uses adapted architecture (ZIT-compatible approach)
+- **Digital-Stud relevance**: ⭐⭐ XLabs FLUX ControlNets = the current SOTA for pose+depth conditioning with FLUX quality. For `pose_controlnet.json`, XLabs FLUX Pose ControlNet is the recommended upgrade path from SDXL ControlNet. Higher quality outputs, more consistent character proportions.
+
+### 🆕 ComfyUI NVFP4/Async Optimization Blog Post (blog.comfy.org)
+
+- **Source**: ComfyUI sitemap — "New ComfyUI Optimizations for NVIDIA GPUs - NVFP4 Quantization, Async..."
+- **Content** (inferred from NVIDIA GDC + r51 context): NVFP4 quantization guide + async execution pipeline
+- **Performance**: 2.5× faster, 60% VRAM reduction on RTX 50 Series with NVFP4; async pipeline reduces waiting time between node execution
+- **Digital-Stud relevance**: ⭐⭐ If running RTX 5090/5080/5070: NVFP4 is the single largest free performance upgrade available. 60% VRAM reduction means running FLUX.2 Klein 9B on 12GB instead of 24GB. Blog post has detailed setup guide.
+
+### 🆕 Key New Artifacts to Generate (Next Iteration Recommendations)
+
+Based on r51+r52 findings, the following new artifacts would be high-value additions:
+1. `comfyui/workflows/ltx23_ic_lora.json` — LTX-2.3 IC-LoRA character video workflow using DiffSynth-Studio
+2. `comfyui/workflows/skyreels_v4.json` — SkyReels V4 T2VA workflow (1080p/32fps)
+3. `scripts/api_test_seedance.py` — Seedance 2.0 API cost benchmark
+4. `comfyui/workflows/flux2_face_swap.json` — FLUX.2 Klein + BFS LoRA face-swap workflow
+
+---
+
+
+
+---
+
 ## 🔄 Run #51 Delta — 2026-03-12 22:30 Prague
 
 ### 🆕 Z-Image (Tongyi-MAI / Alibaba) — #1 Open-Source T2I Model
@@ -1359,7 +1540,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 22:30 (Prague / CET) | Run #51
+> Last updated: 2026-03-12 23:03 (Prague / CET) | Run #52
 
 ---
 
