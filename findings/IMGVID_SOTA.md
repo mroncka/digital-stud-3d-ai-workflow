@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 16:02 (Prague / CET) | Run #38
+> Last updated: 2026-03-12 16:30 (Prague / CET) | Run #39
 
 ---
 
@@ -1579,6 +1579,21 @@ Available at comfy.org/workflows:
 - **Masked Point Recovery (MPR)**: active physical reasoning for occluded trajectory inference
 - HKUST-GZ; outperforms prior pose-conditioned video gen on autonomous driving & robotics
 - Digital-Stud relevance: PSA decoupling enables independent control of character body trajectory (points) from clothing/appearance — direct unlock for character animation
+
+
+### LiTo — Surface Light Field Tokenization for Joint Geometry+Appearance (arXiv 2603.11047, March 12 2026)
+
+- **LiTo** proposes a 3D latent representation that jointly models object geometry and view-dependent appearance — unifying what prior works treated separately
+- Tokenizes surface light fields: captures both shape and specular/diffuse appearance in a single compact latent
+- Enables multi-view consistent generation with controllable view-dependent effects (reflections, materials)
+- Digital-Stud relevance: potential building block for 3D-aware character generation in ComfyUI — geometry + material appearance in one latent space, bridging img-gen and 3D workflows
+
+### ⚠️ Tooling Gap: ai-toolkit FLUX.2 Klein 9B LoRA Support (GitHub Issue #664, March 2026)
+
+- Community opened Issue #664 requesting LoRA training support for FLUX.2 Klein 9B in ostris/ai-toolkit
+- **Not yet merged** — ostris ai-toolkit currently supports FLUX.1 dev/schnell but lacks Klein 9B adapter
+- Workaround: some users manually patching model config; no official ETA
+- Digital-Stud relevance: blocks fine-tuning Klein 9B for character identity work until merged — monitor https://github.com/ostris/ai-toolkit/issues/664
 
 ### DiT4DiT — Coupled Video + Action Diffusion Transformer (arXiv 2603.10448)
 
