@@ -3,6 +3,164 @@
 
 ---
 
+## 🔄 Run #53 Delta — 2026-03-12 23:30 Prague
+
+### 🆕 ComfyUI-SAM3 Interactive Click-to-Segment Update (in-canvas)
+
+- **Source**: Reddit r/comfyui post 168 upvotes; `PozzettiAndrea/ComfyUI-SAM3` GitHub + ComfyUI-Manager PR merged
+- **New capability**: Interactive click-to-segment *in-canvas* — click on image node directly → SAM3 segments the clicked object in real time
+- **Previously**: SAM3 node supported text/box prompts only; click-to-segment required separate workflow step
+- **Now**: Click on image in ComfyUI canvas → instant mask generation; works in both image and video modes
+- **Models**: Auto-downloaded via ComfyUI Manager; supports text, box, and interactive click prompts
+- **Digital-Stud relevance**: ⭐⭐⭐ Click-to-segment in-canvas = fastest way to isolate character from background in ComfyUI. Critical for character extraction workflow: load image → click character → SAM3 mask → background removal → FLUX.2 inpaint or composite. Update `face_refinement.json` to include SAM3 click-to-segment node for character isolation.
+
+### 🆕 Wan 2.6 Reference-to-Video — Official ComfyUI Integration Published
+
+- **Source**: `blog.comfy.org/p/wan26-reference-to-video` (official Comfy Org blog post)
+- **Capability**: Generate cinematic videos by learning motion, camera behavior, and visual style from reference clips
+- **Specs**: Up to 2 reference videos, 720p and 1080p output options
+- **API access**: Also available via Floyo cloud at `floyo.ai/workflows/wan-2-6-reference-to-video-0t6nnv8esua5` (no local install)
+- **Status**: Officially supported in ComfyUI (not just community node); in Workflow Library
+- **Distinction from Wan 2.6 I2V**: Reference-to-Video = style/motion learning from reference clips; I2V = image conditioning for single start frame. These are different models/modes.
+- **Digital-Stud relevance**: ⭐⭐⭐ Wan 2.6 R2V is the current best local tool for consistent-style character video. Record reference clip → R2V learns your character's motion style → apply to new prompts. Update `wan22_img2vid.json` to document this R2V capability alongside standard I2V.
+
+### 🆕 Seedance 2.0 ComfyUI Templates Confirmed Live (6 templates)
+
+- **Source**: `comfy.org/templates/model/seedance/` — 6 free ComfyUI workflow templates published
+- **Status correction from r52**: r52 noted "on its way"; confirmed live as of ~March 12
+- **Available modes**: T2V, I2V, audio-conditioned generation (some templates require Gemini API for music)
+- **Community note**: Some workflows tied to Gemini API for background music — limitation for local-first workflows
+- **Benchmark**: YouTube "LTX-2.3 ComfyUI vs Seedance 2.0" confirms both viable for 20-second no-flicker generation; LTX-2.3 wins for free/local, Seedance 2.0 wins on API quality ceiling
+- **Digital-Stud relevance**: ⭐⭐ Seedance 2.0 templates available now in ComfyUI. `api_test_seedance.py` artifact (queued) should test these template endpoints. For local work: LTX-2.3 is the choice; for cloud API quality: Seedance 2.0 is cost-competitive with Kling 3.0.
+
+### 🆕 LTX-2.3 IC-LoRA — V2V ControlNet + Motion LoRA Modes
+
+- **Source**: YouTube "LTX 2.3 IC-LoRA New Cool Features: V2V ControlNet & Motion..." (ComfyUI tutorial channel)
+- **New capabilities beyond basic IC-LoRA**:
+  - **Video-to-Video ControlNet conditioning**: Use input video as structural guide for LTX-2.3 generation; character pose/motion preserved from reference video
+  - **Motion LoRA modes**: Separate LoRA weights that control camera motion and character motion independently
+  - **Custom nodes referenced**: Specific DiffSynth-Studio ComfyUI nodes for V2V + Motion LoRA pipeline
+- **Pipeline**: Reference video → V2V ControlNet extract motion → LTX-2.3 generate with IC-LoRA identity + motion LoRA camera control
+- **Digital-Stud relevance**: ⭐⭐⭐ V2V ControlNet + IC-LoRA = character-consistent video where you control both *who* (IC-LoRA identity) and *how* (V2V ControlNet motion + Motion LoRA camera). This is the most complete character video pipeline available locally. The `ltx23_ic_lora.json` artifact (pending) should document this full V2V+IC-LoRA+Motion pipeline.
+
+### 🆕 ComfyUI-DeZoomer-Nodes — Video Captioning + Caption Refinement
+
+- **Source**: GitHub `De-Zoomer/ComfyUI-DeZoomer-Nodes`; available via ComfyUI Manager
+- **Nodes**:
+  1. **Video Captioning Node**: Automated caption generation for video files (input: video → output: text captions)
+  2. **Caption Refinement Node**: Post-processes captions for quality/consistency improvements
+- **Use case**: Automated training data curation for video LoRA training (complements the free LTX-2.3 captioner from r52)
+- **Digital-Stud relevance**: ⭐⭐ Two-stage captioning pipeline in ComfyUI: Video Captioning → Caption Refinement → output ready for LTX-2.3 IC-LoRA training. Can be integrated directly into a data preparation workflow node graph. More flexible than standalone tools.
+
+### 🆕 ComfyUI-DepthAnythingV3 Node — DA3 + Point Cloud Preview
+
+- **Source**: `PozzettiAndrea/ComfyUI-DepthAnythingV3` GitHub; v1.3.3; `DA3_PreviewPointCloud` node on comfy.icu
+- **Capabilities**:
+  - Depth Anything V3 depth estimation (monocular; spatially consistent geometry)
+  - DA3-Small model support (faster, lower VRAM)
+  - **DA3_PreviewPointCloud node**: Visualize depth maps as 3D Gaussian/point cloud in ComfyUI canvas
+  - Camera pose estimation from depth maps
+  - Multiple normalization modes for depth map output
+- **Install**: Available via ComfyUI Manager search "DepthAnythingV3" or "PozzettiAndrea"
+- **Digital-Stud relevance**: ⭐⭐⭐ DA3 ComfyUI node is now production-ready. For `pose_controlnet.json` pipeline: DA3 depth node → depth map → XLabs FLUX ControlNet depth → consistent 3D-aware character pose. DA3_PreviewPointCloud enables real-time 3D preview of depth estimation quality before committing to ControlNet generation. Replace DA2 depth node with DA3.
+
+### 🆕 Comfy Cloud Free Tier Launched
+
+- **Source**: `blog.comfy.org/p/free-tier-arrives-in-comfy-cloud`
+- **Hardware**: Free tier runs on RTX Pro 6000 GPUs (same as paid Comfy Cloud users)
+- **Implication**: Zero-cost cloud ComfyUI execution for testing; no local install needed for workflow validation
+- **Limitation**: Free tier has usage quotas (standard free tier limits); not for bulk production use
+- **Digital-Stud relevance**: ⭐⭐ Use Comfy Cloud free tier for: (1) testing new workflows before optimizing locally, (2) running memory-intensive workflows (FLUX.2 Klein 9B) without local 24GB GPU, (3) sharing/demoing Digital-Stud workflows with collaborators. Lowers the barrier for experimenting with new nodes before local setup.
+
+### 🆕 LTX-2.3 vs Seedance 2.0 — 20-Second No-Flicker Benchmark
+
+- **Source**: YouTube "LTX-2.3 ComfyUI vs Seedance 2.0: Get 20-Sec Videos With No Flicker"
+- **Result**: Both achieve 20-second flicker-free generation
+- **LTX-2.3 advantages**: Free (local), faster iteration, no API cost, open weights
+- **Seedance 2.0 advantages**: Higher quality ceiling on API, better motion smoothness for complex scenes
+- **Community consensus (r/comfyui March 2026)**: LTX-2.3 for local production; Seedance 2.0 for paid API quality output
+- **Digital-Stud relevance**: ⭐⭐ Decision matrix confirmed: LTX-2.3 = default local workflow; Seedance 2.0 API = upgrade path for final delivery. Matches the two-stage pipeline concept (LTX-2.3 local preview → Kling 3.0/Seedance 2.0 final). Document in `api_test_seedance.py` artifact.
+
+### 🆕 FLUX.2 Klein 4B — Separate Small Model + 5 Community LoRAs
+
+- **Source**: `docs.comfy.org/tutorials/flux/flux-2-klein` official ComfyUI tutorial; YouTube "Five NEW Flux.2 Klein LoRAs released in 2026"
+- **Model clarification**:
+  - FLUX.2 Klein 4B = lighter/faster variant (not just the 9B model referenced in r51-52)
+  - Klein 4B supports T2I + image editing workflows in ComfyUI
+  - Klein 9B = higher quality, higher VRAM requirement (for face-swap BFS LoRA workflow)
+- **5 Community LoRAs released 2026**: Style LoRAs with workflow links provided in YouTube description; available on HuggingFace
+- **Digital-Stud relevance**: ⭐⭐ FLUX.2 Klein 4B = the low-VRAM FLUX.2 option for rapid iteration on 8-12GB GPUs. For face-swap BFS workflow: use Klein 9B. For style iteration and T2I: Klein 4B is faster. Add Klein 4B workflow as variant in `image_gen_flux.json`.
+
+### 🆕 Z-Image Turbo as Face Detailer in ComfyUI
+
+- **Source**: NextDiffusion tutorial "How to Use Z-Image Turbo as a Face Detailer in ComfyUI" (8-step pipeline)
+- **Pipeline**:
+  1. Face detection (automatic)
+  2. Build face mask from detection bbox
+  3. Z-Image Turbo enhance face detail within mask
+  4. Blend enhanced face back into original image
+- **Comparison**: Better fine facial detail than ADetailer for photorealistic faces; Z-Image Turbo's 6B parameters → more detail capacity than dedicated detailer models
+- **Integration**: Works as ComfyUI nodes; Z-Image Turbo loaded as standard image generation model + mask conditioning
+- **Digital-Stud relevance**: ⭐⭐⭐ Z-Image Turbo face detailer = upgrade path for `face_refinement.json`. Current workflow likely uses ADetailer or FaceDetailer; replacing with Z-Image Turbo gives higher quality face detail with the same pipeline structure. Add Z-Image Turbo face detailer path to `face_refinement.json` alongside FLUX.2 Klein BFS face-swap.
+
+### 🆕 Neural4D Image-to-3D Engine (G-Stacker, March 12, 2026)
+
+- **Source**: Press release March 12, 2026 (multiple syndication sites)
+- **Capability**: Watertight manifold geometry + pure albedo extraction from 2D images → engine-ready 3D assets
+- **Key problem solved**: Eliminates baked lighting from AI-generated 3D assets (major pain point in existing I23D tools like TripoSR/Zero123++)
+- **Output**: Clean mesh + albedo texture → directly importable to Blender/Unreal/Unity without manual relighting
+- **Comparison**: Tripo3D, Meshy, and Zero123++ all produce baked-lighting meshes; Neural4D produces proper PBR-ready albedo
+- **Access**: Available from G-Stacker (`gstacker.io` or similar); unclear if open-source or commercial
+- **Digital-Stud relevance**: ⭐⭐⭐ For 3D+AI workflow: Neural4D solves the biggest practical problem in AI-assisted 3D asset creation. Generate character image → Neural4D → clean albedo mesh → import to Blender for rigging/animation. If Neural4D is API-accessible, this belongs in the pipeline as the I23D step. Investigate pricing/access.
+
+### 🆕 SeedVR2 — Best Image-to-Image Upscaler March 2026
+
+- **Source**: r/comfyui community consensus (March 2026 thread "as of march 2026 whats the best i2i upscale method?")
+- **Community verdict**: "SeedVR2 is devilishly good out of the box" — preferred over Real-ESRGAN, LDSR, and Tiled Diffusion
+- **Also mentioned**: "If I need more 'invention'" = Tiled Diffusion still preferred for creative upscaling
+- **SeedVR2 characteristics**: Video + image upscaling; consistent detail enhancement; ByteDance-Seed lineage (same lab as Depth Anything 3, Seedance 2.0)
+- **Digital-Stud relevance**: ⭐⭐ Add SeedVR2 as post-processing upscale step in character image and video pipelines. For final render quality: SeedVR2 upscale → Z-Image Turbo face detailer → output. This two-step post-processing improves final delivery quality significantly.
+
+### 🆕 ComfyStudio — Video Editor with ComfyUI Integration
+
+- **Source**: Cursor Forum post (March 11, 2026); `ComfyStudio` project
+- **Concept**: Full-featured video editor with integrated ComfyUI interface; access full node graph when needed; timeline-based editing + AI generation in one environment
+- **Status**: Development/preview (posted in Cursor community forum)
+- **Digital-Stud relevance**: ⭐ Early-stage project. If ComfyStudio reaches production quality, it eliminates the ComfyUI → video editor export step. Monitor for GitHub release. Not actionable yet for Digital-Stud pipeline.
+
+### 🆕 Higgsfield Soul 2.0 — Confirmed Production Identity-Consistent Video
+
+- **Source**: Instagram @first_light_studio_, March 12: "Using Higgsfield Soul 2.0, we created a consistent cinematic character by training the model with multiple reference"
+- **Capability**: Identity-consistent character video from multi-reference training; "cinematic" quality confirmed by production studio
+- **Access**: Higgsfield AI platform (commercial); multi-reference training via Soul 2.0 fine-tuning
+- **Comparison with local tools**: Soul 2.0 = managed commercial service; DiffSynth-Studio LTX-2.3 IC-LoRA = open-source equivalent for local use
+- **Digital-Stud relevance**: ⭐⭐ Higgsfield Soul 2.0 = the commercial reference for what IC-LoRA should achieve locally. Use Soul 2.0 as quality benchmark when evaluating DiffSynth-Studio IC-LoRA outputs. If local IC-LoRA quality falls short, Soul 2.0 is the API fallback.
+
+### 🆕 Grok Imagine "Extend from Frame" (March 2, 2026)
+
+- **Source**: basenor.com article on Grok Imagine updates
+- **Feature**: Extend-from-Frame — temporal clip chaining; end frame of one clip becomes start frame of next generation
+- **Scale**: xAI reports 1.245 billion videos generated monthly on Grok Imagine (January 2026 stat)
+- **Implication**: Grok Imagine now has a native long-form video construction capability via chaining
+- **API access**: Grok API (xAI); included in Grok Plus/Pro subscriptions; API endpoint available
+- **Digital-Stud relevance**: ⭐ Extend-from-Frame is less useful than Wan 2.7's start+end frame approach (which maintains consistency over the full clip). Grok Imagine quality is below Kling 3.0/Seedance 2.0 for character work. Low priority for Digital-Stud pipeline.
+
+### 🆕 A²-Edit Full Architecture Confirmed (arXiv 2603.10685)
+
+- **Full architecture details** (confirmed from abstract read in r53):
+  - **MoT (Mixture of Transformers)**: Multiple LoRA expert transformers, each specialized for a category (clothing, objects, furniture, etc.)
+  - **MATS (Mask Annealing Training Strategy)**: Handles imprecise/ambiguous mask inputs gracefully
+  - **UniEdit-500K dataset**: 500,104 image pairs across 8 major categories and 209 subcategories
+  - **SOTA results**: Best on VITON-HD (clothing try-on) and AnyInsertion (object insertion)
+  - **Code**: Promised upon publication; GitHub link expected soon
+- **Digital-Stud relevance**: ⭐⭐ A²-Edit's clothing-try-on capability (VITON-HD SOTA) = virtual wardrobe for character design. For Digital-Stud character workflow: design character base → A²-Edit clothing swap → output character in different outfits consistently. Monitor `arxiv.org/abs/2603.10685` for GitHub release announcement.
+
+---
+
+
+
+---
+
 ## 🔄 Run #52 Delta — 2026-03-12 23:03 Prague
 
 ### 🆕 Seedance 2.0 (ByteDance Seed Lab) — Cinema-Grade Video at $0.14/sec
@@ -1540,7 +1698,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 23:03 (Prague / CET) | Run #52
+> Last updated: 2026-03-12 23:30 (Prague / CET) | Run #53
 
 ---
 
