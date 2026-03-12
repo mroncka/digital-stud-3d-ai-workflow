@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 09:03 (Prague / CET) | Run #24
+> Last updated: 2026-03-12 09:30 (Prague / CET) | Run #25
 
 ---
 
@@ -34,7 +34,7 @@
 
 | Rank | Model | Elo | Cost/Img |
 |------|-------|-----|----------|
-| 1 | GPT Image 1.5 (OpenAI) | 1,284 | $0.034–0.20 |
+| 1 | GPT Image 1.5 (OpenAI) — ~95% text-in-image accuracy | 1,284 | $0.034–0.20 |
 | 2 | Nano Banana 2 (Gemini 3.1 Flash Image) | 1,280 | ~$0.03 |
 | 3 | Gemini 3 Pro Image | 1,268 | $0.134 (std) |
 | 4 | FLUX.2 Pro v1.1 | 1,265 | $0.055 |
@@ -104,6 +104,16 @@
   - 4th in image leaderboard (~1130 Elo); **best open-weight option** for fine-tuning and local deployment
   - Open-weight; community fine-tuning community rapidly adopting as Flux.2 alternative base
 
+- **FLUX.2 Klein 9B** (ModelsLab, March 11 2026)
+  - Distilled 9B model variant with improved image-to-image consistency
+  - Available via ModelsLab API; good for rapid iteration / real-time editing workflows
+  - Digital-Stud relevance: fast I2I for character variant generation without full inference cost
+
+- **FLUX.2 Dev 8-step Turbo LoRA — Speed Benchmarks** (ComfyUI, March 2026)
+  - PyTorch SDP + xFormers: ~560s at 1.6MP (1280×1280)
+  - Sage Attention variant: ~537s (29s savings); scales better on large batches
+  - Full 25-step non-Turbo: ~23 min (PyTorch) / ~21 min (Sage) — Turbo LoRA saves ~60% time
+
 - **FLUX.2 Ecosystem Stats** (March 2026)
   - **50,000+ LoRAs** now on HuggingFace; FLUX.2 is base for ~90% of all community fine-tunes
   - Hundreds of style variants: anime, pixel art, portrait photography, product rendering
@@ -113,6 +123,12 @@
   - Pending HF release: "will release models, training code, datasets, data" per official communications
   - State-of-the-art among open-source models for consistency in generation+editing
   - Wallaroo (arXiv 2603.04980): Simple baseline for unifying understanding + generation + editing
+
+- **OmniEdit** (arXiv 2603.09084, March 2026)
+  - Training-free framework for **lip synchronization + audio-visual editing** in videos
+  - Reformulates lipsync as a cross-modal attention task; no per-video fine-tuning needed
+  - Digital-Stud relevance: Add talking-head dialogue to generated character videos post hoc
+  - GitHub: pending public release; paper available
 
 - **Canva Magic Layers** (March 12 2026)
   - Turns any flat AI-generated image into a fully editable layered design
@@ -228,6 +244,14 @@
 - Apache 2.0, free for sub-$10M ARR
 - **⚠️ Community note**: LTX Desktop reportedly outperforms ComfyUI out-of-box for LTX-2.3 — custom node configuration matters for parity
 
+
+### 🆕 Runway Characters — Real-Time Avatar API (March 9, 2026)
+
+- Generates fully **conversational AI avatars** from a single static reference image
+- Real-time video agent API; enterprise integration; bundled with Adobe Firefly
+- Use case: product demo characters, AI tutors, branded digital humans
+- Digital-Stud relevance: character activation for client-facing assets without full vid gen pipeline
+
 ### Kling 3.0 Pro — Commercial 4K Flagship (February 2026)
 
 - **ELO 1243** — top-ranked commercial video model (LMArena, March 2026)
@@ -275,6 +299,13 @@
 - Tencent HunyuanVideo 3D (HY 3D 3.0) Advanced Features now available via ComfyUI Partner Nodes
 - Enables 3D asset generation tightly coupled with HunyuanVideo pipelines
 - **Digital-Stud relevance**: 3D mesh output from video frames; potential integration with Blender workflow
+
+### WanGP GGUF Quantization Guide (March 2026 Community Best Practices)
+
+- **Wan2.2 I2V 14B Q6 GGUF**: Best quality/speed tradeoff; recommended as default for RTX 3090/4090 users
+- **16GB VRAM** (RTX 4080, 5070 Ti): Use I2V 14B Q6; T2V works with int8
+- **Wan2.2 T2V + LightX2V LoRA**: Working combo for motion effects; some artifact risk when stacking LoRAs
+- **Warning**: Multiple LoRAs stacked on Wan2.2 → visual artifacts; use single LoRA per generation pass
 
 ### 🆕 WanGP v10.987 (March 10, 2026)
 
@@ -362,6 +393,27 @@
 - **LoRA+ (16× ratio baseline)**: Apply differential LR to LoRA-A and LoRA-B matrices — **~30% faster convergence**, better detail capture. Now the universal baseline in Kohya-ss v0.9.1+
 - **Fused backward pass** (Kohya-ss v0.9.1+): SDXL training VRAM **24GB → 10GB** with bf16
 - **T-LoRA** (arxiv 2507.05964): Timestep-Dependent Low-Rank Adaptation — dynamic rank-constrained updates per diffusion timestep + dynamic fine-tuning strategy. **Single-image character customization without overfitting**; drop-in for standard LoRA pipelines
+
+### Dataset Preparation — Auto-Captioning Best Options (March 2026)
+
+- **JoyCaption 2** (recommended): Best open-source BLIP/VLM-based captioner; detailed scene + style + character descriptions; runs locally
+- **CogVLM**: Strong for detailed image captioning; slower than JoyCaption 2 but higher descriptive quality
+- **Molmo** (Allen AI): Fast, good for batch captioning; less detailed on clothing/style attributes
+- Recommendation for character LoRA: JoyCaption 2 → manual review of 20% samples → Kohya/AI-Toolkit training
+
+### WD-Tagger v4 — Updated CLIP Tagger (March 2026)
+
+- New v4 model weights: improved anime/style/character tagging accuracy
+- Supports Danbooru, E621, Derpibooru tag sets
+- Best for: style LoRA, anime character LoRA, NSFW-aware tag filtering
+- Available in ComfyUI via WD14Tagger node (update node + weights)
+
+### 🆕 NVIDIA Nemotron 3 Super 120B (March 11 2026)
+
+- Open-weight hybrid MoE Mamba-Transformer; beats GPT-OSS and Qwen3.5 on throughput
+- **5× higher throughput** vs equivalent dense models for agentic AI systems
+- Supports overnight LoRA/QLoRA fine-tuning; open weights + datasets + recipes
+- Digital-Stud relevance: potential fast LLM backend for prompt enhancement / captioning pipelines
 
 ### 🆕 LTX-2.3 LoRA Training — Status (March 2026)
 
@@ -538,6 +590,13 @@ mixed_precision: fp16 or bf16
 - New official ComfyUI template; any-pose from 3D → portrait with identity preservation
 - Combines Z_Image pose extraction + Qwen Edit + Flux 2 Klein upscaling
 
+### 🆕 Bumblebee — Long-Sequence Motion Generation (Seoul, March 2026)
+
+- Korean AI startup; developed a generative model for **long-sequence character motion**
+- Targets film/TV production; content deals for global market in progress
+- Differentiator: temporal coherence across long sequences vs single-shot video models
+- Digital-Stud relevance: could bridge gap between pose-guided single clips and full scene choreography
+
 ### 🆕 Any-Pose Portrait Editing Workflow (Confirmed Details)
 
 - **Two-stage cascaded framework** (arXiv 2603.08028): Stage 1 — autoregressive text-to-skeleton model generates 2D pose sequence from text; Stage 2 — pose-conditioned video diffusion
@@ -572,6 +631,11 @@ mixed_precision: fp16 or bf16
 | `Yedp Action Director v9.2` | FBX/GLB/BVH → ControlNet conditioning (NEW) |
 | `ComfyUI Open Pose Editor` | Visual skeleton editor |
 | `ComfyUI-SCAIL-Pose` | Advanced pose processing |
+- **Z-Image Turbo — Face Detailer for ComfyUI** (nextdiffusion.ai, March 2026)
+  - Auto-detects faces in generated images → builds mask → enhances face detail in 8 steps
+  - Requires only 3 model files; works with FLUX.2 Dev and SD4
+  - Tutorial: nextdiffusion.ai/tutorials/how-to-use-z-image-turbo-as-a-face-detailer-in-comfyui
+
 - **SCAIL ComfyUI Tutorial** (nextdiffusion.ai, March 2026) — End-to-end guide: install, pose injection, Wan2.2 character animation workflow; covers 3D-consistent motion from pose sequence
 | `ComfyUI-SDPose-OOD` | Robust OOD pose estimation |
 | `Ubisoft CHORD` | Character pose reference + image editing |
