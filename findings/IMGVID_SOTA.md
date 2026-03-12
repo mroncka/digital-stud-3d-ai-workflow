@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 10:04 (Prague / CET) | Run #26
+> Last updated: 2026-03-12 10:30 (Prague / CET) | Run #27
 
 ---
 
@@ -75,6 +75,14 @@
 - **Ultra-wide aspect ratios** (4:1, 1:4, 8:1) for banners and cinematic formats
 - Available free in Google AI Studio (rate-limited); also in Comfy Cloud free tier
 - **Free tier**: 100 images/day (Nano Banana) / 3/day (Pro) via Gemini App; **up to 1,500 images/day via Gemini Flash API free tier** (web UI); 500 RPD via standard Gemini API free tier
+
+### 🆕 FLUX.2 Klein Consistency LoRA (Community, March 2026)
+
+- Fixes **pixel drift / content shifting** in img2img operations with Klein 9B
+- Locks composition and character identity during iterative in/outpainting passes
+- ComfyUI AIO workflow: Edit, Inpaint, Place, Replace, Remove using Klein + this LoRA
+- Find on: CivitAI search "Flux Klein Consistency" | r/StableDiffusion confirmed quality
+- Digital-Stud relevance: enables reliable character editing loops without identity degradation
 
 ### Flux 2 Family — Full Breakdown
 
@@ -213,6 +221,13 @@
 | — | Wan2.2 / Open-source | ~1,080–1,100 |
 
 > Gap between Kling 3.0 Pro (1243) and Sora 2 Pro (1199) = 44 ELO points — substantial lead.
+
+### 🆕 HunyuanVideo Foley — Audio-Aligned Video (if-ai ComfyUI Node, March 8 2026)
+
+- `ComfyUI_HunyuanVideoFoley` (if-ai) on production ComfyUI registry since March 8 2026
+- Generates **sound effects + ambient audio synchronized to video motion** using HunyuanVideo
+- Input: video frames / motion; output: matching audio track
+- Digital-Stud relevance: adds audio to AI character video without a separate audio pipeline
 
 ### HunyuanVideo-1.5 — Efficiency Breakdown
 
@@ -414,6 +429,13 @@
 
 > **Reflective Flow Sampling Enhancement** (arxiv 2603.06165, March 2026): New technique for flow-matching models (Flux). Improves sampling quality by incorporating reflective guidance — potentially applicable to ComfyUI custom samplers.
 
+### 🆕 RF-Sampling — Training-Free Flow Model Inference Enhancement (arXiv 2603.06165)
+
+- Drop-in **training-free sampler enhancement** for flow matching models (FLUX.2, LTX-2.3, Wan)
+- Reflective flow sampling improves sample diversity + quality at inference time
+- No re-training required; plug in as alternate scheduler/sampler in ComfyUI
+- Digital-Stud relevance: free quality boost for all FLUX.2 and LTX pipelines
+
 ### Key Training Advances (March 2026)
 
 - **LoRA+ (16× ratio baseline)**: Apply differential LR to LoRA-A and LoRA-B matrices — **~30% faster convergence**, better detail capture. Now the universal baseline in Kohya-ss v0.9.1+
@@ -548,6 +570,21 @@ mixed_precision: fp16 or bf16
 
 ## 🏃 Pose Estimation SOTA — March 2026
 
+### 🆕 PoseRWGCN — Attention-Free RWKV-GCN Real-Time 3D Pose (Mar 9 2026)
+
+- First use of **RWKV linear-time temporal modeling** for 3D human pose estimation
+- Dual-stream: RWKV temporal + GCN spatial — avoids quadratic transformer cost
+- Causal mode = real-time inference; bidirectional mode = offline video analysis
+- Benchmarked on Human3.6M + MPI-INF-3DHP; outperforms attention baselines in efficiency
+- Open access: Complex & Intelligent Systems, DOI 10.1007/s40747-026-02239-x
+
+### 🆕 TAR-ViTPose — Temporal Aggregate-and-Restore for Video (arXiv 2603.05929, Mar 2026)
+
+- Extends ViTPose with **multi-frame aggregation** for video-level pose consistency
+- **+2.3 mAP gain** over single-frame ViTPose on COCO benchmark
+- Aggregate-and-restore: collects temporal context then reconstructs per-frame accuracy
+- Practical use: character pose tracking in video with reduced jitter vs per-frame inference
+
 ### Model Comparison
 
 | Model | Type | Keypoints | Accuracy | Speed | Best For |
@@ -655,6 +692,15 @@ mixed_precision: fp16 or bf16
 - Auto heel-toe contact detection; integrates GRF measurements; outperforms GMR
 - **Pipeline open-sourced upon publication** — watch arXiv 2603.09956
 - Digital-Stud relevance: physics-accurate character motion retargeting from video/mocap sources
+
+### 🆕 Alibaba-PAI FLUX.2-dev-Fun-Controlnet-Union (Updated Feb/Mar 2026)
+
+- HuggingFace: `alibaba-pai/FLUX.2-dev-Fun-Controlnet-Union`
+- Control types: **Canny, HED, Depth (Midas), Pose (OpenPose), MLSD, Scribble, Gray**
+- Two versions: standard + **`Union-2602.safetensors`** (improved Scribble/Gray + CFG distillation post-training)
+- **Recommended scale**: controlnet_conditioning_scale 0.65–0.80
+- Supports inpainting mode + multi-condition control in one model
+- Klein variant: **FLUX.2 Klein ControlNet** (Pose + Depth + LineArt) — dedicated ComfyUI workflow available (YouTube: Flux 2 Klein Control Net ComfyUI)
 
 ### ControlNet-Union FLUX — Pose Conditioning Quality Guide
 
