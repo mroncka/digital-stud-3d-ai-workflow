@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 10:30 (Prague / CET) | Run #27
+> Last updated: 2026-03-12 11:05 (Prague / CET) | Run #28
 
 ---
 
@@ -308,6 +308,15 @@
 - Per-second pricing structure hinted (720P ~¥0.6/sec based on `wan-2-6-i2v` listings)
 - **Digital-Stud action**: Update `wan22_img2vid.json` workflow to Wan2.6 API endpoint when weights release
 
+### 🆕 SkyReels V4 — Joint Audio-Video Generation (Late Feb / Early Mar 2026)
+
+- Major architectural shift from V2 (infinite-length) to **joint audio-video generation** (max 15s currently)
+- **Native audio as first-class feature**: beat-sync, voice-guided pacing, automatic audio-visual balance
+- Video quality improvements: better edge detail, color hold, motion consistency up to **1080p**
+- SkyReels V2 remains better for: content >15s, ComfyUI ecosystem, hardware flexibility
+- API: WaveSpeedAI wavespeed.ai/blog/posts/skyreels-v4-vs-v2/
+- Digital-Stud note: V4 useful for short cinematic clips with synced audio; V2 for long-form animation
+
 ### 🆕 Seedance 2.0 — Reference Cluster & Character Consistency (Feb 2026)
 
 - **Reference Cluster System**: up to **12 multimodal inputs** (9 images + 3 videos); @-tag syntax for identity/motion binding
@@ -370,6 +379,14 @@
 - Supports: Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX Video, Flux
 - GitHub: `deepbeepmeep/Wan2GP` — recommended for low-VRAM local setups
 
+### 🆕 WAN VACE Clip Joiner — Smooth AI Video Transitions (CivitAI, March 2026)
+
+- ComfyUI workflow: creates seamless transitions between video clips using **Wan VACE** (Wan 2.2 Fun VACE or Wan 2.1 VACE)
+- Input: any two video clips → Output: smooth in-between transition via VACE conditioning
+- Compatible with: Wan-based outputs, LTX-2.3, HunyuanVideo, and any external video source
+- CivitAI model ID: 2024299 | Available in ComfyUI Manager
+- Digital-Stud relevance: bridges separate character animation clips into seamless sequences
+
 ### Wan2.2 — Priority Model for This Workflow
 
 - MoE architecture, TI2V-5B: unified text+image → video, 720P/24fps, RTX 4090
@@ -378,6 +395,13 @@
 - [docs.comfy.org](https://docs.comfy.org/tutorials/video/wan/wan2_2) | Apache 2.0
 - **⚠️ Performance note (March 2026)**: Community reports 33%+ increase in generation time after recent ComfyUI updates (same workflow, same settings) — check ComfyUI version before assuming hardware issue
 - **WanGP** (github.com/deepbeepmeep/Wan2GP): GPU-poor fast inference tool; supports Wan2.1/2.2, HunyuanVideo, LTX, Flux; Q4_K quantized Wan2.2 14B runs on 8–10GB VRAM; **Quantization formats: int8, fp8, gguf, NV FP4, Nunchaku** (auto-downloads model for your specific GPU architecture)
+
+### 🆕 Research Finding: Wan 2.1 1.3B vs 2.2 5B for Source Preservation (March 2026)
+
+- arXiv 2511.01266v5 finding: **Wan 2.1 (1.3B) empirically outperforms Wan 2.2 (5B)** in preserving source structures during I2V
+- Particularly relevant for user-interactive motion-controlled generation
+- Practical impact: for character animation where source pose/appearance must be preserved, prefer Wan 2.1 1.3B
+- For pure cinematic quality / prompt following without strict source fidelity: Wan 2.2 5B remains superior
 
 ### Open-Sora 2.0 — Cost Breakthrough
 
@@ -585,6 +609,23 @@ mixed_precision: fp16 or bf16
 - Aggregate-and-restore: collects temporal context then reconstructs per-frame accuracy
 - Practical use: character pose tracking in video with reduced jitter vs per-frame inference
 
+### 🆕 tttLRM — Test-Time Training for 3D Gaussian Splat Reconstruction (CVPR 2026)
+
+- **Adobe + UPenn** researchers — open-source: github.com/cwchenwang/tttLRM
+- Input: set of photos → Output: high-quality **3D Gaussian Splats** with iterative refinement
+- Test-time training: model adapts to each new scene at inference → better per-object accuracy
+- Handles long-context multi-image sets (autoregressive 3D reconstruction)
+- Digital-Stud relevance: consumer photo → production-grade 3D asset pipeline; bridges character photography to 3D rigging
+
+### 🆕 SuperHead — Animatable 3D Head Avatars from Low-Quality Input (CMU, March 10 2026)
+
+- Framework: transforms **smartphone/webcam footage** into high-fidelity animatable 3D head avatars
+- Multi-view supervision with sparse upscaled 2D face renders + depth maps for geometric accuracy
+- Supports: GaussianAvatar + SplattingAvatar representations
+- Benchmarked on NeRSemble + INSTA datasets; strong realism improvement over baselines
+- CMU XR Technology Center: cmu.edu/xrtc/news/2026/march/superhead.html
+- Digital-Stud relevance: single webcam session → animatable 3D character head for rigging or video generation
+
 ### Model Comparison
 
 | Model | Type | Keypoints | Accuracy | Speed | Best For |
@@ -666,7 +707,18 @@ mixed_precision: fp16 or bf16
 - **"Text-to-Skeleton Cascade"** approach addresses training data scarcity for human motion generation
 - **Digital-Stud relevance**: Type in motion description → get pose sequence → feed to Wan/LTX → character video
 
-### 🆕 Depth Anything V3 — SOTA Monocular Depth (March 2026)
+### 🆕 Depth Anything 3 (DA3) — ICLR 2026, Human-Like Spatial Perception
+
+- Presented at **ICLR 2026** (previously noted as March 2026 release)
+- Goal: recovering complete visual space from any viewpoints ("human-like" spatial perception)
+- Succeeds Depth Anything V2; improved multi-view consistency and edge sharpness
+- Companion work: **DepthLM** — metric depth from Vision Language Models (ICLR 2026)
+  - Achieves **pixel-level metric depth** without architectural changes to VLMs
+  - Enables metric depth estimation from any VLM (Gemini, GPT-4V, etc.) as a plug-in
+- ComfyUI: available as DepthAnything3 custom node (check registry); DA2 nodes accept DA3 weights
+- Digital-Stud: better depth conditioning for ControlNet poses + 3D scene reconstruction
+
+
 
 - Unifies monocular + multi-view geometric constraints; production-deployed in ROS2, video plugins
 - **Recommendation**: use V3 for depth-conditioned ControlNet maps; use Depth Pro for metric accuracy
