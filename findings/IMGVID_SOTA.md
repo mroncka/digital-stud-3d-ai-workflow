@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 13:04 (Prague / CET) | Run #32
+> Last updated: 2026-03-12 13:30 (Prague / CET) | Run #33
 
 ---
 
@@ -612,7 +612,37 @@
 - Available via fal.ai API and Dreamina consumer platform
 - Digital-Stud relevance: best choice when you need >20 seconds of continuous audio-synced narrative video in one call
 
+### 🆕 StreamWise — Real-Time Multi-Modal Generation Serving at Scale (arXiv 2603.05800, March 2026)
+
+- **Sub-second latency** streaming system combining A100 + H100 for real-time video/audio output at under $40/video at scale
+- Benchmarks Wan 2.2 (16 FPS MoE DiT) and HunyuanVideo (30 FPS) in unified serving architecture
+- Streaming-first: outputs first frame while generating the rest — eliminates buffering wait times
+- Digital-Stud relevance: production deployment pattern for Wan/HunyuanVideo APIs; informs RunPod/fal.ai cost planning
+
 ## 🧵 LoRA Training SOTA — March 2026
+### 🆕 ID-LoRA — Identity-Driven Audio-Video Personalization with In-Context LoRA (arXiv 2603.10256, Tel Aviv University, March 2026)
+
+- **First In-Context LoRA framework** for unified audio-visual personalization — joint video + audio LoRA on LTX-2 backbone
+- Uses **negative temporal positions in RoPE** to cleanly separate reference audio from target tokens; no architecture change needed
+- Achieves SOTA with only ~3K training pairs on a single GPU — extremely sample-efficient
+- Classifier-free guidance variant amplifies speaker-specific features while text prompt controls environment/speaking style
+- Project page: [id-lora.github.io](https://id-lora.github.io)
+- Digital-Stud relevance: enables training personalized talking-head LoRAs with synchronized voice on LTX-2.3; replaces cascaded audio-video pipelines
+
+### 🆕 BSRA — Block-Structured Rank Adaptation with Dual Sparsity (Nature Scientific Reports, March 9 2026)
+
+- Combines block-level **structural sparsity** (differentiable evolutionary gating) with **dynamic rank pruning** (sensitivity-based cubic scheduling)
+- Addresses core limitation of fixed-rank LoRA: different layers need different rank budgets — BSRA adapts rank per-layer
+- Achieves parameter efficiency superior to standard LoRA while maintaining or exceeding fine-tune quality
+- Digital-Stud relevance: practical for training character LoRAs on FLUX with tighter VRAM budgets; viable alternative to fixed network_dim 32
+
+### 🆕 Stable-LoRA — Stabilizing Feature Learning via Weight-Shrinkage (arXiv 2603.05204, March 5 2026)
+
+- Identifies that **non-zero init of LoRA A matrix** breaks self-stability in feature learning — a previously overlooked failure mode
+- Fix: **weight-shrinkage strategy** that progressively shrinks A during earliest training steps; negligible compute overhead
+- Consistent quality improvements across diverse models; compatible with existing LoRA trainers (ai-toolkit, kohya_ss)
+- Digital-Stud relevance: apply as a training hygiene patch when running FLUX LoRA with ai-toolkit — prevents identity drift in early epochs
+
 
 ### Training Tools Comparison
 
