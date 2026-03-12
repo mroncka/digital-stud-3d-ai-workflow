@@ -3,6 +3,88 @@
 
 ---
 
+## 🔄 Run #43 Delta — 2026-03-12 18:30 Prague
+
+### 🆕 YOLO26-Pose — SOTA Pose Estimation Successor to YOLOv11-Pose (March 9, 2026)
+
+- Ultralytics releases **YOLO26** as unified 5-task family (detect, segment, classify, pose, OBB)
+- **YOLO26-pose** replaces YOLOv11-pose as the recommended pose estimation model:
+  - **Improved non-human keypoint support**: removes human-specific assumptions — usable for custom landmark detection (props, machinery, animals)
+  - **RLE loss (Residual Log-Likelihood Estimation)**: faster training convergence, stronger accuracy in fewer epochs
+  - **Better occlusion handling** at small scales
+  - **End-to-end design**: no external NMS needed → lower latency on CPU/edge
+  - Variants: YOLO26n-pose, YOLO26m-pose, YOLO26l-pose, YOLO26x-pose
+- Available in Ultralytics Python library; ComfyUI integration via existing YOLO nodes
+- Digital-Stud relevance: **drop-in upgrade from YOLOv11-pose** for pose extraction preprocessing in ControlNet pipelines
+
+### 🆕 LTX-2.3 GGUF Dynamic Variants — 12GB VRAM Viable (Unsloth Release)
+
+- **Unsloth** releases full LTX-2.3 Dynamic GGUF variants (Q2–Q8) + ready ComfyUI workflow
+- HuggingFace: `unsloth/LTX-2.3-GGUF`
+- Dynamic quantization: important layers kept at full precision → better quality vs standard GGUF
+- Tested working at **12GB VRAM** (RTX 3080/4070 class)
+- Separate GGUF loader: Kijai/ComfyUI-KJNodes (NOT compatible with city96/ComfyUI-GGUF)
+- 22B model confirmed working with KJNodes; lower-rank distill LoRA added by Kijai
+- Digital-Stud relevance: LTX-2.3 audio-video fully accessible on consumer 12GB cards
+
+### 🆕 DiffSynth-Studio Adds LTX-2.3 Support — March 12, 2026
+
+- **ModelScope/DiffSynth-Studio** adds LTX-2.3 audio-video generation on March 12, 2026
+- Features: text-to-audio/video, image-to-audio/video, **IC-LoRA** (identity-consistent LoRA for video)
+- IC-LoRA: enables consistent character identity across video frames via LoRA conditioning
+- GitHub: `modelscope/DiffSynth-Studio`
+- Digital-Stud relevance: IC-LoRA is a major capability for character-consistent video generation
+
+### 🆕 ElevenLabs ComfyUI Partner Nodes — Voice AI in Node Graph
+
+- **ElevenLabs** officially available in ComfyUI via Partner Nodes
+- Capabilities: text-to-speech, voice cloning, style transformation, audio transcription, isolation, multi-speaker dialogue, sound effect generation, voice library browser
+- Works alongside LTX-2.3 audio-video: generate character voice → drive video generation
+- Digital-Stud relevance: complete audio pipeline in ComfyUI — TTS + voice clone + video sync
+
+### 🆕 HunyuanVideo 3D 3.0 Partner Nodes in ComfyUI (March 9, 2026)
+
+- **Tencent Hunyuan 3D 3.0** advanced features available via ComfyUI Partner Nodes
+- Features: text/image/sketch-based 3D generation, 3D parts decomposition, UV unwrapping, smart topology, production-ready post-processing
+- Digital-Stud relevance: 3D asset generation from 2D reference images directly in ComfyUI — no Blender round-trip needed for basic assets
+
+### 🔄 Wan 2.7 — Open-Source Uncertainty Growing
+
+- **Wan 2.7 not yet released** as of March 12 18:30 Prague (still "scheduled for March")
+- Community concern: reports suggest **Alibaba may shift Wan to closed-source** going forward
+- Reddit r/StableDiffusion: "No one cares unless it can be run locally" — community demand for open weights
+- If confirmed closed: major impact on Digital-Stud pipeline (Wan 2.2 becomes last open video model from Alibaba)
+- **Monitor closely**: watch Alibaba GitHub + HuggingFace for official weights release
+
+### 🔄 RunPod 2026 State of AI Report — March 12, 2026
+
+- Key findings for Digital-Stud workflow planning:
+  - Massive shift toward **Qwen models** in local inference (surpassing Llama downloads)
+  - Trend toward **modular video pipelines** — separate dedicated models for each step vs monolithic end-to-end
+  - **Blackwell (RTX 50-series) GPU adoption** accelerating rapidly in 2026
+  - Inference moving to **FP4/FP8** as default; FP16 becoming legacy
+- Digital-Stud relevance: validates multi-model modular pipeline approach; Qwen worth evaluating for scene captioning
+
+### 🔄 SMPL Text-to-Skeleton-to-Video — Pose-Conditioned Video Generation Paper
+
+- arXiv 2603.08028: **"Controllable Complex Human Motion Video Generation via Text-to-Skeleton-to-Video"**
+- Two-stage: (1) generate skeleton sequence from text → (2) pose-conditioned video diffusion from reference image + skeleton
+- Achieves complex, controllable motion without motion reference video — pure text control
+- Digital-Stud relevance: potential for text-driven character animation — no reference video needed
+
+### 🔄 FLUX Image-to-Video — March 2026
+
+- GitHub master list confirms **FLUX Image-to-Video** as a new March 2026 entry
+- Status: community/third-party implementation; no official Black Forest Labs release confirmed
+- Watch: `black-forest-labs/FLUX` GitHub for official announcement
+- Digital-Stud relevance: would enable FLUX-native image-to-video without model switching
+
+---
+
+
+
+---
+
 ## 🔄 Run #42 Delta — 2026-03-12 18:03 Prague
 
 ### 🆕 LTX-2.3 — Open Audio-Video Model with ComfyUI GGUF Support
@@ -274,7 +356,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 18:03 (Prague / CET) | Run #42
+> Last updated: 2026-03-12 18:30 (Prague / CET) | Run #43
 
 ---
 
