@@ -3,6 +3,139 @@
 
 ---
 
+## 🔄 Run #45 Delta — 2026-03-12 19:30 Prague
+
+### 🚨 BREAKTHROUGH — Helios: Real-Time Long Video Generation (PKU, March 4, 2026)
+
+- **GitHub**: `PKU-YuanGroup/Helios` — training/inference code + weights released March 4
+- **Architecture**: 14B autoregressive diffusion transformer (radically simplified design)
+- **Real-time performance**: **19.5 FPS on single H100** — no KV-cache, sparse attention, or quantization needed
+- **Duration**: Minute-scale (up to 1,452 frames at 24 fps ≈ 60 seconds) — vs ~5–10s for Wan/LTX
+- **Three variants**:
+  - `Helios-Base`: 50 steps, highest quality
+  - `Helios-Mid`: intermediate quality/speed tradeoff
+  - `Helios-Distilled`: 3 steps, 19.5 FPS (real-time)
+- **Training innovation**: "Easy Anti-Drifting" training replaces inference-time hacks; unified history injection for error-free chunk concatenation
+- **Hardware**: Also runs on Ascend NPU (~10 FPS); 4 models fit in 80GB GPU
+- **Backends**: Diffusers, vLLM-Omni, SGLang-Diffusion, Ascend NPU
+- **Benchmark**: Introduces HeliosBench for long-video evaluation
+- **License**: Apache 2.0
+- Digital-Stud relevance: **largest open-source video leap in months** — 60s real-time generation changes character animation pipeline economics entirely
+
+### 🆕 SkyReels V4 — Joint Audio-Video Generation (API Released March 12, 2026)
+
+- **API Privacy Policy effective March 12, 2026** — fresh drop today
+- Claimed **#2 global ranking** in video generation
+- Key advancement from V2→V4: Infinite-length video (V2) → Joint audio-video generation (V4)
+- V3 (January 2026): Multi-subject video generation system (talking avatar, 40+ language lip sync from one portrait + audio)
+- V4: Architecture now generates synchronized audio + video in single pass
+- API: `skyreels.ai/dev`
+- Digital-Stud relevance: rival to LTX-2.3 audio pipeline; SkyReels V3 valuable for talking avatar / character voiceover with lip sync
+
+### 🆕 Stability AI — Stable Diffusion 4 Ultra
+
+- **SD4 Ultra** released (no precise date confirmed, active this week)
+- Key improvements over SD3.5-Large:
+  - Correct anatomy and hand generation (addresses longstanding weakness)
+  - Cinema-grade lighting simulation
+  - Significantly improved text rendering within images
+  - Photorealism benchmark improvements
+- Positioned as "commercial-ready" alongside Midjourney v6.1 and FLUX.1 Pro
+- Digital-Stud relevance: upgrades base image quality for character sheets; correct hands = reduced face_refinement workflow passes needed
+
+### 🆕 Nano Banana 2 — New Image Generation SOTA Contender
+
+- **Nano Banana 2** vs **Seedream 5.0** benchmark article published (medium.com/@302.AI)
+- Nano Banana 2 positioning: strong at poster design, portrait, album art
+- Seedream 5.0: Bytedance-backed, competitive on photorealism and style diversity
+- Both benchmarked via HF Inference API (smol-worldcup Season 1 tournament: 18 models, 12 makers)
+- Digital-Stud relevance: monitor Nano Banana 2 as potential FLUX alternative for specific use cases
+
+### 🆕 Wan 2.2 Sound-to-Video (S2V) — Audio-Driven Video in ComfyUI
+
+- **Wan2.2-S2V workflow** now in ComfyUI official templates (`comfy.org/templates/video_wan2_2_14B_s2v/`)
+- New dedicated nodes:
+  - **`WanSoundImageToVideoExtend`**: manual video extension with precise audio-video sync
+  - **`LatentCut`**: precise latent cutting in audio workflows
+- Output: minute-long audio-driven video generation
+- Works on 8GB VRAM
+- Wan 2.2 Lightning LoRAs (high + low) improve visual quality in S2V
+- Digital-Stud relevance: direct audio-reactive character video without LTX — complements rather than replaces LTX-2.3 audio pipeline
+
+### 🆕 Tripo v3.0 — Native ComfyUI Integration for 3D Asset Generation
+
+- **Tripo v3.0** now natively integrated in ComfyUI (ComfyUI Blog official post)
+- Generates production-ready 3D assets without leaving the ComfyUI workflow
+- Complements Neural4D (March 12) — Tripo via ComfyUI node vs Neural4D standalone tool
+- Both solve the 2D→3D pipeline gap but with different integration points
+- Digital-Stud relevance: choose Tripo for in-workflow 3D gen; Neural4D for standalone batch processing
+
+### 🆕 SCAIL in ComfyUI — 3D-Consistent Pose Animation
+
+- **SCAIL**: 3D-consistent pose animation for characters, now available as ComfyUI node
+- Enables precise motion control with 3D spatial awareness (not just 2D skeleton projection)
+- Works with character reference images for consistent multi-angle animation
+- Tutorial: nextdiffusion.ai/tutorials/scail-comfyui-3d-consistent-pose-animation-characters
+- Also referenced in ComfyUI v0.16.1 as **SCAIL WanVideo** model in API nodes
+- Digital-Stud relevance: fills 3D pose consistency gap between DWPose (2D only) and full 3D rigging
+
+### 🆕 Any-Pose Portrait Editing Pipeline — Practical 3D→Portrait Workflow
+
+- **New tutorial**: 3D character pose → portrait editing in ComfyUI (myaiforce.com)
+- Workflow: pose 3D character → transfer with **Qwen Edit** → face fix → upscale 4K with **FLUX.2 Klein**
+- Combines SCAIL / 3D pose source with Qwen's edit capabilities and FLUX.2 Klein final quality pass
+- Digital-Stud relevance: **concrete implementation path** for the pose→character pipeline already tracked in SOTA
+
+### 🆕 Text-to-Skeleton Video Cascades (arXiv 2603.08028)
+
+- Paper: "Controllable Complex Human Motion Video Generation via Text-to-Skeleton Cascades"
+- Two-stage framework: (1) autoregressive text-to-skeleton model → 2D pose sequences, (2) pose-conditioned video synthesis
+- Handles long-range temporal dependencies in complex motion (fighting, dancing, acrobatics)
+- Digital-Stud relevance: theoretical backbone for future controlled character action sequences from text prompts
+
+### 🆕 Skeleton-to-Image Encoding / S2I (arXiv 2603.05963)
+
+- Paper: "Enabling Skeleton Representation Learning via Vision-Pretrained Models"
+- S2I converts 3D skeleton sequences into image-like representations for MAE/DiffMAE consumption
+- Enables cross-format skeleton learning across NTU-60, NTU-120, PKU-MMD datasets
+- Digital-Stud relevance: bridges 3D skeleton data and vision-pretrained diffusion models — potential for future pose LoRA training
+
+### 🔄 ComfyUI v0.16.1 Full Changelog Confirmed (March 5, 2026)
+
+Additional items not previously captured:
+- **ResolutionSelector node**: aspect ratio presets for easier dimension setup
+- **CURVE type support**: advanced parameter control input
+- **ACE-Step 1.5 lycoris key** alias mapping for LoKR compatibility
+- **SDPose-OOD model support**: out-of-distribution pose estimation models
+- **Z-image pixel space** support
+- **Dynamic VRAM mode** now default — automatic memory optimization without manual flags
+- **LoRA requantization** for non-QuantizedTensor fp8
+
+### 🔄 Comfy Cloud Free Tier — RTX Pro 6000 Access
+
+- Comfy Cloud launched **free tier** on NVIDIA RTX Pro 6000 GPUs
+- Same hardware as paid users
+- Enables no-install app execution via ComfyHub shareable URLs
+- Digital-Stud relevance: free cloud testing path for heavy NVFP4 models without local RTX hardware
+
+### 🔄 WanGP v10.981 (March 7, 2026) — Confirmed LTX-2.3 Day-0 Support
+
+- Update confirmed: "0 day delivery of LTX 2 latest version with better audio, image-to-video and greater details"
+- Still supports: Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX Video, FLUX
+- Verified as the recommended GPU-poor inference runner for all major open video models
+
+### 🔄 LTX-2.3 vs Wan 2.2 — Definitive Comparison (March 2026)
+
+- LTX-2.3: **18× faster** than Wan 2.2 14B; native audio; up to 4K/50fps; 20s duration; Apache 2.0 (<$10M revenue)
+- Wan 2.2: **better prompt adherence and video quality**; stronger cinematic benchmark; larger community workflow ecosystem
+- Practical guidance: LTX-2.3 for rapid iteration + audio sync; Wan 2.2 for final cinematic quality output
+
+---
+
+
+
+---
+
 ## 🔄 Run #44 Delta — 2026-03-12 19:04 Prague
 
 ### 🆕 NVIDIA NVFP4 + FP8 Native in ComfyUI — GDC 2026 Announcement
@@ -442,7 +575,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 19:04 (Prague / CET) | Run #44
+> Last updated: 2026-03-12 19:30 (Prague / CET) | Run #45
 
 ---
 
