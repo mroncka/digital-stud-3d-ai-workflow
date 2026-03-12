@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 12:30 (Prague / CET) | Run #31
+> Last updated: 2026-03-12 13:04 (Prague / CET) | Run #32
 
 ---
 
@@ -302,6 +302,28 @@
 - Third-party aggregators (laozhang.ai etc.) from **~$0.10/second**
 - Native audio synthesis (dialogue, SFX, ambient) generated alongside video
 - Digital-Stud relevance: fast tier ($0.15/s) makes short 3–5 sec character motion clips economically viable
+
+### 🆕 RealWonder — Real-Time Physical Action-Conditioned Video Generation (arXiv 2603.05449, March 2026)
+
+- **First real-time streaming system** for physics-action-conditioned video from a single image
+- Accepts **3D physical actions** (forces, torques) as input; uses physics simulation → optical flow → realistic motion
+- Streaming architecture: frames generated and emitted continuously without buffering full clip
+- GitHub: [PKU-YuanGroup / RealWonder](https://arxiv.org/abs/2603.05449)
+- Digital-Stud relevance: enables physically grounded character motion from a single reference photo — complements ComfyUI img2vid pipelines
+
+### 🆕 Hitem3D v2.0 — Single/Multi-View Image to Production-Ready 3D (Math Magic, March 2026)
+
+- Converts **single or multi-view images** into production-ready 3D models for 3D printing and industrial design
+- Improved geometric accuracy, UV unwrapping, and mesh quality vs v1.0
+- Accessible via web dashboard and API; pricing competitive with Tripo and Meshy
+- Digital-Stud relevance: fast image→3D pipeline for props and characters; useful downstream of FLUX.2 / Midjourney V7 image gen
+
+### 🆕 DrPose — Direct Reward Fine-Tuning for 3D Pose Consistency (arXiv 2603.02619, March 2026)
+
+- Proposes **PoseScore**: differentiable reward function measuring 3D pose consistency between latent images
+- Fine-tunes diffusion models with RLHF-style reward signal to improve pose accuracy in generated images
+- Reduces anatomy errors (twisted limbs, inverted joints) common in FLUX / SD3.5 outputs
+- Digital-Stud relevance: key technique for training pose-aware LoRAs and evaluating pose ControlNet quality
 
 ## 🎬 Video Generation SOTA — March 2026
 
@@ -580,6 +602,15 @@
 - Sigma fine-tuning + sampler selection significantly impact output quality (community finding)
 - Official trainer package at `github.com/Lightricks/LTX-2` for full fine-tune + LoRA training
 - Digital-Stud relevance: most practical open-source audio-video model for ComfyUI right now
+
+### 🆕 Seedance 2.0 — 2-Minute Native Audio-Video, Best API Cost (ByteDance, March 2026)
+
+- **Only major model generating up to 2 minutes in a single pass** (vs ~20s for LTX-2.3, ~5s for Wan 2.2)
+- **Native audio generation** alongside video — dialogue, SFX, ambient synchronized in single inference
+- **Most affordable API pricing** in its tier among closed-source models (free tier via Dreamina: daily credits)
+- Direct competitor to Veo 3.1 for long-form narrative video; faster generation latency
+- Available via fal.ai API and Dreamina consumer platform
+- Digital-Stud relevance: best choice when you need >20 seconds of continuous audio-synced narrative video in one call
 
 ## 🧵 LoRA Training SOTA — March 2026
 
@@ -1227,6 +1258,13 @@ Available at comfy.org/workflows:
 - Multi-character support; emotion-controllable; MM-DiT backbone
 - Similar to Sonic/SadTalker but animates full body + scene (not just face)
 - Digital-Stud relevance: **ready-to-use right now** for character talking-head + body animation nodes
+
+### 🆕 SAVE — Speech-Aware Video Representation Learning (arXiv 2603.08224, March 2026)
+
+- New SOTA on **text-to-video retrieval** benchmarks: +8.5 on MSRVTT-9k, +3.1 on DiDeMo vs prior SOTA (AVIGATE)
+- Learns joint speech-video embeddings; improves temporal alignment for audio-driven video workflows
+- Practical impact: better retrieval for building talking-head training sets and audio-synced video datasets
+- Digital-Stud relevance: useful for curating high-quality audio-video training pairs for HunyuanVideo-Avatar fine-tunes
 
 ## ☁️ Free GPU Options — March 2026
 
