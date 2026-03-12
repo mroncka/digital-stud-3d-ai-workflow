@@ -3,6 +3,79 @@
 
 ---
 
+## 🔄 Run #41 Delta — 2026-03-12 17:30 Prague
+
+### 🆕 Wan 2.7 — Official March 2026 Release Confirmed
+
+- Officially announced for March 2026 release as "Professional Multimodal AI Video Director"
+- Comprehensive upgrades over Wan 2.6: text + image + video + audio inputs simultaneously ("reference everything")
+- Features: absolute character fidelity, advanced camera choreography, precision physics, semantic identity preservation
+- Three-step directorial workflow for cinematic production
+- **Status as of 17:30 Prague: Not yet released, imminent** — community thread confirmed by Wan team
+- Digital-Stud relevance: will be the new best open multimodal video model once released
+
+### 🆕 Sora 1 Retiring March 13, 2026 → Sora 2 In ChatGPT Soon
+
+- **Sora 1 ending in US: March 13, 2026** — users prompted to export content now
+- OpenAI planning Sora integration directly into ChatGPT (Reuters/The Information, March 11)
+- Sora 2 will be the successor — details sparse but ChatGPT-native delivery expected
+
+### 🆕 Open-Sora 2.0 — Commercial-Level Open Video Generation
+
+- arXiv 2503.09642v3 — community model built on HunyuanVideo VAE + Video DC-AE architecture
+- Achieves commercial-level quality at fraction of proprietary cost
+- Full training recipe open-sourced including data curation, architecture, training strategy
+- Digital-Stud relevance: best free-to-train video foundation model for custom fine-tuning
+
+### 🆕 BFL Self-Flow — Multimodal Training 2.8× More Efficient (March 4, 2026)
+
+- Black Forest Labs announces Self-Flow technique (March 4, 2026)
+- Makes training multimodal AI models **2.8× more efficient**
+- Applies to FLUX.2 family training and future model development
+- Expected to accelerate FLUX.2 Klein LoRA training tooling development
+
+### 🆕 SD3.5-Flash — On-Device Lenovo Integration (March 4, 2026)
+
+- Lenovo licenses **Stable Diffusion 3.5 Flash** for on-device private image generation
+- Runs locally on Lenovo hardware — no cloud dependency, privacy-first
+- SD3.5-Flash: fast, low-VRAM SD3.5 distilled variant for edge deployment
+- Digital-Stud relevance: confirms on-device SDXL-class quality is now feasible for laptop workflows
+
+### 🆕 Google Nano Banana 2 — Image Generation Leaderboard Leader (Feb 26, 2026)
+
+- **Nano Banana 2** (Gemini 3.1 Flash Image): tops Chatbot Arena text-to-image at **1280 Elo**
+- 2× faster than Nano Banana Pro, 50% cheaper ($0.045–$0.151/image vs $0.134)
+- Strong text rendering (challenging Ideogram), photorealistic, multi-subject compositions
+- API: Google AI Studio / Vertex; free tier available
+- Digital-Stud relevance: best free-tier cloud API for T2I in March 2026
+
+### 🆕 SkyReels V3 — Open-Source Cinematic Video + Lip-Sync (Jan 2026, now ComfyUI stable)
+
+- 14B-parameter V2V model: extends any video with cinematic quality
+- Audio-to-video (A2V) talking avatar + lip-sync animation
+- Low VRAM support, GGUF quantization available
+- Full ComfyUI workflow available at runcomfy.com
+- Digital-Stud relevance: best open-source option for talking avatar / lip-sync workflows
+
+### 🔄 Seedance 2.0 API Status Update (March 6, 2026)
+
+- Batch generation now live: **up to 20 clips per session** (March 6 update)
+- Global API still scheduled for March 2026 — not yet general-release as of 17:30 Prague
+- Native audio, 1080p, 15–20s clips, 12 reference files, beat-sync mode
+- Some halting/controversy around the model noted in community; API maturation ongoing
+
+### 🔄 Motion Forcing — Video Generation Trilemma Framework (arXiv 2603.10408)
+
+- New decoupled framework for robust video generation: quality + physical consistency + controllability
+- Addresses fundamental trilemma in video generation architectures
+- Digital-Stud relevance: theoretical framework for evaluating video model trade-offs
+
+---
+
+
+
+---
+
 ## 🔄 Run #40 Delta — 2026-03-12 17:07 Prague (comprehensive sweep)
 
 ### 🆕 FLUX.2 [klein] Full Architecture Details Confirmed
@@ -119,7 +192,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 17:07 (Prague / CET) | Run #40
+> Last updated: 2026-03-12 17:30 (Prague / CET) | Run #41
 
 ---
 
