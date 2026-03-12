@@ -3,6 +3,132 @@
 
 ---
 
+## 🔄 Run #49 Delta — 2026-03-12 21:34 Prague
+
+### 🆕 Grok Imagine Major Update (March 12, 2026) — xAI
+
+- **Announced**: Elon Musk tweet March 12, 2026 — direct callout of Grok Imagine upgrade
+- **Scale**: 1.245 billion videos generated in January 2026 alone
+- **New feature — "Extend from Frame"** (released March 2): Chain video clips continuously, up to 15 seconds per clip, enabling long-form sequences from a single image/video seed
+- **API pricing**: $0.05/second for 720p video with audio (competitive with Sora 2 API rate)
+- **Digital-Stud relevance**: ⭐⭐ Test "Extend from Frame" for character animation continuity — chain I2V clips to create longer sequences. Update `api_test_replicate.py` / `api_test_fal.py` to include Grok API endpoint. API pricing same as Sora 2 ($0.05/sec) but open access without waitlist.
+
+### 🆕 Z-Image-Fun-Lora-Distill-2603 — Alibaba PAI (~March 10, 2026)
+
+- **Model**: `alibaba-pai/Z-Image-Fun-Lora-Distill-2603` (HuggingFace)
+- **Nature**: Distilled LoRA for Z-Image Turbo that compresses BOTH inference steps AND CFG guidance simultaneously
+- **Effect**: Dramatically faster Z-Image generation while maintaining quality — fewer steps + no CFG overhead
+- **Source**: Threads post by @won.wizard confirming model public release
+- **Digital-Stud relevance**: ⭐⭐⭐ Drop-in speed boost for Z-Image Turbo workflows. Update `comfyui/workflows/face_refinement.json` to load this distill LoRA alongside Z-Image Turbo ControlNet-Union v2.1 — should yield near-instant face detailing
+
+### 🆕 Z-Image Turbo ControlNet-Union v2.1 (March 2026)
+
+- **Model**: `alibaba-pai/Z-Image-Turbo-Fun-ControlNet-Union-2.1` (updated from 2.0)
+- **Improvements over 2.0**: Enhanced inpainting quality + added outpainting support for FLUX models
+- **ComfyUI**: Drop-in replacement for previous Union model; confirmed working in community tests
+- **Digital-Stud relevance**: Replace `Z-Image-Turbo-Fun-ControlNet-Union` with `v2.1` in `face_refinement.json`
+
+### 🆕 WanGP v10.981+ Feature Expansion (March 7, 2026)
+
+- **Maintainer**: deepbeepmeep/Wan2GP (GitHub)
+- **New features**:
+  - **Outpainting for Qwen Image & FLUX.2** — extend frames spatially beyond original canvas
+  - **Lanpaint for FLUX.2** — landscape-oriented inpainting mode
+  - **Kiwi Edit** — video editing + object injection into existing video (described as "great model")
+  - **SVI PRO2 End Frames** — improved end-frame conditioning for smoother video termination
+- **Wan 2.7 note**: Changelog notes "Expecting an Update?" — WanGP team actively preparing Wan 2.7 integration
+- **Digital-Stud relevance**: ⭐⭐ Update `wan22_img2vid.json` to include Kiwi Edit path for character object injection; test Lanpaint for background extension in portrait-to-video workflows
+
+### 🆕 FLUX.2 NVFP4/FP8 Acceleration — NVIDIA GDC 2026 (March 10, 2026)
+
+- **Announced**: NVIDIA blog post by NVIDIA RTX AI Garage team at GDC
+- **NVFP4 format**: 2.5× performance gains, 60% lower VRAM usage vs FP16 FLUX.2 on RTX 50 Series
+- **Supported models**: FLUX.2 Klein 4B and 9B variants
+- **ComfyUI**: NVFP4 and FP8 checkpoints downloadable directly from HuggingFace; load via Template Browser, replace checkpoint reference
+- **RTX Video Super Resolution (separate node)**: 30× faster 4K upscaling vs local upscalers; available as ComfyUI node AND Python PyPI package (`nvidia-vfx`)
+  - Note: No `nvidia-vfx` wheel for DGX Spark (NVIDIA Developer Forums March 12)
+- **Digital-Stud relevance**: ⭐⭐⭐ If running RTX 50 Series: immediate swap to NVFP4 FLUX.2 Klein. RTX VSR node replaces current upscaler in `image_gen_flux.json` for 30× faster post-processing
+
+### 🆕 ComfyUI v0.16.x Official Changelog (March 5, 2026)
+
+- **v0.16.1** (March 5): Kling 3.0 Motion Control enabled natively, xAI model list updated
+- **v0.16.0** (March 5):
+  - `ResolutionSelector` node — dynamic resolution picker for workflows
+  - LTXAV 2.3 native model support
+  - Dynamic VRAM optimization now enabled as default (auto memory management)
+  - CURVE type support for animation curves in nodes
+- **v0.15.x** (Feb 24-26): BBox widget, 3-band audio equalizer, basic text generation (Gemma3, Qwen 3), GLSL shader node, ElevenLabs API nodes, `SplitImageToTileList`/`ImageMergeTileList` for tiled image processing
+- **Digital-Stud relevance**: Update ComfyUI to v0.16.1; verify LTXAV 2.3 node works; use `SplitImageToTileList` for high-res character detail passes
+
+### 🆕 ComfyUI RTX Video Super Resolution Node (NVIDIA, March 2026)
+
+- **Node**: Available in ComfyUI Manager search, also as `pip install nvidia-vfx` (PyPI)
+- **Performance**: 30× faster than comparable local upscalers on RTX GPUs
+- **Output**: Real-time 4K upscaling from 1080p AI-generated video
+- **Caveat**: Requires RTX GPU; DGX Spark incompatible (no `nvidia-vfx` wheel for that platform)
+- **Digital-Stud relevance**: ⭐⭐ Use for post-processing AI video output before final export; replaces ESRGAN/RealESRGAN in video pipeline
+
+### 🆕 Video2LoRA (arXiv 2603.08210)
+
+- **Title**: "Video2LoRA: Unified Semantic-Controlled Video Generation via Per-Reference-Video LoRA"
+- **Authors**: Zexi Wu, Qinghe Wang et al.
+- **Core idea**: Hypernetwork predicts lightweight LoRA weights (<50KB per condition) from a reference video for semantic control in video generation — zero-shot generalization across diverse conditions
+- **Backbone**: CogVideoX diffusion model
+- **Key advantage**: No per-video fine-tuning at inference; single hypernetwork handles all reference conditions
+- **Digital-Stud relevance**: ⭐⭐ This is a promising technique for motion LoRA transfer — a reference video (e.g., specific dance/walk) can seed consistent motion LoRA weights without training. Watch for code release (CogVideoX backbone, may port to Wan 2.7)
+
+### 🆕 Controllable Human Motion via Text-to-Skeleton (arXiv 2603.08028v1)
+
+- **Confirmed details**: DINO-based skeleton sequence conditioning; disables CLIP-based pathways and replaces with single DINO feature stream in pose-driven setting
+- **Effect**: More stable skeleton conditioning vs CLIP when text is absent (pose-only mode)
+- **Relevance to DWPose/RTMPose**: Alternative conditioning architecture to ControlNet for ComfyUI pose workflows
+- **Digital-Stud relevance**: Update `pose_controlnet.json` to test DINO-based skeleton conditioning path if code releases; existing DWPose ControlNet workflow remains primary path for now
+
+### 🆕 LTX "Cinematic Prompt" ComfyUI Node (Community, March 2026)
+
+- **Source**: Reddit r/comfyui post (217 upvotes, 63 comments)
+- **Function**: Auto-infers shot types, camera moves, and audio style from a prompt — single node replaces manual prompt engineering for cinematic composition
+- **Status**: Free, local, available on GitHub (search ComfyUI Manager)
+- **Digital-Stud relevance**: ⭐⭐ Reduce prompt engineering time for character video sequences; pairs with LTX-2.3 I2V workflow
+
+### 🆕 Helios — Real-Time Long-Video Generation Model (WaveSpeedAI)
+
+- **License**: Apache 2.0
+- **Capability**: Real-time generation of long video sequences (no skip shortcuts; temporally coherent)
+- **Status**: Open-source, weights available; ComfyUI nodes and training scripts still catching up
+- **Digital-Stud relevance**: Monitor for ComfyUI node — if released, test against Wan 2.7 for long-form character animation (>15s clips)
+
+### 🆕 Nano Banana 2 API — Confirmed Pricing (March 2026)
+
+- **Official channel**: Google AI Studio + Gemini API
+- **Pricing confirmed**:
+  - $0.0672/image for 4K (4096px) generation via Google AI Studio (Medium blog)
+  - ~$0.03/image for lower resolution via AI Studio API
+- **Speed**: 3-5 seconds per generation (2-3× faster than Nano Banana Pro)
+- **Character consistency**: Community guide confirms Nano Banana Pro (Gemini inside) best for consistent characters using I2I reference workflow; Nano Banana 2 inherits this capability with speed advantage
+- **Digital-Stud relevance**: Update `api_test_replicate.py` with Nano Banana 2 API endpoint via Google AI Studio; add to pricing comparison table in SOTA
+
+### 🆕 CFG-Ctrl (arXiv 2603.03281) — Unified CFG as Control Signal
+
+- **Title**: "CFG-Ctrl: Control-Based Classifier-Free Diffusion Guidance"
+- **Insight**: Reinterprets CFG as a first-order continuous-time control applied to generative flow — cleaner theoretical unification, improves guidance stability at high CFG values
+- **Practical effect**: Better high-CFG outputs without collapse; tunable control curve
+- **Digital-Stud relevance**: Low priority for now; watch for ComfyUI implementation — could improve character feature sharpness at high guidance scales
+
+### 🆕 GVCoT (arXiv 2603.01893) — Visual Chain-of-Thought for Image Editing
+
+- **Title**: "Generative Visual Chain-of-Thought for Image Editing"
+- **Framework**: Native visual reasoning for image editing — model generates intermediate reasoning steps visually before applying final edit
+- **Effect**: More accurate complex edits (multi-step transformations) vs single-step instruction models
+- **Status**: arXiv paper; code pending
+- **Digital-Stud relevance**: Watch for code release — if released as ComfyUI node, test for complex character editing chains (e.g., "change outfit + adjust lighting + remove background") as alternative to FireRed-Image-Edit
+
+---
+
+
+
+---
+
 ## 🔄 Run #48 Delta — 2026-03-12 21:03 Prague
 
 ### ✅ CONFIRMED LIVE: Open-Sora 2.0 (March 13, 2026)
@@ -926,7 +1052,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 21:03 (Prague / CET) | Run #48
+> Last updated: 2026-03-12 21:34 (Prague / CET) | Run #49
 
 ---
 
