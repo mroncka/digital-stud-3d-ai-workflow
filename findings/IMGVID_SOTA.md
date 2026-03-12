@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 14:30 (Prague / CET) | Run #35
+> Last updated: 2026-03-12 15:06 (Prague / CET) | Run #36
 
 ---
 
@@ -301,6 +301,21 @@
 - Eliminates need for separate specialized inpainting models per content type
 - Digital-Stud relevance: character body completion, background fill, and prop replacement with one unified node
 
+### 🆕 JiT (Just-in-Time) — Training-Free 7× Speedup on FLUX.1-dev (arXiv 2603.10744, March 2026)
+
+- **Training-free spatial acceleration** for Diffusion Transformers via token reuse at redundant spatial positions across timesteps
+- Achieves up to **7× speedup on FLUX.1-dev with near-lossless output quality** — no fine-tuning required
+- Works by identifying spatially redundant tokens during denoising and reusing cached computations instead of rerunning attention
+- Drop-in acceleration: no model weight changes, compatible with existing sampler/scheduler configurations
+- Digital-Stud relevance: direct LoRA inference speedup — faster iteration when testing character LoRAs or IP-Adapter chains; watch for ComfyUI node integration
+
+### 🆕 StyleGallery — Training-Free Multi-Reference Style Transfer (arXiv 2603.10354, March 2026)
+
+- **Semantic-aware personalized style transfer** that accepts a *gallery* of style images (series) as reference input, not just one
+- Extracts semantic style embeddings across the gallery and applies them coherently to target content — training-free, inference-only
+- Outperforms prior single-reference style transfer in consistency and generalization to novel content
+- Digital-Stud relevance: multi-reference stylization directly applicable to maintaining a consistent visual look across character shots; complements IP-Adapter usage
+
 ### 🆕 NAMI — Spatiotemporal Separation Progressive DiT Framework (arXiv 2503.09242v3, March 2026)
 
 - Bridges **progressive rectified flow** with spatiotemporal separation for efficient video generation
@@ -364,6 +379,15 @@
 - New capabilities include: **video generation from start/end frame pairs** (bookend-style control), **3×3 grid image conditioning** for storyboard-style multi-angle synthesis, and subject + voice reference for talking-head consistency
 - Wan 2.2 Spicy (uncensored, high-motion variant) remains the current community production default while 2.7 lands
 - Digital-Stud relevance: start/end frame control is a major workflow enabler for character-to-scene compositing; watch for WanGP v11 update when 2.7 drops
+
+### 🆕 Seedance 2.0 — Up to 12 Reference Files, Multi-Camera, Native Lip-Sync (March 2026)
+
+- **Multi-reference generation**: accepts up to **12 reference files** (photos, video, audio, text) per generation — highest reference count of any commercial video model
+- **Multi-camera capabilities**: can synthesize a scene from multiple camera angles in one generation pass
+- **Native lip-sync and audio generation**: audio is generated end-to-end, not post-processed
+- API now available; competitive with Kling 3.0 at similar pricing tier
+- Cinematic prompt guide published March 12 with 10 structured directorial prompt templates
+- Digital-Stud relevance: 12-reference multi-modal input is a direct upgrade path for character consistency — attach reference face, voice, pose, and motion clips simultaneously
 
 ### 🆕 FastLightGen — Model Compression for Wan/HunyuanVideo/Veo3/Kling (arXiv 2603.01685v2, March 2026)
 
