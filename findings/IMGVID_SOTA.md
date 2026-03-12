@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 04:02 (Prague / CET) | Run #14
+> Last updated: 2026-03-12 04:30 (Prague / CET) | Run #15
 
 ---
 
@@ -16,7 +16,7 @@
 | **Photorealism** | Flux 2 Flex | fal.ai, Replicate | ~$0.03/img | Gold standard for skin, lighting, anatomy |
 | **Photorealism (fast)** | Flux 2 Klein (9B) | fal.ai, Replicate | ~$0.02/img | Faster variant, native inpainting, editing. **Klein consistency LoRA released March 2026** |
 | **Open Source / NSFW** | Flux Dev / Flux 2 Schnell | Local + Replicate | $0.025/img | Best open-weight; Schnell free via HF/SiliconFlow/Firework AI |
-| **FLUX.2 Pro v1.1** | FLUX.2 Pro v1.1 (Black Forest Labs) | fal.ai, Replicate, BFL API | $0.055/img | **1265 Elo — LM Arena; matches GPT Image 1.5**; v1.1 refinement over v1.0; sub-second generation |
+| **FLUX.2 Pro v1.1** | FLUX.2 Pro v1.1 (Black Forest Labs) | fal.ai, Replicate, BFL API | $0.055/img | **1265 Elo — LM Arena**; v1.1 refinement over v1.0; sub-second generation |
 | **FLUX.2 Pro v1.0** | FLUX.2 Pro (Black Forest Labs) | fal.ai, Replicate, BFL API | $0.025–0.07/img | **1258 Elo**; best cost-per-quality baseline; sub-second generation |
 | **Google budget** | Imagen 4 Fast | Google AI Studio, Vertex AI | $0.02/img | Best budget Google option; thumbnails/previews; **50% Batch API discount** |
 | **Anime/Illustrative** | Illustrious XL / NoobAI XL | Local (CivitAI) | Free (local) | NoobAI Chenkin RF = latest, best contrast |
@@ -35,8 +35,8 @@
 | Rank | Model | Elo | Cost/Img |
 |------|-------|-----|----------|
 | 1 | GPT Image 1.5 (OpenAI) | 1,284 | $0.034–0.20 |
-| 2 | Gemini 3 Pro Image | 1,268 | $0.134 (std) |
-| 3 | Nano Banana 2 (Gemini 3.1 Flash Image) | 1,280 | ~$0.03 |
+| 2 | Nano Banana 2 (Gemini 3.1 Flash Image) | 1,280 | ~$0.03 |
+| 3 | Gemini 3 Pro Image | 1,268 | $0.134 (std) |
 | 4 | FLUX.2 Pro v1.1 | 1,265 | $0.055 |
 | 5 | FLUX.2 Pro v1.0 | 1,258 | $0.025–0.07 |
 | 6 | Flux 2 Dev (open) | 1,245 | Free (self-host) |
@@ -115,9 +115,10 @@
 |----------|-------|--------|------|-----------|-------|
 | **Open Source Best** | Wan2.2 TI2V-5B | 5B | 24GB (RTX 4090) | Local + Replicate | MoE, 720P/24fps, Apache 2.0; **37.1% adoption among open-source enthusiasts** |
 | **Open Source Heavy** | HunyuanVideo (original) | 13B | 60–80GB | Local (A100) | Beats Runway Gen-3, Luma 1.6; Text Alignment 61.8% vs Runway 47.7% |
-| **Open Source Lightweight** | HunyuanVideo 1.5 | 8.3B | 14GB | Local + fal.ai | SSTA attention, 1.87× faster, 1080p upscale |
+| **Open Source Lightweight** | HunyuanVideo 1.5 | 8.3B | **14GB** | Local + fal.ai | **SSTA (Selective & Sliding Tile Attention): 1.87× faster than FlashAttention-3**; 1080p upscale; dual-stream hybrid arch; bilingual |
 | **Audio-Video (open)** | LTX-2.3 | — | — | Local (ComfyUI native) | **Native 4K@50fps, 20-sec clips, synchronized audio**; 9:16 portrait; NVFP4 support |
-| **Commercial 4K flagship** | Kling 3.0 Pro | — | API only | Kling API, fal.ai | **15s clips, native 4K/60fps, AI Director mode (up to 6 camera cuts/gen), native audio in 5+ languages**; dominates 4K quality benchmarks |
+| **Commercial 4K flagship** | Kling 3.0 Pro | — | API only | Kling API, fal.ai | **ELO 1243** (LMArena Mar 2026); 15s clips, native 4K/60fps, AI Director mode (up to 6 camera cuts/gen), native audio in 5+ languages |
+| **Kling Omni** | Kling 3.0 Omni Pro | — | API only | Kling API | **ELO 1236**; combined model variant |
 | **Kling Motion Control** | Kling 3.0 MC | — | API only | ComfyUI native | **Motion Control 3.0 nodes live in ComfyUI (Mar 2026)**; body movement + facial expression + camera transfer |
 | **O3 Standard** | Kling Video O3 Standard | — | API only | WaveSpeedAI, Kling API | Part of Kuaishou O3 family (Feb 2026); standardized consistent quality |
 | **Extended clips** | Kling 2.6 | — | API only | Kling API | **Up to 2-min videos at 1080p/30fps; simultaneous audio-visual gen; DiT+3D VAE** |
@@ -125,16 +126,39 @@
 | **Open Mid-tier** | CogVideoX-1.5 | 5B | 12–16GB | Local + HF | 1360×768, LoRA support, DDIM Inverse editing |
 | **Free via Colab** | CogVideoX 5B | 5B | T4 (Colab) | Google Colab | 6s clips, 720×480, 8fps |
 | **Real-time / distilled** | CAUSVID / Diagonal Distillation | — | — | Local research | 4-step causal (CVPR 2025); Diagonal Distillation (arxiv 2603.09488) |
-| **Long-form realtime** | Helios (Wan-based) | 14B | H100 | Research | 19.5 FPS on H100, minute-scale; 1452 frames (~60s at 24fps); Apache 2.0 |
+| **Long-form realtime** | Helios (Wan-based) | 14B | H100 | Research (Wan2.1) | 19.5 FPS on H100, minute-scale; 1452 frames (~60s at 24fps); Apache 2.0; **based on Wan2.1 foundation** |
 | **Speech-driven** | Wan2.2-S2V | — | — | Local | Audio-driven character animation |
-| **Highest res commercial** | Veo 3.1 (Google) | — | API only | Gemini API, Vertex AI | **4K + native audio, $0.20–$0.60/sec; 20% better audio quality vs Veo 3**; free rate-limited tier via AI Studio |
+| **Highest res commercial** | Veo 3.1 (Google) | — | API only | Gemini API, Vertex AI | **4K + native audio, $0.20–$0.60/sec; 20% better audio quality vs Veo 3**; leads for dialogue-heavy cinematic content; ELO ~1150 |
 | **Veo 3.1 Fast** | Veo 3.1 Fast (Google) | — | API only | Google AI Studio | 4–8s videos at 720p/1080p in 45–60 seconds; reference image for character consistency |
-| **Longest clips** | Sora 2 Pro (OpenAI) | — | API only | OpenAI + fal.ai | Up to 2-min clips with Gemini Ultra 2 integration; multi-shot storytelling; $0.30–$0.50/sec |
+| **Longest clips** | Sora 2 Pro (OpenAI) | — | API only | OpenAI + fal.ai | **ELO 1199**; up to 2-min clips; multi-shot storytelling; $0.30–$0.50/sec |
 | **Quad-modal input** | Seedance 2.0 (ByteDance) | — | API only | Dreamina platform | **"DeepSeek moment for AI video"**; text+image+video+audio in single pass; 2K cinema; 8+ language lip-sync |
-| **Open-source research** | Wan 2.6 | — | 24GB+ | HF, Alibaba Cloud | **Released Dec 2025; 15s 1080p multi-shot + audio; Video Roleplay** |
+| **Open-source research** | Wan 2.6 | — | API only | **Commercial only** | **⚠️ Dec 2025 release; weights NOT open-source** — commercial API via Alibaba Cloud only; 15s 1080p multi-shot + audio; community asking for open weights |
 | **Open-Sora 2.0** | Open-Sora 2.0 | — | — | Research/HF | **$200K training cost; Video DC-AE 4×32×32 compression; 5.2× training throughput vs HunyuanVideo VAE; 10×+ inference speedup**; arxiv 2503.09642 |
 | **Cinematic human** | SkyReels V1 | — | — | HF | HunyuanVideo fine-tune; 33 expressions, 400+ movements; 12s/24fps |
 | **Flux I2V NEW** | FLUX Image to Video | — | — | API (BFL) | **March 2026 release; Flux-native image-to-video** |
+
+### LMArena Video ELO Rankings (March 2026)
+
+| Rank | Model | ELO |
+|------|-------|-----|
+| 1 | Kling 3.0 Pro | 1,243 |
+| 2 | Kling 3.0 Omni Pro | 1,236 |
+| 3 | Sora 2 Pro | 1,199 |
+| 4 | Veo 3.1 | ~1,150 |
+| — | Wan2.2 / Open-source | ~1,080–1,100 |
+
+> Gap between Kling 3.0 Pro (1243) and Sora 2 Pro (1199) = 44 ELO points — substantial lead.
+
+### HunyuanVideo-1.5 — Efficiency Breakdown
+
+- **8.3B parameters** vs 13B original — 36% smaller, same quality tier
+- **SSTA (Selective & Sliding Tile Attention)**: 1.87× speedup vs FlashAttention-3 specifically
+- **14GB VRAM minimum** (down from 60–80GB for original HunyuanVideo)
+- **3D causal VAE**: 16× spatial + 4× temporal compression
+- **Dual-stream → single-stream hybrid**: better text-video fusion
+- **Acceleration options**: CFG distilled (2× faster), sparse attention (1.5–2×), SageAttention
+- **⚠️ WaveSpeedAI API cap**: Currently capped at 480p despite model's 1080p capability — check other providers
+- Available: HuggingFace, GitHub (Tencent-Hunyuan/HunyuanVideo-1.5), Apache 2.0
 
 ### LTX-2.3 — Updated March 2026 (Major)
 
@@ -144,21 +168,23 @@
 - **NVFP4 + FP8** quantized: 1.7× faster, 40% VRAM reduction; **3× faster on Blackwell RTX 6000 Pro**
 - **IAMCCS nodes** enable 1080p on low-VRAM (4080-class) GPUs
 - Apache 2.0, free for sub-$10M ARR
+- **⚠️ Community note**: LTX Desktop reportedly outperforms ComfyUI out-of-box for LTX-2.3 — custom node configuration matters for parity
 
 ### Kling 3.0 Pro — Commercial 4K Flagship (February 2026)
 
+- **ELO 1243** — top-ranked commercial video model (LMArena, March 2026)
 - **15-second clips at native 4K/60fps** — highest resolution commercial output available
 - **AI Director mode**: Multi-shot editing with up to **6 camera cuts** in a single generation
 - **Native audio co-generation**: Dialogue, music, SFX in 5+ languages, synchronized
 - **Motion Control 3.0**: Body movement, facial expression, and camera dynamics transfer from reference video
 - Motion Control 3.0 nodes live in ComfyUI (March 9, 2026)
-- Dominates 4K quality benchmarks; described as direct Sora 2 competitor
 
-### Kling 2.6 — Long-Form Entry (March 2026)
+### Wan 2.6 — Status Clarification
 
-- **Up to 2-minute videos at 1080p/30fps** — longest commercial clips
-- **Simultaneous audio-visual generation**; DiT architecture + 3D VAE
-- **Free tier**: ~6 videos/day, watermarked, renews daily
+- **⚠️ Commercial-only**: Wan 2.6 released Dec 2025 as commercial product; **weights not open-sourced**
+- Available via Alibaba Cloud commercial API only
+- Community actively requesting open-source release (Reddit thread active)
+- **Use Wan 2.2 for open-source workflows** — still best open-weight option
 
 ### Wan2.2 — Priority Model for This Workflow
 
@@ -171,18 +197,10 @@
 ### Open-Sora 2.0 — Cost Breakthrough
 
 - Trained for only **$200,000** (5–10× cheaper than comparable models)
-- Video DC-AE: **4×32×32 compression ratio** (vs HunyuanVideo VAE)
+- Video DC-AE: **4×32×32 compression ratio**
 - **5.2× improvement** in training throughput; **10×+ inference speedup**
 - Performance gap with OpenAI Sora reduced from 4.52% → 0.69%
 - Apache 2.0; arxiv 2503.09642
-
-### Wan 2.6 — December 2025 Release
-
-- 15-second 1080p multi-shot with audio
-- **Video Roleplay**: cast characters from reference videos into new scenes
-- Open-source weights on HuggingFace (Apache 2.0)
-- GGUF quantized variants for consumer GPUs
-- Pricing via fal.ai: ~$0.10/second for 720p
 
 ### Video API Pricing (March 2026)
 
@@ -190,9 +208,9 @@
 |----------|-------|-----------|----------|
 | Replicate | Wan 2.2 A14B | ~$0.05/sec | Small credits |
 | fal.ai | HunyuanVideo 1.5 | TBC | Signup credits |
+| WaveSpeedAI | HunyuanVideo 1.5 | TBC | ⚠️ Capped at 480p currently |
 | fal.ai | Kling 2.1 | ~$0.14/5s clip | Signup credits |
 | fal.ai | Kling 2.6 | ~$0.14/clip+ | Signup credits |
-| fal.ai | Wan 2.6 | ~$0.10/sec 720p | Signup credits |
 | RunwayML | Gen-4.5 | ~$0.75/sec | 125 free credits |
 | fal.ai | Veo 3.1 | $0.20–$0.60/sec | — |
 | fal.ai | Sora 2 Pro | $0.30–$0.50/sec | — |
@@ -202,7 +220,7 @@
 
 ---
 
-## 🧶 LoRA Training SOTA — March 2026
+## 🧵 LoRA Training SOTA — March 2026
 
 ### Training Tools Comparison
 
@@ -218,7 +236,9 @@
 
 > **Klein consistency LoRA** (March 2026): New official consistency LoRA for Flux 2 Klein — improves character consistency across generations without full character LoRA training.
 
-> **Community note:** OneTrainer gaining ground over AI-Toolkit for character LoRAs (significantly less overfitting). musubi-tuner preferred for newer Flux variants.
+> **Community consensus (March 2026)**: OneTrainer increasingly preferred over AI-Toolkit for character LoRAs due to significantly less overfitting. musubi-tuner preferred for newer Flux variants.
+
+> **Best practice (LoRA + ControlNet + IP-Adapter combo)**: New community documentation published March 2026 confirming three-way combo as production standard for pose + style + identity control simultaneously.
 
 ### Key Training Advances (March 2026)
 
@@ -308,19 +328,18 @@ mixed_precision: fp16 or bf16
 | **DWPose-l** | Two-stage whole-body distillation | 133 (body+hand+face) | Whole AP 66.5% (COCO-WholeBody) | Medium | **Best for ComfyUI ControlNet** |
 | **ViTPose / ViTPose++** | ViT-based | 17–133 | Highest mAP | Slower | Research; multi-dataset training |
 | **PoseSynViT** | Lightweight ViT (CVPR 2025W) | 17–133 | **84.3 AP on MS COCO** (largest model) | Medium | Scales 10M–1B params; knowledge token for cross-scale transfer |
-| **DETRPose** | DETR end-to-end transformer | 17–133 | Competitive/superior to CNN alternatives | Real-time | **5–10× faster training** than CNN; no NMS; modified decoder with keypoint similarity metrics; arxiv 2506.13027 |
+| **DETRPose** | DETR end-to-end transformer | 17–133 | Competitive/superior to CNN alternatives | Real-time | **5–10× faster training** than CNN; no NMS; pose denoising (positive + negative queries); arxiv 2506.13027 |
 | **HEViTPose** | Hybrid ViT (CGSR-MHA) | 17–133 | **90.7% MPII / 72.6% COCO** | Medium | NEW 2026 SOTA efficiency; superior perf-per-param vs HRNet |
 | **Sapiens2** | Foundation (0.4–5B) | 308 body + face | SOTA whole-body | Slow | SOTA whole-body, 1K–4K, multi-task; ICLR 2026 |
 | **MediaPipe Holistic** | Lightweight | 33+21/hand+468 face | — | 30+ FPS mobile | Mobile/browser; zero server cost (client-side JS SDK) |
 | **SDPose-OOD** | Robust (SD U-Net) | 133 | Parity with Sapiens-1B/2B at 1/5 training | Medium | ComfyUI native (Mar 8, 2026); superior OOD generalization |
+| **RF-DETR** | DINOv2 transformer (ICLR 2026) | — | SOTA real-time detection + segmentation | Real-time | Roboflow; object detection + instance seg; **useful as detection backbone before pose** |
 
-> **YOLO26-Pose key facts**: NMS-free end-to-end inference; non-human keypoint support for custom schemas; ProgLoss + STAL for small/occluded targets; MuSGD optimizer from LLM training (5-10× faster training).
+> **YOLO26-Pose key facts**: NMS-free end-to-end inference; non-human keypoint support for custom schemas; ProgLoss + STAL for small/occluded targets; MuSGD optimizer from LLM training (5-10× faster training). ⚠️ YOLO26 not yet supported in C++ inference examples (Ultralytics v8.4.21) — Python only.
 
-> **DETRPose** (arxiv 2506.13027, June 2025): First real-time DETR-style multi-person pose estimation. 5–10× faster training than CNN alternatives. No quantization libraries required for real-time performance. Competitive/superior accuracy with fewer parameters.
+> **DETRPose** (arxiv 2506.13027, June 2025): First real-time DETR-style multi-person pose estimation. Pose denoising: generates both positive and negative query samples for faster convergence. 5–10× faster training than CNN alternatives. Outperforms YOLO11-X and YOLOv8-X on COCO and CrowdPose with fewer parameters.
 
-> **PoseSynViT** (CVPR 2025W): 84.3 AP on MS COCO (largest model). Scales 10M–1B params. Knowledge token for seamless transfer to smaller models. Unified framework for multiple HPE tasks.
-
-> **SDPose-OOD** (ComfyUI native since Mar 8, 2026): Built on SD U-Net; superior OOD generalization; 133 wholebody keypoints.
+> **RF-DETR** (Roboflow, ICLR 2026): DINOv2-based real-time transformer for object detection + instance segmentation. Useful as backbone for person detection stage before pose estimation pipeline.
 
 ### New: HTP Framework — 3D Video Pose Efficiency (2026)
 
@@ -334,6 +353,7 @@ mixed_precision: fp16 or bf16
 - **FBX/GLB/BVH file loading** from Mixamo and other animation sources
 - Accurate ControlNet conditioning image export from 3D animations; up to 8K resolution input
 - **Key for this workflow**: load DAZ/Blender animations → precise pose-guided video gen in ComfyUI
+- Build 155 - SubBuild 2026.3.3
 
 ### DWPose — Best for This Workflow (ComfyUI)
 
@@ -341,6 +361,15 @@ mixed_precision: fp16 or bf16
 - Node: `comfyui_controlnet_aux`; model: `DWPose-dw-ll-ucoco-384.pth`
 - Significantly outperforms OpenPose for hand/face accuracy
 - Whole AP task breakdown: Body 72.2%, Foot 70.4%, Face 88.7%, Hand 62.1%
+- ⚠️ Known issue: DWPose Estimator node re-downloads model on each reopen in some setups — use OpenPose node as fallback if needed
+
+### Any-Pose Portrait Editing Workflow (NEW March 2026)
+
+```
+3D character rig (DAZ/Blender) → pose → Qwen Image Edit → face fix → Flux 2 Klein 4K upscale
+```
+- New official ComfyUI template; any-pose from 3D → portrait with identity preservation
+- Combines Z_Image pose extraction + Qwen Edit + Flux 2 Klein upscaling
 
 ### ComfyUI Pose Nodes Ecosystem
 
@@ -354,24 +383,6 @@ mixed_precision: fp16 or bf16
 | `Ubisoft CHORD` | Character pose reference + image editing |
 | `Pose Studio Node` | One image → infinite pose variations |
 | `Save Pose Keypoints Node` | Export keypoints for reuse |
-
-### Pose-to-Image Workflow (This Project)
-
-```
-DAZ/Blender 3D render → DWPose extraction → ControlNet (pose) → Flux Dev + LoRA
-               OR
-DAZ/Blender animation (FBX) → Yedp Action Director v9.2 → ControlNet → Wan2.2 video
-               OR
-Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
-```
-
-### Free APIs for Pose Estimation
-
-- **HuggingFace Spaces**: DWPose, MediaPipe Holistic, RTMPose — active ZeroGPU Spaces
-- **HF Inference API**: RTMPose, ViTPose — serverless (rate-limited free)
-- **Roboflow**: YOLO11-pose hosted (free tier)
-- **MediaPipe**: Client-side JS SDK — zero server cost
-- **MMPose**: 40+ SOTA models, PyPI installable
 
 ---
 
@@ -387,8 +398,14 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 ### 🆕 Major: Subgraph Feature
 
 - Package **complex node combinations into single reusable subgraph nodes**
-- Greatly improves workflow modularity and manageability
 - Enables sharing of composable pipeline components
+- Subgraph Blueprints installable via `comfyui-workflow-templates` PyPI package
+
+### 🆕 Major: ComfyUI MCP Server
+
+- **MCP server** (io-ateliertech/comfyui-mcp): Comprehensive workflow automation and management via Model Context Protocol
+- Enables programmatic ComfyUI control from any MCP-compatible client (Claude Desktop, etc.)
+- Supports workflow execution, image generation, model management remotely
 
 ### 🆕 Major: Comfy Cloud Out of Beta (March 2026)
 
@@ -401,7 +418,7 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 
 - One-click ComfyUI installer for AMD hardware
 - **5.4× performance improvement** over ROCm 6.4
-- Supports AMD Ryzen AI Max+ and Radeon AI Pro workstation GPUs
+- AMD Radeon RX 9000 Series GPUs fully supported
 
 ### 🆕 Major: NVIDIA RTX Acceleration (GDC 2026, March 10)
 
@@ -429,8 +446,9 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 
 ### Other Notable Nodes/Updates
 
-- **LTX-2.3 native support** — day-0; IAMCCS nodes for 1080p on low-VRAM GPUs
-- **Yedp Action Director v9.2** — FBX/GLB/BVH → ControlNet conditioning
+- **LTX-2.3 native support** — day-0; IAMCCS nodes for 1080p on low-VRAM GPUs; ⚠️ LTX Desktop may outperform ComfyUI out-of-box — proper workflow config needed
+- **Yedp Action Director v9.2** — FBX/GLB/BVH → ControlNet conditioning (Build 2026.3.3)
+- **comfyui-rmbg v2.9.4** — ⭐ Split into three focused modules: Basic Character, Skin Details, Style and Pose
 - **HunyuanImage-2.1** — 3D Parts Decomposition, UV Unwrapping, Smart Topology via Partner Nodes
 - **SageAttention 2++** — Advanced attention optimization (requires CUDA Toolkit + MSVC)
 - **ComfyUI-Manager integrated** into core ComfyUI (no separate install)
@@ -442,6 +460,18 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 - **Qwen Image ControlNet + LoRA** — DiffSynth support; EasyCache KV-cache efficiency
 - **FLUX Image to Video** — Flux-native I2V, March 2026
 - **Flimmer** — Dedicated video LoRA toolkit for DiT models (Wan2.2, HunyuanVideo)
+
+### Official Workflow Templates (March 2026)
+
+Available at comfy.org/workflows:
+- Z-Image-Turbo Text to Image
+- Wan 2.2 14B Image to Video
+- Nano Banana Pro / Nano Banana 2 Image Edit
+- Grok: Image Edit / Grok: Text to Image / Grok: Video generation
+- Qwen Image Edit (2509, 2511, 2512 variants)
+- Any-Pose Portrait Editing (3D char → Qwen Edit → Flux Klein 4K) ⭐ NEW
+- LTX-2.3 audio-video workflows
+- Kling 3.0 Motion Control workflows
 
 ---
 
