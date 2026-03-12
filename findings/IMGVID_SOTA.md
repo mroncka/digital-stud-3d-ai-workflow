@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 05:32 (Prague / CET) | Run #17
+> Last updated: 2026-03-12 06:02 (Prague / CET) | Run #18
 
 ---
 
@@ -106,7 +106,7 @@
 - **MAI-Image-1** (Microsoft) — First in-house Microsoft image model; free via Bing
 - - **FLUX Kontext** (BFL, March 2026) — Subject consistency across scene transformations; Flux-native approach to character/object consistency without IP-Adapter overhead
 - **DeepSeek V4** (imminent, Apache 2.0) — 1T total / 37B active params (MoE); native image + video gen competing with DALL-E 3 / Midjourney; Engram Memory (1M token retrieval); consumer-friendly quantization (1× RTX 5090 INT4, 2× RTX 4090 INT8); V4 Lite appeared March 9 — full release imminent; expected to pressure proprietary image API pricing significantly
-- **FLUX Image to Video** ⭐ NEW March 2026 — BFL releasing Flux-native image-to-video capability
+- **FLUX Image to Video** ⭐ NEW March 2026 — BFL releasing Flux-native image-to-video capability; transforms photos to cinematic video; competitive API pricing via fal.ai/Replicate
 - **FLUX.2 Pro v1.1** ⭐ NEW — 1265 Elo at $0.055/img; refined over v1.0
 - **Gemini 3 Pro Image** ⭐ — $0.134/img; 50% batch discount; advanced reasoning + 4K res
 
@@ -137,6 +137,8 @@
 | **Veo 3.1 Fast** | Veo 3.1 Fast (Google) | — | API only | Google AI Studio | 4–8s videos at 720p/1080p in 45–60 seconds; reference image for character consistency |
 | **Longest clips** | Sora 2 Pro (OpenAI) | — | API only | OpenAI + fal.ai | **ELO 1199**; up to 2-min clips; multi-shot storytelling; $0.30–$0.50/sec |
 | **Quad-modal input** | Seedance 2.0 (ByteDance) | — | API only | Dreamina platform | **"DeepSeek moment for AI video"**; text+image+video+audio in single pass; 2K cinema; 8+ language lip-sync |
+> **Seedance 2.0 API note** (March 2026): Currently API-only via Dreamina/Jimeng platforms. Broader API access planned Q3 2026. Dual-branch DiT architecture; 6-shot multi-cut in single generation pass.
+
 | **Open-source research** | Wan 2.6 | — | API only | **Commercial only** | **⚠️ Dec 2025 release; weights NOT open-source** — commercial API via Alibaba Cloud only; 15s 1080p multi-shot + audio; community asking for open weights |
 | **Open-Sora 2.0** | Open-Sora 2.0 | — | — | Research/HF | **$200K training cost; Video DC-AE 4×32×32 compression; 5.2× training throughput vs HunyuanVideo VAE; 10×+ inference speedup**; arxiv 2503.09642 |
 | **Cinematic human** | SkyReels V1 | — | — | HF | HunyuanVideo fine-tune; 33 expressions, 400+ movements; 12s/24fps |
@@ -328,11 +330,31 @@ mixed_precision: fp16 or bf16
 
 ---
 
+### 📊 MLPerf Inference v6.0 — Video Generation Benchmark (March 10, 2026)
+
+**First industry-standard benchmark for text-to-video generation:**
+- **Reference model**: Wan2.2-T2V-A14B-Diffusers (BF16)
+- **Framework**: VBench with 6 metrics: Subject Consistency, Background Consistency, Motion Smoothness, Dynamic Degree, Appearance Style, Scene Quality
+- **Target**: 720p×1280p @ 16fps (81 frames), 100 samples
+- **Reference accuracy**: 70.48 VBench score (minimum threshold 69.77 = 99%)
+- **Scenario**: SingleStream (not Server — videos take minutes per generation)
+- **Significance**: Wan2.2 is now the industry reference model for video generation perf benchmarking
+
+---
+
 ## 🏃 Pose Estimation SOTA — March 2026
 
 ### Model Comparison
 
 | Model | Type | Keypoints | Accuracy | Speed | Best For |
+
+### 📄 New Research: Controllable Complex Human Motion (arxiv 2603.08028, March 12 2026)
+
+- **Text-to-motion-to-video pipeline**: Text prompt → motion sequence → video generation
+- **Dataset**: 90/10 train/test split on complex human motion sequences
+- **Integration**: Complements DWPose/RTMPose extraction in ComfyUI ControlNet workflows
+- **Relevance**: Enables more nuanced character motion control beyond static pose matching
+
 |-------|------|-----------|----------|-------|----------|
 | **YOLO26-Pose** | Single-stage, NMS-free | 17 (COCO) + custom | mAP 57.2% (nano) to 71.6% (XL) | 30+ FPS; **43% faster CPU than YOLO11-N** | Real-time multi-person; custom keypoints; MuSGD optimizer |
 | **ER-Pose** | Keypoint-driven single-stage (arxiv 2603) | 17+ custom | +3.2 AP (no pretrain) / **+7.4 AP (with pretrain)** vs YOLO-Pose | Fast | Removes bounding-box supervision entirely; keypoint-driven dynamic sample assignment aligned with OKS; smooth OKS loss function; fewer params than YOLO-Pose |
@@ -407,8 +429,16 @@ mixed_precision: fp16 or bf16
 - **Model support**: LTXAV 2.3, LongCat-Image (native), ACE-Step 1.5, **SDPose-OOD** pose models
 - **Veo3 video generation** node (audio-visual synthesis); **Moonvalley V2V** (video-to-video); **Rodin3D Gen-2** (image-to-3D API)
 - **Dynamic VRAM now default** — massive RAM reduction on NVIDIA hardware (Windows + Linux)
+- **Sage Attention (KJ-Nodes)**: `Patch Sage Attention` node from ComfyUI-KJ-Nodes confirmed as best attention mode for video generation & high-res workflows (March 2026); lower VRAM than Flash Attention, better than xFormers for long sequences
 - **⚠️ OOM regression**: v0.16.3/0.16.4 reports CUDA OOM errors on some setups (GitHub #12823) — check version before upgrading
 - **Comfy Cloud out of beta**: 90% of local custom nodes accessible; Workflow API deployment (production APIs from workflows) coming soon
+
+### 🔄 Community Workflow Patterns (March 2026)
+
+- **Flux2 Klein face-swap + LoRA chain**: Expression-preserving face swap via Klein base + LoRA refinement; `ComfyUI-KJ-Nodes` Patch Sage Attention + Klein LoRA = production face-swap standard
+- **LTX 2.3 quality tip**: Shorter clips (<10 seconds) measurably improve visual quality — confirmed by community testing (r/comfyui, Facebook ComfyUI group, March 2026)
+- **Multi-model routing pattern**: NB Pro for volume ($0.039), NB2 for premium ($0.067/1K), GPT Image 1.5 for text-critical; production teams adopting dynamic model selection
+- **Qwen/FireRed Image Edit workflows**: Multi-reference editing + restoration chains; `qwen_2511_restore` has compatibility issues after recent ComfyUI updates (black image bug)
 
 ### 🆕 Major: App Mode, App Builder & ComfyHub (March 10, 2026)
 
@@ -507,6 +537,21 @@ Available at comfy.org/workflows:
 | **Google Colab** | T4 (free) / A100 (Pro) | Free / $10/mo | LoRA training, CogVideoX inference |
 | **Comfy Cloud** | Blackwell RTX 6000 Pro (96GB) | 400 free credits/mo | 900+ models, no install; pay-per-use |
 | **E2B** | Sandboxed | Usage-based | Code execution, API testing |
+
+---
+
+## 💰 Nano Banana 2 Pricing Details (Verified March 2026)
+
+| Resolution | Official Price | 3rd-Party (APIYI) |
+|------------|---------------|-------------------|
+| 512px | $0.045/img | $0.018/img |
+| 1K (1024×1024) | $0.067/img (+72% vs NB Pro) | $0.025/img |
+| 2K | $0.101/img | ~$0.037/img |
+| 4K | $0.151/img | ~$0.054/img |
+
+- Official API input tokens: $0.50/M (up from $0.30 for NB Pro)
+- Fal.ai promotional discounts up to 55% OFF (March 2026)
+- Adobe Firefly now bundles **25+ AI models** including NB2, GPT Image 1.5, FLUX.2 — commercial indemnification on all
 
 ---
 
