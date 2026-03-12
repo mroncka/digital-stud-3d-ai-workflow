@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 11:30 (Prague / CET) | Run #29
+> Last updated: 2026-03-12 12:04 (Prague / CET) | Run #30
 
 ---
 
@@ -246,6 +246,45 @@
 - Goal: keep creative work inside Photoshop with AI generation as an inline tool
 - Source: TechCrunch, March 10, 2026
 - Digital-Stud relevance: FLUX integration means Photoshop can serve as a ComfyUI-adjacent front-end for professional retouching
+
+### 🆕 UnSCAR — Universal Scalable Controllable Adaptable Image Restoration (arXiv 2603.07406, March 2026)
+
+- Handles **16+ degradation types** (deblur, denoise, deraining, dehazing, low-light, SR, compression, etc.) in a single model
+- Architecture: Mixture-of-Experts (MoE) routing, unified guidance encoding, bidirectional feedback synchronization
+- User-controllable fine-grained restoration via **degradation sliders**
+- Few-shot adaptation to medical imaging (competitive vs. task-specific models)
+- UNC Chapel Hill + UC San Diego
+- Digital-Stud relevance: drop-in quality restoration step for AI-generated character images with artifacts
+
+### 🆕 ImageEdit-R1 — Multi-Agent RL Framework for Sequential Image Editing (arXiv 2603.08059, March 2026)
+
+- Formulates image editing as a **sequential decision-making problem** (RL-based)
+- Multi-agent: specialized agents for instruction decomposition, region identification, edit execution
+- Evaluated on GEdit-O and ImgEdit-O benchmarks; top-tier multi-step editing accuracy
+- Digital-Stud relevance: autonomous pipeline for complex multi-step character editing (remove → replace → relight)
+
+### 🆕 A²-Edit — Unified Reference-Guided Image Inpainting (arXiv 2603.10685, March 10 2026)
+
+- Single framework handling three inpainting scenarios: **objects, humans, background scenes**
+- Reference-guided: uses reference image to fill masked region with identity-preserving accuracy
+- Eliminates need for separate specialized inpainting models per content type
+- Digital-Stud relevance: character body completion, background fill, and prop replacement with one unified node
+
+### 🆕 NAMI — Spatiotemporal Separation Progressive DiT Framework (arXiv 2503.09242v3, March 2026)
+
+- Bridges **progressive rectified flow** with spatiotemporal separation for efficient video generation
+- Stages the denoising process by resolution: coarse spatial + temporal pass → fine pass
+- Reduces compute budget vs. full-resolution DiT while maintaining quality
+- Digital-Stud relevance: more efficient alternative to Wan 2.2 / LTX-2.3 for lower-VRAM video generation
+
+### 🆕 AIMomentz Open AI Image Evaluation Platform (March 12, 2026)
+
+- First open platform for benchmarking image generators via **head-to-head human preference voting**
+- CAP-SRP cryptographic audit trail — tamper-proof record of every AI decision and refusal
+- Four-axis ratings: aesthetics, prompt alignment, plausibility, overall quality
+- Domain-specific tracks: anime, landscape, architecture, sci-fi, abstract, animals
+- FLUX/SDXL coming via Together AI + fal.ai integration; Apache 2.0 dataset exports
+- Digital-Stud relevance: authoritative benchmark to evaluate character consistency and aesthetic quality of model outputs
 
 ## 🎬 Video Generation SOTA — March 2026
 
@@ -878,6 +917,29 @@ mixed_precision: fp16 or bf16
 | `Save Pose Keypoints Node` | Export keypoints for reuse |
 
 ---
+
+### 🆕 Sora 1 End-of-Life — US March 13, 2026
+
+- OpenAI officially discontinuing **Sora 1** in the United States from March 13, 2026
+- Users must export content before deadline; signals full transition to Sora 2
+- Sora 2 capabilities: multi-shot storytelling, up to 2-min clips, integrated in ChatGPT
+- Digital-Stud relevance: Sora 2 is now the only OpenAI video offering — factor into API cost planning
+
+### 🆕 Kling 3.0 API — Full Technical Spec Confirmed (Public since Feb 5, 2026)
+
+- Native **4K rendering** (vs. upscaled 1080p in Kling 2.0), 30-60fps output
+- **Universal Reference**: lock character consistency across shots with up to **7 reference images**
+- Built-in **multilingual lip-sync** (25+ languages) — no separate dubbing step needed
+- **Motion Control** premium tier: fine-grained camera and subject motion specification
+- Pricing: $6.99–$25.99/month; ComfyUI API nodes enabled via v0.16.1 (Kling 3.0 Motion Control)
+- Digital-Stud relevance: Universal Reference is a direct answer to multi-shot character consistency problem
+
+### 🆕 FrameDiT — Frame-Level Matrix Attention for Efficient Video DiT (arXiv 2603.09721, March 10 2026)
+
+- Novel attention mechanism: **frame-level matrix attention** instead of full spatiotemporal attention
+- Reduces compute complexity while maintaining temporal coherence across frames
+- DiT architecture; tested on text-to-video benchmarks with competitive quality at lower cost
+- Digital-Stud relevance: architectural direction to watch for next-gen efficient video models
 
 ## 🛠️ ComfyUI Ecosystem — Notable Nodes/Updates (March 2026)
 
