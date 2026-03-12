@@ -3,6 +3,88 @@
 
 ---
 
+## 🔄 Run #42 Delta — 2026-03-12 18:03 Prague
+
+### 🆕 LTX-2.3 — Open Audio-Video Model with ComfyUI GGUF Support
+
+- Lightricks releases **LTX-2.3**, significant upgrade over LTX-2
+- Generates **synchronized video + audio** from text or image prompts
+- Improved audio-visual quality and enhanced prompt adherence
+- **GGUF support** via Kijai/ComfyUI-KJNodes (community hacking required for LTX-2.3 GGUF)
+- FP8 support live; NVFP4 support coming soon (2.5× faster, 60% less VRAM on RTX 50-series)
+- On RTX 5090: few minutes for 5-second clip; performance improving rapidly
+- Full weights open, consumer GPU usable, Apache-compatible license
+- Digital-Stud relevance: best open audio-video model for talking avatar + ambient audio workflows
+
+### 🆕 ComfyUI App Mode + App Builder + ComfyHub (March 10, 2026 — Major Launch)
+
+- **App Mode**: single click turns any node graph workflow into a clean user-facing UI — no node knowledge needed
+- **App Builder**: configure which inputs/outputs are exposed; create distributable apps with shareable URLs
+- **ComfyHub** (comfy.org/workflows preview): community marketplace for finished apps and workflows — analogous to Node Registry but for creators
+- Comfy Cloud: users run apps in browser without local install
+- Implication: Digital-Stud workflows can be published as one-click apps for non-technical users
+
+### 🆕 NVIDIA NVFP4 + RTX Video Super Resolution @ GDC 2026 (March 10, 2026)
+
+- **NVFP4 models**: FLUX.2 Klein 4B & 9B + LTX-2.3 (coming soon) get NVFP4 variants
+  - RTX 50-series: **2.5× faster** inference, **60% less VRAM** vs standard FP16
+  - FP8 path: **1.7× faster**, **40% less VRAM** (available now)
+- **RTX Video Super Resolution node**: available in ComfyUI Manager now
+  - **30× faster 4K upscaling** vs alternative local upscalers
+  - Standalone node (GitHub) + PyPI package; real-time capable on RTX GPUs
+  - Ideal for post-generation upscale in video workflows
+- Digital-Stud relevance: major local performance unlock for Klein + LTX-2.3 on RTX hardware
+
+### 🆕 FireRed-Image-Edit — Instruction-Following Image Editing with Native ComfyUI Node
+
+- Universal instruction-following image editing foundation model
+- **Native ComfyUI node** support + **GGUF format** lightweight deployment
+- Outperforms FLUX.2 [Dev] on editing tasks per benchmarks
+- Supports: inpainting, object replacement, style transfer, selective editing
+- Digital-Stud relevance: best open-source instruction-edit model for controlled character/scene editing
+
+### 🆕 Z-Image (Tongyi-MAI) — #1 Open-Source on Artificial Analysis Leaderboard
+
+- 6B parameter family; Z-Image-Turbo: **ranked #8 overall, #1 open-source** on Artificial Analysis image leaderboard
+- **$0.014/image** via API; strong bilingual text rendering
+- Also available open-weights on HuggingFace
+- Digital-Stud relevance: best cost-performance open image model available March 2026
+
+### 🆕 A²-Edit — Unified Inpainting Framework for Any Object Category
+
+- arXiv 2603.10685 — unified inpainting for arbitrary object categories
+- Allows replacement of any target region with a reference object
+- Single framework for all object classes — no per-category tuning
+- Digital-Stud relevance: reference-guided inpainting with character asset swap use case
+
+### 🆕 OmniLottie (CVPR 2026) — ComfyUI Community Support Added March 6, 2026
+
+- Multi-modal animation synthesis for vector graphics (Lottie format)
+- ComfyUI community contribution added March 6, 2026
+- Enables procedural animation from text/image prompts → Lottie JSON output
+- Digital-Stud relevance: UI/motion graphics animation from AI prompts
+
+### 🔄 Kling 3.0 Motion Control in ComfyUI — March 12, 2026 Confirmed Launch
+
+- Official ComfyUI Partner Nodes for **Kling Motion Control 3.0** launched March 12, 2026
+- Upgraded motion capture, 360° facial consistency, smooth expressions across angles/duration
+- `element_1` parameter for character consistency across shots
+- Available via Replicate API + WaveSpeedAI + ComfyUI partner nodes
+- Digital-Stud relevance: best motion-reference-to-video tool now fully integrated in ComfyUI
+
+### 🔄 Grok Imagine (xAI) — R-Rated Policy Update, March 12, 2026
+
+- Elon Musk posts: Grok Imagine follows R-rated movie standards for content moderation
+- More permissive than most competitors; pricing $0.02–0.07/image
+- Grok Imagine saw major UI redesign in March 2026 with web + mobile overhaul
+- Status: API available; positioned as less-restricted creative tool
+
+---
+
+
+
+---
+
 ## 🔄 Run #41 Delta — 2026-03-12 17:30 Prague
 
 ### 🆕 Wan 2.7 — Official March 2026 Release Confirmed
@@ -192,7 +274,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 17:30 (Prague / CET) | Run #41
+> Last updated: 2026-03-12 18:03 (Prague / CET) | Run #42
 
 ---
 
