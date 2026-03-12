@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 07:02 (Prague / CET) | Run #20
+> Last updated: 2026-03-12 07:30 (Prague / CET) | Run #21
 
 ---
 
@@ -99,6 +99,9 @@
 - **Z Image Turbo** (Nov 2025, Alibaba Qwen) — S3-DiT, Apache 2.0, 10–20× cheaper than DALL-E 3
 - **MiniMax Image-01** (Feb 2026) — **$0.01/image** cinematic quality; among cheapest quality-per-dollar API options
 - **FireRed-Image-Edit 1.1** — Open-source SOTA for image editing, beats Qwen edit
+- **AIMomentz** — New open platform for human-preference AI image evaluation with tamper-proof audit trail (launched March 11, 2026)
+- **FLUX-1.1-pro on Microsoft Foundry** — FLUX-1.1-pro now available via Microsoft Foundry (updated March 10, 2026); broadens enterprise access
+- **HuggingFace W11 paper: CoCo** — "Code as CoT for Text-to-Image Preview and Rare Concept Generation" — uses code-style chain-of-thought for rare concept generation; featured on HF daily papers week 11
 - **Flux.1 Fill + Flux Klein masked inpaint** — Community-confirmed (Reddit March 2026) best inpainting combo: `flux1 fill onereward` for quality + Klein masked inpaint node for targeted region work
 - **Recraft V4** — Now in ComfyUI via custom node
 - **Grok Imagining** (Mar 2026, xAI) — Four-agent architecture, 10s 720p video gen also available; ~$0.02/img
@@ -500,10 +503,58 @@ mixed_precision: fp16 or bf16
 - New release of OpenClaw (ComfyUI Manager fork) adds node versioning support — addresses the long-standing "workflow breaks after update" problem (r/comfyui discussion, March 2026)
 - Enables pinning specific node versions per workflow, improving reproducibility
 
+
+
+### 🆕 Paper: HHMotion — Motion Turing Test (arXiv 2603.06181)
+
+- Dataset: 1,000 video clips from 11 humanoid robot models + 10 human subjects; all converted to SMPL-X
+- Introduces human-likeness evaluation (0–5 scale, 15 action categories, 500+ annotation hours)
+- Key finding: Humanoid robot motions still distinguishable from human — dynamic actions (boxing, jumping, running) are hardest to fake
+- **Digital-Stud relevance**: Benchmark for evaluating realism of pose-driven character animations
+
+
+### 🆕 Paper: FootMR — 3D Foot Motion Refinement (arXiv 2603.09681)
+
+- Refines foot motion estimated by existing human recovery models via 2D foot keypoint lifting
+- Generalizes to extreme foot poses; SOTA on MOYO, RICH, and MOOF benchmarks
+- Improves ankle/foot precision in markerless monocular motion capture
+- **Digital-Stud relevance**: Higher-fidelity whole-body animation including feet for character workflows
+
+### 🆕 Paper: ConfCtrl — Camera Control for Video Diffusion (arXiv 2603.09819)
+
+- Enables **precise camera trajectory control** in video diffusion models via Confidence-Aware Interpolation
+- Predict-Update (Kalman-inspired) architecture for handling uncertainty in 3D geometric priors
+- Jointly encodes projected point clouds + camera poses for novel view synthesis
+- Complements DWPose-driven character workflows by adding camera motion on top of pose control
+
 ### 🆕 New Node: ComfyUI-Qwen3-TTS (March 9, 2026)
 
 - Text-to-speech node available via ComfyUI Easy Install (released March 9)
 - Includes automatic SoX installation; enables direct audio generation in ComfyUI video/animation workflows
+
+### 🆕 New Node: ComfyUI-AudioX (March 10-11, 2026)
+
+- Generate sound effects and background music directly from video input inside ComfyUI
+- Powered by HKUSTAudio/AudioX model (similar to MMAudio family)
+- Requires ≥16GB VRAM; GitHub: `jinxishe/ComfyUI-AudioX`
+- **Digital-Stud relevance**: Audio-video synchronized generation for character animation outputs
+
+### 🆕 New Node: nLoRA × nPrompt Batch Trainer (March 2026)
+
+- ComfyUI node enabling `n` LoRA models × `n` prompts batch generation for trainer workflows
+- Useful for rapid LoRA quality evaluation across multiple checkpoints without manual swapping
+- Available via ComfyUI Node Manager
+
+### ⚠️ Known Issue: SeedVR2 Node Crash (ComfyUI Portable)
+
+- SeedVR2 nodes cause Windows fatal exception (`access violation`) in ComfyUI Portable
+- Workaround: Use full Python installation; avoid Portable until fix is released
+
+### 🛠️ ComfyUI–Houdini Bridge (March 2026)
+
+- Integration tool by Rafael Drelich & Anatolii I. connecting ComfyUI and Houdini
+- Enables terrain generation and procedural 3D scene creation with AI assistance
+- **Digital-Stud relevance**: Procedural 3D + AI texturing pipeline potential
 
 ### 🆕 Major: NVIDIA RTX Acceleration (GDC 2026, March 10)
 
@@ -617,3 +668,12 @@ Available at comfy.org/workflows:
 
 - New AI model from Brown University generates motion for diverse robot types (humanoids, quadrupeds, animated figures) from simple text/motion inputs
 - **Relevance**: potential downstream synergy with pose-driven character animation pipelines
+
+
+### 🆕 Research: HY-WU — On-the-Fly LoRA for HunyuanVideo (Tencent, March 2026)
+
+- **HY-WU** (Hunyuan Weight Update): Scalable framework for on-the-fly conditional generation of low-rank (LoRA) updates
+- Synthesizes instance-conditioned adapter weights without retraining the base model
+- GitHub: `Tencent-Hunyuan/HY-WU`
+- **Digital-Stud relevance**: Real-time identity/character adaptation for HunyuanVideo without full LoRA training cycle
+
