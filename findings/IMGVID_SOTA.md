@@ -3,6 +3,181 @@
 
 ---
 
+## 🔄 Run #51 Delta — 2026-03-12 22:30 Prague
+
+### 🆕 Z-Image (Tongyi-MAI / Alibaba) — #1 Open-Source T2I Model
+
+- **Model family**: Z-Image (6B parameters), Z-Image-Turbo (fast inference variant)
+- **Leaderboard**: Z-Image-Turbo ranked **#8 overall and #1 open-source** on Artificial Analysis Text-to-Image leaderboard as of mid-March 2026
+- **Standout feature**: Strong bilingual text rendering (Chinese + English) — best-in-class among open models
+- **Integration**: Being integrated into vLLM-Omni inference stack (confirmed in vLLM-Omni docs March 12, 2026)
+- **License**: Open weights (Tongyi-MAI/Z-Image-Turbo on HuggingFace)
+- **Digital-Stud relevance**: ⭐⭐ Primary FLUX.2 alternative for efficient open-source T2I inference. For multilingual prompt workflows or text-in-image tasks, Z-Image-Turbo outperforms FLUX.2 Klein and SD4 Ultra. Add to `image_gen_flux.json` as an alternative model slot.
+
+### 🆕 OmniGen2 — Multi-Task Image Generation Model
+
+- **Model**: OmniGen2 (OmniGen2/OmniGen2 on HuggingFace)
+- **Listed**: vLLM-Omni supported models as of March 12, 2026 (alongside FLUX.1-dev, Z-Image-Turbo, Wan2.2)
+- **Type**: Multi-task image generation — unified model for T2I, I2I, editing, and composition
+- **Digital-Stud relevance**: ⭐ Monitor for ComfyUI node availability; multi-task capability means single model for generate+edit+composite workflows
+
+### 🆕 Wan 2.2 — Confirmed Stable Release (Current Production)
+
+- **Status**: Confirmed current stable release (Wan2.2-T2V and Wan2.2-TI2V at `Wan-AI/Wan2.2` on HuggingFace)
+- **Variants**: T2V (text-to-video) and TI2V (text+image-to-video)
+- **WanGP support**: WanGP v10.70+ supports Wan 2.2 with 1.58× inference speedup via sparse token acceleration (arXiv 2603.05503)
+- **Context**: Wan 2.2 is the current production model (between 2.1 and upcoming 2.7); update `wan22_img2vid.json` model path to `Wan-AI/Wan2.2` if still pointing to 2.1
+- **Digital-Stud relevance**: ⭐⭐⭐ Immediate update available. `wan22_img2vid.json` naming already aligns; verify model path references Wan2.2 not Wan2.1.
+
+### 🆕 FLUX Image-to-Video (FLUX I2V) — NEW March 2026
+
+- **Source**: GitHub jayeshmepani/Media-AI master list — flagged as "⭐ NEW March 2026"
+- **Description**: Transform photos into cinematic video using FLUX.1 architecture; available via platform API
+- **Pricing**: Competitive (listed as top-tier quality alternative to Sora/Kling)
+- **Status**: API-accessible (not yet local/ComfyUI native confirmed)
+- **Digital-Stud relevance**: ⭐⭐ First FLUX-architecture I2V model. Combines FLUX.1's image quality with video motion. Add to `api_test_fal.py` for API comparison benchmarking against Wan 2.2 and SkyReels-V4.
+
+### 🆕 Grok Imagine — Major Update March 12, 2026
+
+- **Source**: basenor.com, Elon Musk direct post March 12 flagging update
+- **Scale**: 1.245 billion videos generated/month (January 2026 figure)
+- **New feature (March 2)**: "Extend from Frame" — chains sequential 15-second video clips for longer compositions
+- **March 12 update**: Details still emerging at time of research; Elon flagged new capability
+- **Pricing**: Competitive with Sora 2 and Kling 3.0 (estimated $0.05/sec at 720p with audio)
+- **Digital-Stud relevance**: ⭐ Add Grok Imagine "Extend from Frame" to `api_test_fal.py` test suite; chain-generation workflow useful for character animation sequences longer than 15s.
+
+### 🆕 Neural4D Image-to-3D Engine (March 12, 2026) — Production 3D Asset Pipeline
+
+- **Source**: Press release March 12, 2026 (multiple news outlets)
+- **Core capability**: Watertight manifold geometry + pure albedo extraction → engine-ready 3D assets from 2D images
+- **Solves**: Broken meshes and baked lighting — the two biggest issues with AI-generated 3D assets
+- **Export formats**: .obj, .fbx, .glb, .usdz, .stl, .blend (full coverage of game/3D app formats)
+- **Textures**: Full PBR texture maps — roughness, metallic, normal maps generated automatically
+- **Digital-Stud relevance**: ⭐⭐⭐ This directly addresses the broken-mesh problem in the Digital-Stud 3D pipeline. Neural4D is now the recommended tool for character reference → 3D asset conversion, replacing manual mesh cleanup. Combine with Speed3R (r50) for pose estimation → 3D pipeline.
+
+### 🆕 LTX-2.3 — Full Confirmed Details + LTX Desktop
+
+- **Release**: Early March 2026 (official ComfyUI workflows March 5, 2026)
+- **Architecture improvements**:
+  - Rebuilt VAE and latent space for sharper detail and better texture preservation
+  - Larger, more capable text connector for complex prompts
+  - Improved I2V — significantly reduced "Ken Burns effect" (static image drift)
+  - Cleaner audio sync with fewer artifacts
+  - **Native portrait video support** (1080×1920) — first in LTX family
+- **LTX Desktop**: Free (non-enterprise), full open-source video editor built on LTX-2.3 engine, no per-generation cost
+- **Open source**: Checkpoints, distilled models, LoRAs, and latent upscalers all on HuggingFace
+- **DiffSynth-Studio**: Also added LTX-2.3 A/V support March 12 (confirmed r50)
+- **Digital-Stud relevance**: ⭐⭐⭐ LTX-2.3 is now the recommended local open video model for portrait-format character video. LTX Desktop = viable free DaVinci alternative for AI video editing. Update `wan22_img2vid.json` to include LTX-2.3 as parallel workflow option.
+
+### 🆕 SkyReels-V4 — Full Architecture Details (March 7, 2026)
+
+- **Architecture**: Dual-stream MMDiT (video + audio branches generate in parallel, cross-conditioning each other)
+- **Unified interface**: Generation, editing, inpainting, and video extension via channel concatenation
+- **Production pipeline**: 3-stage — (1) low-res full-sequence generation → (2) keyframe upscaling → (3) frame interpolation
+- **Leaderboard**: **#3** on Artificial Analysis Text-to-Video with Audio (behind Veo 3.1 and Sora 2)
+- **Open source lineage**: V1 → V2 (infinite-length, April 2025) → V3 (multi-modal, open-source January 2026) → V4 (audio-video unified, March 7, 2026)
+- **Digital-Stud relevance**: ⭐⭐⭐ SkyReels-V4 is the strongest open-source T2VA model currently. Dual-stream MMDiT audio-video co-generation is architecturally superior to LTX-2.3's A/V for coherent audio sync. Prioritize SkyReels-V4 ComfyUI node as soon as released (V3 node likely compatible). Monitor `SkyReels-AI/SkyReels` GitHub for V4 weights.
+
+### 🆕 Veo 3 Fast Preview — Released via Vertex AI (March 3, 2026)
+
+- **Release**: March 3, 2026 — Veo 3 Fast Preview via Vertex AI and Gemini API
+- **Model family**: Veo 3 (standard), Veo 3 Fast (optimized for frame-to-video), Veo 3.1 (latest iteration)
+- **Access**: Google Gemini API; Vertex AI; also available in Adobe Firefly multi-model editor
+- **Leaderboard**: Veo 3.1 holds **#1** on Artificial Analysis T2V+Audio leaderboard (confirmed r50 context; SkyReels-V4 is #3)
+- **Digital-Stud relevance**: ⭐ Add Veo 3 Fast to API cost comparison in `api_test_fal.py`; Gemini API pricing likely competitive with Sora 2 Pro for 1024p output. Veo 3 Fast most useful for rapid I2V prototyping before final Sora 2 / SkyReels render.
+
+### 🆕 Kling 3.0 Pro Motion Control — WaveSpeed API
+
+- **Source**: WaveSpeed AI blog (wavespeed.ai)
+- **Capability**: Premium motion transfer — transfer motion from reference video to new character/scene
+- **Quality**: Native 4K 60fps; AI Director mode for cinematic framing control
+- **Billing**: Standard mode (720p) and Pro mode (4K+); motion control is Pro tier
+- **Availability**: Via WaveSpeed AI API and Kling platform; ComfyUI API node enabled March 5 (Motion Control)
+- **Digital-Stud relevance**: ⭐⭐ Motion transfer + 4K = direct upgrade for character animation reference pipeline. Kling 3.0 Pro Motion Control is best-in-class for transferring reference performer motion to AI character. Update `wan22_img2vid.json` API comparison section.
+
+### 🆕 Video2LoRA (arXiv 2603.08210) — Per-Frame Temporal LoRA for Video
+
+- **Title**: "Video2LoRA: Unified Semantic-Controlled Video Generation via Per-Frame LoRA Modules"
+- **Base model**: CogVideoX
+- **Core idea**: Train per-frame LoRA modules on a reference video → inject temporal coherence and semantic control into new video generations without full fine-tuning
+- **Result**: Learns coherent temporal dynamics + high-fidelity visual content; enables style/character/motion transfer
+- **Digital-Stud relevance**: ⭐⭐ Direct technique for character-consistent video generation from reference footage. If code releases on HuggingFace/GitHub for CogVideoX, this enables character motion LoRA training without full video model fine-tune. Watch for ComfyUI node.
+
+### 🆕 ComfyUI App Mode + App Builder + ComfyHub (March 12, 2026)
+
+- **Source**: Gigazine confirms "March 12, 2026" launch; blog.comfy.org announcement
+- **App Mode**: Converts any ComfyUI workflow to clean shareable app UI (no node graph visible)
+- **App Builder**: Creator selects which inputs/outputs to expose to end users
+- **ComfyHub**: Community platform at comfy.org/workflows for publishing finished apps + workflows; launched in preview
+- **Shareable URLs**: Run in browser without installation (Comfy Cloud)
+- **Digital-Stud relevance**: ⭐⭐ Convert Digital-Stud character generation workflows into clean client-facing apps. App Mode enables non-technical collaborators to run ComfyUI workflows without seeing the node graph. ComfyHub = distribution channel for selling/sharing workflow templates.
+
+### 🆕 ComfyUI v0.3.0 — Reroute Redesign + Group Controls
+
+- **Source**: blog.comfy.org/p/comfyui-v0-3-0-release
+- **Key changes**:
+  - **Native Reroute**: Completely redesigned — better performance, smaller workflow files, reduced rendering overhead
+  - **Group Controls**: Groups now selectable/deletable/pinnable/nestable like nodes → hierarchical workflow organization
+  - **Fit View**: Smart viewport adjustment (auto-adapts to selection or full canvas)
+  - **New UI default**: Refreshed UI is now default (classic available in settings)
+  - **Shortcuts**: Alt+Drag for reroute points, Shift+Drag for extra connections
+- **Digital-Stud relevance**: ⭐ Update local ComfyUI. New group nesting enables cleaner organization of complex character gen workflows.
+
+### 🆕 NVIDIA RTX + ComfyUI at GDC 2026 (March 10-12)
+
+- **Source**: NVIDIA Blog, WCCFTech, Perplexity (March 10, 2026)
+- **RTX Video Super Resolution Node**: Real-time 4K upscaler for video generation in ComfyUI; 30× faster than alternative local tools
+- **NVFP4 + FP8 support**: For FLUX.2 Klein (4B/9B) and LTX-2.3 → 2.5× perf gain, 60% VRAM reduction
+- **App View Mode**: Simplified UI alongside traditional node view (complements App Mode)
+- **Performance**: 40% overall ComfyUI performance improvement since Sept 2025 with RTX optimizations
+- **Digital-Stud relevance**: ⭐⭐⭐ If running RTX GPU: install NVFP4/FP8 quantized FLUX.2 Klein and LTX-2.3 immediately for 2.5× speedup + 60% VRAM savings. RTX Video Super Resolution node replaces manual upscaling step in video workflows. Update `image_gen_flux.json` to reference FP8/NVFP4 model paths.
+
+### 🆕 ComfyUI-Manager → Comfy-Org (March 28 Migration)
+
+- **Announcement**: ComfyUI-Manager migrating to `Comfy-Org/ComfyUI-Manager` on March 28, 2026
+- **New Manager UI**: Faster discovery, safer installs, auto-update notifications on startup
+- **Impact**: Any custom install scripts referencing `ltdrdata/ComfyUI-Manager` will need URL updates after March 28
+- **Digital-Stud relevance**: ⭐ Update any local installation scripts before March 28. Auto-update notifications on startup will help keep custom nodes current.
+
+### 🆕 FastLightGen (arXiv 2603.01685) — Video Model Compression Algorithm
+
+- **Title**: "FastLightGen: Fast and Light Video Generation with Fewer Steps"
+- **Core idea**: Algorithm that transforms large, computationally expensive video models into fast, lightweight counterparts — maintains quality while reducing compute
+- **Tested on**: Large diffusion video models (architecture-agnostic)
+- **Digital-Stud relevance**: ⭐ Once code releases, apply FastLightGen to Wan 2.2 or SkyReels-V4 for faster local generation. Monitor GitHub.
+
+### 🆕 Accelerating T2V with Calibrated Sparse Tokens (arXiv 2603.05503)
+
+- **Title**: "Accelerating Text-to-Video Generation with Calibrated Sparse Tokens"
+- **Tested on**: Wan 2.1, Mochi 1, LightX2V
+- **Result**: **1.58× end-to-end speedup on Wan 2.1 14B** while maintaining video quality
+- **Applicable to**: Transformer attention broadly (likely works on Wan 2.2)
+- **Digital-Stud relevance**: ⭐⭐ Apply sparse token calibration to local Wan 2.2 inference for 1.58× free speedup. Check WanGP v10.70+ — this technique may already be integrated.
+
+### 🆕 Neural4D / Z-Image / OmniGen2 — 3D + Image Ecosystem Summary (March 12)
+
+- **Summary of new production tools confirmed available March 12**:
+  | Tool | Type | Key feature |
+  |------|------|-------------|
+  | Neural4D | Image → 3D | Watertight mesh + PBR textures, all formats |
+  | Z-Image-Turbo | T2I | #1 open-source on ArtificialAnalysis; bilingual text |
+  | OmniGen2 | Multi-task image | Generate + edit + compose in one model |
+  | FLUX I2V | I2V | First FLUX-architecture image-to-video |
+  | Grok Imagine | T2V + I2V | Extend from Frame, 1.245B vids/month |
+
+### 🆕 StreamWise (arXiv 2603.05800) — Real-Time Multi-Modal Generation at Scale
+
+- **Title**: "StreamWise: Serving Multi-Modal Generation in Real-Time at Scale"
+- **Application**: Fantasy Talking (video + audio sync) — adds audio encoding + cross-attention to Wan 2.1 base model
+- **System**: Multi-modal serving infrastructure for simultaneous audio+video generation
+- **Digital-Stud relevance**: ⭐ Infrastructure pattern for deploying audio-video generation at scale; Fantasy Talking-style lip-sync + audio via Wan 2.1 cross-attention is production-ready approach.
+
+---
+
+
+
+---
+
 ## 🔄 Run #50 Delta — 2026-03-12 22:02 Prague
 
 ### 🆕 Helios — Full Details Confirmed (arXiv 2603.04379, March 5, 2026)
@@ -1184,7 +1359,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 22:02 (Prague / CET) | Run #50
+> Last updated: 2026-03-12 22:30 (Prague / CET) | Run #51
 
 ---
 
