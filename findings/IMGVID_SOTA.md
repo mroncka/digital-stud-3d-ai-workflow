@@ -3,6 +3,138 @@
 
 ---
 
+## 🔄 Run #50 Delta — 2026-03-12 22:02 Prague
+
+### 🆕 Helios — Full Details Confirmed (arXiv 2603.04379, March 5, 2026)
+
+- **Authors**: Peking University + ByteDance + Canva + Chengdu Anu Intelligence
+- **Scale**: 14B parameters — first video model to run at **19.5 FPS on a single NVIDIA H100** (real-time generation)
+- **Length**: Supports **minute-scale generation** (vs. typical 4-15 second clips from Wan/LTX)
+- **Tasks**: T2V, I2V, V2V — all three natively supported
+- **License**: Apache 2.0
+- **ComfyUI**: GitHub issue #12760 filed on Comfy-Org/ComfyUI tracking a custom node; no merged node yet
+- **Demo**: pku-yuangroup.github.io/Helios-Page/ | HuggingFace weights available
+- **Digital-Stud relevance**: ⭐⭐⭐ This is the most significant open video model drop since HunyuanVideo. Once a ComfyUI node lands, Helios becomes the primary candidate for long-form character animation (>15s, real-time preview). Watch GitHub issue #12760. Practical consideration: H100 required for real-time; on RTX 3090/4090 expect 2-4x slower but still usable for batch generation.
+
+### 🆕 DiffSynth-Studio LTX-2.3 Support (ModelScope, March 12, 2026)
+
+- **Repo**: `modelscope/DiffSynth-Studio` (GitHub)
+- **Change**: Added LTX-2.3 audio-video generation support on **March 12, 2026** (confirmed commit)
+- **Significance**: Second major framework (after native ComfyUI) to support LTX-2.3 A/V; enables Python-native scripted pipelines without ComfyUI dependency
+- **Digital-Stud relevance**: ⭐ Use DiffSynth-Studio as scripted batch alternative to ComfyUI for LTX-2.3 A/V when automating large character animation batches without UI overhead
+
+### 🆕 Sora 2 API Pricing — Officially Confirmed (OpenAI.com)
+
+- **Source**: OpenAI official API pricing page (openai.com/api/pricing)
+- **Sora 2 Standard**: $0.10/second for 720p video
+- **Sora 2 Pro**: $0.30/second for 720p, **$0.50/second for 1024p** (1792×1024)
+- **Comparison to Kling 3.0**: Kling API ~$0.05/sec → Sora 2 costs 2× Kling at same resolution
+- **Comparison to Grok Imagine**: Grok Imagine API $0.05/sec 720p+audio → Sora 2 costs 2× at same resolution and quality tier
+- **Third-party resellers**: $0.015-$0.10/sec (50-85% cheaper but unofficial)
+- **Digital-Stud relevance**: Update `api_test_fal.py` and `api_test_replicate.py` cost comparison tables. For budget-conscious use: Grok Imagine (720p+audio, $0.05/sec) and Kling 3.0 ($0.05/sec) beat Sora 2 on price; use Sora 2 Pro only when 1024p output specifically required.
+
+### 🆕 Sora 2 Native ComfyUI Partner Node
+
+- **Source**: blog.comfy.org — "Sora 2 API Nodes Now in ComfyUI" (by Purz and Jo Zhang)
+- **Status**: Official partner node — Sora 2 API directly accessible inside ComfyUI workflows
+- **Feature**: Generates via OpenAI API key; output routed through standard ComfyUI video output nodes
+- **Digital-Stud relevance**: ⭐ Test Sora 2 ComfyUI node for benchmarking against local Wan/LTX workflows; useful for quality reference even if cost prohibitive for production use
+
+### 🆕 Seedance 2.0 ComfyUI Community Node
+
+- **Repo**: `Cameraptor/seedance_2_Comfy_UI_Node-sjinn_Api` (GitHub)
+- **Function**: Wraps Sjinn.ai API for Seedance 2.0 — connect reference images and videos, generate directly in ComfyUI workflow
+- **Status**: Community node (not official); available via ComfyUI Manager
+- **Digital-Stud relevance**: ⭐ Add to workflow for Seedance 2.0 API testing; update `api_test_fal.py` to include Sjinn.ai endpoint for Seedance 2.0 batch testing
+
+### 🆕 Adobe Firefly Multi-Model Editor — 25+ AI Models (March 10, 2026)
+
+- **Source**: Adobe blog — "Image editing just got smarter with AI in Photoshop and Firefly" (March 10, 2026)
+- **Key**: Firefly now bundles 25+ top AI models in one interface: Google Nano Banana 2, OpenAI GPT Image 1.5, Runway Gen-4.5, Black Forest Labs FLUX.2 Pro, plus Adobe's own models
+- **Features added**: Generative Fill, Generative Remove, Generative Expand, Generative Upscale, Remove Background — all in Firefly Image Editor
+- **Digital-Stud relevance**: ⭐⭐ Confirms **Runway Gen-4.5** is current as of March 2026 (was Gen-3 Alpha last noted). Firefly is a viable platform for client-facing character refinement work without local GPU dependency. FLUX.2 Pro API access via Firefly subscription potentially cheaper than direct API.
+
+### 🆕 FLUX.2 Klein Community LoRAs (Early March 2026)
+
+- **Source**: YouTube — "Five NEW Flux.2 Klein LoRAs released in 2026"
+- **LoRAs released**: `flux-2-klein-4B-zoom-lora` + 4 additional community LoRAs for Klein 4B
+- **Training note**: These are community-trained (not BFL official) on FLUX.2 Klein 4B base
+- **Digital-Stud relevance**: ⭐ Extend `image_gen_flux.json` to support FLUX.2 Klein LoRA loading; zoom LoRA useful for cinematic close-up character shots
+
+### 🆕 FLUX.2 Klein "Enhancer" ComfyUI Node Pack
+
+- **Source**: myaiforce.com — "Mastering Flux.2 Klein: Enhancing Consistency and Creativity"
+- **Function**: ComfyUI node pack that adds **pose lock** and **detail control** to FLUX.2 Klein workflow
+- **Capability**: Consistent character pose preservation across multiple generations via Enhancer node
+- **Digital-Stud relevance**: ⭐⭐ Direct solution for pose-consistent character generation with FLUX.2 Klein without needing separate ControlNet node. Install via ComfyUI Manager; update `image_gen_flux.json` to include Enhancer node for consistent pose runs.
+
+### 🆕 Wan 2.7 — Imminent Release Confirmed (March 2026)
+
+- **Status**: Multiple dedicated info sites live (wan27ai.com, wan2-7.org, wan2-7.app, wan26.info/wan-2-7) — launch imminent
+- **Confirmed features**:
+  - 1080P real-person video generation
+  - Start + end frame control (same as WanGP already supports)
+  - Grid-to-video (multi-panel composition → single video)
+  - Subject reference + voice reference conditioning
+  - Instruction editing (edit existing video via text)
+  - Video cloning (clone motion from reference video)
+- **Digital-Stud relevance**: ⭐⭐⭐ Video cloning + instruction editing = significant upgrade for character re-posing pipeline. WanGP team is already preparing v10.981+ for Wan 2.7 integration. Update `wan22_img2vid.json` as soon as WanGP releases Wan 2.7 support.
+
+### 🆕 DSH-Bench (arXiv 2603.08090) — Subject-Driven T2I Benchmark
+
+- **Title**: "DSH-Bench: A Difficulty- and Scenario-Aware Benchmark with Hierarchical Subject Taxonomy for Subject-Driven T2I Generation" (Tencent)
+- **Dataset**: 459 subjects, 58 fine-grained categories; tests up to 5 characters + 14 objects simultaneously
+- **New metric**: Subject Identity Consistency Score (SICS) — 9.4% higher human eval correlation vs GPT-4o-based scoring
+- **Findings**: Current models still struggle with multi-subject identity preservation while following diverse prompts
+- **Digital-Stud relevance**: Use SICS as evaluation metric when testing character consistency workflows; Tencent authorship suggests HunyuanVideo-adjacent improvements incoming
+
+### 🆕 PureCC (arXiv 2603.07561) — Concept Customization for T2I
+
+- **Title**: "PureCC: Pure Learning for Text-to-Image Concept Customization"
+- **Core idea**: Pure learning approach (no test-time optimization) for rapid concept customization in T2I — enables fast identity injection without per-subject fine-tuning
+- **Status**: arXiv paper; code pending
+- **Digital-Stud relevance**: Watch for code/weights release on HuggingFace — if available as ComfyUI node, potentially faster alternative to LoRA-based character injection
+
+### 🆕 Speed3R (arXiv 2603.08055) — Sparse Feed-Forward 3D Reconstruction
+
+- **Title**: "Speed3R: Sparse Feed-forward 3D Reconstruction Models"
+- **Core idea**: Joint dense geometry + camera pose estimation in a single forward pass — no iterative optimization required
+- **Performance**: Significantly faster than DUSt3R/MASt3R-based pipelines
+- **Digital-Stud relevance**: ⭐ If code releases, useful for generating 3D scaffolds from character reference images for ControlNet pose workflow — faster than current photogrammetry pipeline
+
+### 🆕 MipSLAM (arXiv 2603.06989) — Alias-Free Gaussian Splatting SLAM
+
+- **Title**: "MipSLAM: Alias-Free Gaussian Splatting SLAM"
+- **Core idea**: High-fidelity anti-aliased novel view synthesis inside a SLAM (Simultaneous Localization and Mapping) framework
+- **Performance**: Anti-aliased NVS at high fidelity — addresses blurring artifacts in 3DGS at different zoom levels
+- **Digital-Stud relevance**: ⭐ Relevant for 3D scene reconstruction from video (background environments for character placement); better than standard 3DGS when generating environments with significant depth variation
+
+### 🆕 FootMR (arXiv 2603.09681) — Markerless 3D Foot Motion Capture
+
+- **Title**: "Improving 3D Foot Motion Reconstruction in Markerless Monocular Human Motion Capture"
+- **Authors**: Tom Wehrbein, Bodo Rosenhahn, L3S Leibniz University Hannover
+- **Core idea**: FootMR — refines ankle rotation estimates in markerless monocular capture; improves foot/ankle accuracy without markers
+- **Digital-Stud relevance**: ⭐⭐ Direct pipeline relevance for full-body rig accuracy in character animation. Ankle/foot are the most common failure points in DWPose-based rig extraction. FootMR as post-processing step on DWPose skeletons could significantly improve lower-body pose quality in `pose_controlnet.json` workflow.
+
+### 🆕 TADA (HumeAI) — Open-Source Text-to-Audio for Video (March 12, 2026)
+
+- **Source**: Threads post @naveed_ullah600, March 12, 2026
+- **Model**: TADA — HumeAI text-to-audio model, open-source on HuggingFace (`colle...`)
+- **Function**: Generates high-quality audio from text descriptions — voice, ambience, SFX
+- **Digital-Stud relevance**: ⭐ Audio synthesis for AI video output — pair with LTX-2.3 A/V or SkyReels V4 T2VA workflows; TADA handles audio when the video model's built-in audio is insufficient
+
+### 🆕 Runway Gen-4.5 — Current Production Model Confirmed
+
+- **Confirmation**: Adobe Firefly integration (March 10) lists Gen-4.5 as current Runway model (previously Gen-3 Alpha was tracked)
+- **Status**: Available in Runway platform and via Adobe Firefly multi-model editor
+- **Digital-Stud relevance**: Update SOTA model table — prior entry "Runway Gen-3 Alpha" is outdated; current is **Gen-4.5**. Update `wan22_img2vid.json` API comparison notes.
+
+---
+
+
+
+---
+
 ## 🔄 Run #49 Delta — 2026-03-12 21:34 Prague
 
 ### 🆕 Grok Imagine Major Update (March 12, 2026) — xAI
@@ -1052,7 +1184,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 21:34 (Prague / CET) | Run #49
+> Last updated: 2026-03-12 22:02 (Prague / CET) | Run #50
 
 ---
 
