@@ -1,7 +1,38 @@
 # Image & Video Generation SOTA
 
+### 🆕 Qwen-Image-Edit-2511 Camera-Pose LoRA (March 2026)
+
+- LoRA providing **96 precise camera poses** for exact viewpoint control with Qwen-Image-Edit-2511
+- Bridges Qwen-2511's built-in viewpoint capability with discrete, reproducible camera angles
+- Use case: lock character to a scene → cycle through 96 predefined camera positions
+- Civitai / Instagram: @czmilo tutorial video
+- Digital-Stud relevance: multi-angle character shot generation from a single edited reference
+
+### 🆕 Dark Beast DBKlein9b V2.0 (Civitai, March 3, 2026)
+
+- Style fine-tune model for **FLUX.2 Klein 9B** with LoRA adapter injection support
+- Compatible with any Klein 9B or Qwen Edit base/fine-tune models via LoRA parameter injection
+- Rank-256 format available; directly applicable to Klein 9B + Qwen Edit base models
+- Civitai: civitai.com/models/2242173
+- Digital-Stud relevance: high-quality Klein 9B style LoRA as reference architecture for custom character fine-tunes
+
+### 🆕 FLUX.2 Klein 4B Custom ControlNet Training (OzzyGT Tutorial, March 2026)
+
+- Workflow: train a **custom control generator + ControlNet** for FLUX.2 Klein 4B using an edit model
+- Enables domain-specific control (custom pose, depth, edge) beyond stock ControlNet weights
+- Tutorial: x.com/OzzyGT | ComfyUI node: custom training via Diffusers fine-tune pipeline
+- Digital-Stud relevance: create pose-specific ControlNets tailored to character animation style
+
+### 🆕 LTX-2.3 ComfyUI Cinematic-Prompt Node (Community, March 2026)
+
+- Auto-infers shot types, camera moves, and audio descriptors from a simple scene prompt
+- Free, fully local, uncensored — runs on top of LTX-2.3 in ComfyUI
+- Reddit r/StableDiffusion: 217 upvotes; 63 comments confirming quality
+- GitHub: check ComfyUI Manager registry for "LTX cinematic" node
+- Digital-Stud relevance: simplifies professional video prompting for character animation shots
+
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 11:05 (Prague / CET) | Run #28
+> Last updated: 2026-03-12 11:30 (Prague / CET) | Run #29
 
 ---
 
@@ -123,6 +154,37 @@
   - Available via ModelsLab API; good for rapid iteration / real-time editing workflows
   - Digital-Stud relevance: fast I2I for character variant generation without full inference cost
 
+### 🆕 REDEdit-Bench — Bilingual Image Editing Benchmark (March 9, 2026)
+
+- Released by FireRed team: **1,673 bilingual** (Chinese/English) editing pairs across **15 categories**
+- More realistic/diverse than HIVE, EditBench, EmuEdit
+- March 2026 leaderboard: FireRed-Image-Edit-1.1 (4.56) > Qwen-Image-Edit-2511 (4.51) > FLUX.2 Dev (4.35)
+- GitHub: github.com/FireRedTeam/FireRed-Image-Edit
+- Digital-Stud relevance: authoritative benchmark for evaluating instruction-following edits on character/product images
+
+### 🆕 LongCat-Image-Edit-Turbo (Meituan, Early March 2026)
+
+- Distilled 8-step inference: ~**10× speedup** over base LongCat-Image-Edit
+- Strong instruction-following; best-in-class bilingual (Chinese/English) in-image text rendering
+- Multi-turn editing: non-edited regions preserved well across iterative passes
+- HuggingFace: meituan-longcat/LongCat-Image-Edit | vLLM-Omni supported
+- Digital-Stud relevance: fast multi-turn editing for iterative character + scene refinement without full regeneration
+
+### 🆕 TDM-R1 — RL for Few-Step Diffusion with Non-Differentiable Rewards (arXiv 2603.07700)
+
+- Novel RL paradigm: decoupled into surrogate reward learning + generator optimization
+- Non-differentiable reward types supported: **human preference, object count, OCR correctness**
+- Key results: GenEval 61% → **92%** (surpasses 80-NFE base at 63% and GPT-4o at 84%); only **4 NFEs**
+- Scales to 6B Z-Image model; CUHK-Shenzhen + Xiaohongshu (hi-Lab)
+- Digital-Stud relevance: reward-guided sampling for character accuracy and prompt adherence without retraining
+
+### 🆕 Step1X-Edit-v1p2 — Reasoning Image Editor (March 2026)
+
+- Introduces **explicit reasoning + reflection** before finalising edits
+- Better compound instruction parsing; significantly stronger non-edit region preservation vs v1p1
+- Benchmark: top-tier on GEdit-O and ImgEdit-O metrics
+- Digital-Stud relevance: high-accuracy multi-sub-task character editing (change outfit + lighting + expression simultaneously)
+
 - **FLUX.2 Dev 8-step Turbo LoRA — Speed Benchmarks** (ComfyUI, March 2026)
   - PyTorch SDP + xFormers: ~560s at 1.6MP (1280×1280)
   - Sage Attention variant: ~537s (29s savings); scales better on large batches
@@ -170,7 +232,29 @@
 
 ---
 
+### 🆕 ImageCritic — Fine-Grained Inconsistency Detector for AI Images (March 5, 2026)
+
+- kombitz.com/2026/03/05/imagecritic-improves-ai-image-editing-accuracy/
+- AI system that detects and automatically corrects fine-grained visual inconsistencies (e.g. extra fingers, mismatched lighting, text errors)
+- Integrates into AI-assisted editing loops as a post-generation quality gate
+- Digital-Stud relevance: automated QC layer on top of face refinement or LoRA-generated character outputs
+
+### 🆕 Adobe Photoshop AI Assistant (March 10, 2026)
+
+- Integrated AI assistant for Photoshop, connecting to external generation APIs
+- Supports: **Runway Gen-4.5**, **Black Forest Labs FLUX**, and other partner models via API call-out
+- Goal: keep creative work inside Photoshop with AI generation as an inline tool
+- Source: TechCrunch, March 10, 2026
+- Digital-Stud relevance: FLUX integration means Photoshop can serve as a ComfyUI-adjacent front-end for professional retouching
+
 ## 🎬 Video Generation SOTA — March 2026
+
+### 🆕 MSVBench — First Multi-Shot Video Generation Benchmark (arXiv 2602.23969)
+
+- Hierarchical scripts + reference images tailored for **multi-shot narrative video** evaluation
+- Evaluates: shot-to-shot consistency, character identity persistence, scene continuity
+- Addresses gap in existing benchmarks (EvalCrafter, T2V-CompBench) which test single-shot only
+- Digital-Stud relevance: framework for evaluating character animation sequences across multiple shots
 
 ### 🆕 Luma Uni-1 — Location Accuracy Leader (March 2026)
 
