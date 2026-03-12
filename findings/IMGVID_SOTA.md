@@ -3,6 +3,124 @@
 
 ---
 
+## 🔄 Run #46 Delta — 2026-03-12 20:03 Prague
+
+### 🆕 Open-Sora 2.0 — Commercial-Level Video for $200K (arXiv 2503.09642)
+
+- **Paper**: Zangwei Zheng et al. — "Open-Sora 2.0: Training a Commercial-Level Video Generation Model in $200k"
+- **Full recipe open-sourced**: data curation pipeline, model architecture choices, training strategy, system optimization — all detailed
+- **Quality target achieved**: comparable to HunyuanVideo and Runway Gen-3 Alpha at 5–10× lower training cost
+- **Training cost**: $200K total vs $1–2M+ for equivalent closed models
+- **Architecture**: Optimized video DiT with efficient attention, progressive resolution training (low → high resolution fine-tune)
+- **License**: Fully open-source; commercial use permitted
+- Digital-Stud relevance: **first fully open recipe for building a commercial-grade video model yourself** — enables custom character-video fine-tuning at cost-accessible scale; study the data curation pipeline for LoRA dataset prep
+
+### 🆕 Seedance 2.0 — ByteDance Multi-Input Cinematic Video (March 5, 2026)
+
+- **Launch**: March 5, 2026 — went viral as "China's second DeepSeek moment"
+- **Core capability**: Multi-input cinematic video generation (text + image + reference frames → video)
+- **Character consistency**: Specifically engineered to solve the "Consistency Gap" in AI video — multiple characters, same appearance across scenes
+- **Use case**: Designed for e-commerce marketing and branded content (consistent product + character shots)
+- **Availability**: API via WaveSpeedAI, fal.ai, and direct ByteDance access
+- **Audio-video comparison**: Benchmarked head-to-head vs MOVA, WAN 2.2, Sora 2.0, SkyReels in WaveSpeedAI's audio-video sync test
+- Digital-Stud relevance: strong alternative to Kling 3.0 for multi-character consistency in character animation; check API pricing vs Kling
+
+### 🆕 MotionStream (Adobe Research) — Real-Time Interactive Video with Motion Drawing
+
+- **Architecture**: Built on Wan 2.1 DiT with teacher-student acceleration system
+- **Key capability**: Draw motion paths directly on screen → video renders in real-time sub-second preview
+- **Controls**: Paint trajectories, camera motion, transfer motion from reference clips
+- **Latency**: Wan 2.1 improves from 16.7 FPS / 0.69s latency → **29.5 FPS / 0.39s** with Tiny VAE decoder (10× decode speedup)
+- **Paper**: arXiv:2511.01266v5 (updated March 2026)
+- **ComfyUI**: `ComfyUI-AdvancedLivePortrait` node referenced alongside MotionStream for face/motion control; MotionStream install guide now available at aikolhub.com
+- **TinyVAE decoder**: Drop-in replacement that removes the VAE bottleneck — compatible with Wan 2.1/2.2 pipelines
+- Digital-Stud relevance: real-time motion preview closes the feedback loop for character animation; TinyVAE alone is worth integrating into S2V and I2V workflows for faster iteration
+
+### 🆕 HunyuanVideo 3D (HY 3D) Advanced Features in ComfyUI
+
+- **Official ComfyUI Blog post**: "HY 3D Advanced Features Now Available in ComfyUI" (March 2026)
+- **New workflows in Browse Templates → 3D**:
+  - **Multi-view reconstruction**: Generate 3D from multiple reference views in one workflow
+  - **Texture refinement pass**: Post-process UV maps and textures to production quality
+  - **Geometry cleanup**: Manifold mesh operations inside ComfyUI
+- **Integration point**: Tencent HunyuanVideo 3D post-processing — same 3D pipeline as Tripo v3.0 but native HunyuanVideo ecosystem
+- Digital-Stud relevance: now have **two in-ComfyUI 3D paths** (Tripo v3.0 + HY 3D) — HY 3D better for HunyuanVideo-originated characters; Tripo better for text/image-to-3D from other sources
+
+### 🆕 FLUX.2 Klein Consistency LoRA Released
+
+- **Release**: Community-released consistency LoRA specifically for FLUX.2 Klein (confirmed March 2026, r/comfyui thread)
+- **Purpose**: Solves Klein's known issue of adding unwanted random details / changing reference elements during editing
+- **Usage**: Works alongside FLUX.2 Klein Enhancer node pack (Ref Latent Controller)
+- **Download**: HuggingFace (preferred by Klein LoRA community; Civitai adoption slower)
+- **Complementary**: Use with Klein 9B for higher quality; 4B + consistency LoRA = good speed/quality tradeoff
+- Digital-Stud relevance: **directly solves face/character consistency problem in the FLUX.2 Klein pipeline** — this is the missing piece for the Any-Pose Portrait Editing workflow
+
+### 🆕 FLUX.2 Klein Enhancer Node Pack — Deterministic ComfyUI Editing
+
+- **Nodes**: Three new nodes in ComfyUI for deterministic FLUX.2 Klein image editing:
+  1. **Ref Latent Controller**: Controls reference image strength (recommended: 2.1) — locks pose/structure
+  2. **Text/Ref Balance**: 0–1 slider balancing prompt influence vs reference image adherence
+  3. **Detail Controller**: Front Multiplier (regions to change) + Middle Multiplier (action strength control)
+- **Tutorial**: myaiforce.com/flux-2-klein-enhancer — step-by-step workflow walkthrough
+- **Effect**: Enables precise targeted edits (face, clothing, background) without altering locked elements
+- Digital-Stud relevance: **finalizes the face_refinement.json workflow** — combine these 3 nodes for consistent face fix passes
+
+### 🆕 Wan 2.2 Palingenesis — Fine-Tuned Quality Variant
+
+- **Model**: WAN 2.2 Palingenesis — community fine-tune of Wan 2.2 base
+- **Quality**: Consistently outperforms base Wan 2.2 Lightning in visual quality benchmarks
+- **Availability**: Civitai and HuggingFace
+- **Comparison video**: YouTube walkthrough showing side-by-side Palingenesis vs older Wan 2.2 Lightning
+- Digital-Stud relevance: drop-in upgrade for the `wan22_img2vid.json` workflow — replace base Wan 2.2 checkpoint with Palingenesis for better cinematic output
+
+### 🆕 Wan 2.2 FreeLong / ComfyUI-LongLook — Training-Free Long Video Extension
+
+- **Method**: SpectralBlend Temporal Attention — extends any Wan 2.2 video generation to longer durations without retraining
+- **ComfyUI node**: `ComfyUI-LongLook` — install and add to existing Wan 2.2 workflows
+- **Approach**: Spectral blending in temporal attention layers prevents quality degradation on longer sequences
+- **No additional training required**: Works with base Wan 2.2 and fine-tunes (Palingenesis, Lightning)
+- Digital-Stud relevance: **extends Wan 2.2 video from ~5s clips to longer character scenes** — combine with S2V for longer audio-driven animations
+
+### 🆕 StableGen — AI 3D Texturing in Blender via ComfyUI Nodes
+
+- **GitHub**: `sakalond/StableGen` — last updated March 5, 2026
+- **Functionality**: Blender addon using ComfyUI nodes for AI-powered 3D texturing and generation
+- **Workflow**: Import 3D mesh → generate textures via ComfyUI backend → export textured asset
+- **Integration**: Bridges Blender (3D DCC) and ComfyUI (AI pipeline) directly
+- Digital-Stud relevance: **closes the Blender↔ComfyUI gap** — texture any Digital-Stud 3D character in Blender using FLUX/SD4 without leaving the DCC environment
+
+### 🆕 Real-Time Physical Action Video Generation (arXiv 2603.05449)
+
+- **Paper**: "Real-Time Physical Action-Conditioned Video Generation"
+- **Capability**: Conditions video generation on 3D forces, robotic manipulations, and physical actions — not just visual motion
+- **Gap addressed**: Current video models cannot simulate physical consequences of 3D actions
+- Digital-Stud relevance: future path for physically-plausible character interaction (grabbing objects, impacts) — monitor for ComfyUI implementation
+
+### 🆕 ZIT ControlNet — Best Inpainting for FLUX (March 2026)
+
+- **Community consensus** (r/StableDiffusion March 2026 thread): ZIT ControlNet is the recommended inpainting model for FLUX.1 Dev
+- **Capability**: Superior region preservation and inpainting quality vs older FLUX inpainting nodes
+- **Alternative**: FLUX.1 Fill Dev still strong but ZIT ControlNet preferred for precise edits
+- Digital-Stud relevance: update `face_refinement.json` workflow to use ZIT ControlNet for face inpainting passes
+
+### 🔄 Audio-Video Model Comparison: MOVA vs WAN vs Sora 2 vs Seedance (WaveSpeedAI, March 2026)
+
+- **Source**: wavespeed.ai/blog/posts/mova-vs-wan-sora-seedance-video-audio-comparison-2026
+- **Rankings for audio-native video**:
+  1. **Veo 3.1** — leads for cinematic audio-native with dialogue
+  2. **Sora 2.0** — 25s max, synchronized dialogue, closed API ($0.05/sec)
+  3. **Seedance 2.0** — best multi-character consistency
+  4. **WAN 2.2 + S2V** — best open-source audio option
+  5. **SkyReels V4** — joint audio-video in single pass (just released)
+- **MOVA**: New entrant — Music-Oriented Video Alignment, specialized for music video sync
+- Digital-Stud relevance: **definitive decision matrix** for audio-video pipeline choice
+
+---
+
+
+
+---
+
 ## 🔄 Run #45 Delta — 2026-03-12 19:30 Prague
 
 ### 🚨 BREAKTHROUGH — Helios: Real-Time Long Video Generation (PKU, March 4, 2026)
@@ -575,7 +693,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 19:30 (Prague / CET) | Run #45
+> Last updated: 2026-03-12 20:03 (Prague / CET) | Run #46
 
 ---
 
