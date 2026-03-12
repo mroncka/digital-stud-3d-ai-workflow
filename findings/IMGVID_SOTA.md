@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 15:06 (Prague / CET) | Run #36
+> Last updated: 2026-03-12 15:30 (Prague / CET) | Run #37
 
 ---
 
@@ -380,6 +380,20 @@
 - Wan 2.2 Spicy (uncensored, high-motion variant) remains the current community production default while 2.7 lands
 - Digital-Stud relevance: start/end frame control is a major workflow enabler for character-to-scene compositing; watch for WanGP v11 update when 2.7 drops
 
+### 🆕 Wan 2.7 — Confirmed March 2026 with Major Capability Upgrades
+
+- **Officially confirmed** for release in March 2026 (confirmed by Alibaba source); specific date still unannounced as of March 12
+- **New capabilities over Wan 2.2/2.6:**
+  - Start & End Frame Video control (precise boundary frames)
+  - Grid-to-Video: 9-grid multi-angle input for dimensional/multi-perspective content
+  - Subject + Voice Reference: combined visual + audio subject conditioning
+  - Instruction Editing: edit videos with natural language instructions
+  - Video Cloning: replicate style and motion of reference clips
+  - Flexible 2–15 second output, up to 1080P
+  - Supports up to **5 video reference inputs** simultaneously
+- Significant improvements in motion quality, consistency, and subject preservation vs 2.6
+- Digital-Stud relevance: grid-to-video multi-angle input + instruction editing is a direct unlock for character animation workflows; LoRAs trained on Wan 2.2 are expected to be partially compatible
+
 ### 🆕 Seedance 2.0 — Up to 12 Reference Files, Multi-Camera, Native Lip-Sync (March 2026)
 
 - **Multi-reference generation**: accepts up to **12 reference files** (photos, video, audio, text) per generation — highest reference count of any commercial video model
@@ -557,12 +571,40 @@
 - API: WaveSpeedAI wavespeed.ai/blog/posts/skyreels-v4-vs-v2/
 - Digital-Stud note: V4 useful for short cinematic clips with synced audio; V2 for long-form animation
 
+### 🆕 Wan 2.7 — Confirmed March 2026 with Major Capability Upgrades
+
+- **Officially confirmed** for release in March 2026 (confirmed by Alibaba source); specific date still unannounced as of March 12
+- **New capabilities over Wan 2.2/2.6:**
+  - Start & End Frame Video control (precise boundary frames)
+  - Grid-to-Video: 9-grid multi-angle input for dimensional/multi-perspective content
+  - Subject + Voice Reference: combined visual + audio subject conditioning
+  - Instruction Editing: edit videos with natural language instructions
+  - Video Cloning: replicate style and motion of reference clips
+  - Flexible 2–15 second output, up to 1080P
+  - Supports up to **5 video reference inputs** simultaneously
+- Significant improvements in motion quality, consistency, and subject preservation vs 2.6
+- Digital-Stud relevance: grid-to-video multi-angle input + instruction editing is a direct unlock for character animation workflows; LoRAs trained on Wan 2.2 are expected to be partially compatible
+
 ### 🆕 Seedance 2.0 — Reference Cluster & Character Consistency (Feb 2026)
 
 - **Reference Cluster System**: up to **12 multimodal inputs** (9 images + 3 videos); @-tag syntax for identity/motion binding
 - **Golden Ratio Method**: 70% identity ref + 30% motion ref weighting → prevents character drift across shots
 - Consistency script workflow enables >30-second sequences with same character
 - Digital-Stud verdict: currently best for multi-shot consistent character video; API: Replicate, fal.ai, ByteDance API
+
+### 🆕 Wan 2.7 — Confirmed March 2026 with Major Capability Upgrades
+
+- **Officially confirmed** for release in March 2026 (confirmed by Alibaba source); specific date still unannounced as of March 12
+- **New capabilities over Wan 2.2/2.6:**
+  - Start & End Frame Video control (precise boundary frames)
+  - Grid-to-Video: 9-grid multi-angle input for dimensional/multi-perspective content
+  - Subject + Voice Reference: combined visual + audio subject conditioning
+  - Instruction Editing: edit videos with natural language instructions
+  - Video Cloning: replicate style and motion of reference clips
+  - Flexible 2–15 second output, up to 1080P
+  - Supports up to **5 video reference inputs** simultaneously
+- Significant improvements in motion quality, consistency, and subject preservation vs 2.6
+- Digital-Stud relevance: grid-to-video multi-angle input + instruction editing is a direct unlock for character animation workflows; LoRAs trained on Wan 2.2 are expected to be partially compatible
 
 ### 🆕 Seedance 2.0 — Commercial API Pricing Disclosed
 
@@ -680,6 +722,20 @@
 - Sigma fine-tuning + sampler selection significantly impact output quality (community finding)
 - Official trainer package at `github.com/Lightricks/LTX-2` for full fine-tune + LoRA training
 - Digital-Stud relevance: most practical open-source audio-video model for ComfyUI right now
+
+### 🆕 Wan 2.7 — Confirmed March 2026 with Major Capability Upgrades
+
+- **Officially confirmed** for release in March 2026 (confirmed by Alibaba source); specific date still unannounced as of March 12
+- **New capabilities over Wan 2.2/2.6:**
+  - Start & End Frame Video control (precise boundary frames)
+  - Grid-to-Video: 9-grid multi-angle input for dimensional/multi-perspective content
+  - Subject + Voice Reference: combined visual + audio subject conditioning
+  - Instruction Editing: edit videos with natural language instructions
+  - Video Cloning: replicate style and motion of reference clips
+  - Flexible 2–15 second output, up to 1080P
+  - Supports up to **5 video reference inputs** simultaneously
+- Significant improvements in motion quality, consistency, and subject preservation vs 2.6
+- Digital-Stud relevance: grid-to-video multi-angle input + instruction editing is a direct unlock for character animation workflows; LoRAs trained on Wan 2.2 are expected to be partially compatible
 
 ### 🆕 Seedance 2.0 — 2-Minute Native Audio-Video, Best API Cost (ByteDance, March 2026)
 
@@ -960,6 +1016,7 @@ mixed_precision: fp16 or bf16
 
 |-------|------|-----------|----------|-------|----------|
 | **YOLO26-Pose** | Single-stage, NMS-free | 17 (COCO) + custom | mAP 57.2% (nano) to 71.6% (XL) | 30+ FPS; **43% faster CPU than YOLO11-N** | Real-time multi-person; custom keypoints; MuSGD optimizer |
+| **CIGPose** | Causal Intervention GNN whole-body (March 2026) | Whole-body (COCO-WholeBody) | **67.0% AP** (no extra data) / 67.5% AP (UBody) | — | Structural causal model eliminates context spurious correlations; anatomical plausibility enforcement; code public |
 | **ER-Pose** | Keypoint-driven single-stage (arxiv 2603) | 17+ custom | +3.2 AP (no pretrain) / **+7.4 AP (with pretrain)** vs YOLO-Pose | Fast | Removes bounding-box supervision entirely; keypoint-driven dynamic sample assignment aligned with OKS; smooth OKS loss function; fewer params than YOLO-Pose |
 | **RTMPose-m** | Two-stage, SimCC head | 17–133 | **75.8% AP on COCO** @ 90+ FPS (Intel i7) | 30+ FPS | Production speed/accuracy balance; 430+ FPS on GTX 1660 Ti |
 | **DWPose-l** | Two-stage whole-body distillation | 133 (body+hand+face) | Whole AP 66.5% (COCO-WholeBody) | Medium | **Best for ComfyUI ControlNet** |
