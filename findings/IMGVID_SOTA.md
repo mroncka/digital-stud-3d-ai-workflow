@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 02:06 (Prague / CET) | Run #10
+> Last updated: 2026-03-12 03:03 (Prague / CET) | Run #12
 
 ---
 
@@ -15,13 +15,14 @@
 | **Photorealism** | Flux 2 Flex | fal.ai, Replicate | ~$0.03/img | Gold standard for skin, lighting, anatomy |
 | **Photorealism (fast)** | Flux 2 Klein (9B) | fal.ai, Replicate | ~$0.02/img | Faster variant, native inpainting, editing. **Klein consistency LoRA released March 2026** |
 | **Open Source / NSFW** | Flux Dev / Flux 2 Schnell | Local + Replicate | $0.025/img | Best open-weight; Schnell free via HF/SiliconFlow/Firework AI |
+| **FLUX.2 Pro** | FLUX.2 Pro (Black Forest Labs) | fal.ai, Replicate, BFL API | $0.025–0.07/img | **1265 Elo — matches GPT Image 1.5**; superior cost-to-quality; sub-second generation |
 | **Anime/Illustrative** | Illustrious XL / NoobAI XL | Local (CivitAI) | Free (local) | NoobAI Chenkin RF = latest, best contrast |
 | **Anime + LoRA ecosystem** | Pony Diffusion V6 XL | Local (CivitAI) | Free (local) | Massive LoRA ecosystem, tag-based control |
 | **Ultra-cheap + open** | Z Image Turbo (Qwen) | HF Inference, fal.ai | ~$0.004/img | 6B params, Apache 2.0, 16GB VRAM, 3s gen |
 | **Logos / Design** | Recraft V4 | fal.ai, Recraft API | ~$0.075/img | #1 HF benchmark for vectors/logos, SVG export; ComfyUI node available |
 | **Text in image** | Seedream 5.0 Lite (ByteDance) | fal.ai | TBC | Best Chinese/multilingual text rendering |
 | **Budget API** | GPT Image 1 Mini | OpenAI API | ~$0.005/img | Cheapest frontier option |
-| **Logos + 10s video** | Grok Imagine (xAI, Mar 2026) | Grok API | TBC | Four-agent architecture; 10s 720p video gen also available |
+| **Logos + 10s video** | Grok Imagining (xAI, Mar 2026) | Grok API | TBC | Four-agent architecture; 10s 720p video gen also available |
 | **Budget competitor** | MiniMax Image-01 | MiniMax API, fal.ai | ~$0.01/img | Superior prompt adherence from Hailuo lineage; Feb 2026 release |
 | **Open-source text render** | GLM-Image (Z.ai / Zhipu AI) | HF, API | ~$0.015/img | 16B, hybrid autoregressive+diffusion; best text rendering 0.9116 CVTG-2k; Apache 2.0 |
 | **Free via Microsoft** | MAI-Image-1 (Microsoft) | Bing/Copilot | Free (limited) | First MS in-house model; top-10 LMArena; integrated in M365 AI |
@@ -39,6 +40,7 @@
 
 - **Flux 2 Flex** — Full photorealism, LoRA support, image editing. ~$0.03/image.
 - **Flux 2 Klein (9B)** — Faster variant, native inpainting, editing. ~$0.02/image. Klein consistency LoRA now available.
+- **Flux 2 Pro** — **1265 Elo, matches GPT Image 1.5; $0.025–0.07/img; sub-second generation.** Best cost-to-quality among frontier models.
 - **Flux Kontex** — Context-aware image editing. ~$0.04/image.
 - **Flux 2 Schnell** — Open-source, 4-step, free via HF/SiliconFlow/Firework AI APIs.
 - NVFP4 quantized models for Klein (4B and 9B): **2.5× faster, 60% lower VRAM** on RTX 50 Series.
@@ -56,13 +58,14 @@
 
 - **GLM-Image** (Jan 2026, Zhipu AI) — First open-source autoregressive (non-diffusion) image model; Apache 2.0; industrial text rendering; best CVTG-2k score
 - **Seedream 5.0 Lite** (Feb 2026, ByteDance) — Superior multilingual text, in-image translation
-- **Z Image Turbo** (Nov 2025, Alibaba Qwen) — S3-DiT, Apache 2.0, 10-20× cheaper than DALL-E 3
+- **Z Image Turbo** (Nov 2025, Alibaba Qwen) — S3-DiT, Apache 2.0, 10–20× cheaper than DALL-E 3
 - **FireRed-Image-Edit 1.1** — Open-source SOTA for image editing, beats Qwen edit
 - **Recraft V4** — Now in ComfyUI via custom node
 - **Grok Imagining** (Mar 2026, xAI) — Four-agent architecture, 10s 720p video gen also available
 - **MiniMax Image-01** (Feb 2026) — $0.01/img, extremely competitive
 - **MAI-Image-1** (Microsoft) — First in-house Microsoft image model; free via Bing
-- **FLUX Image to Video** ⭐ NEW March 2026 — BFL releasing Flux-based I2V capability
+- **FLUX Image to Video** ⭐ NEW March 2026 — BFL releasing Flux-native image-to-video capability
+- **FLUX.2 Pro** ⭐ NEW — 1265 Elo at $0.025–0.07/img; best cost-per-quality frontier model
 
 ---
 
@@ -73,13 +76,14 @@
 | Category | Model | Params | VRAM | API/Local | Notes |
 |----------|-------|--------|------|-----------|-------|
 | **Open Source Best** | Wan2.2 TI2V-5B | 5B | 24GB (RTX 4090) | Local + Replicate | MoE, 720P/24fps, Apache 2.0 |
-| **Open Source Heavy** | HunyuanVideo (original) | 13B | 60-80GB | Local (A100) | Beats Runway Gen-3, Luma 1.6 |
+| **Open Source Heavy** | HunyuanVideo (original) | 13B | 60–80GB | Local (A100) | Beats Runway Gen-3, Luma 1.6 |
 | **Open Source Lightweight** | HunyuanVideo 1.5 | 8.3B | 14GB | Local + fal.ai | SSTA attention, 1.87× faster, 1080p upscale |
-| **Audio-Video (new)** | LTX-2.3 | — | — | Local (ComfyUI native) | 9:16 portrait, audio-video, better motion, NVFP4 support |
+| **Audio-Video (new)** | LTX-2.3 | — | — | Local (ComfyUI native) | **Native 4K@50fps, 20-sec clips, synchronized audio**; 9:16 portrait; better motion; NVFP4 support |
 | **Commercial Best** | Kling 3.0 Pro | — | API only | Kling API, fal.ai | Motion Control, multi-shot, best character consistency |
 | **Kling Motion Control** | Kling 3.0 MC | — | API only | ComfyUI native | **Motion Control 3.0 nodes live in ComfyUI (Mar 2026)** |
+| **Extended clips (Kling)** | Kling 2.6 | — | API only | Kling API | **Up to 2-min videos at 1080p/30fps; simultaneous audio-visual gen; DiT+3D VAE** |
 | **Budget Commercial** | Kling 2.1 | — | API only | Kling API | ~$0.14/clip |
-| **Open Mid-tier** | CogVideoX-1.5 | 5B | 12-16GB | Local + HF | 1360×768, LoRA support, DDIM Inverse editing |
+| **Open Mid-tier** | CogVideoX-1.5 | 5B | 12–16GB | Local + HF | 1360×768, LoRA support, DDIM Inverse editing |
 | **Free via Colab** | CogVideoX 5B | 5B | T4 (Colab) | Google Colab | 6s clips, 720×480, 8fps |
 | **Real-time / distilled** | CAUSVID / Diagonal Distillation | — | — | Local research | 4-step causal (CVPR 2025); Diagonal Distillation (arxiv 2603.09488) |
 | **Long-form realtime** | Helios (Wan-based) | 14B | H100 | Research | 19.5 FPS on H100, minute-scale |
@@ -93,16 +97,26 @@
 | **Minute-scale** | Helios | 14B | H100 | Research | 1452 frames (~60s at 24fps); Apache 2.0 |
 | **Flux I2V NEW** | FLUX Image to Video | — | — | API (BFL) | **March 2026 release; Flux-native image-to-video** |
 
-### LTX-2.3 — New Addition (March 2026, Day-0 ComfyUI)
+### LTX-2.3 — Updated March 2026 (Major)
 
+- **Native 4K at 50fps**, up to 20-second clips — significant leap over LTX-2.x
+- **Synchronized native audio generation** (video + sound jointly) — first open-source model with this
 - **9:16 vertical portrait support** — ideal for social media
 - Enhanced image-to-video with better motion consistency
-- Cleaner audio, reduced noise, improved dialogue/music
-- Better text rendering and prompt understanding
 - New latent space & VAE for sharper textures
 - **NVFP4 + FP8** quantized models: 1.7× faster, 40% VRAM reduction on RTX GPUs
 - **IAMCCS nodes** enable 1080p on low-VRAM (4080-class) GPUs
 - Official templates in ComfyUI menu
+- Apache 2.0 license, free for sub-$10M ARR; licensed training data (Getty/Shutterstock)
+
+### Kling 2.6 — NEW Entry (March 2026)
+
+- **Up to 2-minute videos at 1080p/30fps** — longest open-commercial clips available
+- **Simultaneous audio-visual generation** — major architecture innovation
+- DiT architecture with 3D VAE
+- **Free tier**: ~6 videos/day, watermarked, renews daily
+- 10M+ videos generated globally
+- Motion Control 3.0 in ComfyUI (native partner nodes, March 9, 2026)
 
 ### Wan2.2 — Priority Model for This Workflow
 
@@ -133,29 +147,31 @@
 ### Video API Pricing (March 2026)
 
 | Provider | Model | Price/sec | Free Tier |
-|----------|-------|-----------|-----------|
+|----------|-------|-----------|----------|
 | Replicate | Wan 2.2 A14B | ~$0.05/sec | Small credits |
 | fal.ai | HunyuanVideo 1.5 | TBC | Signup credits |
 | fal.ai | Kling 2.1 | ~$0.14/5s clip | Signup credits |
+| fal.ai | Kling 2.6 | ~$0.14/clip+ | Signup credits |
 | fal.ai | Wan 2.6 | ~$0.10/sec 720p | Signup credits |
-| RunwayML | Gen-3 Alpha | ~$0.75/sec | 125 free credits |
+| RunwayML | Gen-4.5 | ~$0.75/sec | 125 free credits |
 | fal.ai | Veo 3.1 | $0.20–$0.60/sec | — |
 | fal.ai | Sora 2 Pro | $0.30–$0.50/sec | — |
 | WaveSpeedAI | 700+ models | Varies | Free trial |
+| Google AI Studio | Veo 3.1 | Free (rate-limited) | Best free option |
 
 ---
 
-## 🧵 LoRA Training SOTA — March 2026
+## 🧶 LoRA Training SOTA — March 2026
 
 ### Training Tools Comparison
 
 | Tool | Best For | Notes |
-|------|----------|-------|
+|------|---------|-------|
 | **Kohya SS / musubi-tuner** | Full control, all models | SD1.x, SDXL, SD3, Flux, HunyuanImage-2.1; LoRA/LoHa/LoKr |
 | **AI-Toolkit (ostris)** | Flux LoRA, video LoRA | Simple config files, ZIT video LoRA; 80% defaults just work |
 | **OneTrainer (Nerogar)** | Character/face LoRAs | **Growing adoption; significantly less overfitting than AI-Toolkit for characters** |
 | **SimpleTuner** | SDXL + Flux, attention masking | Experimental stability features, comprehensive docs |
-| **fal.ai hosted** | Fast / no GPU | ~$2-5 per LoRA, API-based |
+| **fal.ai hosted** | Fast / no GPU | ~$2–5 per LoRA, API-based |
 | **Replicate hosted** | Simple one-shot | One-line API call |
 | **WaveSpeedAI** | Cloud training | Upload dataset, train FLUX/SDXL LoRA on cloud GPUs |
 
@@ -169,6 +185,7 @@
 - **finetrainers** (CogVideoX factory): CogVideoX + Mochi video LoRA training
 - **Flimmer** (**NEW March 2026**): Dedicated video LoRA toolkit for diffusion transformers — cleaner API than AI-Toolkit ZIT, supports Wan2.2 + HunyuanVideo; growing community adoption
 - **AI-Toolkit ZIT**: Still viable for video LoRA; Flimmer emerging as preferred alternative
+- **T-LoRA** (**NEW March 2026, arxiv**): Single-image concept customization without overfitting — key for character LoRA from minimal training data; drop-in for standard LoRA pipelines
 
 ### Optimal Hyperparameters — Flux Dev Character LoRA
 
@@ -198,33 +215,33 @@ mixed_precision: fp16 or bf16
 
 ### Dataset Preparation Best Practices
 
-- **Size**: 30-50 images for SDXL; 20-80 for Flux
+- **Size**: 30–50 images for SDXL; 20–80 for Flux
 - **Variety**: Front, 3/4, profile, expressions; full body + torso + face closeup
 - **Resolution**: 768×768 min; 1024×1024 preferred
-- **Captions**: LoraTagger for auto-captioning (FLUX/SDXL/SD3); trigger word = rare 3-5 char + class (e.g. `zkw woman`)
+- **Captions**: LoraTagger for auto-captioning (FLUX/SDXL/SD3); trigger word = rare 3–5 char + class (e.g., `zkw woman`)
 
 ### LyCORIS / Alternative Architectures
 
 | Method | File Size | Use Case |
-|--------|-----------|----------|
-| **LoRA** | ~33-66MB | Standard; fast convergence |
+|--------|----------|----------|
+| **LoRA** | ~33–66MB | Standard; fast convergence |
 | **LoKr** | ~few MB | Extremely compact; faster convergence; growing community interest |
 | **LoHa** | Medium | Hadamard product; different parameter distribution |
 | **GLoRA / GLoKR** | Varies | Generalized; more flexible parameter targeting |
 
 ---
 
-## 🎯 Pose Estimation SOTA — March 2026
+## 🏃 Pose Estimation SOTA — March 2026
 
 ### Model Comparison
 
 | Model | Type | Keypoints | Speed | Best For |
 |-------|------|-----------|-------|----------|
-| **YOLO26-Pose** | Single-stage, NMS-free | 17 (COCO) + custom | 30+ FPS | Real-time multi-person, custom keypoints, **43% faster CPU than YOLO11-N** |
-| **RTMPose** | Two-stage | 17-133 | 30+ FPS | Production speed/accuracy balance |
+| **YOLO26-Pose** | Single-stage, NMS-free | 17 (COCO) + custom | 30+ FPS | Real-time multi-person, custom keypoints, **43% faster CPU than YOLO11-N**; mAP 57.2% (nano) to 71.6% (XL) |
+| **RTMPose** | Two-stage | 17–133 | 30+ FPS | Production speed/accuracy balance |
 | **DWPose** | Two-stage whole-body | 133 (body+hand+face) | Medium | **Best for ComfyUI ControlNet** |
-| **ViTPose / ViTPose++** | ViT-based | 17-133 | Slower | Research; highest mAP |
-| **Sapiens2** | Foundation (0.4-5B) | 308 body + face | Slow | SOTA whole-body, 1K-4K, multi-task; ICLR 2026 |
+| **ViTPose / ViTPose++** | ViT-based | 17–133 | Slower | Research; highest mAP |
+| **Sapiens2** | Foundation (0.4–5B) | 308 body + face | Slow | SOTA whole-body, 1K–4K, multi-task; ICLR 2026 |
 | **MediaPipe Holistic** | Lightweight | 33+21/hand+468 face | 30+ FPS mobile | Mobile/browser |
 | **SDPose-OOD** | Robust | 17+ | Medium | ComfyUI native (Mar 8, 2026); robust out-of-distribution |
 
@@ -271,11 +288,11 @@ mixed_precision: fp16 or bf16
 
 ```
 DAZ/Blender 3D render → DWPose extraction → ControlNet (pose) → Flux Dev + LoRA
-                   OR
+               OR
 DAZ/Blender animation (FBX) → Yedp Action Director v9.2 → ControlNet → Wan2.2 video
-                   OR
+               OR
 PoseMyArt web tool → DWPose extraction → ControlNet → Flux Dev
-                   OR
+               OR
 Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 ```
 
@@ -289,9 +306,9 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 
 ---
 
-## 🏗️ ComfyUI Ecosystem — Notable Nodes/Updates (March 2026)
+## 🛠️ ComfyUI Ecosystem — Notable Nodes/Updates (March 2026)
 
-### 🚨 Major: App Mode, App Builder & ComfyHub (March 10, 2026)
+### 🆕 Major: App Mode, App Builder & ComfyHub (March 10, 2026)
 
 - **App Mode**: One-click transform any workflow into a clean non-technical UI (node graph hidden)
 - **App Builder**: Configure which inputs/outputs to expose; rename/reorder without touching nodes
@@ -299,12 +316,17 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 - **ComfyHub**: Public marketplace for sharing apps and workflows (preview launched March 10)
 - **Impact**: Non-technical collaborators can now use complex ComfyUI pipelines directly
 
-### 🚨 Major: NVIDIA RTX Acceleration at GDC 2026 (March 10)
+### 🆕 Major: NVIDIA RTX Acceleration at GDC 2026 (March 10)
 
 - **RTX Video Super Resolution node**: Real-time 4K upscaling on RTX GPUs, 30× faster than alternatives — available now in Manage Extensions
 - **NVFP4 model support**: Flux 2 Klein (4B + 9B) + LTX-2.3 in NVFP4 format — 2.5× faster, 60% lower VRAM on RTX 50 Series
 - **FP8 support**: 1.7× faster, 40% VRAM reduction (any RTX GPU)
 - 40% overall RTX performance improvement since Sept 2025
+
+### 🆕 Major: ElevenLabs Partner Nodes (March 9, 2026)
+
+- **Text-to-Speech**, **Voice Cloning**, **Audio Transcription**, **Voice Isolation**, **Multi-Speaker Dialogue**, **Sound Design**
+- Enables full multimodal pipelines: Prompt → Image → Video → Voiceover — all inside ComfyUI
 
 ### v0.16.1 Changelog (March 5, 2026)
 
@@ -339,15 +361,16 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 - **ComfyUI Cluster** — 200+ models with auto-selection; workflow packs system
 - **3D Animation FBX custom node** — FBX → conditioning image export for video gen
 - **FLUX Image to Video** — Flux-native I2V, March 2026 release
+- **Flimmer** (**NEW**) — Dedicated video LoRA toolkit for DiT models (Wan2.2, HunyuanVideo); cleaner API than AI-Toolkit ZIT
 
 ---
 
-## ⚠️ Free GPU Options — March 2026
+## ☁️ Free GPU Options — March 2026
 
 | Option | GPU | Cost | Best For |
-|--------|-----|------|----------|
+|--------|-----|------|---------|
 | **VastAI** | RTX 3090 (24GB) | ~$0.45/hr | ComfyUI workflows, no content policy |
-| **RunPod** | Various | ~$0.50-2/hr | Persistent volumes, ComfyUI templates |
+| **RunPod** | Various | ~$0.50–2/hr | Persistent volumes, ComfyUI templates |
 | **HF ZeroGPU** | H200 | Free (25 min/day) | Testing models |
 | **Google Colab** | T4 (free) / A100 (Pro) | Free / $10/mo | LoRA training, CogVideoX inference |
 | **Comfy Cloud** | Cloud GPU | 400 free credits/mo | 900+ models, no install |
@@ -355,10 +378,10 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 
 ---
 
-## 📡 Key APIs Summary
+## 🔑 Key APIs Summary
 
 | Platform | Specialty | Free Tier | URL |
-|----------|-----------|-----------|-----|
+|---------|-----------|-----------|-----|
 | fal.ai | Fastest inference, 1000+ models | Signup credits | https://fal.ai |
 | Replicate | Largest open-source library | Small trial credits | https://replicate.com |
 | Together AI | Open model hosting | $5 signup credit | https://together.ai |
@@ -367,6 +390,8 @@ Reference photo → DWPose extraction → ControlNet → Flux Dev + LoRA
 | Gemini API | Nano Banana 2 image gen | Free tier | https://ai.google.dev |
 | SiliconFlow | Flux Schnell + open models | Free tier | https://siliconflow.cn |
 | BFL (Black Forest Labs) | Flux 2 series, Flux I2V | — | https://api.bfl.ai |
+| Google AI Studio | Veo 3.1 video (best free) | Rate-limited daily | https://aistudio.google.com |
+| Kling AI | Kling 2.6/3.0 video | ~6 videos/day | https://app.klingai.com |
 
 ---
 
