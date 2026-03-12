@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 08:30 (Prague / CET) | Run #23
+> Last updated: 2026-03-12 09:03 (Prague / CET) | Run #24
 
 ---
 
@@ -99,6 +99,26 @@
 - **Z Image Turbo** (Nov 2025, Alibaba Qwen) — S3-DiT, Apache 2.0, 10–20× cheaper than DALL-E 3
 - **MiniMax Image-01** (Feb 2026) — **$0.01/image** cinematic quality; among cheapest quality-per-dollar API options
 - **FireRed-Image-Edit 1.1** — Open-source SOTA for image editing, beats Qwen edit
+- **Stable Diffusion 4 Ultra** (Stability AI, March 6 2026)
+  - Major open-source release: improved text rendering, correct anatomy/hands, cinema-grade lighting
+  - 4th in image leaderboard (~1130 Elo); **best open-weight option** for fine-tuning and local deployment
+  - Open-weight; community fine-tuning community rapidly adopting as Flux.2 alternative base
+
+- **FLUX.2 Ecosystem Stats** (March 2026)
+  - **50,000+ LoRAs** now on HuggingFace; FLUX.2 is base for ~90% of all community fine-tunes
+  - Hundreds of style variants: anime, pixel art, portrait photography, product rendering
+  - API leaderboard: FLUX.2 Pro v1.1 at 1265 Elo (#2 overall); FLUX.2 Max at 1206 Elo (#5)
+
+- **OmniGen2 / Wallaroo** — Multi-modal generation + editing
+  - Pending HF release: "will release models, training code, datasets, data" per official communications
+  - State-of-the-art among open-source models for consistency in generation+editing
+  - Wallaroo (arXiv 2603.04980): Simple baseline for unifying understanding + generation + editing
+
+- **Canva Magic Layers** (March 12 2026)
+  - Turns any flat AI-generated image into a fully editable layered design
+  - Generative remix/refine without re-generating from scratch
+  - **Digital-Stud relevance**: Post-processing step for character sheets and product renders
+
 - **Chroma1-Radiance** (lodestones, HF) — Open-weight image model updated Feb 22 2026; 144+ HF likes; community-developed SOTA-tier open image model
 - **Unsloth LTX-2.3 Dynamic GGUF** — All GGUF quantization variants (Q4_K_M, Q5_K_S, Q8, etc.) released; dynamic variants with important layers upcasted; Colab T4 workflow included; run I2V on 15GB VRAM
 - **FLUX.2 Klein Enhancer node pack** (ComfyUI) — Lock poses, Flux 2 Klein-specific consistency controls; 360° panorama LoRA companion; inpainting via `flux klein` mask-fill workflow; best inpaint ControlNet: Qwen Image (crop&stitch)
@@ -183,7 +203,17 @@
 > - Architecture: **AVTransformer3DModel** — unified audio-video DiT; generates synchronized audio + video in a single model pass; 22B params
 > - Official ComfyUI I+A2V workflow updated **March 9, 2026** (Image + Audio to Video); lip-sync support; LoRA-based mode ~242s, MelBandRoformer mode ~326s on RTX 4090
 > - **RTX 5090 I2V benchmark vs Wan2.2 14B (GGUF Q4, 32GB VRAM)**: LTX-2.3 22B = **22s** vs Wan2.2 = **125s** → **5.7× faster** generation; trade-off: Wan2.2 better camera stability and hand quality
-> - **IC-LoRA with ControlNet union** (depth + human pose + edges): Available in `ComfyUI-LTXVideo` official repo — critical for pose-conditioned character video generation in Digital-Stud workflows
+> - **LTX-2.3 FLF2V (First-Last-Frame) Status**
+  - **No official template yet** (March 2026); Lightricks provides only T2V + I2V official workflows
+  - **Recommended**: Kijai's FLF2V workflow (HuggingFace Discussions) — pre-built, community-tested
+  - Key parameters: first frame strength 0.8–1.0, last frame strength 0.6–0.9 for natural motion
+  - TTP Toolset FirstLastFrame also available but needs tweaking for 2.3
+- **LTX-2.3 Audio-Video Sync Parameters** (community best practices)
+  - Modality guidance: **7**, CFG: **3** → best synchronized audio-video output
+  - Avoid full-body human shots for audio lipsync; use close headshot/upper body
+  - Image injection: full-size OR 50% latent downscale → 2x upscale pass (style tradeoff)
+  - FP8 + GGUF variants from Kijai for VRAM reduction (T4/15GB Colab confirmed working)
+- **IC-LoRA with ControlNet union** (depth + human pose + edges): Available in `ComfyUI-LTXVideo` official repo — critical for pose-conditioned character video generation in Digital-Stud workflows
 - IC-LoRA motion tracking node also available
 - ⚠️ Standard KSampler nodes cause `split_with_sizes` error — must use official `ComfyUI-LTXVideo` node set (21-node AV pipeline)
 > - ⚠️ **SageAttention3 gives ~0% speedup on GGUF models** — GGUF dequant (4-bit→bf16) dominates; sageattn3 only effective on non-quantized Wan2.2 (~13% gain)
@@ -245,6 +275,20 @@
 - Tencent HunyuanVideo 3D (HY 3D 3.0) Advanced Features now available via ComfyUI Partner Nodes
 - Enables 3D asset generation tightly coupled with HunyuanVideo pipelines
 - **Digital-Stud relevance**: 3D mesh output from video frames; potential integration with Blender workflow
+
+### 🆕 WanGP v10.987 (March 10, 2026)
+
+- **Qwen3.5 VL Abliterated Prompt Enhancer**: 4B/9B + GGUF Q4/Int8 variants; uncensored prompt enhancement
+- **GGUF CUDA Kernels**: 15% speed boost on diffusion video models; 3× faster LLM performance
+- **LTX-2.3 improvements**: End-frame-only generation (reverse sequence), new GGUF checkpoints, reduced VAE banding
+- **Export audio**: New MP4 AAC192-320 (lossy) and ALAC (lossless) format support
+- **SVI PRO2 End Frames**: Sliding window extended sequence generation
+
+### 🆕 WanGP v10.984 (mid-March 2026)
+
+- **Index TTS 2 with emotion**: fear, sadness, disgust, happy, anger support
+- **Multi-speaker dialogue mode** with voice cloning
+- Incremental audio quality improvements between v10.981 and v10.987
 
 ### 🆕 WanGP v10.981 (March 7, 2026)
 
@@ -318,6 +362,28 @@
 - **LoRA+ (16× ratio baseline)**: Apply differential LR to LoRA-A and LoRA-B matrices — **~30% faster convergence**, better detail capture. Now the universal baseline in Kohya-ss v0.9.1+
 - **Fused backward pass** (Kohya-ss v0.9.1+): SDXL training VRAM **24GB → 10GB** with bf16
 - **T-LoRA** (arxiv 2507.05964): Timestep-Dependent Low-Rank Adaptation — dynamic rank-constrained updates per diffusion timestep + dynamic fine-tuning strategy. **Single-image character customization without overfitting**; drop-in for standard LoRA pipelines
+
+### 🆕 LTX-2.3 LoRA Training — Status (March 2026)
+
+- **Not yet officially supported**: No training scripts from Lightricks for LTX-2.3 as of March 12 2026
+- Community experiments ongoing; Flimmer (DiT-native) may be the first viable path
+- **Expected**: Community training configs within 2-4 weeks based on LTX-2.2 precedent
+- **Digital-Stud action**: Monitor Lightricks repo + Flimmer releases; ready to generate training config when available
+
+### 🆕 Face LoRA vs Face Swap — Recommendation (2026)
+
+- **Face LoRA preferred** for identity-consistent character generation: better lighting/environment adaptation
+- **Face swap (IPAdapter)**: Better for style/lighting injection over existing video; not identity-consistent across frames
+- **IPAdapter + LoRA combo**: Apply LoRA for identity → IPAdapter for style reference → best of both
+- For video: Face LoRA in Wan2.2/HunyuanVideo produces most temporally consistent identity
+
+### 🆕 FLUX.2 LoRA on Consumer GPU — Recommended Config (March 2026)
+
+- **network_dim**: 16–32 (32 for detailed character; 16 for style)
+- **Optimizer**: Prodigy (auto-LR) or AdaFactor (stable); avoid Adam for VRAM-constrained setups
+- **Steps**: 2000–4000 for character; 1000–2000 for style
+- **VRAM**: 24GB target (RTX 4090/3090); <24GB → use gradient checkpointing + bf16
+- **AI-Toolkit**: Recommended over Kohya for FLUX.2 LoRA; cleaner FLUX-native architecture
 
 ### Video LoRA — Updated March 2026
 
@@ -472,6 +538,19 @@ mixed_precision: fp16 or bf16
 - New official ComfyUI template; any-pose from 3D → portrait with identity preservation
 - Combines Z_Image pose extraction + Qwen Edit + Flux 2 Klein upscaling
 
+### 🆕 Any-Pose Portrait Editing Workflow (Confirmed Details)
+
+- **Two-stage cascaded framework** (arXiv 2603.08028): Stage 1 — autoregressive text-to-skeleton model generates 2D pose sequence from text; Stage 2 — pose-conditioned video diffusion
+- **"Text-to-Skeleton Cascade"** approach addresses training data scarcity for human motion generation
+- **Digital-Stud relevance**: Type in motion description → get pose sequence → feed to Wan/LTX → character video
+
+### ControlNet-Union FLUX — Pose Conditioning Quality Guide
+
+- **OpenPose**: Still widely recommended for ComfyUI FLUX workflows; fast, well-tested
+- **DWPose**: Higher quality keypoint extraction, more accurate joint positions; slower
+- Recommendation: Use DWPose for hero shots / final renders; OpenPose for rapid iteration
+- **ControlNet-Union**: Combines depth + pose + edges in single pass; supported in FLUX.2 ComfyUI ecosystem
+
 ### 🆕 NLF_pose — Blender Rig for Wan SCAIL-Pose Workflows
 
 - Bone-based rigging system in Blender compatible with Wan video generation and SCAIL-pose ComfyUI nodes
@@ -493,6 +572,7 @@ mixed_precision: fp16 or bf16
 | `Yedp Action Director v9.2` | FBX/GLB/BVH → ControlNet conditioning (NEW) |
 | `ComfyUI Open Pose Editor` | Visual skeleton editor |
 | `ComfyUI-SCAIL-Pose` | Advanced pose processing |
+- **SCAIL ComfyUI Tutorial** (nextdiffusion.ai, March 2026) — End-to-end guide: install, pose injection, Wan2.2 character animation workflow; covers 3D-consistent motion from pose sequence
 | `ComfyUI-SDPose-OOD` | Robust OOD pose estimation |
 | `Ubisoft CHORD` | Character pose reference + image editing |
 | `Pose Studio Node` | One image → infinite pose variations |
@@ -536,6 +616,8 @@ mixed_precision: fp16 or bf16
 - **Workflow integration**: Ready-to-run workflows available on Comfy Cloud — useful for Digital-Stud character asset prep
 
 ### 🆕 Major: App Mode, App Builder & ComfyHub (March 10, 2026)
+- **ComfyUI v0.16.1 / v0.16.2** — LTX-2.3 native support; Desktop v0.8.15 bump; resolves `split_with_sizes` prompt error
+- **Template Library**: One-click model download per workflow; accessible via gear icon in ComfyUI interface
 
 - **App Mode**: One-click transform any workflow into a clean non-technical UI
 - **App Builder**: Configure which inputs/outputs to expose; rename/reorder without touching nodes
