@@ -32,11 +32,27 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 13:30 (Prague / CET) | Run #33
+> Last updated: 2026-03-12 14:04 (Prague / CET) | Run #34
 
 ---
 
 ## 🖼️ Image Generation SOTA — March 2026
+
+### 🆕 FLUX.2 Klein — NVIDIA NVFP4 & FP8 Quantized Variants (March 2026)
+
+- **NVFP4 on RTX 50 Series**: 2.5× performance gain, 60% VRAM reduction vs baseline FLUX.2 Klein (4B/9B)
+- **FP8**: 1.7× faster, 40% VRAM reduction — available now on all Ada/Hopper+ GPUs
+- Models published directly to HuggingFace; loadable in ComfyUI via standard GGUF/safetensors loaders
+- Digital-Stud relevance: Klein 9B now viable on 16GB VRAM cards at FP8; NVFP4 unlocks RTX 5090 near-instant generation
+
+### 🆕 Pinterest Canvas — Production-Scale Outpainting & Multi-Image Synthesis (arXiv 2603.06453, March 2026)
+
+- Pinterest's internal large-scale image generation system powering background outpainting, aspect-ratio outpainting, super-resolution, product extraction, and multi-image scene synthesis
+- Uses a fine-tuned DiT (likely FLUX-family) with product-specific aesthetic fine-tuning at 1B+ impressions/day scale
+- Key technique: **video-augmented key frames** for multi-image consistency — single style anchor image drives coherent scene generation across products
+- Digital-Stud relevance: validates multi-image scene synthesis as a production-ready technique; directly applicable to consistent product/character scene generation workflows
+
+
 
 ### 🆕 Luma Uni-1 — Location Accuracy Leader (March 2026)
 
@@ -326,6 +342,22 @@
 - Digital-Stud relevance: key technique for training pose-aware LoRAs and evaluating pose ControlNet quality
 
 ## 🎬 Video Generation SOTA — March 2026
+
+### 🆕 FastLightGen — Model Compression for Wan/HunyuanVideo/Veo3/Kling (arXiv 2603.01685v2, March 2026)
+
+- Transforms large DiT video models (WanX, Hunyuan, Veo3, Kling) into fast lightweight variants via structured distillation
+- Reduces inference steps and parameter count while maintaining quality comparable to full models
+- Algorithm is model-agnostic: applies to any large DiT video backbone
+- Digital-Stud relevance: enables faster iteration cycles locally; potential ComfyUI integration for step-reduced Wan 2.2 / LTX-2.3
+
+### 🆕 WaveSpeedAI UGC Video Generator — Native Audio, Portrait-First (March 2026)
+
+- Creator-style video from text prompt + optional reference image; native audio sync in single pass
+- Optimized for portrait video and talking-head content — direct competitor to Runway Characters for UGC workflows
+- Available via WaveSpeedAI API; competitive pricing vs Seedance 2.0
+- Digital-Stud relevance: fast prototyping alternative for talking-head + consistent character workflows without Wan VRAM overhead
+
+
 
 ### 🆕 MSVBench — First Multi-Shot Video Generation Benchmark (arXiv 2602.23969)
 
@@ -620,6 +652,16 @@
 - Digital-Stud relevance: production deployment pattern for Wan/HunyuanVideo APIs; informs RunPod/fal.ai cost planning
 
 ## 🧵 LoRA Training SOTA — March 2026
+
+### 🆕 AI-Toolkit (ostris) — Dynamic Rank Scheduling Feature (March 2026)
+
+- New feature in `ostris/ai-toolkit`: **dynamic rank scheduling** — rank can ramp up/down across training steps instead of fixed throughout
+- Enables warm-up with low rank (better stability) then expansion for detail capture; combines with Stable-LoRA A-init fix
+- Config: `network.rank_schedule: [{step: 0, rank: 8}, {step: 500, rank: 32}]` pattern
+- Community finding: rank 8→32 schedule on FLUX.2 shows improved subject fidelity vs flat rank-32 with comparable step count
+- Digital-Stud relevance: immediate practical improvement for character/face LoRA training; update kohya_config_example.toml to reflect
+
+
 ### 🆕 ID-LoRA — Identity-Driven Audio-Video Personalization with In-Context LoRA (arXiv 2603.10256, Tel Aviv University, March 2026)
 
 - **First In-Context LoRA framework** for unified audio-visual personalization — joint video + audio LoRA on LTX-2 backbone
@@ -816,6 +858,16 @@ mixed_precision: fp16 or bf16
 - Digital-Stud relevance: validated recipe; update `kohya_config_example.toml` targets to Wan 2.2 variant
 
 ## 🏃 Pose Estimation SOTA — March 2026
+
+### 🆕 DuoMo — Dual Motion Diffusion for World-Space Human Reconstruction (arXiv 2603.03265, March 2026)
+
+- Recovers full **world-space** human motion from unconstrained monocular video — not just camera-relative local pose
+- Two-prior diffusion approach (local body + global trajectory) + direct mesh vertex generation
+- Reduces world-space reconstruction error 16–30% vs prior SMPL-fitting baselines
+- ICRA 2026 accepted
+- Digital-Stud relevance: enables accurate 3D trajectory extraction from reference video for motion retargeting into generated video; complements DWPose for full-body scene grounding
+
+
 
 ### 🆕 PoseRWGCN — Attention-Free RWKV-GCN Real-Time 3D Pose (Mar 9 2026)
 
