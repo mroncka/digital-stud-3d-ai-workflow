@@ -3,6 +3,131 @@
 
 ---
 
+## 🔄 Run #48 Delta — 2026-03-12 21:03 Prague
+
+### ✅ CONFIRMED LIVE: Open-Sora 2.0 (March 13, 2026)
+
+- **Released by**: ColossalAI / hpcaitech team (GitHub: hpcaitech/Open-Sora)
+- **Parameters**: 11 billion
+- **Training cost**: ~$200k (~224 GPUs) — 5-10× cheaper than MovieGen, Step-Video-T2V
+- **VBench benchmark**: Performance gap with OpenAI Sora narrowed from 4.52% (v1) to just 0.69%
+- **User preference tests**: 69.5% win rate visual quality, 55.6% text consistency vs competitors
+- **Architecture**: MMDiT with 3D RoPE (spatiotemporal modeling), Video DC-AE autoencoder (4×32×32 compression = 10× faster inference VAE vs HunyuanVideo)
+- **Resolutions**: 256px and 768px; T2V and I2V modes supported
+- **Inference times**: ~60s at 256×256 single GPU; ~4.5min at 768×768 with 8 GPUs
+- **Availability**: HuggingFace, ModelScope, GitHub (full code + weights)
+- **ComfyUI node**: Available — install via ComfyUI Manager (SageAttention recommended for VRAM efficiency)
+- **ComfyUI wiki**: detailed tutorial at comfyui-wiki.com/en/news/2025-03-13-open-sora-2-release
+- **Digital-Stud relevance**: ⭐⭐ Best free open-source alternative to commercial video models for T2V; compare against Wan 2.2 on motion quality and temporal coherence; ComfyUI node available day-1
+
+### ✅ CONFIRMED LIVE: SkyReels V4 (March 13, 2026)
+
+- **Release**: March 13, 2026 — weights on GitHub (SkyworkAI/SkyReels-V4) + API via WaveSpeedAI, Kinovi.ai
+- **Output specs**: Up to 1080p, 32 FPS, maximum 15-second duration
+- **Input capabilities**: Text + multiple image references + video clips + masks (inpainting) + audio references
+- **Three unified tasks**: Generation, inpainting, editing — all through one model via channel concatenation
+- **6 documented use cases** (WaveSpeedAI blog): social video with natural audio, AI film editing, image animation with sound, scene inpainting, reference-guided generation, multi-modal editing
+- **API pricing**: WaveSpeedAI billing confirmed active; Kinovi.ai also live
+- **Digital-Stud relevance**: ⭐⭐⭐ Test immediately — download weights, try I2V generation with character images; check if ComfyUI node available (monitor SkyworkAI GitHub)
+
+### ✅ CONFIRMED LIVE: Sora 1 Sunset → Sora 2 Only (March 13, 2026)
+
+- **Official OpenAI FAQ**: "Sora 1 will be removed on March 13, 2026. After that date, Sora will open in Sora 2 by default and you won't be able to switch back to Sora 1."
+- **Sora 2 in ChatGPT**: Reuters/PCMag confirmed integration coming soon — Sora 2 will be accessible from within ChatGPT interface (not just standalone app)
+- **Sora 2 API node in ComfyUI**: Official `@comfyui` Threads post confirms "OpenAI Sora - Video" node available in nightly build
+- **Sora 2 API pricing**: ~$0.05/second, synchronized dialogue + sound effects, physically accurate
+
+### ✅ CONFIRMED: Wan 2.7 Weights Available (March 2026)
+
+- **Status**: Weights live on GitHub + HuggingFace (confirmed via wan26.info dedicated site + Reddit r/StableDiffusion)
+- **Scope**: "Professional multimodal AI video director" — comprehensive upgrades over 2.6: better image quality, motion accuracy, and efficiency
+- **WanGP support**: deepbeepmeep/Wan2GP v10.981+ expected to add Wan 2.7 shortly (maintainer note: "Expecting an Update?")
+- **Digital-Stud relevance**: Download weights immediately; update wan22_img2vid.json checkpoint path to 2.7; run comparison with Wan 2.2 Palingenesis on character motion
+
+### 🆕 Stable Diffusion 4 Ultra — Open Weights, New Photorealism SOTA
+
+- **Release**: March 2026 (Stability AI) — open weights available
+- **Architecture**: Upgraded Diffusion Transformer (DiT) — successor to SD 3.5 Large
+- **Key improvement**: New photorealism benchmark, competes with GPT Image 1.5 on quality metrics
+- **ControlNet**: Community-developed extensions available; official ControlNet variants for SD4 in development (face/identity conditioning expected)
+- **Local run**: Self-hosting maintained; open weights downloadable from HuggingFace
+- **Digital-Stud relevance**: ⭐⭐ Test SD4 Ultra vs FLUX.2 Klein for character generation — if quality matches with faster speed, replaces FLUX.2 Pro for some workflows
+
+### 🆕 FLUX Image to Video (Black Forest Labs, March 2026)
+
+- **Release**: March 2026 — Black Forest Labs FLUX I2V model
+- **Status**: Listed on GitHub Media-AI master list as "⭐ NEW March 2026"
+- **API**: Competitive pricing confirmed; photo-to-video transformation
+- **Digital-Stud relevance**: ⭐ Direct competitor to Wan 2.2/2.7 for I2V; test on `scripts/api_test_fal.py` and `api_test_replicate.py` for API integration; update wan22_img2vid.json to compare paths
+
+### 🆕 Z-Image Turbo ControlNet-Union — Inpainting Now Available
+
+- **Model**: `alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union` (HuggingFace)
+- **New capability**: Inpainting support added to ControlNet-Union variant
+- **Tutorial live**: nextdiffusion.ai — "How to Use Z-Image Turbo as a Face Detailer in ComfyUI" (8-step guide, 3 model files)
+- **Workflow**: Detect faces → build masks → enhance details automatically in ComfyUI
+- **Context from r46**: Z-Image Turbo was identified as best FLUX inpainting alternative; Union model now extends this to face detailing
+- **Digital-Stud relevance**: ⭐⭐⭐ Update `face_refinement.json` immediately — Z-Image Turbo Union replaces separate face detection + inpainting steps with a single unified node; test against current FLUX Fill approach
+
+### 🆕 FireRed-Image-Edit + REDEdit-Bench (March 9, 2026)
+
+- **Release**: FireRedTeam/FireRed-Image-Edit on GitHub
+- **Nature**: Powerful instruction-following image editing foundation model — open-source SOTA on editing benchmarks
+- **REDEdit-Bench**: New comprehensive benchmark covering diverse editing scenarios and instructions; released alongside model
+- **Key feature**: Precise instruction following for local edits without affecting surrounding regions
+- **Use case**: Alternative to Qwen Image 2.0 Pro for instruction-based editing (vs mask-based for Qwen)
+- **Digital-Stud relevance**: ⭐⭐ Test for text-instruction character edits (e.g., "change jacket color to red", "add hat") — could replace manual masking workflow
+
+### 🆕 Bumblebee AI — Long-Sequence 3D Character Motion from Text
+
+- **Announced**: March 2026 (NaplesNews press release, Korean startup)
+- **Capability**: Generates minutes-long 3D character motion sequences from simple text prompts
+- **Goal**: Automate animation production pipeline — from text description to 3D motion data
+- **Status**: Preview/announcement stage; no public weights yet
+- **Digital-Stud relevance**: ⭐⭐ Watch closely — if weights or API released, this directly eliminates manual motion capture / keyframe creation for 3D character animation in the Digital-Stud pipeline; pairs with HY 3D + Tripo 3D + Blender workflow
+
+### 🆕 OCpose (arXiv 2603.10398) — Better MPPE Evaluation Metric
+
+- **Paper**: "Multi-Person Pose Estimation Evaluation Using Optimal Transportation and Improved Pose Matching" — Toyota Technological Institute
+- **Problem solved**: mAP unfairly penalizes false-positive poses regardless of confidence; OCpose uses optimal transport theory to address this
+- **Metrics**: OKSp (precision), OKSm (match quality), OKSc (confidence-weighted) — 83.3% agreement with human preference
+- **Status**: Paper + arXiv (2603.10398); code expected to be released as evaluation tool for pose estimation models
+- **Digital-Stud relevance**: Use OCpose to benchmark DWPose/RTMPose quality in character animation workflows — more meaningful than mAP for comparing pose estimation models
+
+### 🆕 Sora 2 API Node Official in ComfyUI Nightly
+
+- **Source**: Official `@comfyui` Threads post
+- **Node name**: "OpenAI Sora - Video"
+- **Install**: Update ComfyUI to latest nightly, search ComfyUI Manager for the node
+- **Function**: Direct Sora 2 API calls from within ComfyUI workflow
+- **Digital-Stud relevance**: Enables A/B comparison of Sora 2 vs open-source models (Wan 2.7, Open-Sora 2.0) directly in ComfyUI
+
+### 🆕 LoRA Training: Wan 2.2 Field-Tested Settings Guide (WaveSpeedAI)
+
+- **Source**: wavespeed.ai/blog/posts/blog-wan-2-2-lora-training-settings/
+- **Content**: Recommended LR, rank, steps, and regularization to reduce "plastic skin" and avoid overfitting
+- **Key settings documented**: Learning rate schedule, LoRA rank selection for character vs motion LoRA, dataset size recommendations
+- **Digital-Stud relevance**: ⭐⭐⭐ Update `lora/training/kohya_config_example.toml` with validated Wan 2.2 LoRA settings from this guide; critical for character consistency in video generation
+
+### 🆕 Z-Image LoRA Training Guide 2026
+
+- **Source**: dev.to/gary_yan_86eb77d35e0070f5 — "Best Practices for Training LoRA Models with Z-Image"
+- **Content**: Complete 2026 guide for Z-Image LoRA training — dataset prep, training params, model evaluation
+- **Digital-Stud relevance**: Alternative LoRA training path if FLUX.2 gives unsatisfactory character consistency; Z-Image's fast inference speed makes it attractive for production workflows
+
+### 🆕 Photoshop AI Assistant (Adobe, March 10, 2026)
+
+- **Announcement**: TechCrunch + Adobe blog (March 10)
+- **Feature**: Conversational AI for photo editing via natural language — "describe what you want, AI applies it"
+- **Includes**: Generative Upscale (AI-powered upscaling within Photoshop), smart Generative Fill
+- **Digital-Stud relevance**: Potential post-processing tool for refining AI-generated characters before compositing; compare with ComfyUI Z-Image Turbo face detailer workflow for efficiency
+
+---
+
+
+
+---
+
 ## 🔄 Run #47 Delta — 2026-03-12 20:30 Prague
 
 ### 🚀 SkyReels V4 — Launches Tomorrow March 13 | Unified Audio-Video Generation
@@ -801,7 +926,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 20:30 (Prague / CET) | Run #47
+> Last updated: 2026-03-12 21:03 (Prague / CET) | Run #48
 
 ---
 
