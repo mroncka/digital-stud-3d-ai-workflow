@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 07:30 (Prague / CET) | Run #21
+> Last updated: 2026-03-12 08:03 (Prague / CET) | Run #22
 
 ---
 
@@ -99,6 +99,7 @@
 - **Z Image Turbo** (Nov 2025, Alibaba Qwen) — S3-DiT, Apache 2.0, 10–20× cheaper than DALL-E 3
 - **MiniMax Image-01** (Feb 2026) — **$0.01/image** cinematic quality; among cheapest quality-per-dollar API options
 - **FireRed-Image-Edit 1.1** — Open-source SOTA for image editing, beats Qwen edit
+- **Seedream 4.5** (ByteDance) — New image generation model available on OpenRouter (March 2026); Elo ~1,147 with strong typography support; commercial-friendly API
 - **AIMomentz** — New open platform for human-preference AI image evaluation with tamper-proof audit trail (launched March 11, 2026)
 - **FLUX-1.1-pro on Microsoft Foundry** — FLUX-1.1-pro now available via Microsoft Foundry (updated March 10, 2026); broadens enterprise access
 - **HuggingFace W11 paper: CoCo** — "Code as CoT for Text-to-Image Preview and Rare Concept Generation" — uses code-style chain-of-thought for rare concept generation; featured on HF daily papers week 11
@@ -174,6 +175,15 @@
 
 ### LTX-2.3 — Updated March 2026 (Major)
 
+> **Run 22 update (2026-03-12 08:03):**
+> - Architecture: **AVTransformer3DModel** — unified audio-video DiT; generates synchronized audio + video in a single model pass; 22B params
+> - Official ComfyUI I+A2V workflow updated **March 9, 2026** (Image + Audio to Video); lip-sync support; LoRA-based mode ~242s, MelBandRoformer mode ~326s on RTX 4090
+> - **RTX 5090 I2V benchmark vs Wan2.2 14B (GGUF Q4, 32GB VRAM)**: LTX-2.3 22B = **22s** vs Wan2.2 = **125s** → **5.7× faster** generation; trade-off: Wan2.2 better camera stability and hand quality
+> - ⚠️ Standard KSampler nodes cause `split_with_sizes` error — must use official `ComfyUI-LTXVideo` node set (21-node AV pipeline)
+> - ⚠️ **SageAttention3 gives ~0% speedup on GGUF models** — GGUF dequant (4-bit→bf16) dominates; sageattn3 only effective on non-quantized Wan2.2 (~13% gain)
+
+
+
 - **Native 4K at 50fps**, up to 20-second clips
 - **Synchronized native audio generation** (video + sound jointly) — first open-source model with this
 - **9:16 vertical portrait support**
@@ -198,11 +208,17 @@
 - Community actively requesting open-source release (Reddit thread active)
 - **Use Wan 2.2 for open-source workflows** — still best open-weight option
 
+### 🆕 HunyuanVideo — RL Post-Training Code Open-Sourced (Tencent, March 2026)
+
+- **HunyuanVideo RL post-training code** released for community fine-tuning and real-time training (GitHub: `Tencent-Hunyuan/HunyuanVideo`)
+- Enables custom model adaptation without full retraining; complements HY-WU on-the-fly LoRA approach
+- **HunyuanVideo-Avatar**: MM-DiT-based model for audio-driven talking/singing video; multi-character dialogue, emotion-controllable; 480p/720p up to 120s via WaveSpeedAI ($0.15/5s)
+
 ### Wan2.2 — Priority Model for This Workflow
 
 - MoE architecture, TI2V-5B: unified text+image → video, 720P/24fps, RTX 4090
 - **Memory optimization (March 2026)**: improved efficiency; Wan2.1 LoRAs still compatible
-- Extensions: `Wan2.2-Animate`, `Wan2.2-S2V`, `FLF2V`
+- Extensions: `Wan2.2-Animate`, `Wan2.2-S2V`, `FLF2V`, **`Wan2.2-speech-to-video`** (lip-synced video from image + audio; distinct from S2V)
 - [docs.comfy.org](https://docs.comfy.org/tutorials/video/wan/wan2_2) | Apache 2.0
 - **⚠️ Performance note (March 2026)**: Community reports 33%+ increase in generation time after recent ComfyUI updates (same workflow, same settings) — check ComfyUI version before assuming hardware issue
 - **WanGP** (github.com/deepbeepmeep/Wan2GP): GPU-poor fast inference tool; supports Wan2.1/2.2, HunyuanVideo, LTX, Flux; Q4_K quantized Wan2.2 14B runs on 8–10GB VRAM; **Quantization formats: int8, fp8, gguf, NV FP4, Nunchaku** (auto-downloads model for your specific GPU architecture)
@@ -539,6 +555,22 @@ mixed_precision: fp16 or bf16
 - Requires ≥16GB VRAM; GitHub: `jinxishe/ComfyUI-AudioX`
 - **Digital-Stud relevance**: Audio-video synchronized generation for character animation outputs
 
+
+### 🆕 Trainer: Ktiseos Nyx Trainer (Alpha, March 2026)
+
+- Web-based LoRA training interface built on Kohya SS; Next.js + FastAPI stack
+- 132+ configurable parameters; supports SDXL, SD1.5, Flux, SD3/SD3.5, Lumina
+- LoRA variants: Standard, LoCon, LoHa, LoKr, DoRA
+- Drag-and-drop dataset prep with auto-tagging (WD14); real-time browser logging; HuggingFace upload
+- Runs on VastAI / RunPod; minimum 12GB VRAM (24GB for SDXL)
+- **Digital-Stud relevance**: Accessible alternative to local Kohya install for cloud-based LoRA training
+
+### 🆕 Trainer: SECourses Musubi Tuner v27.6 (March 8, 2026)
+
+- Updated LoRA training app with improved quantizer; adds **FLUX 2 Dev** support
+- Minimum 18GB VRAM with torch compile optimization
+- GUI-based workflow for local FLUX LoRA training without CLI
+
 ### 🆕 New Node: nLoRA × nPrompt Batch Trainer (March 2026)
 
 - ComfyUI node enabling `n` LoRA models × `n` prompts batch generation for trainer workflows
@@ -670,10 +702,51 @@ Available at comfy.org/workflows:
 - **Relevance**: potential downstream synergy with pose-driven character animation pipelines
 
 
+
+### 🆕 Research: Meta-LoRA — Domain-Aware Face Identity Personalization (March 2026)
+
+- Three-layer structured LoRA for face identity: **Meta-Down** (identity-agnostic domain priors) → **Mid/Up** (identity-specific fine-tuning)
+- Meta-trained across multiple identities to establish shared facial feature manifold
+- Single-image fine-tuning sufficient; achieves **~95% identity retention**
+- Benchmark dataset: **Meta-PHD** — diverse identities with varied poses, lighting, backgrounds
+- Tested on FLUX.1-dev; outperforms standard LoRA on face similarity metrics
+- **Digital-Stud relevance**: Directly applicable to character face consistency in Flux-based pipelines
+
+### 🆕 Reference: FLUX.2 LoRA Training Complete Guide (March 2026)
+
+- By Kevin Gabeci (built serverless LoRA training infra at Apatero)
+- Key insight: Flux training fundamentally differs from SD due to architecture changes; optimal settings validated over hundreds of runs
+- Practical tiers: Google Colab T4 (free, slow), Vast.ai/RunPod ~$1/hr (dev), FP16 reduces VRAM floor
+- **HunyuanVideo LoRA speed**: 400 steps / 100 epochs = **1h37min** — ~50% faster than LTX LoRA (requires 4,000 steps)
+- Multi-LoRA compositing in ComfyUI: stack character + style LoRAs for txt2vid and v2v workflows
+
 ### 🆕 Research: HY-WU — On-the-Fly LoRA for HunyuanVideo (Tencent, March 2026)
 
 - **HY-WU** (Hunyuan Weight Update): Scalable framework for on-the-fly conditional generation of low-rank (LoRA) updates
 - Synthesizes instance-conditioned adapter weights without retraining the base model
 - GitHub: `Tencent-Hunyuan/HY-WU`
 - **Digital-Stud relevance**: Real-time identity/character adaptation for HunyuanVideo without full LoRA training cycle
+
+
+---
+
+## 🆕 arXiv Papers — March 11-12, 2026
+
+### V2M-Zero — Zero-Pair Video-to-Music Generation (arXiv 2603.11042)
+
+- Generates music that **temporally aligns with video events** without paired training data
+- Addresses key limitation of text-to-music models lacking fine-grained temporal control
+- **Digital-Stud relevance**: Post-processing step to add synchronized music to AI video outputs
+
+### COMIC — Agentic Sketch Comedy Generation (arXiv 2603.11048)
+
+- Fully automated pipeline producing short comedic videos (SNL-style sketch comedy)
+- Uses LLM agents for scripting + video diffusion for scene generation
+- Demonstrates multi-shot narrative video generation from pure text intent
+
+### DiT4DiT — Coupled Video + Action Diffusion Transformer (arXiv 2603.10448)
+
+- Couples a **video DiT** with an **action DiT** in end-to-end joint training (Vision-Language-Action framework)
+- Bridges video generation and robot/character action modeling
+- **Digital-Stud relevance**: Foundation for future pose-conditioned character action video generation
 
