@@ -3,6 +3,114 @@
 
 ---
 
+## 🔄 Run #47 Delta — 2026-03-12 20:30 Prague
+
+### 🚀 SkyReels V4 — Launches Tomorrow March 13 | Unified Audio-Video Generation
+
+- **Launch date**: March 13, 2026 (confirmed via Kinovi.ai announcement + Instagram post)
+- **Architecture**: Dual-stream MMDiT (Multimodal Diffusion Transformer) — separate video and audio branches with cross-modal conditioning via shared MMLM text encoder
+- **Unified pipeline**: Single model handles text-to-video, image-to-video, video extension, inpainting, and video editing — channel concatenation interface
+- **Inputs**: Text + multiple image references + audio references simultaneously
+- **Output pipeline**: 3-stage → low-res generation → keyframe upscaling → frame interpolation → cinema 1080p
+- **Ranking**: 3rd on Artificial Analysis Text-to-Video with Audio Arena Leaderboard (behind Veo 3.1 and Sora 2.0)
+- **Audio quality**: New vocoder, reduced artifacts, synchronized audio generation in single pass
+- **API**: WaveSpeedAI (6 use cases guide published), Kinovi.ai
+- **6 SkyReels V4 use cases** documented on WaveSpeedAI: social video with natural audio, AI film editing, image animation with sound, scene inpainting, reference-guided generation, multi-modal editing
+- **Digital-Stud relevance**: ⭐⭐⭐ **Top priority tool** — replaces separate audio post-production step entirely; for character animation scenes with synchronized dialogue or music, this is the new baseline to test. Combine with Wan 2.2 S2V for comparison. Check ComfyUI node availability day-1
+
+### 🚀 LTX-2.3 — Audio-Native Open Video Model with LTX Desktop
+
+- **Release**: Available now (Lightricks, March 2026)
+- **Architecture**: DiT-based audio-video foundation model — single model generates synchronized video + audio
+- **Key upgrades over LTX-2.1**:
+  1. **Rebuilt VAE and latent space** — sharper fine details, better texture/edge preservation
+  2. **Larger text connector** — multi-subject prompts with complex spatial relationships now work reliably
+  3. **Enhanced image-to-video** — eliminated freezing, "Ken Burns" effect, and static video artifacts
+  4. **Cleaner audio** — retrained on filtered dataset (silence/noise/artifact removal), new vocoder
+  5. **Native portrait video** — 1080×1920 trained (not cropped landscape), up to 1920px vertical
+- **Available models on HuggingFace**: base checkpoint, distilled checkpoint + LoRA, latent upscalers
+- **LTX Desktop**: Free download, open source — GUI for LTX-2.3 without ComfyUI node graph
+- **ComfyUI**: Reference workflows shipping with release; ComfyUI-LTXVideo node has update issues (manager shows old date, update manually from GitHub)
+- **NVFP4 support**: Coming soon for LTX-2.3 via NVIDIA (announced at GDC, 2.5× performance)
+- **Prompting guide**: Confirmed community prompting structure (Facebook group, March 12) — explicit scene breakdown with subject + action + environment + camera + style sections works best
+- **Digital-Stud relevance**: ⭐⭐⭐ **Audio-video in one open model** — first open alternative to Veo 3.1 for synchronized audio-video; LTX Desktop makes it accessible for testing without ComfyUI setup; update `wan22_img2vid.json` companion to include LTX-2.3 path
+
+### 🚀 ComfyUI App Mode + App Builder + ComfyHub (March 10, 2026)
+
+- **Announcement**: ComfyUI official press release via GlobeNewswire, March 10, 2026
+- **App Mode**: Transforms any node graph workflow into a clean, purpose-built UI — only relevant inputs/outputs shown to end user
+- **App Builder**: Workflow creators select which parameters are exposed; rest stays locked
+- **Shareable URLs**: Workflow configuration encoded in URL — share your workflow as a runnable app without installation
+- **Comfy Cloud**: URL-based sharing works without local ComfyUI install
+- **ComfyHub**: New public discovery platform (preview) for community workflows and apps
+- **NVIDIA GDC tie-in**: App View specifically highlighted for FLUX.2 Klein + LTX-2.3 demos at GDC 2026
+- **Digital-Stud relevance**: ⭐⭐ **Distribution breakthrough** — Digital-Stud character generation workflows can now be shared as one-click apps (no node graph knowledge required). Priority: convert the character generation + face refinement workflows to App Mode for showcase
+
+### 🟡 NVIDIA NVFP4 + FP8 Quantization for ComfyUI (GDC March 10)
+
+- **Available now**: NVFP4 and FP8 model variants for FLUX.2 Klein (both 4B and 9B)
+- **Coming soon**: NVFP4 for LTX-2.3
+- **Performance gains**: Up to 2.5× speed improvement, 60% lower VRAM usage
+- **Install**: Models available on HuggingFace, directly importable into ComfyUI
+- **RTX Video Super Resolution Node**: New standalone ComfyUI node — real-time 4K upscaling, 30× faster than alternative local upscalers
+- **Requirements**: NVIDIA RTX GPU (RTX 3000+ series for FP8; RTX 4000+ recommended for NVFP4)
+- **Digital-Stud relevance**: Priority upgrade if on RTX GPU — FLUX.2 Klein 9B NVFP4 gives near-instant previews
+
+### 🟡 Shima 2.0 — 100+ New Nodes for ComfyUI (March 12, 2026)
+
+- **Launch**: Livestreamed March 12, 2026 at 8:30 AM PDT
+- **Scale**: 100+ new nodes + full paired website + extension system
+- **Nature**: Major relaunch of the Shima custom node ecosystem for ComfyUI
+- **Install**: Via ComfyUI Manager (search "Shima") or GitHub
+- **Digital-Stud relevance**: Review node list for character consistency, face, and animation nodes — 100 nodes is a significant surface area; prioritize scanning for anything pose/face/video-specific
+
+### 🟡 Wan 2.7 — Confirmed for March 2026 Release
+
+- **Announcement**: Reddit r/StableDiffusion, official Alibaba WanAI confirmation
+- **Status**: "Scheduled for release in March 2026" — not yet dropped as of March 12
+- **Scope**: "Comprehensive upgrades over version 2.6" — image quality + efficiency improvements cited
+- **Context**: Wan 2.6 is a prior unreleased version (Wan versioning is non-sequential in public releases); 2.7 expected to be a significant quality jump over 2.2
+- **Digital-Stud relevance**: Monitor daily — when released, update `wan22_img2vid.json` workflow checkpoint path; test against Wan 2.2 Palingenesis immediately
+
+### 🟡 Sora 1 Sunset → Sora 2 in ChatGPT (March 13, 2026)
+
+- **Sora 1**: US users lose access March 13, 2026; content removal after sunset
+- **Sora 2 in ChatGPT**: Reuters confirmed March 11 — OpenAI plans to integrate Sora directly into ChatGPT interface (currently standalone app launched Sept 2025)
+- **Sora 2 capabilities**: Videos up to 25 seconds, synchronized dialogue, $0.05/second API
+- **Strategic implication**: ChatGPT integration = massive distribution for AI video generation; drives broader awareness and adoption
+- **Digital-Stud relevance**: Export any Sora 1 assets before March 13; monitor Sora 2 in ChatGPT API for character video generation cost comparison
+
+### 🟡 Qwen Image 2.0 Pro — Best Inpainting ControlNet (March 2026)
+
+- **Community consensus** (r/StableDiffusion March 2026 + modelslab.ai): Qwen Image 2.0 Pro has **best inpainting ControlNet** for classic mask-based inpainting
+- **Use**: "Crop & stitch" approach for precise local edits without affecting surrounding regions
+- **Additional feature**: Background replacement via image editing modal
+- **ComfyUI node**: Via WanGP (supports Qwen Image 2.0 Pro alongside Wan 2.1/2.2, HunyuanVideo, LTX)
+- **Alternative to**: ZIT ControlNet (noted in r46) — Qwen Image 2.0 Pro preferred for mask inpainting, ZIT for general FLUX inpainting
+- **Digital-Stud relevance**: Update `face_refinement.json` to offer Qwen Image 2.0 Pro path for face inpainting; better region preservation than FLUX Fill
+
+### 🟡 ComfyUI 3D Scene Builder Node (March 2026)
+
+- **YouTube demo**: "A new custom node inside ComfyUI lets you build and direct simple 3D scenes inside your AI workflow" (March 12, 2026)
+- **Capability**: Build and direct 3D scenes directly inside ComfyUI for filmmaking/animation purposes
+- **Integration**: Scene management, visualization, and export within node graph workflow
+- **Digital-Stud relevance**: Potential integration point with the HY 3D + Tripo 3D pipeline — prototype a scene layout before generating character video; reduces reliance on Blender for simple scene setups
+
+### 🔄 Text-to-Skeleton Paper Details (arXiv 2603.08028)
+
+- **Full title**: "Controllable Complex Human Motion Video Generation via Text-to-Skeleton Cascades" (Ghahremani, Li, Laga, Boussaid, Bennamoun — March 2026)
+- **Stage 1**: Autoregressive transformer generates 2D pose sequences from text → captures long-range temporal dependencies + inter-joint coordination for complex actions (flips, cartwheels, martial arts)
+- **Stage 2**: DINO-ALF pose-conditioned video diffusion — preserves appearance and clothing under large pose changes + self-occlusions via spatially-localized patch descriptors
+- **Key problem solved**: Explicit skeleton control previously required costly manual pose generation; this paper eliminates that bottleneck
+- **Status**: Paper only as of March 12; no code/demo release yet; monitor for GitHub
+- **Digital-Stud relevance**: When code releases — directly replaces manual DWPose keyframe work for complex multi-frame character animations
+
+---
+
+
+
+---
+
 ## 🔄 Run #46 Delta — 2026-03-12 20:03 Prague
 
 ### 🆕 Open-Sora 2.0 — Commercial-Level Video for $200K (arXiv 2503.09642)
@@ -693,7 +801,7 @@ Additional items not previously captured:
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 20:03 (Prague / CET) | Run #46
+> Last updated: 2026-03-12 20:30 (Prague / CET) | Run #47
 
 ---
 
