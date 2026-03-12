@@ -1,5 +1,92 @@
 # Image & Video Generation SOTA
 
+
+---
+
+## 🔄 Run #40 Delta — 2026-03-12 17:07 Prague (comprehensive sweep)
+
+### 🆕 FLUX.2 [klein] Full Architecture Details Confirmed
+
+- **FLUX.2 [klein]** family: 9B and 4B variants. The 4B runs on ~13 GB VRAM consumer cards
+- Unifies text-to-image, image editing, and multi-reference generation in a **single architecture** — no separate models needed
+- **NVFP4** (Blackwell FP4) quantized checkpoints of both Klein 4B and 9B now natively supported in ComfyUI; RTX 50-series only
+- FP8 quantized variant available on HuggingFace for non-Blackwell hardware (40% VRAM reduction vs BF16)
+- **FLUX.2 [pro] / [flex]**: API-only variants via BFL playground; not open-weight
+
+### 🆕 Midjourney V8 — Imminent Release (March 2026)
+
+- V8 described as "launchable" — in final community rating-party phase
+- New personalization system, enhanced upscaler, upcoming video model integration
+- **Niji 7** already live (January 2026) with anime-specific quality improvements
+
+### 🆕 YOLO26-Pose — New Real-Time Pose SOTA (January 2026, now SOTA benchmark)
+
+- Released by Ultralytics January 14, 2026
+- Removes human-specific architectural assumptions → flexible for non-human keypoints
+- Uses **MuSGD optimizer + Residual Log-Likelihood Estimation** for better keypoint uncertainty
+- End-to-end (no NMS), faster on CPU/edge vs YOLO11 and YOLOv8-Pose
+- Model tiers: YOLO26n-pose → YOLO26x-pose
+- Digital-Stud relevance: best real-time option for pose extraction on laptop/edge GPU
+
+### 🆕 TAR-ViTPose — Temporal Video Pose Estimation SOTA (arXiv 2603.05929)
+
+- **413 fps** vs 52 fps for prior video-based methods — massive throughput improvement
+- **Joint-Centric Temporal Aggregation (JTA)**: learnable query tokens per joint, attends to neighboring frames
+- **Global Restoring Attention (GRA)**: reintegrates temporal features preserving global context
+- +2.3 mAP on PoseTrack2017 over single-frame ViTPose baseline
+- SOTA on PoseTrack2017, PoseTrack2018, PoseTrack21
+- Digital-Stud relevance: use for temporally consistent pose extraction from video refs before ControlNet piping
+
+### 🆕 CIGPose — Causal Whole-Body Pose SOTA (arXiv 2603.09418, confirmed SOTA)
+
+- CIGPose-x: **67.0% AP on COCO-WholeBody** without extra data; **67.5% AP** with UBody
+- Structural Causal Model (SCM) identifies confounded keypoints via predictive uncertainty, replaces with canonical embeddings
+- Hierarchical GNN enforces anatomical plausibility at local + global skeleton levels
+- Code: https://github.com/53mins/CIGPose
+- Digital-Stud relevance: higher-quality whole-body keypoints for IP-Adapter + ControlNet pipelines
+
+### 🆕 RTMLib v0.15 — Dependency-Free Pose Suite (Released Feb 10, 2026)
+
+- **rtmlib 0.15** released on PyPI: RTMPose, DWPose, RTMO, RTMW, ViTPose — all **without mmcv dependency**
+- `pip install rtmlib` — dramatically easier deployment in ComfyUI custom nodes and standalone scripts
+- Digital-Stud relevance: drop-in replacement for DWPose in ComfyUI without mmcv install hell
+
+### 🆕 ComfyUI App Mode + ComfyHub — Official Launch (March 10, 2026)
+
+- **App Mode**: one-click transforms any workflow into clean UI, hiding node graph from end users
+- **App Builder**: authors select which inputs/outputs are exposed
+- **ComfyHub**: new public platform at comfy.org/workflows — discover, run, share community apps
+- ComfyUI Manager migrating to Comfy-Org/ComfyUI-Manager organization (March 28, 2026)
+
+### 🆕 NVIDIA RTX 50 Series + ComfyUI GDC 2026 Announcements
+
+- **RTX Video Super Resolution** node in ComfyUI: **30x faster 4K upscaling** on RTX Tensor Cores vs alternatives
+- **NVFP4** quantized FLUX.2 Klein and LTX-2.3 models natively supported (RTX 50-series only)
+- FP8 models: 1.7x faster, 40% less VRAM vs BF16
+- Combined RTX optimizations: **2.5x faster** inference + **60% lower VRAM** on RTX 50 Series
+- Workflow: ComfyUI App View → NVFP4 model → RTX VSR upscaler = full 4K video pipeline on consumer GPU
+
+### 🆕 LTX-2.3 — Audio-Video Generation with Day-0 ComfyUI Support
+
+- Confirmed day-0 native ComfyUI support (official workflows at ltx.io/model/model-blog/ltx-2)
+- Improvements: finer detail VAE, 9:16 portrait support, better audio (reduced noise), improved img2vid consistency
+- NVFP4 support coming soon (RTX 50-series)
+- Digital-Stud relevance: best open audio-video model for ComfyUI pipelines currently
+
+### 🆕 Wan 2.6 — Audio-Driven Multi-Shot Video (ComfyUI Template Library)
+
+- Wan 2.6 now in ComfyUI Template Library: character starring, multi-shot storytelling, synced audio, cinematic gen, multi-image control
+- Wan 2.7 still announced for March 2026 — **not yet released** as of 17:07 Prague
+
+### 🔄 SMPLest-X / PointHPS — 3D Expressive Pose SOTA (TPAMI 2026)
+
+- **SMPLest-X** (TPAMI 2026): scaling for expressive whole-body SMPL-X estimation — body + hands + face
+- **PointHPS** (IJCV 2026): cascaded 3D pose from point clouds
+- ViMoGen (ICLR'26): transfers ViGen knowledge to MoGen for video motion generation (SMPL-X based)
+- Digital-Stud relevance: ViMoGen as a bridge between video generation and motion generation pipelines
+
+---
+
 ### 🆕 Qwen-Image-Edit-2511 Camera-Pose LoRA (March 2026)
 
 - LoRA providing **96 precise camera poses** for exact viewpoint control with Qwen-Image-Edit-2511
@@ -32,7 +119,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 16:30 (Prague / CET) | Run #39
+> Last updated: 2026-03-12 17:07 (Prague / CET) | Run #40
 
 ---
 
