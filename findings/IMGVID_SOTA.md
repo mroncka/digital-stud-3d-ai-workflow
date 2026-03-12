@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 08:03 (Prague / CET) | Run #22
+> Last updated: 2026-03-12 08:30 (Prague / CET) | Run #23
 
 ---
 
@@ -99,6 +99,10 @@
 - **Z Image Turbo** (Nov 2025, Alibaba Qwen) — S3-DiT, Apache 2.0, 10–20× cheaper than DALL-E 3
 - **MiniMax Image-01** (Feb 2026) — **$0.01/image** cinematic quality; among cheapest quality-per-dollar API options
 - **FireRed-Image-Edit 1.1** — Open-source SOTA for image editing, beats Qwen edit
+- **Chroma1-Radiance** (lodestones, HF) — Open-weight image model updated Feb 22 2026; 144+ HF likes; community-developed SOTA-tier open image model
+- **Unsloth LTX-2.3 Dynamic GGUF** — All GGUF quantization variants (Q4_K_M, Q5_K_S, Q8, etc.) released; dynamic variants with important layers upcasted; Colab T4 workflow included; run I2V on 15GB VRAM
+- **FLUX.2 Klein Enhancer node pack** (ComfyUI) — Lock poses, Flux 2 Klein-specific consistency controls; 360° panorama LoRA companion; inpainting via `flux klein` mask-fill workflow; best inpaint ControlNet: Qwen Image (crop&stitch)
+- **Modular Diffusers** (HuggingFace, March 5 2026) — Composable building blocks for diffusion pipelines; mix-and-match ControlNet/VAE/scheduler blocks; FLUX.2-klein-4B example workflow provided
 - **Seedream 4.5** (ByteDance) — New image generation model available on OpenRouter (March 2026); Elo ~1,147 with strong typography support; commercial-friendly API
 - **AIMomentz** — New open platform for human-preference AI image evaluation with tamper-proof audit trail (launched March 11, 2026)
 - **FLUX-1.1-pro on Microsoft Foundry** — FLUX-1.1-pro now available via Microsoft Foundry (updated March 10, 2026); broadens enterprise access
@@ -179,7 +183,9 @@
 > - Architecture: **AVTransformer3DModel** — unified audio-video DiT; generates synchronized audio + video in a single model pass; 22B params
 > - Official ComfyUI I+A2V workflow updated **March 9, 2026** (Image + Audio to Video); lip-sync support; LoRA-based mode ~242s, MelBandRoformer mode ~326s on RTX 4090
 > - **RTX 5090 I2V benchmark vs Wan2.2 14B (GGUF Q4, 32GB VRAM)**: LTX-2.3 22B = **22s** vs Wan2.2 = **125s** → **5.7× faster** generation; trade-off: Wan2.2 better camera stability and hand quality
-> - ⚠️ Standard KSampler nodes cause `split_with_sizes` error — must use official `ComfyUI-LTXVideo` node set (21-node AV pipeline)
+> - **IC-LoRA with ControlNet union** (depth + human pose + edges): Available in `ComfyUI-LTXVideo` official repo — critical for pose-conditioned character video generation in Digital-Stud workflows
+- IC-LoRA motion tracking node also available
+- ⚠️ Standard KSampler nodes cause `split_with_sizes` error — must use official `ComfyUI-LTXVideo` node set (21-node AV pipeline)
 > - ⚠️ **SageAttention3 gives ~0% speedup on GGUF models** — GGUF dequant (4-bit→bf16) dominates; sageattn3 only effective on non-quantized Wan2.2 (~13% gain)
 
 
@@ -213,6 +219,40 @@
 - **HunyuanVideo RL post-training code** released for community fine-tuning and real-time training (GitHub: `Tencent-Hunyuan/HunyuanVideo`)
 - Enables custom model adaptation without full retraining; complements HY-WU on-the-fly LoRA approach
 - **HunyuanVideo-Avatar**: MM-DiT-based model for audio-driven talking/singing video; multi-character dialogue, emotion-controllable; 480p/720p up to 120s via WaveSpeedAI ($0.15/5s)
+
+### 🆕 Wan2.6 — Coming Soon (Alibaba, March 2026)
+
+- **API-first positioning**: Alibaba announced *Wan2.6 Masterclass: Learn to call HTTP APIs and generate stunning videos* on **March 24, 2026** — suggests API-centric design vs Wan2.2's local-first approach
+- Specific feature improvements vs Wan2.2 not yet publicly detailed; expect resolution/speed improvements based on version cadence
+- Per-second pricing structure hinted (720P ~¥0.6/sec based on `wan-2-6-i2v` listings)
+- **Digital-Stud action**: Update `wan22_img2vid.json` workflow to Wan2.6 API endpoint when weights release
+
+### 🆕 Seedance 2.0 — Commercial API Pricing Disclosed
+
+- ByteDance disclosed commercial API pricing via LinkedIn (Asteris AI, March 2026)
+- **No public REST API yet** — expected Q3 2026; current access via Jimeng/Doubao (China) or dreamina.capcut.com (global, free daily credits)
+- Jimeng subscription: $9/month = 1800 credits + 60 daily free; Seedance 1.5 available now at ~10s/60 credits
+- **Generation latency**: 2-10 hours on Jimeng (server queue) — not production-ready for high-frequency workflows
+
+### 🆕 MatAnyone — Video Matting Without Green Screen
+
+- AI system separating people/objects from video with fine hair and motion blur support
+- No green screen required; highly precise matting for compositing
+- **Digital-Stud relevance**: Post-processing node for cleanly isolating AI-generated characters for compositing into scenes
+
+### 🆕 HY 3D 3.0 — Advanced Features in ComfyUI (March 10, 2026)
+
+- Tencent HunyuanVideo 3D (HY 3D 3.0) Advanced Features now available via ComfyUI Partner Nodes
+- Enables 3D asset generation tightly coupled with HunyuanVideo pipelines
+- **Digital-Stud relevance**: 3D mesh output from video frames; potential integration with Blender workflow
+
+### 🆕 WanGP v10.981 (March 7, 2026)
+
+- Updated "GPU Poor" inference toolkit: LTX-2.3 day-0 support added
+- New features: **Flux 2 outpainting**, **Qwen Image outpainting**, Lanpaint for Flux 2
+- vLLM + int8 quantization for LM: fast + low VRAM (10GB RAM + some VRAM)
+- Supports: Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX Video, Flux
+- GitHub: `deepbeepmeep/Wan2GP` — recommended for low-VRAM local setups
 
 ### Wan2.2 — Priority Model for This Workflow
 
@@ -431,6 +471,19 @@ mixed_precision: fp16 or bf16
 ```
 - New official ComfyUI template; any-pose from 3D → portrait with identity preservation
 - Combines Z_Image pose extraction + Qwen Edit + Flux 2 Klein upscaling
+
+### 🆕 NLF_pose — Blender Rig for Wan SCAIL-Pose Workflows
+
+- Bone-based rigging system in Blender compatible with Wan video generation and SCAIL-pose ComfyUI nodes
+- Full pipeline: rig in Blender → export pose → SCAIL-pose node → Wan2.2 video
+- Covered in Alex Villabón VFX+AI newsletter #027 (March 2026), alongside Flux.2 Klein 360° panorama LoRA and Wan2.2 4× frame interpolation
+- **Digital-Stud relevance**: Core bridge between 3D (Blender) and AI video (Wan/SCAIL)
+
+### 🆕 HuMo — Human-Object Interaction Video Generation (arXiv 2603.09883)
+
+- Multi-subject video generation conditioned on reference object + human images + text prompt
+- Generates Human-Object Interaction (HOI) videos with precise, directable interactions
+- **Digital-Stud relevance**: Character-prop interaction generation without manual animation setup
 
 ### ComfyUI Pose Nodes Ecosystem
 
