@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 06:02 (Prague / CET) | Run #18
+> Last updated: 2026-03-12 06:30 (Prague / CET) | Run #19
 
 ---
 
@@ -138,6 +138,7 @@
 | **Longest clips** | Sora 2 Pro (OpenAI) | — | API only | OpenAI + fal.ai | **ELO 1199**; up to 2-min clips; multi-shot storytelling; $0.30–$0.50/sec |
 | **Quad-modal input** | Seedance 2.0 (ByteDance) | — | API only | Dreamina platform | **"DeepSeek moment for AI video"**; text+image+video+audio in single pass; 2K cinema; 8+ language lip-sync |
 > **Seedance 2.0 API note** (March 2026): Currently API-only via Dreamina/Jimeng platforms. Broader API access planned Q3 2026. Dual-branch DiT architecture; 6-shot multi-cut in single generation pass.
+> **Confirmed pricing** (March 10, 2026): ¥28/M tokens (~$3.90) for video editing with video input; ¥46/M tokens (~$6.40) for pure text-to-video generation. A 15-second video ≈ 308,880 tokens → ~$0.14/sec. Supports 10–20 requests/min batch processing. Sub-second latency (<2s for 15-sec HD clip).
 
 | **Open-source research** | Wan 2.6 | — | API only | **Commercial only** | **⚠️ Dec 2025 release; weights NOT open-source** — commercial API via Alibaba Cloud only; 15s 1080p multi-shot + audio; community asking for open weights |
 | **Open-Sora 2.0** | Open-Sora 2.0 | — | — | Research/HF | **$200K training cost; Video DC-AE 4×32×32 compression; 5.2× training throughput vs HunyuanVideo VAE; 10×+ inference speedup**; arxiv 2503.09642 |
@@ -427,6 +428,7 @@ mixed_precision: fp16 or bf16
 - **ResolutionSelector** node with aspect ratio presets; **CURVE** type for parameter control; **BBox** widget for precise region selection
 - **3-band EQ** audio node; **GLSL shader** node (PyOpenGL); **ElevenLabs API** text-to-speech nodes
 - **Model support**: LTXAV 2.3, LongCat-Image (native), ACE-Step 1.5, **SDPose-OOD** pose models
+- **Wan2.2 Animate** (v0.16 changelog): Native ComfyUI support for Wan2.2 Animate model — enables character replacement and motion transfer directly in ComfyUI workflow nodes
 - **Veo3 video generation** node (audio-visual synthesis); **Moonvalley V2V** (video-to-video); **Rodin3D Gen-2** (image-to-3D API)
 - **Dynamic VRAM now default** — massive RAM reduction on NVIDIA hardware (Windows + Linux)
 - **Sage Attention (KJ-Nodes)**: `Patch Sage Attention` node from ComfyUI-KJ-Nodes confirmed as best attention mode for video generation & high-res workflows (March 2026); lower VRAM than Flash Attention, better than xFormers for long sequences
@@ -436,6 +438,7 @@ mixed_precision: fp16 or bf16
 ### 🔄 Community Workflow Patterns (March 2026)
 
 - **Flux2 Klein face-swap + LoRA chain**: Expression-preserving face swap via Klein base + LoRA refinement; `ComfyUI-KJ-Nodes` Patch Sage Attention + Klein LoRA = production face-swap standard
+- **LTX 2.3 native portrait support**: Up to 1080×1920 resolution for mobile-first/vertical content; rebuilt VAE with improved latent space for sharper textures; larger text connector for better multi-subject prompt understanding; reduced "Ken Burns" freezing effect in I2V mode
 - **LTX 2.3 quality tip**: Shorter clips (<10 seconds) measurably improve visual quality — confirmed by community testing (r/comfyui, Facebook ComfyUI group, March 2026)
 - **Multi-model routing pattern**: NB Pro for volume ($0.039), NB2 for premium ($0.067/1K), GPT Image 1.5 for text-critical; production teams adopting dynamic model selection
 - **Qwen/FireRed Image Edit workflows**: Multi-reference editing + restoration chains; `qwen_2511_restore` has compatibility issues after recent ComfyUI updates (black image bug)
