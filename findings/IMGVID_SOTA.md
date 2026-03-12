@@ -3,6 +3,92 @@
 
 ---
 
+## 🔄 Run #44 Delta — 2026-03-12 19:04 Prague
+
+### 🆕 NVIDIA NVFP4 + FP8 Native in ComfyUI — GDC 2026 Announcement
+
+- **NVIDIA × ComfyUI GDC 2026**: NVFP4 and FP8 support built directly into ComfyUI
+  - Up to **2.5× performance gains** over FP16
+  - **60% lower memory usage** — enables larger models on consumer GPUs
+  - **FLUX.2 Klein 4B and 9B** models now available with NVFP4 support
+  - LTX-2.3 FP8 supported now; NVFP4 variant coming soon
+  - No user configuration required — enabled transparently on RTX hardware
+- **RTX Video Super Resolution** as a ComfyUI node:
+  - Real-time 4K upscaling
+  - **30× faster** than existing upscaling alternatives in ComfyUI
+  - Purpose-built for video frame upscaling in generation pipelines
+- NVIDIA Blog: https://blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc/
+- Digital-Stud relevance: **major throughput unlock** for local inference — FLUX.2 Klein NVFP4 is now the recommended fast generation path on RTX hardware
+
+### 🆕 Neural4D Image-to-3D Engine — Production Release March 12, 2026
+
+- **Neural4D** releases production-grade Image-to-3D generation focused on pipeline usability
+- Solves two long-standing AI 3D generation problems:
+  - **Broken/non-watertight meshes**: computes watertight manifold geometry → engine-ready
+  - **Baked lighting**: extracts pure albedo → correct under any lighting condition
+- Export formats: `.obj`, `.fbx`, `.glb`, `.usdz`, `.stl`, `.blend` (6 standard formats)
+- No Blender geometry cleanup needed for basic assets
+- Digital-Stud relevance: **closes the 2D→3D pipeline gap** — generates engine-ready props/assets from reference images
+
+### 🆕 WanGP v10.9 — Multi-Model Local Runner for GPU-Poor
+
+- GitHub: `deepbeepmeep/Wan2GP`
+- Supports: Wan 2.1, Wan 2.2, **Qwen Image**, HunyuanVideo, LTX Video, FLUX in one unified runner
+- Optimized for low-VRAM (GPU-poor) setups — GGUF Q5 tested for infinite non-looping video
+- Wan 2.2 Animate workflow included with model downloads
+- Digital-Stud relevance: single runner to switch between all major open video models — practical for pipeline testing
+
+### 🆕 FLUX.2 Klein Enhancer Node — Pose Lock & Detail Control
+
+- Community-built **Enhancer node pack** for FLUX.2 Klein in ComfyUI
+- Key features: pose locking across generations, detail control for consistent character appearance
+- Tutorial: myaiforce.com/flux-2-klein-enhancer/
+- Digital-Stud relevance: fills the pose-consistency gap for FLUX.2 Klein without full ControlNet setup
+
+### 🆕 A²-Edit — Unified Reference-Guided Image Inpainting (arXiv 2603.10685)
+
+- Unified framework for reference-guided inpainting that works across multiple FLUX variants
+- Handles large occlusions, identity preservation, scene-consistent inpainting
+- Digital-Stud relevance: character face/body inpainting with reference consistency — useful for face refinement workflow
+
+### 🆕 ConfCtrl — Confidence-Aware Camera Control in Video Diffusion (arXiv 2603.09819)
+
+- Addresses prescribed camera poses in video diffusion via confidence-aware interpolation
+- Enables precise camera trajectory control (dolly, orbit, pan) in video generation
+- Digital-Stud relevance: camera-controlled character video generation — potential integration with Wan 2.2/LTX workflows
+
+### 🔄 GPT-5.4 Launch — March 12, 2026
+
+- **OpenAI GPT-5.4** launched this week (AI news roundup March 12)
+- No image generation specifics confirmed yet; monitoring for GPT Image API updates
+- Sora reportedly being prepared for broader video platform access (Instagram-style reports)
+
+### 🔄 Grok Imagine — March 12 Update Signal
+
+- **Elon Musk flagged another Grok Imagine update** on March 12, 2026 (details still emerging)
+- Background: API launched Jan 28, 2026 at $0.05/sec for text-to-video + image-to-video + video editing; 1.245 billion videos generated in Jan 2026 alone
+- Digital-Stud relevance: low-cost video API worth benchmarking against Kling/Seedance for price/quality
+
+### 🔄 ACE-Step 1.5 in ComfyUI v0.16.1
+
+- ComfyUI v0.16.1 (March 5) added **ACE-Step 1.5** model support
+- ACE-Step: audio generation model for synchronized audio-video workflows
+- Pairs with LTX-2.3 audio-video + ElevenLabs nodes for complete audio pipeline
+- Digital-Stud relevance: non-voice ambient audio generation to complement ElevenLabs voice pipeline
+
+### 🔄 Pinterest Canvas — FLUX.1 Kontext In-Context Image Generation at Scale (arXiv 2603.06453)
+
+- Pinterest engineering paper on production-scale in-context image generation
+- Uses FLUX.1 Kontext: encodes conditioning images via VAE and concatenates with image tokens
+- Enables unified in-context editing (reference image + text instruction) in one forward pass
+- Digital-Stud relevance: reference-consistent image generation technique validated at industrial scale
+
+---
+
+
+
+---
+
 ## 🔄 Run #43 Delta — 2026-03-12 18:30 Prague
 
 ### 🆕 YOLO26-Pose — SOTA Pose Estimation Successor to YOLOv11-Pose (March 9, 2026)
@@ -356,7 +442,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 18:30 (Prague / CET) | Run #43
+> Last updated: 2026-03-12 19:04 (Prague / CET) | Run #44
 
 ---
 
