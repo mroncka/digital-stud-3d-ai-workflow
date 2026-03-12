@@ -1,7 +1,7 @@
 # Image & Video Generation SOTA
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 04:30 (Prague / CET) | Run #15
+> Last updated: 2026-03-12 05:03 (Prague / CET) | Run #16
 
 ---
 
@@ -101,6 +101,7 @@
 - **Grok Imagining** (Mar 2026, xAI) — Four-agent architecture, 10s 720p video gen also available; ~$0.02/img
 - **MiniMax Image-01** (Feb 2026) — $0.01/img, extremely competitive
 - **MAI-Image-1** (Microsoft) — First in-house Microsoft image model; free via Bing
+- - **DeepSeek V4** (imminent, Apache 2.0) — 1T total / 37B active params (MoE); native image + video gen competing with DALL-E 3 / Midjourney; Engram Memory (1M token retrieval); consumer-friendly quantization (1× RTX 5090 INT4, 2× RTX 4090 INT8); V4 Lite appeared March 9 — full release imminent; expected to pressure proprietary image API pricing significantly
 - **FLUX Image to Video** ⭐ NEW March 2026 — BFL releasing Flux-native image-to-video capability
 - **FLUX.2 Pro v1.1** ⭐ NEW — 1265 Elo at $0.055/img; refined over v1.0
 - **Gemini 3 Pro Image** ⭐ — $0.134/img; 50% batch discount; advanced reasoning + 4K res
@@ -136,6 +137,7 @@
 | **Open-Sora 2.0** | Open-Sora 2.0 | — | — | Research/HF | **$200K training cost; Video DC-AE 4×32×32 compression; 5.2× training throughput vs HunyuanVideo VAE; 10×+ inference speedup**; arxiv 2503.09642 |
 | **Cinematic human** | SkyReels V1 | — | — | HF | HunyuanVideo fine-tune; 33 expressions, 400+ movements; 12s/24fps |
 | **Flux I2V NEW** | FLUX Image to Video | — | — | API (BFL) | **March 2026 release; Flux-native image-to-video** |
+| **Deprecated** | Sora 1 (OpenAI) | — | — | — | **⚠️ Deprecated March 13, 2026 in US** — migrate to Sora 2 |
 
 ### LMArena Video ELO Rankings (March 2026)
 
@@ -192,7 +194,8 @@
 - **Memory optimization (March 2026)**: improved efficiency; Wan2.1 LoRAs still compatible
 - Extensions: `Wan2.2-Animate`, `Wan2.2-S2V`, `FLF2V`
 - [docs.comfy.org](https://docs.comfy.org/tutorials/video/wan/wan2_2) | Apache 2.0
-- **WanGP** (github.com/deepbeepmeep/Wan2GP): GPU-poor fast inference tool; supports Wan2.1/2.2, HunyuanVideo, LTX, Flux; Q4_K quantized Wan2.2 14B runs on 8–10GB VRAM
+- **⚠️ Performance note (March 2026)**: Community reports 33%+ increase in generation time after recent ComfyUI updates (same workflow, same settings) — check ComfyUI version before assuming hardware issue
+- **WanGP** (github.com/deepbeepmeep/Wan2GP): GPU-poor fast inference tool; supports Wan2.1/2.2, HunyuanVideo, LTX, Flux; Q4_K quantized Wan2.2 14B runs on 8–10GB VRAM; **Quantization formats: int8, fp8, gguf, NV FP4, Nunchaku** (auto-downloads model for your specific GPU architecture)
 
 ### Open-Sora 2.0 — Cost Breakthrough
 
@@ -239,6 +242,8 @@
 > **Community consensus (March 2026)**: OneTrainer increasingly preferred over AI-Toolkit for character LoRAs due to significantly less overfitting. musubi-tuner preferred for newer Flux variants.
 
 > **Best practice (LoRA + ControlNet + IP-Adapter combo)**: New community documentation published March 2026 confirming three-way combo as production standard for pose + style + identity control simultaneously.
+
+> **ComfyUI inpainting standard (March 2026)**: `comfyui-impact-pack` SEGS Detailer confirmed as production standard for targeted face/body inpainting within existing workflows. PersephoneFlux + DoomFlux combo emerging for layered character workflows.
 
 ### Key Training Advances (March 2026)
 
@@ -324,6 +329,7 @@ mixed_precision: fp16 or bf16
 | Model | Type | Keypoints | Accuracy | Speed | Best For |
 |-------|------|-----------|----------|-------|----------|
 | **YOLO26-Pose** | Single-stage, NMS-free | 17 (COCO) + custom | mAP 57.2% (nano) to 71.6% (XL) | 30+ FPS; **43% faster CPU than YOLO11-N** | Real-time multi-person; custom keypoints; MuSGD optimizer |
+| **ER-Pose** | Keypoint-driven single-stage (arxiv 2603) | 17+ custom | +3.2 AP (no pretrain) / **+7.4 AP (with pretrain)** vs YOLO-Pose | Fast | Removes bounding-box supervision entirely; keypoint-driven dynamic sample assignment aligned with OKS; smooth OKS loss function; fewer params than YOLO-Pose |
 | **RTMPose-m** | Two-stage, SimCC head | 17–133 | **75.8% AP on COCO** @ 90+ FPS (Intel i7) | 30+ FPS | Production speed/accuracy balance; 430+ FPS on GTX 1660 Ti |
 | **DWPose-l** | Two-stage whole-body distillation | 133 (body+hand+face) | Whole AP 66.5% (COCO-WholeBody) | Medium | **Best for ComfyUI ControlNet** |
 | **ViTPose / ViTPose++** | ViT-based | 17–133 | Highest mAP | Slower | Research; multi-dataset training |
@@ -500,6 +506,7 @@ Available at comfy.org/workflows:
 | Gemini API | Nano Banana 2 / Gemini 3 Pro image gen | Free tier; **1,500 img/day via Flash** | https://ai.google.dev |
 | SiliconFlow | Flux Schnell + open models | Free tier | https://siliconflow.cn |
 | BFL (Black Forest Labs) | Flux 2 series (v1.0 + v1.1), Flux I2V | — | https://api.bfl.ai |
+| Adobe Photoshop | Flux.2 Pro + Runway Gen-4.5 integration (March 10 AI Assistant launch) | — | https://adobe.com/photoshop |
 | Google AI Studio | Veo 3.1 / 3.1 Fast video + image | Rate-limited daily | https://aistudio.google.com |
 | Kling AI | Kling 2.6/3.0/O3 video | ~6 videos/day | https://app.klingai.com |
 | OpenAI | GPT Image 1.5, Sora 2 Pro | ~$5 trial | https://platform.openai.com |
