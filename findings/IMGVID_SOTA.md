@@ -32,11 +32,26 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 14:04 (Prague / CET) | Run #34
+> Last updated: 2026-03-12 14:30 (Prague / CET) | Run #35
 
 ---
 
 ## 🖼️ Image Generation SOTA — March 2026
+
+### 🆕 StruVis — Reasoning-Based Text-to-Image via Structured Visual Representations (arXiv 2603.06032, March 2026)
+
+- Enhances T2I generation by thinking in **structured text-based visual representations** (bounding boxes, object attributes, spatial layout) instead of intermediate images
+- Built on FLUX.2-klein-9B (generation) + Qwen3-VL-Plus (structured representation extraction)
+- GRPO training with multi-component reward: format fidelity, visual understanding, image quality
+- Results: **+4.61% on T2I-ReasonBench**, **+4% on WISE** (World-knowledge-informed Semantic Evaluation)
+- Generator-agnostic — can wrap any T2I backend; tested on FLUX.2-klein-9B
+- Digital-Stud relevance: compositional scene generation (placing multiple characters + objects with correct spatial layout) is a direct downstream application
+
+### 🆕 Sora 1 Sunset — US March 13, 2026
+
+- OpenAI retiring Sora 1 in the US starting **March 13, 2026** (today); Sora 2 is now the only supported path
+- ChatGPT image generation continues unaffected
+- Digital-Stud relevance: migrating any Sora-based workflows to Sora 2 or open alternatives (Wan 2.2, LTX-2.3, Helios) is now a priority
 
 ### 🆕 FLUX.2 Klein — NVIDIA NVFP4 & FP8 Quantized Variants (March 2026)
 
@@ -342,6 +357,13 @@
 - Digital-Stud relevance: key technique for training pose-aware LoRAs and evaluating pose ControlNet quality
 
 ## 🎬 Video Generation SOTA — March 2026
+
+### 🆕 WAN 2.7 — Scheduled March 2026 Release
+
+- Alibaba/WAN team has confirmed **WAN 2.7** for release in March 2026 with significant upgrades over 2.6
+- New capabilities include: **video generation from start/end frame pairs** (bookend-style control), **3×3 grid image conditioning** for storyboard-style multi-angle synthesis, and subject + voice reference for talking-head consistency
+- Wan 2.2 Spicy (uncensored, high-motion variant) remains the current community production default while 2.7 lands
+- Digital-Stud relevance: start/end frame control is a major workflow enabler for character-to-scene compositing; watch for WanGP v11 update when 2.7 drops
 
 ### 🆕 FastLightGen — Model Compression for Wan/HunyuanVideo/Veo3/Kling (arXiv 2603.01685v2, March 2026)
 
