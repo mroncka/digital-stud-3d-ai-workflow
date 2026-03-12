@@ -32,7 +32,7 @@
 - Digital-Stud relevance: simplifies professional video prompting for character animation shots
 
 > Auto-updated every 30 minutes by the digital-stud research pipeline.
-> Last updated: 2026-03-12 12:04 (Prague / CET) | Run #30
+> Last updated: 2026-03-12 12:30 (Prague / CET) | Run #31
 
 ---
 
@@ -285,6 +285,23 @@
 - Domain-specific tracks: anime, landscape, architecture, sci-fi, abstract, animals
 - FLUX/SDXL coming via Together AI + fal.ai integration; Apache 2.0 dataset exports
 - Digital-Stud relevance: authoritative benchmark to evaluate character consistency and aesthetic quality of model outputs
+
+### 🆕 Ideogram 3.0 — Widespread Platform Integration (March 2026)
+
+- Now integrated into **Adobe Creative Cloud** (20 credits per generation)
+- Available in **Picsart AI Playground** (launched March 9, 2026 — 90+ models in one hub)
+- Free tier: **40 generations/day** (no card required)
+- Maintains best-in-class **text rendering / typography** accuracy
+- Digital-Stud relevance: top choice for any workflow requiring readable text inside generated images
+
+### 🆕 Veo 3.1 Pricing Confirmed — Vertex AI & Consumer Tiers (March 2026)
+
+- **Google AI Pro** ($19.99/mo): 1,000 credits → ~90 Veo 3.1 Fast 10-sec videos/month
+- **Google AI Ultra** ($249.99/mo): 12,500+ credits
+- **Vertex AI API**: Veo 3.1 Quality **$0.40–$0.75/second**, Veo 3.1 Fast **~$0.15/second**
+- Third-party aggregators (laozhang.ai etc.) from **~$0.10/second**
+- Native audio synthesis (dialogue, SFX, ambient) generated alongside video
+- Digital-Stud relevance: fast tier ($0.15/s) makes short 3–5 sec character motion clips economically viable
 
 ## 🎬 Video Generation SOTA — March 2026
 
@@ -552,6 +569,18 @@
 
 ---
 
+### 🆕 LTX-2.3 — Day-0 ComfyUI Support + Multi-LoRA (Confirmed March 2026)
+
+- **Day-0 ComfyUI support** confirmed by comfy.org blog — install via ComfyUI Manager
+- Three official **IC-LoRA control adapters** available:
+  - `LTX-2.3-22b-IC-LoRA-Union-Control` (multi-purpose)
+  - `LTX-2.3-22b-IC-LoRA-Inpainting` (region fill)
+  - `LTX-2.3-22b-IC-LoRA-Motion-Track-Control` (motion tracking)
+- Supports **up to 3 simultaneous LoRAs** in a single inference run
+- Sigma fine-tuning + sampler selection significantly impact output quality (community finding)
+- Official trainer package at `github.com/Lightricks/LTX-2` for full fine-tune + LoRA training
+- Digital-Stud relevance: most practical open-source audio-video model for ComfyUI right now
+
 ## 🧵 LoRA Training SOTA — March 2026
 
 ### Training Tools Comparison
@@ -714,6 +743,16 @@ mixed_precision: fp16 or bf16
 - **Significance**: Wan2.2 is now the industry reference model for video generation perf benchmarking
 
 ---
+
+### 🆕 Wan 2.2 LoRA Training — Field-Tested Community Settings (March 2026)
+
+- **Learning rate**: `1e-4` with cosine schedule; lower (5e-5) for character faces
+- **Network rank**: 32 recommended; 64 for style LoRAs; 16 sufficient for concepts
+- **Steps**: 800–1500 for character; 300–600 for style/concept
+- **Key technique**: reduce "plastic skin" artifacts via mild regularization images + lower LR
+- Avoid overfitting: stop at ~1000 steps and test; late-stage LoRAs lose detail
+- FFGO LoRA model widely used with ComfyUI Wan 2.2 wrapper for consistent first-frame workflows
+- Digital-Stud relevance: validated recipe; update `kohya_config_example.toml` targets to Wan 2.2 variant
 
 ## 🏃 Pose Estimation SOTA — March 2026
 
@@ -941,6 +980,28 @@ mixed_precision: fp16 or bf16
 - DiT architecture; tested on text-to-video benchmarks with competitive quality at lower cost
 - Digital-Stud relevance: architectural direction to watch for next-gen efficient video models
 
+### 🆕 FC-4DFS — Frequency-Controlled Flexible 4D Facial Expression Synthesis (arXiv 2603.10326, March 2026)
+
+- Learns **frequency-decomposed facial dynamics** for temporally coherent 4D expression synthesis
+- Temporal coherence loss enforces smooth relative displacements across frames
+- Applications: facial animation for AI-generated characters, emotion transfer in video
+- Digital-Stud relevance: complements HunyuanVideo-Avatar for more expressive emotion-driven face animation
+
+### 🆕 ParTY — Part-Guidance for Expressive Text-to-Motion Synthesis (arXiv 2603.09611, March 2026)
+
+- **Body-part semantic guidance** for fine-grained articulation control from text prompts
+- Enables precise control over individual limbs (e.g., "raise left arm, tilt head right")
+- Improves expressiveness beyond whole-body text-to-motion baselines
+- Digital-Stud relevance: richer motion generation for character animation pipelines
+
+### 🆕 WiFi DensePose / RuView — Through-Wall Pose Estimation via Commodity WiFi (March 2026)
+
+- Open-source: `github.com/ruvnet/RuView` — maps human body poses using standard WiFi signals
+- No camera required; occlusion-immune; detects vital signs + presence
+- Demonstrated: real-time 2D dense pose estimation, breathing/heart-rate monitoring
+- Privacy note: raises wall-penetration surveillance concerns (covered by Cybernews March 2026)
+- Digital-Stud relevance: novel no-camera input modality for motion capture in ComfyUI pipelines
+
 ## 🛠️ ComfyUI Ecosystem — Notable Nodes/Updates (March 2026)
 
 ### 🆕 ComfyUI v0.16.1 (March 5, 2026) — New Nodes & Features
@@ -1157,6 +1218,15 @@ Available at comfy.org/workflows:
 - Kling 3.0 Motion Control workflows
 
 ---
+
+### 🆕 ComfyUI-HunyuanVideo-Avatar — Official ComfyUI Node (Yuan-ManX, March 2026)
+
+- GitHub: `github.com/Yuan-ManX/ComfyUI-HunyuanVideo-Avatar`
+- Install via ComfyUI Manager; supports GGUF + FP8 quantized weights
+- Enables audio-driven human animation directly in ComfyUI: image + audio → animated video
+- Multi-character support; emotion-controllable; MM-DiT backbone
+- Similar to Sonic/SadTalker but animates full body + scene (not just face)
+- Digital-Stud relevance: **ready-to-use right now** for character talking-head + body animation nodes
 
 ## ☁️ Free GPU Options — March 2026
 
