@@ -1,4 +1,51 @@
-<!-- last_updated: 2026-03-13T14:30:23+01:00 run_83 -->
+<!-- last_updated: 2026-03-13T15:02:16+01:00 run_84 -->
+## 🏁 Run #84 Delta — 2026-03-13 15:02 Prague
+
+### 🖼️ Image Gen SOTA
+- **FLUX.2 family consolidated**: Klein 4B (Apache 2.0, 1.3s/4-step RTX 6000 Pro, commercial-safe), Klein 9B-KV (2x multi-ref editing speed, FP8 variant), FLUX.2 [dev] (32B open-weight HuggingFace, commercial license separate), FLUX.2 [pro] (API-only SOTA), FLUX.2 [flex] (fine-grained dev control). Multi-reference up to 10 imgs.
+- **SD3.5** (Stability AI): Still highly relevant, improved text rendering vs SDXL, variants: Medium / Large / Turbo.
+- **Specialized open models**: GLM-Image (best CJK text rendering), Z-Image-Turbo (6B, sub-second enterprise, bilingual), Qwen-Image-2512 (unified gen+editing, layered image support), HunyuanImage-3.0 (80B MoE/13B active, 1000-word prompts).
+- **Free tier confirmed 2026**: HuggingFace Inference Providers (45k+ models, unified API, no service fees), Replicate free tier, Gemini AI Studio (Nano Banana 2: 500–1000 img/day free).
+- **Local best practice**: ComfyUI + FLUX.2 Klein 4B (8GB VRAM) or SDXL Lightning (2-step, <1s, lower quality).
+- **Licensing clarity**: FLUX.2 Klein 4B = Apache 2.0 (fully commercial); FLUX.2 [dev] = open-weight with separate commercial license; SDXL/SD3.5 = CreativeML OpenRAIL-M.
+
+### 🎬 Video Gen SOTA
+- **Kling 3.0 Pro** (ByteDance): #1 quality — native 4K 60fps, AI Director mode, 120s max, physics sim, element consistency, video-driven char anim. Via WaveSpeedAI API (international markets, $0.04–0.08/s).
+- **Sora 2 Pro** (OpenAI): Physics/cinematic leader — 2-min clips, Gemini Ultra 2 integration, now in ChatGPT. Sora 1 fully deprecated US March 13.
+- **Veo 3.1** (Google): Audio-native 4K, dialogue gen, portrait mode confirmed, $0.15/s Fast via API, "Ingredients to Video" (3 ref images).
+- **Wan 2.6** (Alibaba, Dec 2025): Best commercial-API open-hybrid — 15s 1080p, native audio+lipsync, multi-shot narrative, R2V (3 video refs), $0.10–0.15/s. NOT fully open (commercial API only). Open-source stays at **Wan 2.2** (14B MoE, 720p 24fps, RTX 4090 24GB VRAM, GitHub: Wan-Video/Wan2.2).
+- **HunyuanVideo-1.5** (Tencent, Nov 2025): SOTA quality at 8.3B params, 14GB VRAM min (FP8+offload), 720p <75s on RTX 4090. Fully open: code + weights + training on GitHub. Diffusers-native. SSTA sparse attention = major VRAM cut.
+- **LTX-2.3** (Lightricks): 22B DiT, audio+video unified, 8-step distilled, 3 upscaler models (2x spatial + temporal), portrait 1080×1920, open Apache 2.0. Day-0 ComfyUI. Templates on comfy.org.
+- **Unified API platforms**: fal.ai (Veo+Sora+Kling+Wan 2.6 single API), WaveSpeedAI (Kling 2.0/3.0+Seedance international gateway), Cliprise (47+ model auto-routing).
+- **Wan 2.7**: Imminent (feature list confirmed: start+end frames, 3×3 grid nav, voice ref, instruction editing, video cloning). No GitHub weights yet as of Mar 13.
+
+### 🛠️ ComfyUI Updates
+- **App Mode + App Builder + ComfyHub** (Mar 10, 2026) — MAJOR: Turns any node graph into shareable URL app, no-install browser use via Comfy Cloud. Democratizes workflow distribution. ComfyHub = community discovery hub.
+- **v0.17.0 (Mar 13)**: Painter node, Reve Image API nodes, Math Expression, ResolutionSelector, FluxKVCache (Flux 2 Klein), modular async asset scanner, dynamic VRAM default, Python fault handler.
+- **LTX-2.3 templates on comfy.org**: I2V (image upload → video), FLF2V (first+last frame), audio-video; comfy.org/templates confirmed.
+- **Kling 3.0 Motion Control via Partner Nodes** (Mar 9); HunyuanVideo 3D Advanced (Parts Decomp, UV Unwrap, Smart Topology via Partner Nodes).
+- **NVIDIA RTX optimization**: RTX Video Super Resolution node (30x faster 4K upscale), NVFP4/FP8 for FLUX.2 Klein + LTX-2.3 (2.5x perf, 60% VRAM cut on RTX 50 series). ComfyUI overall 40% faster since Sep 2025.
+- **Comfy Cloud**: Out of beta, ~90% local custom nodes accessible, RTX Pro 6000 Blackwell 96GB hardware.
+
+### 🦴 Pose Estimation SOTA
+- Landscape unchanged — DWPose (ICCV 2023, whole-body incl. face+hands, best ControlNet preprocessor in ComfyUI), RTMPose-m (75.8% AP COCO, 90+ FPS i7-11700 CPU, 430+ FPS GTX 1660 Ti), RTMO (CVPR 2024, one-stage, 141 FPS V100 via coordinate classification).
+- **Efficient-RTMO** (June 2025 paper, MDPI): Parameter Inverted Residual + depthwise conv → better speed/accuracy balance. Extends RTMO for edge/mobile.
+- **RTMW**: RTMPose extended to whole-body + 3D. Supports 133-keypoint whole-body.
+- **YOLO26**: Multi-task (detection+seg+pose+OBB+classification), NMS-free, 43% faster CPU inference. But YOLO11 still preferred for GPU pose pipelines (ComfyUI community consensus).
+- **SDPose** (arXiv 2509.24980): Diffusion-prior OOD pose estimator, more precise skeletons than DWPose on unusual body configs. ComfyUI node in v0.16.0+.
+- **ComfyUI DWPose install path**: Manager → ComfyUI-ControlNet-Aux → Add Node > ControlNet Preprocessors > Faces and Poses > DW Preprocessor. Uses `dw-ll_ucoco_384.onnx` + `yolox_l.onnx`.
+- **rtmlib** (pip-installable, no mmcv): RTMPose+DWPose+RTMO without full MMLAB stack. `pip install rtmlib`.
+
+### 🎛️ LoRA Training SOTA
+- **Trainers ranked 2026** (community consensus): OneTrainer (2x faster than AI-Toolkit on RTX 5060 Ti, proper validation split, best for face LoRAs), Kohya_ss (most mature, widest config, v0.10.1 Anima Preview), AI-Toolkit (faster setup, some hash issues, LTX-2.3 in development NOT released).
+- **Flux 1.1 >> SDXL** for photorealism; FLUX.2 Klein 4B commercial-safe LoRA training confirmed (AI-Toolkit + Diffusers).
+- **LyCORIS LoKr**: Outperforms standard LoRA for face identity on FLUX, 2x fewer params. Recommended for face/character LoRAs.
+- **Optimal face dataset**: 20–50 imgs, multiple angles, consistent lighting. Rank 8–16 faces, 32–64 complex subjects.
+- **FLUX.2 Klein 4B LoRA ecosystem growing**: Klein Consistency LoRA (HuggingFace, Apache 2.0), zoom/lighting/virtual-try-on LoRAs on CivitAI. Character LoRA on Klein 9B = hard (30+ runs mixed) → use Qwen Edit + multi-image for char consistency instead.
+- **ID-LoRA** (arXiv 2603.10256): Joint face+voice persona LoRA, ~3K pairs, single GPU, negative RoPE for reference tokens. Demo at id-lora.github.io. Code not yet released.
+- **Video LoRA**: flimmer (dedicated Wan 2.1/2.2 video LoRA trainer), musubi-tuner (HunyuanVideo-1.5), diffusion-pipe (multi-model: Wan+HunyuanVideo+LTX).
+- **CivitAI hard cap**: 40 epochs (affects cloud training workflows); use local OneTrainer for longer runs.
+
 ## 🏁 Run #83 Delta — 2026-03-13 14:30 Prague
 
 ### 🖼️ Image Gen SOTA
