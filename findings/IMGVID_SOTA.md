@@ -1,4 +1,94 @@
-<!-- last_updated: 2026-03-13T10:30:01+01:00 run_75 -->
+<!-- last_updated: 2026-03-13T11:02:38+01:00 run_76 -->
+## 🏃 Run #76 Delta — 2026-03-13 11:02 Prague
+
+### 🖼️ Image Gen SOTA
+- **Grok Imagine multi-image video — TODAY** ⚡ (basenor.com, confirmed March 13 2026):
+  - Grok announces: create a single video using **up to 7 input images** (characters, places, objects, mixed)
+  - Live across iOS, Android, Web now; Premium 720p+audio; free tier 480p
+  - API at $0.05/second (available since Jan 28 2026)
+  - Complements "Extend from Frame" (launched March 2); can chain clips to 15 sec/segment
+  - **Practical**: multi-reference video synthesis in a single API call — relevant for Digital-Stud character+scene composition
+- **FLUX.2 Klein GDC 2026 benchmarks confirmed**:
+  - Up to **2.5x performance gains** over FLUX.2 dev on RTX GeForce GPUs
+  - **60% VRAM reduction** — enables local FLUX.2 Klein on mid-range GPUs
+  - Source: GDC 2026 NVIDIA session (gamerscore.com.br, March 2026)
+  - **Practical**: FLUX.2 Klein now viable for real-time Digital-Stud character generation on local RTX hardware
+- **GlyphBanana arXiv 2603.12155** — agentic text rendering workflow:
+  - Achieves **85.9% OCR accuracy on Z-Image** (+19.6%) and 75.8% on Nano Banana 2 via agentic prompt refinement
+  - Confirms Z-Image and Nano Banana 2 as top targets for text-in-image generation
+  - **Practical**: use GlyphBanana approach for ComfyUI poster/title card generation with Z-Image
+- **FLUX.1 latent color subspace paper arXiv 2603.12261**:
+  - Reverse-engineers color representation in FLUX.1 VAE latent space (Hue/Saturation/Brightness structure)
+  - Enables deterministic color control without ControlNet or prompting
+  - **Practical**: future color-targeting nodes for Digital-Stud style consistency
+- **Nano Banana 2 speed benchmarks** (glbgpt.com, Feb 2026):
+  - 1:1 standard: ~1.2 sec; 2048px: ~2.4 sec; 4K: <3.5 sec
+  - Full aspect ratio support: 1:1 through 21:9
+  - "Flash speed at Pro quality" — beats FLUX.2 dev on throughput
+
+### 🎬 Video Gen SOTA
+- **Veo 3.1 Ingredients to Video rollout confirmed** — second corroboration this window
+  - Google AI Ultra tier: ~150 Gemini video generations/month at $249.99/mo
+  - Google AI Pro: ~50 video generations at $19.99/mo (Veo 3.1 Fast)
+  - Direct API: $0.10–$0.40/sec; third-party gateways from $0.15/video (aifreeapi.com)
+  - **Practical**: Pro tier is usable budget for Digital-Stud pipeline testing; Ultra for production
+- **Wan 2.2 Animate platforms confirmed active**:
+  - wan-animate.io and higgsfield.ai/wan-animate-ai-video both live with free tiers (watermarked)
+  - Uses "spatially-aligned skeleton signals" for body motion control — same tech as Wan 2.2 Fun Control
+  - **Practical**: free unlimited testing via wan-animate.io; Higgsfield for API access
+- **ComfyUI Kling 3.0 Motion Control blog post** live:
+  - blog.comfy.org/p/kling-30-motion-control-in-comfyui — official step-by-step guide
+  - Workflow: search "Kling Motion Control" node, prepare reference image + motion video, run example
+  - **Practical**: ⚡ follow this guide to set up Kling 3.0 Motion Control in Digital-Stud ComfyUI now
+- **Open-Sora 2.0 arXiv 2503.09642v3** — commercial-level video at controllable training cost
+  - Demonstrates full training pipeline; contributes to open video model ecosystem
+  - Not yet deployed as hosted API
+
+### 🔧 ComfyUI Ecosystem
+- **Reve API node documentation confirmed** (comfy.icu/extension/lum3on__ComfyUI_Reve-API):
+  - Unified node: Create, Edit, Remix modes via single node with operation-specific inputs
+  - Add API key directly in node; no separate plugin install
+  - **Practical**: ⚡ zero-friction Reve 2 access inside existing ComfyUI workflows
+- **Kling 3.0 Motion Control dedicated blog post** confirmed on blog.comfy.org
+- **ComfyUI unlimited parallel Partner Nodes** announced (blog.comfy.org):
+  - API nodes (Kling, MiniMax, Vidu, Reve, Topaz, etc.) can now run in unlimited parallel
+  - Previously limited to sequential/small batches
+  - **Practical**: batch video generation jobs across Kling/MiniMax/Vidu in parallel — major throughput boost
+- **WanVideoWrapper #1964** still open March 13; no merge/fix yet
+- **ComfyUI Docker DGX Spark container** — community follow-up: getting community traction on NVIDIA forums
+
+### 🦾 Pose Estimation
+- **Text-to-Skeleton → Pose-Conditioned Video arXiv 2603.08028** ⚡:
+  - "Controllable Complex Human Motion Video Generation via Text-to-Skeleton Cascades"
+  - Stage 1: autoregressive text→2D pose sequence (joint-by-joint prediction)
+  - Stage 2: pose-conditioned video diffusion with DINO-ALF (Adaptive Layer Fusion) for appearance preservation
+  - Handles complex motions: flips, cartwheels, martial arts (2000 acrobatic video dataset)
+  - **Practical**: first SOTA approach for complex acrobatic/dance motion in video — relevant for Digital-Stud character animation
+- **rtmlib PyPI (Feb 10 2026)** — RTMPose/DWPose/RTMO/RTMW/VitPose without mmcv/mmpose/mmdet:
+  - `pip install rtmlib` — clean single-package install
+  - **Practical**: ⚡ finally easy DWPose integration without MMPose ecosystem overhead; use in ComfyUI preprocessing scripts
+- **Z-Image-Turbo-Fun-ControlNet-Union-2.1** inference speed fix (Alibaba-PAI, Jan 2026):
+  - 2.1 update fixed inference speed bug; significantly improved speed
+  - Lite model added with Control LoRA support (Jan 12 2026)
+  - **Practical**: updated baseline for Z-Image pose/depth/canny control in Digital-Stud
+- **Wan 2.2 Animate** uses spatially-aligned skeleton signals confirming Wan 2.2 Fun Control is the pose pathway of choice for character video
+
+### 🎓 LoRA Training
+- **flimmer trainer** — no public GitHub repo found yet in this window (only X/@araminta_k mention)
+  - Still "just released" — watch araminta_k GitHub for link
+- **LTX-2.3 LoRA on RunPod** user report (reddit.com/r/StableDiffusion/1rowvp5):
+  - Old LTX-2 LoRAs work "decently" on 2.3; full retrain on 2.3 data gives better results
+  - PyTorch template confirmed working on RunPod
+  - **Practical**: existing face/character LoRAs are portable to LTX-2.3 as a starting point
+- **ID-LoRA arXiv 2603.10256** — no code drop yet confirmed in this window; still pre-release
+  - Watch: Lightricks/LTX-2 GitHub and id-lora.github.io
+- **FLUX Kontext LoRA** (Scenario) — confirmed production-ready:
+  - Train with before/after image pairs for: lighting, pose, style, object replacement
+  - scenario.com/changelog/1-100-introducing-sora-2-and-flux-kontext-loras
+  - **Practical**: most structured approach for controlled FLUX edits vs inpainting/ControlNet
+
+---
+
 ## 🏃 Run #75 Delta — 2026-03-13 10:30 Prague
 
 ### 🖼️ Image Gen SOTA
