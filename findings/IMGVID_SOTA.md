@@ -1,4 +1,94 @@
-<!-- last_updated: 2026-03-13T22:30:12+01:00 run_99 -->
+<!-- last_updated: 2026-03-13T23:01:59+01:00 run_100 -->
+## 🏁 Run #100 Delta — 2026-03-13 23:02 Prague
+
+### 🖼️ Image Gen Free APIs
+- **Free API tier comparison (March 2026)**:
+  | Provider | Free Tier | Notes |
+  |---|---|---|
+  | Google Gemini API | 500–1,500 images/day | Best free tier for production |
+  | Nano Banana 2 (Gemini 3.1 Flash Image) | "Flow" mode = zero-credit unlimited batch | Web UI; up to 20 images/batch via API |
+  | FLUX.2 Dev | Unlimited (self-hosted) | Own GPU required |
+  | Stability AI | 25 credits one-time | ~12 images |
+  | Replicate / Fal.ai | Paid credits only (2026) | Free tiers discontinued or not confirmed |
+  | HuggingFace Inference API | Limited (open-source models) | Rate limited, community tier |
+  **Recommendation for Digital-Stud**: Google AI Studio free tier is the best zero-cost image gen API for pipeline testing and rapid iteration. FLUX.2 Dev self-hosted for local quality baseline.
+- **Google AI Studio image pricing (verified March 2026)**:
+  | Model | Price/image | Batch (-50%) |
+  |---|---|---|
+  | Imagen 4 Fast | $0.02 | $0.01 |
+  | Imagen 4 Standard | $0.04 | $0.02 |
+  | Nano Banana 2 (Flash) | $0.045 | $0.022 |
+  | Imagen 4 Ultra | $0.06 | $0.03 |
+- **NAMI (arXiv 2503.09242)**: Bridged Progressive Rectified Flow Transformer — up to 3x T2I speedup without quality loss on FLUX.2-class models. No official ComfyUI node yet but approach can inform distillation/step-reduction configs. Monitor for implementation.
+
+### 🎬 Video Gen API Pricing Table (March 2026)
+Full cost-per-second reference for Digital-Stud video workflow planning:
+| Model | Cost/Second | Audio | Max Res | Max Duration | Open Weights |
+|---|---|---|---|---|---|
+| Wan 2.6 (API) | $0.05 | No | 1080p | ~12s | ✅ Yes |
+| Hailuo 2.3 (MiniMax) | $0.035–$0.10 | Partial | 1080p | 6–10s | ✅ Yes (Feb 2026) |
+| Runway Gen-4.5 | $0.05–$0.10 | No | 1080p | ~16s | ❌ API only |
+| Kling 3.0 Std | $0.015 | Yes (+$0.112) | 1080p | up to 2min | ❌ API only |
+| Kling 3.0 Pro | $0.168 | Yes (+$0.112) | 4K/60fps | up to 2min | ❌ API only |
+| Seedance 2.0 | $0.10–$0.30 | Yes | 1080p (2K upscale) | 15s | ❌ API only |
+| Sora 2 Base | $0.10 | Yes | 1080p | 5–20s | ❌ API only |
+| Sora 2 Pro | $0.30–$0.50 | Yes | 1080p | up to 25s | ❌ API only |
+| Veo 3.1 Fast | $0.15 | No | 1080p | 8s | ❌ API only |
+| Veo 3.1 Standard | $0.40 | Yes (native) | Native 4K | 8s | ❌ API only |
+LTX-2.3 and SkyReels V4 not yet on this list — omitted pending open pricing confirmation.
+- **Hailuo 2.3 confirmed open-weight (Feb 2026)**: Runs on consumer hardware. This is the only non-Wan open-weight video model with actively improving quality. Monitor HuggingFace for weights. Consider adding to `comfyui/workflows/wan22_img2vid.json` sibling workflow.
+- **⚠️ Veo 3.0 endpoint deprecation**: Google Vertex AI is discontinuing veo-3.0 endpoints — migrate to veo-3.1 before April 2, 2026. Update `scripts/api_test_*` if Veo endpoints are tested there.
+
+### 🎬 Video Gen ComfyUI Updates
+- **Kling 3.0 Motion Control ComfyUI Partner Node (v26.3.7)**: Official update adds "Element Binding" — facial consistency system that maintains character identity across motion sequences. Significant upgrade from Kling 2.6. Enables character-consistent video animation without face drift. Immediately relevant for Digital-Stud character pipeline. Update `comfyui/workflows/wan22_img2vid.json` to reference Kling 3.0 API as alternative output path.
+- **Kling ComfyUI-Kie-API**: Community node pack (Reddit r/comfyui thread Mar 13) — Kling 3.0 Motion Control support added, currently under "Experimental." Install alongside official Partner Node for fallback.
+
+### 🛠️ 3D Character Pipeline — Major Tools
+- **ActionMesh (Facebook Research, Feb 20, 2026)** — ⭐ HIGH PRIORITY for Digital-Stud pipeline:
+  - Open-source (GitHub: facebookresearch/actionmesh)
+  - Two modes: `Video → 4D` (animated mesh from video) and `{Video + 3D} → 4D` (animate existing mesh preserving topology/texture)
+  - Runtime: ~45–75s/inference on H100; T4 Colab supported with low-RAM mode
+  - Output: per-frame GLB + animated GLB (Blender 3.5.1+ import) + MP4 render
+  - Uses: TripoSG (image-to-3D) + DINOv2 (features) + RMBG (background removal)
+  - ActionBench evaluation dataset released alongside
+  - **Immediate integration path**: ActionMesh → Blender 5.1 (import GLB) → AccuRIG 2 (re-rig) → Mixamo animations → render pipeline
+  - Suggest adding `scripts/api_test_actionmesh.py` as next pending artifact
+- **Cyan Puppets Blender AI Mocap Plugin (Feb 26, 2026)**:
+  - 1B-parameter AI model, markerless mocap from 1080p camera or uploaded video
+  - Supports: Blender, Unreal Engine, Unity
+  - Requirements: 8GB VRAM, NVIDIA CUDA, DX11+
+  - Converts 2D video → 3D motion model in real-time
+  - Commercial product (not open-source), available at cyanpuppets.com
+  - Alternative to GVHMR for Blender-native mocap workflows; much simpler setup
+- **Mesh2Motion (open-source)**:
+  - Free web app: https://mesh2motion.org
+  - Supports humanoid / four-legged / bird rigs; accepts GLB/GLTF/DAE/FBX; exports GLB
+  - ComfyUI integration: `jtydhr88/ComfyUI-mesh2motion` — full Mesh2Motion editor inside ComfyUI
+  - Direct Mixamo replacement for rigging + animation in local pipeline
+  - **Action**: Install ComfyUI-mesh2motion node; integrate into character workflow
+- **Blender 5.1 scheduled March 2026**: Check devtalk.blender.org for release. ActionMesh GLB import requires Blender 3.5.1+ (already met by 5.1).
+- **DuoMo (arXiv 2603.03265, early March 2026)**: Dual-stream world-space human motion reconstruction from monocular video. Separate proposal and correction motion streams. Complement to GVHMR for challenging poses. No code released yet.
+
+### 🦴 Pose & Mesh Recovery Update
+- **PromptHMR**: Promptable human mesh recovery in SMPL-X representation — alternative to SMPLer-X. Accepts text/point prompts to disambiguate crowded scenes. Already in community benchmarks alongside GVHMR. Consider for multi-person scenes in Digital-Stud.
+- **GaussianAvatars (CVPR 2024 Highlight)**: Rigged 3D Gaussian head avatars — FLAME mesh driven. Available on GitHub (ShenhanQian/GaussianAvatars). Best current approach for photorealistic head avatar from video. License: CC-BY-NC-SA-4.0.
+
+### 🎛️ LoRA Training — Face Identity Best Practices (Consolidated Community Consensus March 2026)
+- **Dataset size**: 15–30 images optimal for face/character LoRA on FLUX.2-dev. Below 12 → underfitting; above 40 → diminishing returns unless diversity is high.
+- **Captioning strategy**:
+  - Florence-2 captions > BLIP2 for face LoRA identity preservation (community consensus March 2026)
+  - Manual caption review essential: remove captions that describe irrelevant background features
+  - Include trigger word in EVERY caption: `ohwx person [Florence-2 description]`
+- **Trigger word**: Descriptive phrase (`ohwx person`) consistently outperforms random token (`abc123`) for face identity LoRA on FLUX.2-dev
+- **Background diversity**: Critical — use at least 5–6 different backgrounds in training set. Single-background datasets cause background bleed into character concept.
+- **Augmentation**: Horizontal flip + slight brightness variation OK; avoid heavy color jitter (disrupts skin tone learning)
+- **SimpleTuner vs AI-Toolkit for face LoRA (FLUX.2)**:
+  - SimpleTuner: Slightly better identity preservation, especially for extreme angles; better loss curves for face
+  - AI-Toolkit: Faster iteration, cleaner integration with FLUX.2-dev weights, easier config
+  - Recommendation: Start with AI-Toolkit for speed; switch to SimpleTuner if identity preservation is critical
+- **Rank recommendations**: Rank 16 for face/character LoRA (balance quality/portability); rank 32+ for full-body style LoRA
+- **LR schedule**: cosine with warmup (100–200 steps warmup out of 2000 total) consistently better than flat LR
+
 ## 🏁 Run #99 Delta — 2026-03-13 22:30 Prague
 
 ### 🖼️ Image Gen SOTA
