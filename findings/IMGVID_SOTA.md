@@ -1,4 +1,48 @@
-<!-- last_updated: 2026-03-13T17:30:15+01:00 run_89 -->
+<!-- last_updated: 2026-03-13T18:03:58+01:00 run_90 -->
+## 🏁 Run #90 Delta — 2026-03-13 18:03 Prague
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana 2 (Gemini 3.1 Flash Image)** — RELEASE DATE CONFIRMED: February 26, 2026. 50% cheaper than Nano Banana Pro, 5+ character consistency. Free via Gemini (limited), Gemini Advanced $20/month. Regression noted in Chinese text rendering vs Pro. Still #1 overall benchmark. 4K output, extreme aspect ratios (4:1, 1:4, 8:1) confirmed.
+- **Nano Banana Pro (Gemini 3 Pro Image)** — Separate model from NB2. Premium flagship (Nov 2025). "Thinking" generation for advanced reasoning in composition. Still best Chinese text + overall quality ceiling. API via Gemini Pro/Ultra.
+- **GLM-Image (Zhipu AI / Z.ai)** — **NEW MAJOR OPEN-SOURCE ENTRY**: Apache 2.0 license, released January 14, 2026. 16B parameter hybrid autoregressive + diffusion model. **Best-in-class text rendering: 0.9116 CVTG benchmark**. API: $0.015/image. Free demo available. Best for enterprise text-heavy imagery (posters, infographics, typography). Outperforms both Nano Banana Pro and FLUX on complex text in images. Highly relevant for Digital-Stud title cards and promo graphics.
+- **Seedream 5.0** (ByteDance) — **NEW** separate model from Seedream V4.5. Free tier + paid API. Strong Chinese text rendering (beats NB2 in text tests). Multimodal input (text + video seeds). Also available: Seedream 5.0 Lite. Weakness: complex spatial logic below NB2.
+- **MiniMax Image-01** (Feb 2026) — Cost-effective cinematic T2I. Prompt adherence from Hailuo video lineage. API: **$0.01/image** (100x cheaper than comparable models). Available via MiniMax API, WaveSpeedAI. Investigate as budget fallback for batch generation.
+- **FLUX.2 Klein 9B detail**: Apache-licensed, open-source, KV-cache variant for accelerated multi-reference editing. Sub-second generation. NVFP4/FP8 support → 2.5x perf gain. Download from HuggingFace, run via ComfyUI locally. This is the key local inference path for Digital-Stud speed runs.
+- **Free tier confirmed**: Google AI Studio = free Imagen 4 (daily limit); Google Whisk/ImageFX = unlimited free (1024x1024 max, non-commercial). Meta Imagine = free via WhatsApp/Messenger. These cover prototyping/storyboard phases.
+
+### 🎬 Video Gen SOTA
+- **Seedance 2.0 API DELAYED** — Originally planned global API launch Feb 24, 2026. **Halted due to copyright disputes from Netflix and major studios** claiming unauthorized reproduction of copyrighted content. No new launch date. API accessible via kie.ai and apiyi.com (third-party bridges). ByteDance official global launch TBD. Critical blocker for api_test_seedance.py. Update existing test script to use kie.ai bridge endpoint while official API is blocked.
+- **LTX-2.3 Day-0 ComfyUI Support** — NEW OFFICIAL BLOG POST (blog.comfy.org/p/ltx-23-day-0): Major quality upgrades: finer details (new latent space + VAE), **9:16 portrait mode** (vertical video/mobile), enhanced audio (cleaner dialogue + ambient sound), improved I2V (fewer glitches), smarter prompt understanding + text rendering. Workflow templates on Comfy Cloud. This is the most actionable upgrade for mobile-format content.
+- **Kling 3.0 Motion Control ComfyUI** (Mar 9, 2026): ComfyUI-Kie-API node pack updated with Kling 3.0 Motion Control support. Now native ComfyUI motion capture pipeline without leaving the node editor.
+- **ElevenLabs in ComfyUI** (Mar 9, 2026): Official ElevenLabs TTS nodes in ComfyUI core. Text → voice → video pipeline now fully nodal. Key for character voiceover automation.
+- **NVIDIA GDC 2026 ComfyUI App View**: RTX-accelerated inference interface. FP4 precision models. RTX Video Super Resolution. NVFP4 models confirmed: LTX-2.3 + FLUX.2 Klein 4B running 2.5x faster with 60% VRAM reduction on RTX 50 series. Blackwell RTX 6000 Pro now backing Comfy Cloud (approx 2x A100 speed).
+- **Wan2.2 S2V-14B on ModelScope** — Model card confirmed: Wan-AI/Wan2.2-S2V-14B. Audio-driven character animation. SOTA for audio-guided lip sync in ComfyUI via WanSoundImageToVideoExtend node.
+- **HunyuanVideo 1.5 on fal.ai** — Artificial Analysis benchmark profile confirmed (artificialanalysis.ai/video/models/hunyuanvideo-1-5-fal). Community note: "better prompt adherence than LTX-2 on first try; decent generation times." Competitive I2V quality for open-source. DWPose/RTMPose → HunyuanVideo 1.5 I2V pipeline is highest-quality open-source character anim path.
+
+### 🛠️ ComfyUI Updates
+- **v0.17.0 frontend v1.41.18** — workflow templates updated to v0.9.21. ComfyUI Manager updated to v4.1b2.
+- **LTX-2.3 official tutorial**: docs.comfy.org/tutorials/video/wan/wan2-2-s2v now has Wan2.2-S2V native workflow example.
+- **Wan2.2 official tutorial**: docs.comfy.org/tutorials/video/wan/wan2_2 — TI2V (text+image hybrid) = Wan2.2-TI2V-5B, MoE T2V = Wan2.2-T2V-A14B, MoE I2V = Wan2.2-I2V-A14B. First-Last-Frame mode supported for creative control.
+- **Comfy Cloud pricing update**: Blackwell RTX 6000 Pro hardware (96GB VRAM). Free tier available. 90% of custom nodes supported. Key for cloud overflow when local VRAM insufficient.
+- **ComfyUI-WanVideoWrapper GitHub Issue #667** — Users report issues after v0.17.0 update (custom nodes import failing). Workaround: ensure ComfyUI-WanVideoWrapper is updated post v0.17.0.
+
+### 🦴 Pose Estimation SOTA
+- **DETRPose (2025, arXiv)** — First real-time transformer-based multi-person pose estimation. Outperforms YOLO11-X on COCO test-dev and CrowdPose. Uses "Pose Denoising" technique for robustness. Achieves real-time without quantization. No ComfyUI custom node yet — watch for adoption.
+- **DeformSplat (SIGGRAPH Asia 2025, UNIST)** — Single-image 3D character animation via 3D Gaussian Splatting. "Gaussian-to-Pixel Matching" + "Rigid Part Segmentation" preserves natural proportions from multiple angles. Reduces 3D content creation barrier for animation/gaming. Academic paper; code release TBD.
+- **DreamActor-M2 (arXiv 2601.21716)** — Universal character image animation. Derives motion from raw RGB sequences without explicit pose labels. Cross-identity motion transfer. Potential replacement for RTMPose-driven pipelines for cross-character animation.
+- **rtmlib v0.x.x (Feb 10, 2026)** — Updated PyPI release. Supports RTMPose, DWPose, RTMO, RTMW, VitPose without mmcv dependency. Install: `pip install rtmlib`. This is the cleanest way to get DWPose working in custom Python pipelines outside ComfyUI custom nodes.
+- **InclusiveVidPose** — New dataset/benchmark bridging pose estimation for people with limb differences. Built on RTMPose-T. Expanding ControlNet robustness scope.
+- **YOLO26 clarification**: Confirmed real release (Ultralytics docs + YouTube tutorials). 43% faster CPU vs YOLO11 Nano. All 5 tasks: detection, segmentation, pose, OBB, classification. NMS-free architecture. Production-ready. Replaces YOLO11 as recommended production pipeline baseline.
+- **SDPose (arXiv 2509.24980)** — Exploits diffusion priors for out-of-domain and robust pose estimation. Outperforms RTMPose/DWPose on challenging real-world cases. Academic; relevant for future pipeline hardening.
+
+### 🎛️ LoRA Training SOTA
+- **Flux 2 Klein LoRA via musubi-tuner**: ComfyUI v0.17.0 KV Cache node enables FP8/NVFP4 inference of fine-tuned Klein LoRAs. Full local training + inference path now available. Fastest open-source LoRA training + inference cycle for image gen.
+- **HunyuanVideo 1.5 training confirmed live**: GitHub Tencent-Hunyuan/HunyuanVideo-1.5 has full training code. Community LoRA training guides starting to appear. musubi-tuner HunyuanVideo support = primary training path.
+- **Wan2.2 S2V LoRA** — ModelScope Wan-AI/Wan2.2-S2V-14B model card has training pointers. S2V LoRA = audio-driven character-specific finetuning. High priority for character lip sync consistency.
+- **Seedream 5.0 LoRA** — ByteDance's image model has LoRA ecosystem forming. Less documented than FLUX but emerging. Watch Civitai for early Seedream 5.0 LoRAs.
+- **GLM-Image LoRA** — 16B Apache 2.0 model. Standard diffusion LoRA approach applicable (AI-Toolkit / Kohya). Primary advantage: best text-in-image fidelity. LoRA = title/overlay text style locks. Priority investigation.
+- **rtmlib Feb 2026** — DWPose without mmcv now pip-installable. Directly enables pose-conditioned LoRA training pipelines without manual ONNX environment setup. Recommended: include in training preprocessing scripts.
+
 ## 🏁 Run #89 Delta — 2026-03-13 17:30 Prague
 
 ### 🖼️ Image Gen SOTA
