@@ -1,4 +1,49 @@
-<!-- last_updated: 2026-03-13T18:03:58+01:00 run_90 -->
+<!-- last_updated: 2026-03-13T18:30:18+01:00 run_91 -->
+## 🏁 Run #91 Delta — 2026-03-13 18:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **GPT-4o Image Generation (OpenAI)** — Integrated natively into ChatGPT Plus and Pro. Direct text-to-image and image-editing via conversation. Quality competitive with FLUX.2 for photorealism. No dedicated API (only via Responses API). No local/open-source path. Best for rapid iteration via natural language prompting.
+- **Nano Banana 2 pricing detail**: Free in Gemini app (limited), Gemini Advanced $20/mo, API via Google AI Studio (Gemini Flash pricing tier ≈ 50% less than NB Pro). Still the fastest premium cloud option.
+- **Recraft V3** — Design-focused generator, only major player offering native SVG vector output. March 2026 articles confirm active development. Enterprise-grade for brand/logo design. No open-source version.
+- **FLUX.2 [dev] 32B** — Confirmed on SourceForge mirror + HuggingFace. Apache-licensed (open-weight). Community LoRA ecosystem active on Civitai. Primary local quality ceiling for photorealism + style work.
+- **Z-Image Turbo** — Alibaba open-source, pip-installable, low hardware requirements. Used by creators as T2I base before Wan2.2 animation. ComfyUI node available (comfy.org/templates/model/z-image). Watch Z-Image Power Nodes v1.0 (custom sampler for Z-Image/Z-Image Turbo) — just released on r/StableDiffusion.
+- **WaveSpeedAI** — API aggregator hosting ByteDance Seedream 4.5, Seedream 5.0, MiniMax Image-01, HunyuanVideo, and exclusive ByteDance models. Single API endpoint. Good for multi-model batch pipelines.
+
+### 🎬 Video Gen SOTA
+- **Sora 2 (OpenAI)** — CONFIRMED RELEASE: September 30, 2025. 25s max generation, native audio + dialogue sync, character insertion (likeness from video). Physics/realism benchmark leader. Pricing: $20/mo (ChatGPT Plus = 720p), $200/mo (ChatGPT Pro = 1080p), API from $0.10/second. No open-source path. Relevant as quality ceiling reference.
+- **Veo 3.1 (Google/DeepMind)** — Released January 2026. Key update: **native vertical (9:16) video generation** via reference images (TechCrunch Jan 13, 2026). Only native 4K consumer AI video. Integrated with YouTube Shorts creator tools + Google Flow + Vertex AI. "Ingredients to Video" = multi-reference composition. Pricing: $7.99/mo (Plus), $19.99/mo (Pro), $249.99/mo (Ultra). Highly relevant for mobile/Shorts content in Digital-Stud workflow.
+- **Runway Gen-4.5** — Released Dec 2025. **#1 Artificial Analysis Text-to-Video benchmark (1,247 Elo)**. 16s max generation. Best-in-class editing suite (inpainting, masking, motion brushes, style transfer, frame interpolation). No native audio (separate workflow required). Pricing: $15/mo entry, $95/mo Unlimited. Best for post-production video editing integration.
+- **Seedance 2.0 Batch Generation** (Mar 6, 2026) — **NEW FEATURE**: Platform now supports batch video generation, up to 20 clips per session. Beat-sync mode: rhythm-matched video from music tracks. Multi-reference: up to 12 files simultaneously (images, videos, audio, text). Character/location consistency via @ system. 15-20s native generation. API status still delayed (use kie.ai bridge). Free tier available.
+- **Grok Video Extension** (xAI/X.com) — March 2026: iOS/Android live. Video extension feature (chain generations). Quality degrades after multiple extensions (confirmed user testing). Relevant as free-tier video option for Grok subscribers.
+- **Wan2.2 detailed specs confirmed**: GitHub Wan-Video/Wan2.2. 720P, 24fps. Consumer 4090 supported. MoE architecture (TI2V-5B, T2V-A14B, I2V-A14B variants). Vast.ai article confirms open-source MoE = first of its kind.
+- **Kling 2.6** (Dec 3, 2025) — ComfyUI Motion Control updated Mar 9, 2026. Kling-Foley model integration (Video-to-Audio) as upcoming feature. Up to 2 min/clip. $0.029/s API. Best price-to-quality for long clips. Free: 66 daily credits.
+
+### 🛠️ ComfyUI & Tooling Updates
+- **ComfyUI v0.17.0 changelog detail**: March 13, 2026 (today). Key: FluxKVCache node for Klein KV-cache models, LTXAV 2.3 model support, Painter node (image editing), Reve Image API nodes. Python fault handler for stability. Modular async asset loader. Frontend v1.41.18. ComfyUI Manager v4.1b2.
+- **Comfy Cloud** switched to Blackwell RTX 6000 Pro (96GB VRAM, ~2x A100 speed). Supports 90% of custom nodes. Free tier available. Best cloud overflow option.
+- **ElevenLabs ComfyUI integration** (Mar 9, 2026) — Official TTS nodes. Full T2I → T2V → TTS pipeline now nodal inside ComfyUI. No external API switching needed for voiceover.
+- **Kling 3.0 Motion Control ComfyUI** (Mar 9, 2026) — ComfyUI-Kie-API node pack. Professional motion capture in ComfyUI. Combines with ElevenLabs for full character + voice automation.
+- **WanVideoWrapper post-v0.17.0 compatibility** — GitHub issue #667 (ComfyUI-WanVideoWrapper): custom nodes fail after v0.17.0 update. Action: update WanVideoWrapper to latest before running Wan2.2 workflows on v0.17.0.
+
+### 🦴 Pose Estimation & Character Animation SOTA
+- **Sapiens2 (Meta)** — OpenReview submission confirmed. 0.4B to 5B parameters. Native 1K resolution, 4K hierarchical variants. vs Gen 1: +4 mAP pose, +24.3 mIoU segmentation, 45.6% lower normal estimation error. NEW CAPABILITIES: pointmap + albedo estimation (not in Gen 1). Pretraining on 1B curated high-quality human images. Windowed attention for 4K models. Directly upgrades the Sapiens-based preprocessing pipeline for ControlNet.
+- **SCAIL (arXiv 2512.05905v2)** — Studio-grade character animation. 3D-consistent pose: NLFPose → cylindrical segment rendering. Full-context pose injection (entire sequence, not per-frame). Handles turning, rolling, flipping, multi-person. Pose-Shifted RoPE for spatial misalignment. Studio-Bench eval set. Production quality for complex motions. No ComfyUI node yet; watch for release.
+- **DreamActor-M2 (arXiv 2601.21716, ByteDance)** — Works on any character type including anime, cartoons, animals (YouTube demo confirmed). Self-bootstrapped: goes from pose-dependent to RGB-driven. AW Bench for evaluation. ComfyUI node status: available via Promptus platform (M2.0 demo live). Watch for ComfyUI-native integration.
+- **DisPose (ICLR 2025, OpenReview)** — Plug-and-play module for improving human image animation. Disentangles pose guidance for controllable generation. Compatible with existing ControlNet pipelines. Potential drop-in upgrade for current pose_controlnet.json workflow.
+- **DepthDance (ICCVW 2025)** — Complex-pose human image animation using DensePose + diffusion. Extends DensePose for animation use cases. Relevant for full-body animation workflows in ComfyUI.
+- **ChatHuman (CVPR 2025)** — Tool-calling LLM for 3D human vision: pose estimation, motion generation, 3D face reconstruction. Text-prompt-driven 3D character pipeline. Potentially integrable with AI-assisted rigging workflows.
+- **YOLO26 production confirmed**: All 5 tasks (detection, segmentation, pose, OBB, classification). NMS-free architecture. 43% faster CPU vs YOLO11 Nano. pip install ultralytics updates to YOLO26.
+
+### 🎛️ LoRA Training SOTA
+- **AI-Toolkit V27.6 (Mar 8, 2026, SECourses/ostris)** — **NEW**: Model quantizer app significantly updated with FP8 Scaled generation. Enhanced presets for RTX 3000/4000/5000 series, A40, L40, A100, H100, B200. Torch Compile: 7.5-15% speed improvement, zero quality loss. 1-click install via uv (100x faster than pip on RunPod). FLUX 2 Dev LoRA (min 18GB VRAM@1024px), FLUX Klein 9B (min 9.6GB@1024px), FLUX Klein 4B (min 5.6GB@1024px), Z-Image training (Base FT + LoRA + Turbo). NVFP4 quantization. Critical upgrade for local LoRA training workflow.
+- **musubi-tuner Feb 15, 2026 update** — Added LoHa/LoKr support (LyCORIS algorithms). Block swap optimizer for Z-Image fine-tuning. Supports HunyuanVideo, Wan2.2, Z-Image. Multi-GPU via Accelerate. Windows compatible. 12GB VRAM minimum for HunyuanVideo LoRA. **Primary training framework for video LoRAs**.
+- **Wan2.2 LoRA on fal.ai** — $0.004/step, minimum 100 steps = $0.40/run. T2V-A14B variant supported. Brand-consistent video generator training. Fastest cloud LoRA training option for Wan2.2.
+- **FLUX.2 Klein LoRA training guide (Medium, Mar 2026, Apatero)** — Production guide from serverless training platform. 50+ training run analysis. Optimal config parameters documented. FP8 optimization fixed (Jan 2026). Klein 9B + Dev LoRA comparison table available. Key insight: rank 8-16 optimal for style LoRAs; rank 32-64 for identity/character LoRAs.
+- **BFL official Klein style LoRA training** — docs.bfl.ai/flux_2/flux2_klein_training_example. Fully synthetic dataset approach: generate training images with FLUX.1 dev + illustrative LoRAs → train style LoRA on Klein. Zero real-world photography needed for style locks.
+- **Wan2.2 LoRA best practices (r/StableDiffusion)** — Community thread confirmed: Wan2.2 outperforms FLUX for character likeness and flexibility in video LoRA. LR optimization + rank selection + regularization = key levers for avoiding plastic skin/overfitting. Field-tested settings documented on wavespeed.ai.
+- **SimplePod** — New cloud GPU platform: RTX 5090 $0.45/hr vs RunPod $0.89/hr (45% cheaper). Alternative for LoRA training cost reduction. Compatible with 1-click musubi-tuner/AI-Toolkit install.
+- **GLM-Image RL fine-tuning detail** — Separate reward systems: auto-regressive head → meaning/text accuracy reward; diffusion decoder → visual quality/texture reward. Standard LoRA approach applicable via Kohya/AI-Toolkit. Best use: title card and overlay text style LoRAs where text fidelity is critical.
+
 ## 🏁 Run #90 Delta — 2026-03-13 18:03 Prague
 
 ### 🖼️ Image Gen SOTA
