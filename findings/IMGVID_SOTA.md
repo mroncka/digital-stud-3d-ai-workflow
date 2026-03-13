@@ -1,4 +1,78 @@
-<!-- last_updated: 2026-03-13T20:30:15+01:00 run_95 -->
+<!-- last_updated: 2026-03-13T21:01:37+01:00 run_96 -->
+## 🏁 Run #96 Delta — 2026-03-13 21:01 Prague
+
+### 🖼️ Image Gen SOTA
+- **Qwen-Image-2.0 (Alibaba, released Feb 10 2026)** — MAJOR: 7B unified gen+edit, down from 20B v1, yet #1 on AI Arena ELO for both T2I and image editing (blind human eval). Key specs:
+  - DPG-Bench: 88.32 (vs FLUX.1: 83.84, GPT Image 1.5: 85.15)
+  - GenEval: 0.91 (SOTA)
+  - Native 2K resolution (2048×2048), not upscaled
+  - 1000-token prompt support, professional text rendering (Chinese+English)
+  - Architecture: 8B Qwen3-VL encoder → 7B diffusion decoder
+  - ComfyUI: native workflow templates available (docs.comfy.org/tutorials/image/qwen/), 7 templates on comfy.org/templates
+  - Qwen-Image-Edit (v1) already on HF with open weights (Apache 2.0); **Qwen-Image-2.0 weights NOT confirmed open yet** — API-only via Alibaba Cloud BaiLian currently; community expects weight release
+  - Community bridge: `fblissjr/ComfyUI-QwenImageWanBridge` for multi-image editing with Qwen2.5-VL
+  - WARNING: r/comfyui post notes Qwen-Image-2.0-Pro API launch = "probably going closed like Wan 2.x" — track for weight release
+- **FLUX.2 [klein] full benchmark vs field** (BFL official blog post "Towards Interactive Visual Intelligence"):
+  - Klein 9B: matches/exceeds Qwen-Image-2.0 quality at lower latency + VRAM; outperforms Z-Image-Turbo
+  - Klein 4B: sub-second generation (~1.2s distilled on RTX 5090, 8.4GB VRAM); Base 4B ~17s with 9.2GB VRAM
+  - Klein 4B Apache 2.0 open; Klein 9B under FLUX Non-Commercial License
+  - FLUX.2 Dev Q8 quantized: 98-99% quality vs FP16, 40% VRAM reduction → most practical Dev deployment
+  - Text encoder: `mistral_3_small_flux2_fp8.safetensors`, VAE: `flux2-vae.safetensors`
+  - Official ComfyUI examples: comfyanonymous.github.io/ComfyUI_examples/flux2/
+  - KV cache support: `FluxKVCache` node in ComfyUI v0.17.0
+- **Nano Banana 2 (Google, released Feb 26 2026)** — Replaces Nano Banana Pro as default in Gemini app. Combines Pro quality + Flash speed:
+  - Real-time web search integration for world-knowledge-accurate image generation
+  - Subject consistency up to 5 characters + 14 objects
+  - 512px to 4K resolution, multiple aspect ratios
+  - Available: Gemini app, Google Search AI Mode, Vertex AI, AI Studio API, Google Ads, Flow
+  - Not open-weight — API/product only
+- **NVIDIA GDC 2026 (Mar 10)**: ComfyUI + RTX integration push — DLSS 4.5, NVFP4 model format for local inference optimization; Nvidia announced $26B open-source model investment roadmap
+
+### 🎬 Video Gen SOTA
+- **LTX-2.3 (Lightricks, released ~Mar 8-13 2026)** — SIGNIFICANT: Latest from LTX Studio. Four major improvements over LTX-2:
+  - Redesigned VAE: finer detail, sharper textures, cleaner edges
+  - Native character control with **real-time mouse-drag puppetry** of AI-generated actors (LTX Studio feature)
+  - **IC-LoRAs for Motion Track + Union Control** (HuggingFace release, r/StableDiffusion Mar 13 2026):
+    - `Lightricks/LTX-2.3-22b-IC-LoRA-Motion-Track-Control`
+    - `Lightricks/LTX-2.3-22b-IC-LoRA-Union-Control`
+    - Union IC-LoRA: unified control adapter for multiple conditioning signals simultaneously (pose + depth + style)
+  - ComfyUI integration: Kijai workflow + KJNodes required; template v0.9.18 in ComfyUI includes LTX-2 T2V workflow (not 2.3 yet — manual installation)
+  - Best AI video tested on RTX 3090 in community (YouTube "Best AI video in ComfyUI: LTX 2.3 Tested on RTX 3090")
+- **Wan 2.2 vs Wan 2.6 benchmark**: Community (r/generativeAI Mar 11) ranks Wan 2.6 as best open-source video. Wan 2.2 still practical for lower VRAM (5B MoE). No Wan 2.7 confirmed info.
+- **Wan2.2-S2V (Sound-to-Video) — natively supported in ComfyUI** (docs.comfy.org/tutorials/video/wan/wan2-2-s2v):
+  - Audio + image input → synchronized video generation
+  - Audio encoder: wav2vec2 implementation, stored in `/models/audio_encoders/`
+  - New nodes: `WanSoundImageToVideoExtend` (manual extension), `LatentCut` (precise audio-video alignment)
+  - Auto-trims audio to match video length; prevents workflow failures on audio/video length mismatch
+  - Major for Digital-Stud: audio-driven character animation without separate lipsync step
+
+### 🛠️ ComfyUI — App Mode + ComfyHub (MAJOR, Mar 10 2026)
+- **App Mode**: Single-click transforms node graph → clean app UI. Removes node graph, shows only exposed parameters. Enables Comfy Cloud publishing without install.
+- **App Builder**: Configure which node inputs/outputs to expose to end users. Workflow can expose 3 of 50+ parameters; rest stay locked in background.
+- **ComfyHub**: Marketplace for finished workflows/apps (distinct from Manager which serves dev nodes). Creators publish with shareable URLs encoding full workflow + app layout + node bindings. Early access publishing applications open.
+- **Impact**: Positions ComfyUI as an end-user platform, not just developer tool. Relevant for distributing Digital-Stud workflows to non-technical users.
+- **NVIDIA Blog** also covered: "ComfyUI Streamlines Local AI Video Generation | NVIDIA Blog" — GDC 2026 joint announcement with NVFP4 quantization format for RTX-optimized inference
+
+### 🦴 Pose Estimation & Character Control
+- **ControlNet Union + Z-Image-Turbo** community workflow (r/comfyui "My first real workflow! A Z-Image-Turbo pseudo-editor with Multi-LLM prompting, Union ControlNets, and a custom UI dashboard") — practical multi-ControlNet setup using Union adapters with Z-Image. Validates pose+depth union approach on new model family.
+- **LTX-2.3 Union IC-LoRA** (above) — first confirmed unified multi-signal control for video (motion track + depth + pose simultaneously on 22B). Best available multi-control path for Digital-Stud character video as of this run.
+- **arXiv Mar 2026 "Controllable Complex Human Motion Video Generation via Text-to-Skeleton Cascades"** (arXiv:2603.08028v1) — T2V via explicit skeleton intermediate: text → skeleton sequence → video. Addresses complex multi-person motion. Relevant for choreography/dance generation workflows.
+- **ConfCtrl: Enabling Precise Camera Control in Video Diffusion via Confidence-Aware Video Interpolation** (arXiv:2603.09819v1) — confidence-aware interpolation for camera trajectory following in video diffusion. Practical for virtual camera moves in character scenes.
+
+### 🎛️ LoRA Training SOTA
+- **Kohya SS recent releases (0.10.x series)** additions confirmed:
+  - **Differential Output Preservation (DOP) loss** — prevents catastrophic forgetting of base model during LoRA training; critical for multi-concept character LoRAs
+  - Flux ControlNet support
+  - Pseudo Huber loss option
+- **FLUX.2 LoRA best settings (community consensus Mar 2026)**:
+  - LR: 5e-5 (not 1e-4) for stable FLUX.2 training
+  - Network rank: 32 (sweet spot); 64 for complex character outfit variation
+  - Steps: 1500-2000 for 15-30 images; 2000-3000 for 30-50 images
+  - Resolution: 1024×1024 + bucket resolution for mixed aspect ratios
+  - Precision: bf16 (matches FLUX.2 training; not fp16)
+  - Dataset: 20-25 high-quality diverse images >> 200 mediocre ones
+- **Wan 2.2 5B I2V LoRA training with AI-Toolkit**: Image-only dataset confirmed to work for character LoRA on Wan (ostris "How to Train a Wan 2.1 Character LoRA Using Only Images"). Extends to Wan 2.2 architecture.
+
 ## 🏁 Run #95 Delta — 2026-03-13 20:30 Prague
 
 ### 🖼️ Image Gen SOTA
