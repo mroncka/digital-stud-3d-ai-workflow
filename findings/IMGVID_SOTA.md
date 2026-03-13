@@ -1,4 +1,148 @@
-<!-- last_updated: 2026-03-13T07:30:20+01:00 run_69 -->
+<!-- last_updated: 2026-03-13T08:03:13+01:00 run_70 -->
+## 🏃 Run #70 Delta — 2026-03-13 08:03 Prague
+
+### 🖼️ Image Gen SOTA
+- **Midjourney V8 — still not released** (confirmed 08:03 check):
+  - No Reddit/X/alpha.midjourney.com confirmation as of 08:03 Prague time
+  - Remains: "early next week" from March 11 OH = week of March 16
+  - Status: unchanged from run 69 — monitor alpha.midjourney.com hourly
+- **Reve Image 1.0 — major sleeper discovery** (Halfmoon AI, Palo Alto):
+  - ⚡ **New native ComfyUI nodes in v0.17.0** (feat #12848 — merged yesterday)
+  - Free text-to-image API via reve.art (Reve AI)
+  - **Benchmarks**: #13 image editing (Elo 876, 31.5% win rate) | #28 T2I (Elo 826)
+  - Outperforms Midjourney v6.1, DALL-E 3, SD in key areas
+  - **Core strength**: superior text rendering in images (historically very hard)
+  - Also accessible via ComfyUI-fal-API custom nodes (gokayfem/ComfyUI-fal-API)
+  - WaveSpeedAI blog: "Reve Text-to-Image" also available on WaveSpeed API
+  - **Practical**: ⚡ test Reve Image nodes in v0.17.0 immediately — free API, strong T2I+editing
+  - Reddit: unofficial SDK for Reve Image (Halfmoon) — searchable on r/StableDiffusion
+- **ComfyUI DGX Spark Docker container** (NVIDIA dev forums — March 13):
+  - New Docker container released for running ComfyUI on NVIDIA DGX Spark
+  - DGX Spark = NVIDIA's personal AI supercomputer (GB10 Grace Blackwell SoC)
+  - **Practical**: relevant if high-VRAM inference is needed; watch for GB10 benchmarks
+- **FLUX.2 Klein ecosystem — more LoRA releases** (YouTube "Five NEW Flux.2 Klein LoRAs 2026"):
+  - flux-2-klein-4B-zoom-lora (new) — zoom effect LoRA for Klein 4B
+  - linoyts/Flux2-Klein-Delight-LoRA (HuggingFace) — studio-neutral lighting LoRA
+  - fal/flux-klein-9b-virtual-tryon-lora — virtual clothing try-on (Klein 9B Edit)
+  - WaveSpeedAI Klein 9B Edit LoRA API (separate from 4B) — precise image editing with LoRA
+  - **Practical**: Klein LoRA ecosystem is fast-forming; specialized LoRAs performing better than generalized character LoRAs
+- **Grok Video Extension "Extend from Frame"** (early March 2026):
+  - Grok rolled out video extension feature: extend a video from ANY frame
+  - Signals xAI entering the video generation tooling space
+  - Consumer-facing; no open weights
+
+### 🎬 Video Gen SOTA
+- **LTX-2.3 Day-0 ComfyUI support — full details confirmed** (blog.comfy.org + Kijai):
+  - ⚡ **Kijai/LTX2.3_comfy** HuggingFace model pack — native support confirmed
+  - Issue #1957 opened in kijai/ComfyUI-WanVideoWrapper requesting LTX-2.3 integration (awaiting)
+  - WaveSpeedAI LTX 2.3 Image-to-Video LoRA API live (March 7, 2026)
+  - **VRAM**: 32GB recommended, but 12GB workable with Kijai GGUF (Q5_K_S)
+    - RTX 3090 24GB: confirmed working (FLF2V First-Last Frame workflow)
+    - 6GB VRAM: workable via low VRAM workflow (YouTube confirmed)
+  - **LTX-2.3 three official pipelines deep-dive** (r/StableDiffusion pipeline comparison thread):
+    1. **HQ Image-to-Video** (highest quality):
+       - Sampler: `res_2s` (ClownSampler from Res4LYF) — KEY differentiator
+       - Stage 1: ~15 steps | Stage 2: 3 steps
+       - Guidance: MultiModalGuider (CFG Video 3.0 / Audio 7.0)
+       - LoRA: distilled split (Stage 1: 0.25 strength, Stage 2: 0.50)
+       - Holds 2 ledgers (highest VRAM); slowest but best quality
+       - **Critical**: use eta 0.2–0.3 with res_2s to prevent artifacts
+    2. **Audio-to-Video Balanced**:
+       - Sampler: Euler | Stage 1: ~15 steps | Stage 2: 3 steps
+       - Guidance: MultiModalGuider (CFG Video 3.0 / Audio 1.0)
+       - LoRA: base + full distilled (1.0 strength) — balanced speed/quality
+    3. **Desktop Distilled** (max speed, matches LTX Desktop):
+       - Sampler: Euler | Stage 1: 8 steps (hardcoded) | Stage 2: 3 steps
+       - Guidance: Simple CFG Guider (CFG 1.0) — no CFG overhead
+       - Single ledger; ultra-low VRAM
+       - **Finding**: "LTX Desktop is better than ComfyUI" debate resolved — use Pipeline 3 to match Desktop quality in ComfyUI
+  - **LTX-2.3 LoRA training first attempts** (Reddit — confirmed broken compatibility):
+    - Old LTX2 LoRAs "completely ruined results" on LTX-2.3 — incompatible
+    - Community training on RunPod (PyTorch template) as of March 2026
+    - Lightricks/LTX-2 GitHub has official LoRA trainer — use for LTX-2.3
+    - LTX-2.3-22b-IC-LoRA-Motion-Track-Control: official motion track control LoRA (HuggingFace)
+    - **Action**: update ltx23_ic_lora.json workflow with Pipeline 1 (res_2s + MultiModalGuider + eta 0.2–0.3)
+- **WanGP — GPU Poor video generator** (deepbeepmeep/Wan2GP):
+  - Supports: Wan 2.1, Wan 2.2, Qwen Image, HunyuanVideo, LTX Video, FLUX — all in one repo
+  - Optimized for low-VRAM users; good single-file runner alternative to ComfyUI
+  - **Practical**: alternative to ComfyUI for rapid video prototyping on low-VRAM machines
+- **Wan-Alpha** (WeChatCV/Wan-Alpha — CVPR 2026):
+  - New T2V model from WeChat CV Lab, Tencent — paper accepted CVPR 2026
+  - Wan-Alpha-v2.0 qualitative results: various scenes, accurate rendering
+  - Separate from Alibaba Wan; different team (Tencent's WeChat CV)
+  - **Practical**: watch for open weights; CVPR 2026 acceptance = peer-reviewed quality
+- **Video SOTA landscape snapshot** (updated March 2026):
+  - Closed: Kling 3.0 > Veo 3.1 > Sora 2 > Runway Gen-4.5 > Seedance 2.0
+  - Open: LTX-2.3 (22B, 4K, audio) > Wan 2.2 > HunyuanVideo 1.5 (8.3B)
+  - Kling Image 3.0 (Omni) also launched — cinematic narrative from still frames
+  - ByteDance Seedance 2.0: "goes viral in China" (Reuters Feb 12) — quad-modal
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 full breakdown — run 70 additions**:
+  - **Reve Image API nodes**: `feat(api-nodes): add Reve Image nodes (#12848)` — merged today
+    - Text-to-image + image editing via Reve API natively in ComfyUI
+    - Also available via fal: `Reve Text-to-Image (fal)` node in gokayfem/ComfyUI-fal-API
+  - **Desktop v0.8.17** ships ComfyUI 0.16.4 (desktop lags behind main by ~1 version)
+    - Desktop still on 0.16.4 — v0.17.0 desktop release pending (watch Comfy-Org/desktop)
+  - **Custom subgraphs endpoint** added (v0.17.0) — enables published subgraph workflows
+  - **ComfyUI App Mode** (CEO Yoland Yan) — simplifies complex workflows into accessible GUIs
+    - New "App Mode" wraps workflows into single-interface apps for non-technical users
+    - **Practical**: relevant for sharing digital-stud workflows with clients
+  - **Fedora 43 ComfyUI setup guide** (stajic.de March 2026) — two Python venvs (3.12 + 3.14) for compatibility
+  - **LTX-2.3 native support** confirmed in blog.comfy.org (Day-0 announcement)
+    - 118 upvotes on r/comfyui — strong community interest
+  - **Wan 2.2 memory optimization update** (WanVideoWrapper):
+    - LoRAs from Wan 2.1 confirmed compatible with Wan 2.2 ✅
+    - Known issue: WAN 2.2 I2V mesh/net texture artifacts on RTX 4070 (open issue)
+    - Fix: change fp16_fast → fp16 in Kijai workflow settings
+- **Kijai/LTX2.3_comfy** (HuggingFace model pack):
+  - FLF2V (First-Last Frame to Video) workflow confirmed working on RTX 3090 24GB
+  - GGUF models available (Q5_K_S) for 12GB VRAM
+  - runeXX injection FLF workflow also available
+
+### 🦾 Pose Estimation
+- **No new pose model today** (confirmed run 70)
+- **LTX-2.3-22b-IC-LoRA-Motion-Track-Control** (official Lightricks HuggingFace):
+  - Motion track control IC-LoRA on LTX-2.3 base — guides motion via tracking
+  - **Practical**: ⚡ alternative to DWPose-based pose for LTX-2.3 workflows; test for character motion
+
+### 🎓 LoRA Training
+- **Klein Consistency LoRA full details** (dx8152/Flux2-Klein-9B-Consistency):
+  - ⚡ **Apache 2.0 license** — fully open
+  - Base model: FLUX.2-klein-9B (not 4B)
+  - **No trigger words needed** — improves consistency automatically
+  - 3,072 downloads last month — strong adoption
+  - HuggingFace Space: prithivMLmods/FLUX.2-Klein-LoRA-Studio
+  - Video tutorial: https://youtu.be/JXMbbbdfnSg
+  - YouTube workflow: axiomgraph/ComfyUIWorkflow on GitHub
+  - **Practical**: ⚡ highest priority Klein test — no trigger words, Apache 2.0, high downloads
+- **AI-Toolkit Klein 4B confirmed — 8GB VRAM** (Facebook ComfyUI group):
+  - "AI-Toolkit can already train LoRA for F2K (Flux 2 Klein) 4B and 9B"
+  - 4B trainer confirmed working on 8GB VRAM
+  - **Practical**: ⚡ 8GB VRAM accessible training path for Klein 4B character LoRAs
+- **Klein character LoRA — confirmed difficult** (30+ runs, mixed results):
+  - r/StableDiffusion thread: 30+ checkpoints from single run = "very mixed"
+  - **Alternative that works better**: Qwen edit model with multiple character images (Facebook ComfyUI group)
+  - Specialized LoRAs (virtual try-on, zoom, lighting) outperform general character LoRAs
+  - **Action**: for character consistency in Digital-Stud → use Qwen image edit + multi-image instead of Klein character LoRA
+- **BFL official Klein style training** (docs.bfl.ai/flux_2/flux2_klein_training_example):
+  - Style LoRA training guide using synthetic dataset (FLUX.1 dev + illustrative LoRAs)
+  - Recommended: Linear rank 128 / alpha 64, Conv rank 64 / alpha 32 (~500MB LoRA)
+  - Steps: 3000 | LR: 0.000095–0.0001 | Optimizer: adamw8bit | Batch: 1
+  - Timestep: shift (style) or weighted (content)
+- **FLUX.2 LoRA 2026 complete guide** (Medium — Kevin Gabeci, Apatero):
+  - From serverless LoRA training infra builder perspective
+  - Covers FLUX.2 fine-tuning vs LoRA tradeoffs for production
+  - **Practical**: reference for building Digital-Stud character pipeline
+- **LTX-2.3 LoRA training** (first community attempts — Runpod):
+  - Official trainer: Lightricks/LTX-2 GitHub
+  - Old LTX2 LoRAs: completely incompatible with LTX-2.3 (broken results confirmed)
+  - WaveSpeedAI LTX 2.3 I2V LoRA API: live as of March 7 — test for custom style before training locally
+  - LTX-2.3-22b-distilled-lora-384: lighter LoRA variant available for inference
+- **OneTrainer Klein support**: still in PR / development (Issue #1265); no preset yet — use AI-Toolkit instead
+
+---
+
 ## 🏃 Run #69 Delta — 2026-03-13 07:30 Prague
 
 ### 🖼️ Image Gen SOTA
