@@ -1,4 +1,55 @@
-<!-- last_updated: 2026-03-13T17:03:27+01:00 run_88 -->
+<!-- last_updated: 2026-03-13T17:30:15+01:00 run_89 -->
+## 🏁 Run #89 Delta — 2026-03-13 17:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **CORRECTION/CLARIFICATION run 88**: "Nano Banana Pro" = Google's consumer branding. The underlying model architecture is **Gemini 3.1 Flash Image** (not Gemini 3 Pro as stated in run 88). "Nano Banana 2" is a PM/product community label (Aakash Gupta analysis) for the same model. The fal.ai canonical listing calls it "Nano Banana 2" with Gemini 3.1 Flash Image backend. #1 text-to-image benchmark ranking confirmed with 5-person character consistency.
+- **Z-Image (Alibaba Tongyi-MAI)** — **NEW MAJOR OPEN-SOURCE ENTRY**: 6B parameter image family. Z-Image-Turbo = photorealistic images in <1 second, 8 inference steps. Bilingual text rendering. Ranked **#1 among open-source models** (LinkedIn Gen AI News Mar 14, 2026; ranked 8th overall across all models). Free via cuty.ai. GitHub: Tongyi-MAI/Z-Image. ComfyUI integration guide: stable-diffusion-art.com/z-image. **Immediate priority: add to Digital-Stud workflow as primary open-source fallback for speed runs.**
+- **Seedream V4.5** (ByteDance) — NEW: Generation + editing in one unified architecture. Competitive with FLUX.2 [pro] on photorealism at $0.04/img. Combined gen+edit is key differentiator for iterative workflows.
+- **FLUX.2 [pro]** pricing clarification: $0.03 per megapixel (= $0.03 for 1024x1024). Multi-reference editing confirmed: up to 9 source images simultaneously. Studio-quality photorealism, zero config.
+- **Gemini API free tier clarification**: Confirmed 500 req/day free via Google AI Studio — this is the same endpoint whether called Nano Banana or Gemini Flash Image. Free tier has no commercial rights. Paid = $0.039/img with full commercial rights.
+- **OpenRouter free tier** (Feb 2026): 24 completely free AI models including image gen. Worth testing for zero-cost pipeline fallbacks.
+- **fal.ai scale**: Now 1,000+ generative models (up from 600+ noted run 88). 5-10s cold starts vs 20-60s elsewhere. Day-of-release availability confirmed. Single API key for all.
+
+### 🎬 Video Gen SOTA
+- **HunyuanVideo 1.5** (Tencent) — IMPORTANT DETAIL CORRECTION: 8.3B parameters (not 13B base as cited in run 87 from HuggingFace). This is a **new lighter release** (Dec 24 2025, HuggingFace: tencent/HunyuanVideo-1.5). Runs on 14GB VRAM minimum. Step-distilled = 8-12 steps, 75% speedup on RTX 4090. **Full training code released** (FSDP + gradient checkpointing + Muon optimizer). LoRA fine-tuning supported. Available via HuggingFace Diffusers + ComfyUI. Separate from HunyuanVideo base (13B) released Mar 2025.
+- **Wan 2.2 MoE Architecture confirmation**: First open-source MoE video model. T2V-A14B + I2V-A14B. SiliconFlow API = ~$0.29/video. Wan2.2 S2V (Sound-to-Video) now in ComfyUI v0.17.0 with improved >120-frame performance.
+- **Wan 2.6 API pricing confirmed**: ~$0.08/second across Atlas Cloud, fal.ai, Novita AI, Higgsfield. Video reference control = clone actor timing + body language from reference video. Image-to-video "flash" mode = faster/cheaper variant.
+- **Sora 2 API pricing confirmed**: ~$0.05/second (Atlas Cloud). Subscription primary, but API access via Atlas Cloud/fal.ai. Better worldstate persistence + physics vs Kling 3.0.
+- **Seedance 2.0** (ByteDance): Temporal coherence + cinematic structure focus. Longer sequences + improved motion stability. API access via fal.ai.
+- **Veo 3.1** (Google): Enterprise-focused. Strong prompt interpretation + scene composition. Part of Google AI ecosystem.
+- **SiliconFlow** added as confirmed open-source video API platform: Wan 2.2 at $0.29/video competitive with fal.ai.
+- **Character persistence trend**: Multi-tool pipelines (Genra, Magic Hour) combining generation+editing+animation now prioritized over raw model quality.
+
+### 🛠️ ComfyUI Updates
+- **v0.17.0 changelog detail** (released Mar 13, today — docs.comfy.org/changelog confirmed):
+  - **New Nodes**: LatentCut (cut latents at precise points for temporal control), Painter Node (enhanced image editing), Math Expression Node (simpleeval evaluation), ResolutionSelector (aspect ratio presets)
+  - **Subgraph feature officially released**: Package complex node combinations into single reusable subgraph nodes. Parameters panel for editing without entering subgraph. Critical for workflow organization. Full docs: docs.comfy.org/interface/features/subgraph
+  - **Node Replacement system**: Official solution for deprecated/replaced nodes when importing workflows. API for custom node devs. Addresses #1 community pain point.
+  - **New Model Support**: Flux 2 Klein KV Cache (via FluxKVCache node), Wan2.2 S2V (Sound-to-Video) + Wan2.2 Fun Control, WanSoundImageToVideoExtend (manual video extension + audio sync), LTXAV 2.3 (audio-visual synthesis), Qwen-Image-Edit 2509 multi-image editing, Qwen Image Layered, Chroma Radiance (pixel-space image gen), Klingvatar Node
+  - **New API Nodes**: Reve Image API, Gemini 3.1 Flash-Lite to LLM node, TencentSmartTopology
+  - **Audio**: Audio Recording Node, 3-Band Equalizer, ElevenLabs API nodes, Wav2vec2 Audio Encoder
+  - **NVFP4 + FP8 models**: LTX-2.3, FLUX.2 Klein 4B/9B — RTX 50 series: 2.5x perf gain, 60% VRAM reduction (NVFP4)
+  - **Comfy Cloud**: 90% custom nodes on cloud (96GB VRAM Blackwell RTX 6000 Pro), free tier available
+- **FLUX.2 Klein 4B** detail: Fastest Flux model, unifies T2I + image editing in compact architecture. KV Cache node now in v0.17.0. ComfyUI docs: docs.comfy.org/tutorials/flux/flux-2-klein
+
+### 🦴 Pose Estimation SOTA
+- **Sapiens2** (Meta, arXiv OpenReview) — **NEW SOTA**: Improves Sapiens v1 by **+4 mAP pose, +24.3 mIoU segmentation, 45.6% normal estimation**. OpenReview: openreview.net/forum?id=IVAlYCqdvW. Still academic/experimental but sets new ceiling. ComfyUI integration timeline: unknown.
+- **GAtFuN** (Motion-Aware Graph Fusion Network, WACV 2026): 3D pose estimation — **7.8% improvement over SOTA on Human3.6M, 1.9% on MPI-INF-3DHP**. Motion-aware with joint velocity + temporal coherence modeling. More robust to noisy 2D inputs. Relevant for video character animation pipeline.
+- **YOLO26 Pose** (Jan 2026): 43% faster CPU inference than YOLO11 Nano. NMS removed = lower latency. Sizes: N/S/M/L/X (40.9–57.5 mAP). Production standard confirmed.
+- **MTVCraft**: Tokenizing 4D motion for arbitrary character animation (arXiv 2505.10238). Camera fixed at 55° FOV. Pose estimation integrated.
+- **DepthDance** (ICCVW 2025): Complex-pose human image animation with depth guidance (appearance-agnostic).
+- **CharacterShot** (OpenReview): Controllable + consistent 4D character animation with pose estimation confidence tracking.
+- **DWPose ComfyUI path** confirmed: controlnet-dwpose PyPI package. Dense keypoint detection (body+hands+face), ONNX Runtime, CPU+GPU inference. Still the recommended ComfyUI pose ControlNet driver.
+
+### 🎛️ LoRA Training SOTA
+- **HunyuanVideo 1.5 training code release**: Full training pipeline open-sourced (FSDP + gradient checkpointing + Muon optimizer). This is the most significant LoRA training enabler for video gen since musubi-tuner. Community LoRA guides expected to follow quickly.
+- **Wan2.2 S2V LoRA** (Sound-to-Video): ComfyUI v0.17.0 support added. Training methodology TBD — watch musubi-tuner GitHub issues.
+- **Z-Image LoRA** (Tongyi-MAI): Model is 6B open-source. Standard diffusion LoRA training approach applicable (AI-Toolkit / Kohya). Community experimentation just starting (model released ~Mar 2026). **Worth immediate investigation for open-source character LoRA at <1s inference.**
+- **Flux 2 Klein LoRA** (4B/9B): KV Cache model now available in ComfyUI. Training approach = same as FLUX.1 [dev] LoRA paths. Faster inference (Klein) + LoRA = very practical for Digital-Stud production. Test with musubi-tuner FLUX support.
+- **Kolganova/FLUX Kontext LoRA guidance** (musubi-tuner, confirmed Feb 2026): FLUX.1 Kontext support added to musubi-tuner. Enables reference-guided generation + LoRA fine-tuning simultaneously. This is the advanced character consistency path.
+- **OneTrainer vs AI-Toolkit refinement** (run 88 finding confirmed by community): OneTrainer cleaner for character generalization (less overfitting to training set). AI-Toolkit better for quick style LoRAs. Consensus: use OneTrainer for character/face identity critical runs.
+- **Full LoRA training benchmark study (50+ runs FLUX.2, kgabeci.medium.com)** — confirmed still current: 128/64/64/32 network dims, weight_decay 0.00001 cinematic, 7K steps sweet spot, DPM++ 2M Ancestral + SGM Uniform sampler.
+
 ## 🏁 Run #88 Delta — 2026-03-13 17:03 Prague
 
 ### 🖼️ Image Gen SOTA
