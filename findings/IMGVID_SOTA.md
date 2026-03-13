@@ -1,4 +1,143 @@
-<!-- last_updated: 2026-03-13T06:01:18+01:00 run_66 -->
+<!-- last_updated: 2026-03-13T06:30:16+01:00 run_67 -->
+## 🏃 Run #67 Delta — 2026-03-13 06:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **FLUX.2 [klein] 9B-KV** (Black Forest Labs — NEW, March 13, 2026):
+  - KV-cache variant of the 9B model — **2x faster image editing** with multiple reference images
+  - No price increase vs standard klein
+  - FP8 quantized variant: FLUX.2 [klein] 9B-KV-FP8 also on HuggingFace
+  - Full FLUX.2 lineup: [max] flagship, [flex] mid-tier, [klein] 9B-KV optimized, [dev] free self-hosted
+  - Azure Foundry deployment supported day-one for all FLUX.2 models
+  - **Practical**: 2x editing speedup is significant for Digital-Stud multi-reference character pipelines
+- **Qwen-Image 2.0** (Alibaba — launched March 13, 2026):
+  - Unified text-to-image + image editing + multi-scenario in one model
+  - Architecture: lighter than predecessor (was 20B), faster inference
+  - Max input: 1K tokens text, 2K resolution output
+  - Strong Chinese character rendering (benchmark leader for CJK text in images)
+  - Enhanced complex text rendering, realistic texture, instruction comprehension
+  - Blind AI Arena benchmark: superior to Qwen-Image 1.0 on both T2I and I2I
+  - Available via Qwen APP; API expected shortly
+  - **Practical**: strong for multilingual text-in-image workflows; monitor for API release
+- **JiT (Just-in-Time) DiT Acceleration Framework** (arXiv March 2026):
+  - Training-free acceleration for Diffusion Transformers
+  - **7x speedup on FLUX.1-dev** with near-lossless quality
+  - Method: "Spatially Approximated Generative ODE" (SAG-ODE) — spatially anchors computation to salient token regions with smooth interpolation
+  - Outperforms existing temporal acceleration methods on speed-to-fidelity tradeoff
+  - **Practical**: if nodes land in ComfyUI, plug-in 7x speedup for existing FLUX workflows
+- **Sora 1 discontinued** (OpenAI — March 13, 2026, US users):
+  - Sora 1 no longer available in US starting today
+  - Sora integration into ChatGPT planned (The Information report)
+  - Users advised to export existing Sora 1 content (bulk download scripts circulating on Reddit r/SoraAi)
+- **NVIDIA DGX Spark (GB10) + ComfyUI** thread active on NVIDIA Developer Forums (March 13):
+  - Community running ComfyUI on DGX Spark — early reports of performance; monitor for benchmarks
+  - CUDA 13.0 required for ComfyUI's PyTorch support — update GPU drivers if ComfyUI fails to start
+- **Instruction-based Image Editing Survey** (Springer, published March 6, 2026):
+  - Comprehensive survey across data, models, evaluation, applications
+  - Validates FireRed-Image-Edit and Nano Banana families as current open/closed SOTA
+
+### 🎬 Video Gen SOTA
+- **LTX-2.3 full production spec confirmed** (Lightricks, March 2026):
+  - 4K native output + HDR EXR workflow support (broadcast delivery specs)
+  - **Native audio generation** + portrait support in one model
+  - Runs on 8GB VRAM (RTX 3070 confirmed) — best VRAM efficiency in class
+  - 4.5 million downloads in ~2 months post-release
+  - LTX Desktop app: full nonlinear video editor running locally on GPU
+  - Multi-modal: T2V, audio-to-video, keyframe interpolation, footage replacement
+  - Production studios fine-tuning on 10 min footage → replaces rendering pipelines, single-day single-GPU training
+  - API available for cloud use; open source on HuggingFace + GitHub
+  - ComfyUI blog: "LTX-2.3 Day-0 support" — improved I2V motion consistency, fewer frozen frames, smarter prompts
+  - **Practical**: ⚡ top pick for local video generation — 8GB VRAM + 4K + audio is unmatched open-source
+- **WAN 2.7 release status — Reddit leak confirmed** (r/StableDiffusion, March 12, 2026):
+  - Alibaba internal: "Wan2.7 is scheduled for release in March, featuring comprehensive features"
+  - Community reaction: strong skepticism re: potential closed-source shift; "No one cares unless it can be run locally"
+  - ⚠️ Still no official GitHub release — monitor Wan-Video/Wan-Video GitHub daily
+- **Sora 1 → ChatGPT integration** (confirmed by The Information):
+  - Sora deprecated as standalone, merging into ChatGPT product
+  - Sora 2 remains as platform baseline; Sora 1 sunset today (March 13)
+- **Veo 3.1 "Ingredients to Video"** (Google, March 11-13, 2026):
+  - New controllable video generation feature in Google Workspace/Vids
+  - Vertical video support added (Gemini App)
+  - AI Ultra Access tier includes Veo 3.1 for professional video production
+  - Used in combo with Nano Banana Pro for product ad video workflows (YouTube tutorial viral)
+- **Kling 3.0 community benchmarking** (active March 12-13):
+  - Side-by-side comparisons: Kling 3.0 vs Seedance 2.0 vs Veo 3.1 circulating on Instagram/Threads
+  - No Kling 3.1 release yet — 3.0 is current version
+- **RunPod 2026 State of AI Report** (released March 12):
+  - "Massive shift toward Qwen, Blackwell, and **modular video pipelines**"
+  - Modular pipeline architecture confirmed as dominant trend replacing monolithic video models
+  - Webflow acquired Vidoso (AI content generation) March 12 — enterprise video AI consolidation accelerating
+
+### 🔧 ComfyUI Ecosystem
+- **Vidu Q2 now live in ComfyUI** (ComfyUI blog post, March 2026):
+  - Up to **7 reference subjects** in a single workflow for character consistency
+  - **3x faster** than previous Vidu version
+  - Breakthrough character consistency across multi-subject scenes
+  - **Practical**: direct relevance for multi-character Digital-Stud scenes
+- **ComfyUI-PainterI2V** (custom node, princepainter on GitHub):
+  - Accelerates WAN 2.2 video generation when using accelerators (TeaCache etc.)
+  - Part of ComfyUI v0.17.0's Painter node ecosystem expansion
+  - Available via ComfyUI Manager
+- **HY 3D Advanced Features in ComfyUI** (ComfyUI Threads announcement):
+  - Production-ready 3D post-processing from HunyuanVideo 3D
+  - Closer to same workflow as standard video generation
+  - **Practical**: 3D-aware video post-processing now accessible without separate pipeline
+- **NVIDIA GDC 2026 ComfyUI Blog Post** (NVIDIA Blog, March 2026):
+  - ComfyUI App View demo — workflows as shareable no-code apps
+  - NVIDIA RTX Video Super Resolution integration
+  - New NVFP4 models (RTX 5000 series optimized quantization)
+  - CUDA 13.0 + PyTorch 2.7 required for RTX 5000 / DGX Spark
+  - Sage Attention + `--fast` flag: community benchmarked significant speedup on 4090/5090
+- **ComfyUI as workflow-to-app platform**: ComfyUI blog confirms "turn any ComfyUI workflow into a shareable, no-code app" — new App View shipped in v0.17.x timeframe
+- **YOLO26 ComfyUI integration**: ComfyUI-YOLO (kadirnar/ComfyUI-YOLO) supports Ultralytics models incl. YOLO26 — object detection + segmentation + pose estimation nodes; ComfyUI-YoloNasPose-Tensorrt for TensorRT ultra-fast pose. YOLO26 NMS-free clarification: designed for edge/low-power (NMS removal for true end-to-end inference) — different optimization axis vs YOLO11 (YOLO11 still stronger for full-precision GPU pose pipelines)
+- **WanGP** (deepbeepmeep): supports Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX, Flux — single repo for GPU-poor optimized video gen; gaining traction as recommended local setup
+
+### 🦾 Pose Estimation
+- **YOLO26 NMS-free architecture confirmed** (Ultralytics, released January 14, 2026):
+  - True end-to-end NMS-free inference — simplifies export and edge deployment
+  - Slower on GPU in some benchmarks vs YOLO11 (headline "Slower Results, but Intelligent" — Medium article)
+  - **Practical clarification**: YOLO26 is optimized for edge/CPU deployment; for GPU pose preprocessing in ComfyUI, YOLO11 Pose may still outperform on raw throughput; YOLO26 better for mobile/edge nodes
+  - ComfyUI integration: kadirnar/ComfyUI-YOLO already supports; YOLO26 Pose YouTube tutorial published
+- **DWPose status** (confirmed active March 2026):
+  - DWPose Estimator node actively used in ComfyUI for WAN 2.2 animation (Instagram reel March 2026)
+  - No v2 or major update found — DWPose remains stable ICCV 2023 reference implementation
+  - Still the recommended whole-body pose estimator for ComfyUI animation pipelines
+- **FaceCam practical workflow** (arXiv 2603.05506 — follow-up):
+  - Portrait video camera control without 3D priors — combines multi-view studio + monocular synthetic data
+  - Multi-shot stitching strategy for seamless scene transitions
+  - No code/ComfyUI node yet — paper-only stage; watch for implementation
+- **SAVE (Speech-Aware Video Representation Learning)** (arXiv 2603.08224, March 2026):
+  - New SOTA on text-to-video retrieval across all datasets (MSRVTT, MSVD, DiDeMo)
+  - Audiovisual method outperforming AVIGATE baseline
+  - **Practical**: relevant for audio-conditioned video search + retrieval pipelines
+- **Panoramic Human Pose Estimation paper** (SSRN 2026):
+  - Novel parameter metrics for panoramic pose; benchmarks across 6 methods on PanoPose dataset
+  - Niche but relevant for 360° video character workflows
+- **Efficient 3D Human Pose via Diffusion** (arXiv 2508.21363v3, updated 2026):
+  - Addresses iterative inference cost of diffusion-based 3D pose models
+  - Improved latency while maintaining multi-hypothesis quality — relevant for real-time pose-conditioned video
+
+### 🎓 LoRA Training
+- **WAN video LoRA ecosystem expanding**:
+  - WanGP repo (deepbeepmeep) now the de-facto GPU-poor optimization layer for Wan 2.1/2.2 — LoRA compatibility confirmed
+  - Reddit r/StableDiffusion WAN 2.7 thread: community explicitly requesting "local LoRA training support" as prerequisite for adoption — Alibaba aware of demand
+  - MLPerf v6.0 Wan 2.2-T2V-A14B adoption increasing training tooling ecosystem around this base
+- **LTX-2.3 LoRA potential**:
+  - 10-min footage → single-day single-GPU fine-tune confirmed by production studios
+  - Suggests strong LoRA receptivity; official LoRA training guide expected soon
+  - Watch ltx.studio/blog and HuggingFace LTX org for training docs
+- **AI-Toolkit / Kohya stable** — no new release this week
+- **OneTrainer** — no new release confirmed this week
+- **HunyuanVideo LoRA** (community active):
+  - WanGP supports HunyuanVideo with GPU-poor optimizations — LoRA should work through same path
+  - FramePack (HunyuanVideo variant) in StreamWise paper (arXiv 2603.05800) — assigned single A100 per model instance in multi-modal serving system; confirms production deployment patterns
+- **Three-family taxonomy** (confirmed stable reference):
+  - (1) HF peft, (2) diffusers integration, (3) standalone (AI-Toolkit, Kohya) — match to target model when training
+- **Character consistency techniques evolving**:
+  - Vidu Q2 (7 reference subjects, 3x faster) is a strong no-LoRA alternative for character consistency
+  - For identity-locked workflows still prefer LoRA; for flexible multi-character: Vidu Q2 + WAN 2.2
+
+---
+
 ## 🏃 Run #66 Delta — 2026-03-13 06:01 Prague
 
 ### 🖼️ Image Gen SOTA
