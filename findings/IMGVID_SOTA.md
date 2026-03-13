@@ -1,4 +1,56 @@
-<!-- last_updated: 2026-03-13T13:30:02+01:00 run_81 -->
+<!-- last_updated: 2026-03-13T14:04:06+01:00 run_82 -->
+## 🏃 Run #82 Delta — 2026-03-13 14:04 Prague
+
+### 🖼️ Image Gen SOTA
+- **Stable Diffusion 4 Ultra CONFIRMED open weights** (Stability AI, March 2026): upgraded diffusion transformer; photorealism focus; open-weight release maintained (~$0.035/image API, but local use free); significant for local pipeline — evaluate as replacement for FLUX.2 Dev for photorealism tasks
+- **FLUX.2 Klein NVFP4 variants live** (NVIDIA GDC 2026, March 10-12): NVFP4 and FP8 available NOW for FLUX.2 Klein 4B/9B; delivers 2.5x faster + 60% VRAM reduction on RTX 50 Series; FP8 gives 1.7x faster + 40% VRAM cut on RTX 40/50; **LTX-2.3 NVFP4 coming soon** per NVIDIA announcement
+- **Luma Uni-1 API rollout confirmed** (March 5-7 launch): pricing not yet announced; available via Luma Agents creative assistant and Luma API; tops RISEBench over GPT-Image-1.5 and Nano Banana 2; autoregressive transformer; identity/pose/composition transfer across images; sequential generation in single keyframe sequence — high value for character consistency use case
+- **GPT-5.4 context**: deeplearning.ai confirms GPT-5.4 Pro vs Gemini 3.1 Pro Preview benchmark race ongoing; image gen side is GPT-Image-1.5 lineage ($0.034-$0.20/image); Gemini API free tier now confirmed 1,000 images/day via AI Studio (Imagen 4 Fast at $0.02/image paid)
+- **Grok Imagine major update** (March 2026): Elon Musk direct callout signal; fresh capabilities push; xAI competing in image+video space; no specific technical details yet but worth monitoring API access
+- **Z-Image (Tongyi-MAI) 6B**: ranked #1 open-source on Artificial Analysis leaderboard; strong bilingual text rendering; lighter than FLUX.2; relevant for non-English text-in-image tasks
+- **Free tier summary 2026**: Gemini Flash = 100 img/day free (best default); AI Studio = 1,000/day free (Imagen 4 Fast); Adobe Firefly = 2,000 monthly credits (commercial-safe); Leonardo.ai = 150 fast tokens/day; FLUX.2 Dev = unlimited free local
+
+### 🎬 Video Gen SOTA
+- **Helios (ByteDance) — new open-source 14B real-time video model** (March 9, 2026): 19.5 FPS on single H100 with only 3 diffusion steps; 60-second coherence; T2V + I2V + V2V unified; Base/Mid/Distilled variants on HuggingFace; **Day-0 ComfyUI support**; GitHub source code live; native Diffusers + vLLM-Omni integration — **significant find: first open-source real-time quality video model at this scale**
+- **LTX-2.3 post-launch community uptake**: "mastering guide" circulating (4K/50FPS, camera control, A/V sync, color loss fixes); 42GB model running on 32GB VRAM via ComfyUI memory optimizations; community FLF2V gap identified — no official First-Last-Frame workflow yet; Kijai's FLF2V templates and TTP Toolset nodes filling the gap; GGUF distilled variants on PromptHero (v1.1.1 updated March 10); WaveSpeedAI LTX-2.3 Video Extend cloud option live
+- **MLPerf Inference v6.0** (March 10): added Text-to-Video benchmark category using Wan2.1-T2V-A14B-Diffusers; signals Wan 2.1 is the industry-standard reference T2V model for benchmarking
+- **Picsart AI Playground** (new): 90+ models in one UI including VEO 3.1, Sora 2, Kling 3.0, Runway Gen4.5, Luma Ray — useful for quick API comparisons without committing to individual subscriptions
+- **LTX Desktop** (open-source): desktop app for LTX-2.3 local inference; simplifies non-ComfyUI use case
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI App Mode + App Builder + ComfyHub LAUNCHED** (March 10, 2026 — missed in run #81): major platform evolution:
+  - **App Mode**: transforms any workflow into simplified UI hiding node graph — non-technical users can run pro pipelines
+  - **App Builder**: creator specifies which params are exposed
+  - **Shareable App URLs**: distributable browser links, no install required
+  - **ComfyHub Preview**: marketplace for community workflows at comfy.org/workflows — replaces manual JSON sharing
+  - Source: globenewswire.com/news-release/2026/03/10/...
+- **RTX Video Super Resolution ComfyUI Node** (NVIDIA GDC, March 10-12): 4K upscaling node; 30x faster than alternative local upscalers; available via PyPI; RTX 5090 optimized
+- **AMD Radeon RX 9000 Series ComfyUI support** (ROCm 7.1): official AMD blog post; extends ComfyUI beyond NVIDIA; relevant for users with AMD hardware
+- **IP-Adapter V2 community tutorials** this week: portrait outfit swapping workflow gaining traction; enhanced character animation control
+- **LTX-2.3 ComfyUI nodes** maintained by Lightricks at ComfyUI-LTXVideo repo; official I2V + T2V templates; FLF2V via community nodes
+- **GTC 2026 (March 16-19)**: NVIDIA session on building RTX-accelerated generative workflows in ComfyUI — worth watching for more node announcements
+
+### 🦾 Pose / Avatar / 3D
+- **MultiAnimate (CVPR 2026)**: pose-guided image animation DiT framework; Identifier Assigner + Adapter capturing per-person cues and inter-person relationships; extensible multi-person animation — upgrade path over single-person AnimateDiff-style workflows
+- **DINO-ALF** (arXiv 2603.08028, this week): deformation-aware appearance conditioning for pose-conditioned video diffusion; uses DINO patch descriptors (not CLIP); addresses large pose changes + self-occlusions; part of text-to-skeleton→pose-conditioned video synthesis cascade; potential drop-in upgrade for pose_controlnet.json workflow
+- **Blur2Sharp** (arXiv scout): dual-conditioning design for novel pose + view synthesis; 3D Human NeRF stage → diffusion refinement; more robust than single-stage approaches for out-of-distribution poses
+- **NBAvatar (arXiv 2603.12063)**: confirmed published today; no code release yet; IIT Genova; neural billboards + texture primitives for hand-face interaction rendering; watch for GitHub release
+- **LTX-2.3 First-Last-Frame pose workflow**: community FLF2V gap confirmed — opportunity to create ltx23_flf2v_pose.json artifact in future artifact run
+- **SMPL-X foot motion reconstruction** (arXiv 2603.09681): new method fixing erroneous ankle predictions in monocular video; directly relevant for full-body animation quality
+- **TheDenk/wan2.2-controlnets**: remains primary Wan 2.2 pose ControlNet path; no new update this week
+
+### 🎓 LoRA / Identity
+- **ai-toolkit (ostris)**: no major new commit; stable; remains recommended for FLUX.2 Dev/Klein character training
+- **musubi-tuner**: confirmed recommendation for HunyuanVideo 1.5 LoRA training; no new release this week
+- **Unsloth + HuggingFace Jobs FREE training** (HuggingFace blog, March 2026): free LoRA training pipeline via HF Jobs — potential cost-saving for prototype runs before local training
+- **ID-LoRA (2603.10256)**: still no code; Tel Aviv University
+- **SoLA (2603.11239)**: still no code
+- **Video2LoRA (2603.08210)**: still no code
+- **LoRA rank consensus** reinforced: rank 16-32 face/character FLUX.2; rank 64+ style; Civitai 40-epoch hard cap enforced — local training only for serious runs
+- **NVIDIA GTC LoRA session** (March 16-19): watch for new fine-tuning guidance on RTX-accelerated training
+
+---
+
 ## 🏃 Run #81 Delta — 2026-03-13 13:30 Prague
 
 ### 🖼️ Image Gen SOTA
