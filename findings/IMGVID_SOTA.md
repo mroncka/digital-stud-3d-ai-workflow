@@ -1,4 +1,56 @@
-<!-- last_updated: 2026-03-13T21:30:01+01:00 run_97 -->
+<!-- last_updated: 2026-03-13T22:01:25+01:00 run_98 -->
+## 🏁 Run #98 Delta — 2026-03-13 22:01 Prague
+
+### 🖼️ Image Gen SOTA
+- **NVIDIA GDC 2026 Local AI Gen Announcements (March 13, 2026)**: SIGNIFICANT for Digital-Stud local pipeline:
+  - **NVFP4/FP8 compressed model variants** for FLUX.2 Klein 4B and LTX-2.3 → up to 2.5x performance gains, 60% lower VRAM requirements on RTX GPUs. Key for 12-16GB VRAM setups.
+  - **ComfyUI App View** — simplified UI mode (hides nodes), targets non-technical creators. Also **ComfyHub** platform launched (see ComfyUI section).
+  - **RTX Video Super Resolution** — 4K upscaler for AI video, 30x faster than local alternatives, 60% lower VRAM. Available for ComfyUI workflows.
+  - Official NVIDIA blog post: blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc/
+- **Image Gen Arena Elo (March 11 verified)**:
+  1. Nano Banana 2 (Google): **1280 Elo** (best overall, $0.045/img, 1500/day free)
+  2. FLUX.2 Pro v1.1 (BFL): **1265 Elo** ($0.055/img, strong photorealism, weaker text ~80%)
+  3. GPT Image 1.5 (OpenAI): **1264 Elo** (best text accuracy ~95%)
+  4. Qwen Image 2.0 (Alibaba): **#1 on Arena for T2I + editing**, 7B, 2K, $0.075/img, 100 free images for new users
+  5. SD 4 Ultra: open weights, best local photorealism
+- **DeepSeek V4 RELEASED (early March 2026, Apache 2.0)**: Confirmed out. ~1T params MoE (32B active), 1M context window, native multimodal (text+image+video generation). Apache 2.0 license. ~$0.14/M input tokens. Optimized for Chinese hardware (Huawei/Cambricon). Image/video gen quality vs FLUX.2/Kling not yet community-benchmarked. Track HuggingFace weights.
+- **Sora 1 deprecated US Mar 13** → Sora 2 only. No practical impact for local workflow.
+- **Wan 2.7 rumored** for March 2026 (r/StableDiffusion post). Open weights status **uncertain** — one community thread states "Wan isn't releasing open weights anymore." HIGH PRIORITY to verify before planning Wan 2.7 workflows.
+
+### 🎬 Video Gen SOTA
+- **Grok Imagine: multi-image video (LAUNCHED March 13, 2026)**: NEW CAPABILITY. Up to 7 reference images → single synthesized video. Characters from one photo + locations from another + objects from others = one output clip. API: $0.05/second for 720p with native audio. Live on iOS/Android/Web for X Premium. Relevant for Digital-Stud multi-reference character animation workflows.
+- **Veo 3.1 API via APIPASS**: $0.40/8s clip vs $6.00 Google Vertex AI/Replicate/Fal.ai → 93% savings. High-quality cinematic with native 4K + audio. Worth adding to api_test scripts.
+- **Best model decision tree (March 2026)**:
+  - Best overall quality (open): LTX-2.3 (4K, audio, IC-LoRA)
+  - Best proprietary + audio: Veo 3.1 (4K native, Google Flow)
+  - Best API value: Veo 3.1 via APIPASS ($0.40/8s), Seedance 2.0 via WaveSpeedAI
+  - Best multi-reference video: Grok Imagine (7 ref images)
+  - Best open self-hosted: Wan 2.6 (8GB VRAM, fast, 720p)
+  - Best proprietary consumer: Kling 3.0 (4K 60fps, physics)
+- **LTX-2.3 RTX 3090 benchmark confirmed**: 5s video in ~4s on H100; ~6 min for 3s @ 24FPS on RTX 3080 8GB. Our `comfyui/workflows/ltx23_ic_lora.json` targets RTX 3090 24GB — well within spec.
+- **Wan 2.2 GGUF Lightning**: 4-step inference variant confirmed in ComfyUI community (r/comfyui). Significant for low-VRAM 12GB generation. Pairs with existing `wan22_img2vid.json`.
+
+### 🛠️ ComfyUI Ecosystem
+- **ComfyHub (Launched March 13, 2026)**: New community platform for discovering, sharing, running ComfyUI apps. Workflows published as single shareable URLs with embedded config. Major ecosystem shift — enables distribution without requiring node expertise from end users. Relevant for Digital-Stud: can package finished character generation workflows as shareable apps.
+- **ComfyUI App Builder / App View**: Hides node graph, exposes only creator-defined inputs/outputs. Workflow creators specify which parameters users see. Transformative for client-facing pipelines.
+- **ComfyUI Subgraph (March 2026)**: Reusable, composable workflow building blocks. Supports production image gen via Flux 2. Major workflow organization improvement for complex multi-model pipelines.
+- **ComfyUI Manager v4.1b2**: Updated, improve package version compatibility management and node discovery. Check if auto-updating via existing ComfyUI Manager installations.
+- **Bjornulf v0.79 additions**: GPT-Image-1 API node (v0.78), Ollama Talk fix (v0.79), expanded TTS (Kokoro), 11+ loop variants, FFmpeg video ping-pong. Now 170+ nodes total.
+- **NVFP4/FP8 model files**: FLUX.2 Klein NVFP4 and LTX-2.3 NVFP4 variants available via NVIDIA — load via standard ComfyUI model loader on RTX 30/40 series.
+- **AnimateDiff + FLUX integration validated** (community Mar 2026): AnimateDiff motion modules combined with FLUX.2 UNet for temporally consistent character animation. Watch for dedicated ComfyUI node pack.
+
+### 🦴 Pose & Character Control
+- **Tencent VISVISE (GDC 2026 debut)**: First deployable multimodal motion generation LLM + full-stack AI 3D modeling pipeline. No open release yet. Architecturally relevant: unified motion + 3D in one model. Track for open-source version.
+- **ControlNet Union + FLUX.2 Klein NVFP4**: With new compressed models, Union multi-condition (pose+depth+style simultaneously) now feasible on 12GB VRAM. Enables our `pose_controlnet.json` on more accessible hardware.
+- **Grok Imagine 7-image multi-ref**: Though a proprietary API, its multi-reference video synthesis capability serves as a proxy for what the Digital-Stud open pipeline should target (character consistency across multiple reference images → video).
+
+### 🎛️ LoRA Training SOTA
+- **Musubi Tuner community results (first week, Mar 2026)**: r/StableDiffusion early testers report Wan 2.2 video LoRA training succeeds on 24GB VRAM at 720p, ~8-12 hours for 50 steps per concept. Qwen Image LoRA at ~2 hours for face/character on 16GB. Validates our planned `lora/training/` Wan 2.2 video LoRA configs.
+- **Wan 2.7 open weights uncertainty**: Critical for planning future Wan video LoRA training. If Wan 2.7 ships without open weights, Wan 2.6 + Musubi Tuner remains the stable training target.
+- **FLUX.2 dev character LoRA (confirmed community, Mar 2026)**: Ostris AI-Toolkit on RunPod. Two distinct fictional characters trained simultaneously in one session. Key: use `--network_module networks.lora_flux` flag (not standard lora). Training on FLUX.2-dev (not FLUX.1). Our `kohya_config_example.toml` should reference FLUX.2-dev specifically.
+- **Stable-LoRA (arXiv 2603.05204)**: Weight-shrinkage technique — exponential decay on matrix A rows during early training. Community noting ~15% improvement in identity preservation on character faces at equivalent step count. No official Kohya integration yet; manual patch available in comments of the arXiv paper.
+- **SimpleTuner v4.1.0 Z-Image guide**: Z-Image-Turbo guide now available in SimpleTuner docs. Key setting: lower learning rate (1e-5 vs 1e-4 for FLUX) to avoid mode collapse on short inference steps.
+
 ## 🏁 Run #97 Delta — 2026-03-13 21:30 Prague
 
 ### 🖼️ Image Gen SOTA
