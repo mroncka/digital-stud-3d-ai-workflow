@@ -1,4 +1,55 @@
-<!-- last_updated: 2026-03-13T15:02:16+01:00 run_84 -->
+<!-- last_updated: 2026-03-13T15:30:17+01:00 run_85 -->
+## 🏁 Run #85 Delta — 2026-03-13 15:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Leaderboard update (Chatbot Arena, Mar 2026)**: Nano Banana 2 = #1 at 1280 Elo; FLUX.2 Pro = #2 at 1265 Elo; GPT Image 1.5 = ~95% text rendering accuracy (best in class for text-heavy designs); Midjourney v7 = aesthetic leader (no API, Discord-only, $10–120/mo, ~30% text rendering).
+- **Seedream 5.0** (ByteDance): Now confirmed competitive at ~$0.03/img; strong typography + CJK text rendering; vs Nano Banana 2 head-to-head = both top-tier, use case dependent.
+- **Free tier clarification**: Google AI Studio (Nano Banana 2 via Gemini 3.1 Flash Image) = up to **1000 img/day** free; Gemini.google.com = 100/day; Adobe Firefly = 2000 monthly credits; Leonardo = 150 fast tokens/day; ChatGPT = 3/day free; Ideogram = 10 slow credits/week.
+- **SD 3.5** via API = $0.006/img (cheapest quality option); FLUX.2 Dev (open-weight, self-host) ≈ free; FLUX.2 Pro API = $0.025–$0.07/img (Replicate/fal.ai).
+- **OpenRouter**: Free models collection available (LLM-focused but expanding to image); good for budget workflows.
+
+### 🎬 Video Gen SOTA
+- **Ranking confirmed (Mar 2026 benchmarks)**: Runway Gen-4.5 = #1 on Artificial Analysis Text-to-Video benchmark; Kling 3.0 = multi-shot + native audio king; Sora 2 = physics/realism leader; Veo 3.1 = native 4K + audio + portrait mode; Wan 2.6 = best cost/quality API (~$0.05/s); LTX-2 = best open Apache 2.0 ($0.04/s, 19B params, 4K 50fps 20s); HunyuanVideo 1.5 = best fully open-source (free local, 8.3B, RTX 4090 75s/gen).
+- **Kling 3.0 details confirmed**: 15s max (not 120s — 120s is Kling 2.0), multi-shot 3–15s segments, native audio+voice ref, physics sim, storyboard control. API: WaveSpeedAI ($0.10/s video, $0.18/s with audio); fal.ai also confirmed.
+- **Wan 2.2 open-source details**: MoE architecture, 8.19GB VRAM min (T2V-1.3B variant), 84.7%+ VBench, bilingual Chinese+English, GitHub Wan-Video/Wan2.2. Commercial: Wan 2.6 API on WaveSpeedAI + fal.ai ~$0.05/s.
+- **LTX-2.3 clarification**: 22B DiT (not 19B as listed run 84 — 19B is base LTX-2, 2.3 is 22B), audio+video unified, 3 upscaler variants, portrait 1080×1920, Apache 2.0, comfy.org templates confirmed for I2V / FLF2V / audio-video.
+- **Runway Gen-4.5**: Motion brushes for precise control, scene consistency across generations, $12/mo entry; top benchmark score is key differentiator.
+- **Wan 2.7**: Still no weights dropped as of 15:30 Prague Mar 13. Confirmed upcoming features: start+end frames, 3×3 grid nav, voice ref, instruction editing, video cloning.
+- **New: HunyuanVideo-Foley** (Tencent): Dedicated multimodal audio-for-video model (audio dubbing/foley generation), SOTA on multiple eval benchmarks. Separate from HunyuanVideo-1.5 — adds synchronized ambient audio to silent video. GitHub: Tencent-Hunyuan/HunyuanVideo-Foley. Useful for the Digital-Stud pipeline.
+- **fal.ai confirmed #1 dev API**: 600+ models including Kling 3.0, Veo 3.1, Sora 2, Wan — unified SDK, custom CUDA kernels.
+
+### 🛠️ ComfyUI Updates
+- **App Mode + ComfyHub confirmed live** (Mar 10, 2026): Shareable URL apps from any workflow, browser-accessible via Comfy Cloud, community hub for discovery. This is a major distribution shift.
+- **Any-Pose Portrait Editing workflow** (new, confirmed Mar 2026): Use 3D character (Blender/Mixamo) → pose in 3D → transfer to portrait via Qwen Edit → fix face → upscale 4K with FLUX.2 Klein. Published tutorial at myaiforce.com. **Directly relevant to Digital-Stud pipeline.**
+- **Blender→ComfyUI AI Renderer 2.0** (runcomfy.com): Blender outputs → cinematic prompt-guided AI video preserving motion + scene layout. Reads depth/normal/pose maps from Blender render. **Directly relevant — test this workflow.**
+- **LTX-2.3 skin/texture fix** (community, Mar 2026): Adjusting resize/upscale handling in official ComfyUI workflow fixes skin compression + texture artifacts. Thread on r/StableDiffusion.
+- **ComfyUI-ControlNet-Aux confirmed**: DW Preprocessor node = best pose preprocessor; face-only + hand-only visualization modes available; feeds ControlNet conditioning pipeline.
+- **ElevenLabs now in ComfyUI** (Mar 9) — TTS node for audio in video pipelines.
+
+### 🦴 Pose Estimation SOTA
+- **YOLO26-Pose confirmed SOTA** (Mar 9, 2026, Ultralytics): NMS-free architecture, non-human keypoint support, MuSGD optimizer + Residual Log-Likelihood Estimation, faster convergence, better occlusion + small object handling. CPU/embedded optimized. Confirmed in X-AnyLabeling (CVHub520) alongside YOLO11-Pose and DWPose.
+- **Multi-Person Pose Estimation Evaluation** (arXiv 2603.10398, Mar 11 2026): New benchmark paper evaluating SOTA MPPE methods with optimized confidence thresholds. Key finding: default confidence thresholds suboptimal — significant AP gains from threshold tuning.
+- **Panoramic Pose Estimation** (SSRN 2026): Training-free framework for ERP (equirectangular) images — expands pose estimation beyond perspective views for 360° capture.
+- **HY-Motion-1.0** (Tencent Hunyuan, GitHub): 3D motion generation model SOTA on instruction-following + motion quality benchmarks. Generates 3D character motion from text/video. Complements HunyuanVideo-1.5 pipeline.
+- **Lip Sync SOTA** (arXiv 2603.03882, Mar 2026): Towards Generalizable High-Fidelity Lip Synchronization — new paper pushing talking video quality. Relevant for character animation with audio in Digital-Stud.
+- **SDPose confirmed** in ComfyUI v0.16.0+ (diffusion-prior OOD pose, better on unusual body configs than DWPose).
+
+### 🎛️ LoRA Training SOTA
+- **FLUX.2 LoRA training guide from Apatero infrastructure builder** (Medium, Mar 2026): Production-validated settings confirmed:
+  - LR: 1e-4 main / 1e-5 text encoder
+  - Rank 32 sweet spot for char/face; 16 for simple styles; 64+ complex
+  - Alpha = rank/2 (16 for rank 32)
+  - Steps: 1500–2000 for 15–30 imgs; 2000–3000 for 30–50 imgs
+  - Mixed precision: bf16 preferred over fp16
+  - Resolution: 1024×1024 native + bucket support
+  - Auto-captioning with BLIP/JoyCaption now standard
+  - Training time: 15–45 min on A100
+- **OneTrainer masked training research** (dev.to deep dive confirmed): Unmasked weight 0.6–0.7 = optimal for face LoRAs — prevents background overfitting while maintaining anatomical consistency. Lower (0.1–0.5) = less env repetition but anatomical distortion risk.
+- **OneTrainer > AI-Toolkit** community consensus solidified (r/StableDiffusion thread "Switching to OneTrainer..."); Kohya SS VERY slow on AMD RADEON vs OneTrainer. AI-Toolkit confirmed: no validation loss curves = fundamental overfitting blind spot.
+- **LTX-2 character LoRA with AI-Toolkit**: YouTube tutorial confirmed working (Carl Sagan demo); musubi-tuner = HunyuanVideo-1.5 dedicated trainer.
+- **Z-Image LoRA training**: Z-Image Turbo (6B) supports LoRA training; tutorial series on YouTube. LoRA weight 0.8–1.0 recommended at inference.
+- **Character turnaround sheet with Morphic**: Instagram demo (Mar 2026) showing AI character turnaround sheet generation — relevant for consistent identity dataset creation.
+
 ## 🏁 Run #84 Delta — 2026-03-13 15:02 Prague
 
 ### 🖼️ Image Gen SOTA
