@@ -1,4 +1,53 @@
-<!-- last_updated: 2026-03-13T03:30:00+01:00 run_61 -->
+<!-- last_updated: 2026-03-13T04:01:34+01:00 run_62 -->
+## 🏃 Run #62 Delta — 2026-03-13 04:01 Prague
+
+### 🖼️ Image Gen SOTA
+- **ComfyUI v0.17.0 (March 13, TODAY)**: Flux 2 Klein KV cache model support via new `FluxKVCache` node; Painter node for enhanced editing; Reve Image API nodes; pre-attention patches for Flux; modular asset architecture with async 2-phase scanner. Frontend v1.41.18, Manager v4.1b2.
+- **Seedream 5.0** (ByteDance, mid-Feb 2026): Spatial reasoning engine (thinks through object relationships before gen, like chain-of-thought). Real-time web search during generation. 14 reference image support (highest in industry). 2-4× faster than Nano Banana Pro at 4K. `$0.03/img` (cheapest high-quality tier). **Seedream 5.0 Lite API** launched `$0.035/img`.
+- **Nano Banana 2** batch pricing confirmed: `$0.0195/img` (50% discount vs `$0.045` standard) for non-real-time batch workloads. Multi-subject consistency: up to 5 chars + 14 objects across workflow sequences.
+- **FLUX Image-to-Video** (NEW March 2026): BFL added img2vid capability — photos → videos. In Media-AI master list as new March 2026 release.
+- **DeepSeek V4** (imminent): Reddit/FT reports upcoming release with image + video generation capabilities. Watch closely.
+- **Recraft V4**: Now free for all users including free-tier accounts (Standard 1024×1024, Pro 2048×2048, Vector, Vector Pro). Ground-up rebuild for "design taste".
+- **Leaderboard note**: Two major leaderboards now diverge — arena.ai has GPT Image 1.5 leading; awesomeagents.ai has Nano Banana 2 at 1280 Elo. Depends on voting pool.
+
+### 🎬 Video Gen SOTA
+- **Wan 2.2 Animate V2** (ComfyUI): Pose-driven animation workflow confirmed production-ready. Character animation + replacement in single pipeline. DWPose Estimator integration confirmed for Wan 2.2 Animate.
+- **Wan 2.2 S2V pose control**: Speech-to-video + pose skeleton control combination now documented with community workflows. Rivals InfiniteTalk for motion quality with full body control.
+- **Wan LoRA compatibility**: 2.1 LoRAs confirmed working on 2.2; community testing Wan 2.2 LoRAs on 2.6 (results mixed — watch this space).
+- **FLUX Image-to-Video**: BFL entering video gen space (March 2026). No benchmark data yet.
+- **Kling 2.6 Motion Control** (ComfyUI blog confirmed): Full-body motion transfer, dancing/skating/martial arts, detailed hand+finger motion, flexible orientation modes.
+- **Seedance 2.0 API status**: Still no official public API as of March 13. Volcano Engine free trial only confirmed channel.
+
+### 🔧 ComfyUI Updates (March 13, 2026 — v0.17.0)
+- **FluxKVCache node**: KV cache for Flux 2 Klein — significant VRAM/speed optimization for Klein inference.
+- **Painter node**: Enhanced in-canvas image editing UI.
+- **Reve Image API nodes**: New partner integration.
+- **Pre-attention patches for Flux**: Model patching system improvements with cleanup functions.
+- **Batch processing fix**: batch_size > 1 now stable.
+- **ComfyUI Desktop v0.6.2**: One-click install (no Python needed), Manager officially integrated, custom node management built-in.
+- **Topaz API nodes** (March 5): Video enhancement workflows directly in ComfyUI.
+- **Math Expression node** (March 5-7): Mathematical operations in workflow.
+- **Gemini 3.1 Flash-Lite** model support added.
+- **WAN 2.5 official workflow template** added to comfy.org/templates.
+- **Qwen-Image-Edit 2509** natively supported alongside Wan 2.2 Animate.
+
+### 🦾 Pose Estimation & 3D Character Control
+- **SCAIL** (Zhipu AI / Z.ai, Dec 2025, ComfyUI prod March 2026): Studio-grade 3D-consistent pose animation via In-Context Learning. 3D pose representations prevent identity leakage. Supports stylized anime, realistic humans, multi-character, even quadrupeds. ComfyUI-SCAIL-Pose saves NLF mesh as GLB + 3D skeleton preview. Community notes: "SCAIL poses feel genuinely 3D — depth/body orientation holds up far better than Wan Animate."
+- **VNCCS Pose Studio** (Jan 2026, GitHub: AHEKOT/ComfyUI_VNCCS_Utils): Full 3D posing+lighting environment as single ComfyUI node. Features: bone gizmos+undo/redo, multi-pose tabs, modal pose gallery, dynamic body generator (age/gender/weight/muscle/height), 3 light types (ambient/directional/point) with 2D radars, ControlNet compatible with any model. 307 upvotes on r/StableDiffusion.
+- **Kling 2.6 Motion Control**: Full-body motion transfer in ComfyUI — dance, skate, martial arts, precise hand/finger motion capture.
+- **Z-Image + SCAIL multi-character**: Confirmed production combination for multi-char scenes with consistent 3D pose.
+- **Wan 2.2 Animate**: Spatially-aligned skeleton signals for body motion replication. Dual mode: animation + character replacement. Infinite-length pose control via ComfyUI-WanVideoWrapper (kij...).
+
+### 🎓 LoRA Training SOTA
+- **Flimmer trainer** (March 3): Video LoRA for DiT models — enables character-consistent video fine-tuning on Wan/HunyuanVideo architectures. Early community results promising.
+- **Klein LoRA ecosystem expanding**: 5+ Klein LoRAs released in March 2026. Consistency LoRA for Klein released (r/comfyui). Klein + ControlNet image edit workflows documented.
+- **Flux KV cache impact on LoRA**: Klein KV cache changes inference path — test LoRA inference with FluxKVCache node specifically.
+- **Multi-char LoRA with trigger words**: Production workflow confirmed — single LoRA, multiple characters via distinct trigger words.
+- **Qwen Image Edit for dataset gen**: Confirmed as community standard for consistent-character dataset creation from 1 reference image.
+- **SDXL identity LoRA reddit thread** (March 2026): Recommended settings for synthetic male character: RealVisXL base, rank 32, Prodigy, 30-50 varied images, validation split 10%.
+
+---
+
 ## 🏃 Run #61 Delta — 2026-03-13 03:30 Prague
 
 ### 🖼️ Image Gen SOTA
