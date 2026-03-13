@@ -1,4 +1,74 @@
-<!-- last_updated: 2026-03-13T22:01:25+01:00 run_98 -->
+<!-- last_updated: 2026-03-13T22:30:12+01:00 run_99 -->
+## 🏁 Run #99 Delta — 2026-03-13 22:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **SD4 Ultra open weights confirmed (March 8, 2026)**: Stability AI released Stable Diffusion 4 Ultra as open weights under community license. Upgraded diffusion transformer architecture, best local photorealism available. ComfyUI integration via Stability partner nodes. Key for Digital-Stud local pipeline — current recommended open-weights photorealism champion.
+- **FLUX.2 Klein FP8 quantized weights released (NVIDIA collab, March 2026)**: Multi-reference editing now up to 2x faster with FP8 weights. Klein 9B now recommended over 4B for character work (better detail). Distilled 4B achieves genuine sub-second on consumer GPU (useful for rapid iteration). Download from HuggingFace BFL repo.
+- **FLUX.2 Klein benchmark table (302.AI, January/March 2026)**:
+  | Variant | Params | VRAM est. | Speed (RTX 40-class) | Best use |
+  |---|---|---|---|---|
+  | Klein 4B Distilled | 4B | ~13GB | ~1.2s | Rapid iteration |
+  | Klein 4B Base | 4B | ~13GB | ~17s | Balanced |
+  | Klein 9B Base | 9B | ~24GB | ~35s | Character detail, LoRA |
+  Note: Both Klein variants show over-sharpening artifacts vs Pro; weaker multi-line text.
+- **GPT Image 1.5 pricing (official March 2026)**:
+  | Quality | 1024×1024 | 1024×1536 |
+  |---|---|---|
+  | Low | $0.009 | $0.013 |
+  | Medium | $0.034 | $0.05 |
+  | High | $0.133 | $0.20 |
+  Rate limits: Tier 1 = 5 img/min; Tier 3 = 50 img/min; Tier 5 = 250 img/min
+  Best-in-class text accuracy (~95%), recommended for overlaid-text workflows.
+- **⚠️ Qwen Image 2.0 Pro NOT open source**: Community confirms proprietary cloud-only (Alibaba Cloud Model Studio). No ComfyUI API node yet (GitHub issue #12386 open). Community concern: "end of open source Qwen image like it was for Wan." For local pipeline, use Qwen Image 2.0 base (open) or SD4 Ultra instead.
+- **ComfyUI v0.17.1 hotfix (March 13, 19:58 UTC)**: Same-day hotfix after v0.17.0. Check GitHub releases for full changelog — likely stability fixes for new modular asset arch. Update from v0.17.0 immediately.
+
+### 🎬 Video Gen SOTA
+- **Wan 2.7 open weights status: CONFIRMED NO OPEN WEIGHTS**: Reddit r/StableDiffusion thread resolution — Wan 2.7 will NOT release open weights. This is a critical pipeline decision: Wan 2.6 + Musubi Tuner is the permanent stable open-source training target. Do not plan Wan 2.7 workflows expecting local model weights.
+- **DeepSeek V4 video quality benchmarks: NOT YET AVAILABLE**: Released early March 2026 (Apache 2.0, ~1T MoE), but community image/video gen quality benchmarks vs FLUX.2/Kling not yet published as of March 13. Monitor HuggingFace for model card updates.
+- **CogVideoX-5B March 2026**: No new version found. CogVideoX-2B remains active for lightweight local video. CogVideoX-5B stable on 24GB VRAM via ComfyUI.
+- **SkyReels V4/V5**: No confirmed release. Our existing `comfyui/workflows/skyreels_v4.json` covers current state.
+- **LTX-2.3 IC-LoRA new community LoRA**: Community posting first LTX-2.3 IC-LoRA models on CivitAI for character identity. Watch for subject consistency LoRAs enabling our `ltx23_ic_lora.json` workflow.
+- **Seedance 2.0 confirmed via WaveSpeedAI API**: Available now. API cost competitive with Kling 3.0. Worth adding to `scripts/api_test_seedance.py` endpoint list (may already be covered).
+
+### 🛠️ ComfyUI Ecosystem
+- **ComfyUI v0.17.1 hotfix**: Released March 13 ~19:58 UTC, same day as v0.17.0. Recommendation: update immediately, skip v0.17.0.
+- **NVFP4 known issue on RTX 5090**: Native NVFP4 loading causes VRAM overflow on RTX 5090 (GitHub issue #11864). Workaround: use FP8 for first stage + NVFP4 for second stage (mixed precision). Not a concern for RTX 3090/4090 targets (NVFP4 is Blackwell-only anyway).
+- **ComfyUI v0.17.0 new nodes summary** (for workflow development):
+  - `FluxKVCache` — KV cache support for FLUX.2 Klein, significant VRAM savings
+  - `Painter Node` — in-workflow image editing canvas
+  - `Reve Image API` nodes — visual API processing
+  - `Math Expression Node` — `simpleeval` math in workflows
+  - `ResolutionSelector` — aspect ratio presets node
+  - `BBox Widget` — precise bounding box selection
+  - `SplitImageToTileList` / `ImageMergeTileList` — tiled processing for large images
+  - `GLSL Shader Node` — GPU visual effects via PyOpenGL
+  - Pre/post-attention patches for Qwen image models
+- **ControlNet Union + FLUX.1 Fill inpainting**: Known community issue (r/comfyui thread) — poor integration, noise artifacts. Workaround: use Krita as ComfyUI front-end for precise inpainting control. Our `pose_controlnet.json` uses Union for pose only (not inpainting), so should be unaffected.
+- **Qwen Image 2512 Fun ControlNet Union**: Tutorial confirms working for compositional control. Consider as alternative to FLUX.1 Fill for inpainting when Qwen 2512 base model is acceptable quality.
+- **ComfyUI Subgraph / modular components**: Now in core v0.17.0. Begin migrating reusable workflow sections (e.g., face upscale post-processor, standard VAE decode chain) into Subgraphs for maintainability.
+
+### 🦴 Pose & Character Control
+- **LiveGesture (CVPR 2026 accepted)**: Zero-lookahead, fully streamable co-speech gesture generation. Generates full-body SMPL-X motion in real-time as audio arrives — no offline processing required. First model to eliminate real-time latency in gesture synthesis. No code/weights released yet (CVPR 2026 paper). High relevance for Digital-Stud character animation pipeline: audio-driven full-body animation without manual keyframing.
+- **Ani3DHuman (arXiv 2602.19089)**: Photorealistic 3D human animation using SMPL mesh sequences as structural priors + self-guided stochastic sampling + video diffusion supervision for non-rigid dynamics (clothing/hair). City University Hong Kong. No code yet. Monitor for open-source release.
+- **ArtHOI (arXiv 2603.04338)**: Articulated human-object interaction synthesis via 4D scene understanding. Uses GVHMR for pose estimation, projects SMPL-X joints to image. Relevant for character-with-props animation.
+- **DWPose status**: No v2 release found. DWPose (OpenMMLab) remains the standard ComfyUI pose preprocessor. Still recommended for `pose_controlnet.json` pipeline. Community actively using via `Face-Swap Gate by Count` gist patterns.
+- **ControlNet Union FLUX compatibility**: Evolving but not fully native. Best current approach: Qwen Image 2512 Fun ControlNet Union for compositional control (confirmed working). FLUX.1 ControlNet Union for pose — use carefully, avoid inpainting mode.
+
+### 🎛️ LoRA Training SOTA
+- **Musubi Tuner Wan 2.2 guide confirmed (early March 2026)**: First tutorial posted. Training setup: 24GB VRAM, 720p, ~8-12h per concept at 50 steps. Config: standard Wan 2.2 UNet, AdamW optimizer, cosine LR schedule. Our `lora/training/kohya_config_example.toml` should be supplemented with a Musubi Tuner config file.
+- **Wan 2.7 no open weights → Wan 2.6 is permanent LoRA target**: Planning confirmed. Any future video LoRA training should use Wan 2.6 base model.
+- **AI-Toolkit Ostris FLUX.2-dev LoRA (March 2026 community tips)**:
+  - Best LR: 1e-4 for rank 16; step down to 5e-5 for rank 32+
+  - Use `--network_module networks.lora_flux` (NOT standard lora)
+  - Base model: FLUX.2-dev (not FLUX.1 dev — different architecture)
+  - Dataset: 15-30 images, diverse backgrounds, consistent subject framing
+  - Steps: 1500-2000 for character face identity
+  - Trigger word: descriptive phrase (e.g., `ohwx person`) rather than random token
+- **Kohya ss (March 2026)**: No major new version found. Community still on v25.x branch. FLUX.2 support added in earlier update (v24). No breaking changes reported.
+- **Stable-LoRA (arXiv 2603.05204) — community patch**: Weight-shrinkage technique available as manual patch (exponential decay on matrix A rows during early training). ~15% identity preservation improvement on character faces. No official Kohya/AI-Toolkit merge. Copy patch from arXiv comments until official support lands.
+- **SimpleTuner v4.1.0**: Z-Image-Turbo training guide live. Key config: LR 1e-5 (vs 1e-4 for FLUX), prevents mode collapse on short inference steps. Relevant for fast-inference character LoRAs.
+- **OneTrainer March 2026**: No specific update found. Remains viable for SDXL/FLUX character LoRA training.
+
 ## 🏁 Run #98 Delta — 2026-03-13 22:01 Prague
 
 ### 🖼️ Image Gen SOTA
