@@ -1,4 +1,41 @@
-<!-- last_updated: 2026-03-13T14:04:06+01:00 run_82 -->
+<!-- last_updated: 2026-03-13T14:30:23+01:00 run_83 -->
+## 🏁 Run #83 Delta — 2026-03-13 14:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana 2** (Google, Mar 12 2026): SOTA image model — Flash speed + Pro quality, subject consistency up to 5 chars, precision text rendering. Pricing: $0.045–$0.16/img. Free tier: 500 req/day via Gemini 2.5 Flash. Available on fal.ai.
+- **FLUX.2 [pro]** (Black Forest Labs): Studio-grade photorealism, multi-reference editing (up to 9 source imgs), $0.03/megapixel on fal.ai.
+- **Seedream V4.5** (ByteDance): Unified gen+edit architecture, up to 4K, $0.04/img on fal.ai, competitive with FLUX.2.
+- **fal.ai** confirmed top unified platform: 1000+ models, custom CUDA kernels, 5–10s cold starts, FLUX 4× faster than competitors.
+- Free/open-source pick: **FLUX.1 [schnell]** (Apache 2.0) + **SDXL Lightning** (2-step <1s).
+
+### 🎬 Video Gen SOTA
+- **Wan 2.6** (Alibaba, Mar 2026): 15s 1080p HD, native synced audio, multi-shot narrative control, reference-to-video character consistency. COMMERCIAL version released; open-source: Wan 2.2 (5B, 16×16×4 VAE).
+- **HunyuanVideo-1.5** (Tencent, Nov 2025): SOTA quality at 8.3B params, Causal 3D VAE, 540p–720p, 45–60GB VRAM. Fully open-source on HuggingFace + ComfyUI support.
+- **Kling 3.0** (Kuaishou): 120s max duration, native audio sync, element consistency control. API via WaveSpeedAI (~$0.04–0.08/s).
+- **Seedance 2.0** (ByteDance) vs **Sora 2** (OpenAI, 60s 1080p) vs **Veo 3** (Google, 30s + native audio) — all production-ready.
+- **WaveSpeedAI** is unified API gateway for Kling 2.0/3.0 + Seedance in international markets.
+
+### 🛠️ ComfyUI Updates
+- **v0.17.0 released TODAY (Mar 13 2026)**: Painter node, Reve Image API nodes, Math Expression node, TencentSmartTopology API node, ResolutionSelector node, modular asset architecture, dynamic VRAM default, FluxKVCache node (Flux 2 Klein).
+- **v0.16.0 (Mar 5)**: SplitImageToTileList + ImageMergeTileList, BBox widget, LongCat-Image native.
+- **v0.15.0 (Feb 24)**: ElevenLabs API nodes, audio recording, audio-video sync, Wav2vec2 audio encoder.
+- Kling 3.0 Motion Control now in ComfyUI (Mar 9). LTX-2.3 Day-0 support confirmed. NVIDIA RTX Video Super Resolution + NVFP4 models integrated.
+- New Node Replacement system — solves workflow import breakage; API for custom node devs.
+- API integrations: OpenAI GPT-5, Gemini, ByteDance Seedream USO LoRAs, Kling v2-1/v2-5-turbo.
+
+### 🦴 Pose Estimation SOTA
+- Landscape stable: **DWPose** (ICCV 2023) best for ControlNet whole-body (face+hands), direct OpenPose replacement. **RTMPose** (RTMPose-m: 75.8% AP COCO, 90+ FPS on i7) for speed/mobile. **RTMO** (CVPR 2024): one-stage, 141 FPS on V100, 9× faster than comparable two-stage.
+- RTMPose family (RTMPose, DWPose, RTMO, RTMW) = standard baselines in ICCV 2025 papers.
+- ComfyUI: DW Preprocessor node confirmed best pose preprocessor for ControlNet workflows.
+
+### 🎛️ LoRA Training SOTA
+- **Flux 1.1 > SDXL** for facial realism (natural skin, micro-contrast, subsurface scattering). Flow matching → lower LR needed vs SDXL.
+- Optimal face dataset: 20–50 imgs, multiple angles, consistent lighting.
+- Optimal rank: 8–16 for faces, 32–64 for complex subjects.
+- **Kohya SS**: most mature, widest config options. **AI-Toolkit**: faster setup, some hash issues. **OneTrainer**: rising popularity for face LoRAs, good GUI.
+- AdamW8bit most popular optimizer; cosine scheduler recommended. Test with LoRA weight 0.7–1.3.
+- LoRA still relevant in 2026 despite Nano Banana — needed for consistent character identity across generations.
+
 ## 🏃 Run #82 Delta — 2026-03-13 14:04 Prague
 
 ### 🖼️ Image Gen SOTA
