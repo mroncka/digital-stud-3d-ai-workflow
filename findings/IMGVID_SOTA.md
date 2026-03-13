@@ -1,4 +1,97 @@
-<!-- last_updated: 2026-03-13T05:02:31+01:00 run_64 -->
+<!-- last_updated: 2026-03-13T05:30:18+01:00 run_65 -->
+## 🏃 Run #65 Delta — 2026-03-13 05:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **GLM-Image 16B (Zhipu AI)**: Apache 2.0, industrial-grade hybrid autoregressive+diffusion, best-in-class text rendering, $0.015/image API. Major open-source addition.
+- **MiniMax Image-01**: $0.01/image — breakthrough cost-effective tier, superior prompt adherence, from Hailuo video lineage. Available via API March 2026.
+- **FLUX.2 complete tier confirmed (via Melies)**:
+  - Schnell: 2 credits (sub-second preview)
+  - Dev: ~5 credits (quality baseline)
+  - Klein: 5 credits (4B fast iteration)
+  - Pro: 20 credits (~$0.025/img via Replicate/fal)
+  - Kontext: 20 credits (reference-guided subject/style consistency)
+  - FLUX.2 Pro: 20 credits (scene transforms + subject consistency)
+  - Kontext Max: 25 credits (max-fidelity reference-guided)
+  - FLUX.2 Max: 25 credits (highest quality + editing consistency)
+- **Microsoft MAI-Image-1** (Q1 2026): First in-house MS image model, top-10 LM Arena leaderboard, integrated into Bing + Microsoft Copilot
+- **ByteDance SeedDream 4.0**: Multimodal Chinese T2I with video seeds, uncensored variants, 2s generation speed
+- **Grok Imagine March 2026 update**: Instant image generation added; API video gen at $0.05/second (launched Jan 28, 2026)
+- **ElevenLabs + FLUX Kontext "Vibe Draw"** (March 6, 2026): Voice-powered image creation — open-source, Web Speech API + ElevenLabs TTS + FLUX Kontext API
+- **FireRed-Image-Edit + REDEdit-Bench** (March 9, 2026): Image editing foundation model; REDEdit-Bench covers diverse editing instructions
+- **Flux Modular WF v6.0** (March 2026): Community workflow with Flux Kontext integration, r/StableDiffusion
+- **Google free tier**: Whisk (unlimited visual-prompt blending), ImageFX (T2I up to 1024x1024), GenType (typeface gen) — all free via Google Labs
+- **Helios** (PKU-YuanGroup): Breakthrough minute-scale long video generation model released on GitHub
+
+### 🎬 Video Gen SOTA
+- **⚡ SkyReels V4 launches TODAY (March 13, 2026)**:
+  - Ranked #2 global Artificial Analysis Text-to-Video (with Audio) leaderboard
+  - Native audio-visual co-generation: video + audio simultaneously in single architecture, microsecond-level sync
+  - Frame-perfect lip-syncing + SFX aligned with on-screen actions
+  - Pixel-level video editing capabilities
+  - Available on Atlas Cloud; ComfyUI integration coming
+  - API endpoint: kinovi.ai/skyreels-v4 (confirmed launch post)
+- **⚡ WAN 2.7 announced — incoming this month**:
+  - Source: r/StableDiffusion megathread ("WAN 2.7 will be released this month")
+  - New features: start/end frame video generation + 3×3 grid image support + subject reference + voice reference
+  - Major capability jump from 2.2 — monitor closely
+- **LTX 2.3 full specs confirmed** (Apache 2.0, <$10M revenue free):
+  - ~47GB model, requires significant VRAM for local deployment
+  - Native 1080×1920 portrait video (social/mobile — no cropping)
+  - ~20 second clips, video-extend for longer sequences
+  - 4K support at 1080p/1440p/4K with 24/25/48/50 fps options
+  - Rebuilt VAE: sharper hair/text/edge details even at 4K
+  - 4× larger text connector for complex multi-subject prompts
+  - Modes: T2V, I2V, A2V (audio-to-video), video extension — unified model
+- **Wan 2.2 vs LTX 2.3 comparison clarified**:
+  - Wan 2.2: cinematic quality, complex camera motion, film-grade lighting; 480p-720p 24fps max 5s; MoE ~18× slower/step vs LTX 2.3
+  - LTX 2.3: faster, audio-native, 4K capable, ~20s clips, portrait-native; slightly less "cinematic" per-frame
+  - Use Wan 2.2 for quality; LTX 2.3 for speed/audio/longer clips/portrait
+- **HunyuanVideo-Avatar** (new): High-fidelity audio-driven human animation for multiple characters (YouTube video published today March 13)
+
+### 🔧 ComfyUI Ecosystem
+- **v0.17.0 released TODAY (March 13, 2026)**:
+  - Modular asset architecture: async two-phase scanner + background seeder → faster loading
+  - **FluxKVCache node**: Flux 2 Klein KV-cache model support (accelerated multi-reference editing)
+  - **Painter node**: Enhanced image editing capabilities
+  - **Reve Image API nodes**: New image API integration
+  - Gemini 3.1 Flash-Lite added to LLM node
+  - TencentSmartTopology API node
+  - Math Expression node (simpleeval)
+- **v0.16.0 (March 5) + v0.16.4 (March 7) — detailed changelog**:
+  - ResolutionSelector node with aspect ratio presets
+  - CURVE type support for advanced parameter control
+  - SCAIL WanVideo model support, SDPose-OOD models, ACE-Step 1.5 lycoris key aliases, LTXAV 2.3
+  - Dynamic VRAM mode now default
+  - Kling 3.0 Motion Control enabled
+  - fp16 audio encoder compatibility fix, Text Encoder CPU execution bug fix
+- **NVIDIA GDC 2026 + ComfyUI**: RTX Video Super Resolution integration + new NVFP4 models for video workflows announced March 10
+- **Custom node standards initiative**: Comfy-Org beginning formal custom node standards across backend/frontend — may affect long-term compatibility management
+- **WAN 2.2 S2V audio fix**: Critical bug fixed — extending video past audio length no longer causes workflow failure
+
+### 🦾 Pose Estimation
+- **No major new March 2026 releases beyond what run #64 documented** — SCAIL, VNCCS, One-to-All Animation, kijai WanAnimatePreprocess remain the current SOTA
+- **Portrait Video Camera Control via Scale-Aware Conditioning** (arXiv 2603.05506, March 2026): Scale-aware conditioning for portrait video camera control — relevant for character-focused video with camera motion; cites HunyuanVideo-Avatar
+- **SDPose-OOD models** added to ComfyUI v0.16.0: Out-of-distribution pose estimation support — improves robustness for non-standard body poses/angles
+
+### 🎓 LoRA Training
+- **Video2LoRA framework** (new paper March 2026):
+  - Unified semantic-controlled video gen via hypernetwork-predicted LoRA weights
+  - <50 KB per semantic condition (vs standard LoRA sizes) — 150× smaller than CogVideoX LoRA, 20× smaller than single-semantic variants
+  - HyperNetwork: 3D-VAE encoder + Transformer decoder → iteratively predicts semantic-specific LoRA components
+  - Strong zero-shot generalization to unseen semantics
+  - **Practical**: potential path to very compact video style/motion LoRAs
+- **ID-LoRA** (Identity-Driven In-Context LoRA):
+  - First In-Context LoRA framework for joint audio-visual identity preservation
+  - Negative Temporal Positions: reference audio tokens assigned negative RoPE positions → clean separation from target tokens
+  - Identity Guidance: classifier-free guidance variant amplifying speaker-specific features
+  - vs Kling 2.6 Pro: 73% human preference for speaker similarity, 65% for speaking style transfer, 24% improvement cross-environment robustness
+  - **Practical**: highly relevant for character voice+face consistency in video LoRA workflows
+- **LoRA for HunyuanVideo** community tip: MoE architecture → train LoRAs targeting high-noise expert separately for layout/structure control; low-noise expert for texture/detail control
+- **Unsloth + HuggingFace Jobs** (March 2026): Free LoRA training for LLMs confirmed; image/video LoRA still requires local GPU but tooling maturing
+- **Three LoRA implementation families tracked** (from HF blog, March 2026): HuggingFace peft, diffusers integration, standalone implementations (AI-Toolkit, Kohya) — each has distinct behavior for video models
+
+---
+
 ## 🏃 Run #64 Delta — 2026-03-13 05:02 Prague
 
 ### 🖼️ Image Gen SOTA
