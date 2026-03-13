@@ -1,4 +1,75 @@
-<!-- last_updated: 2026-03-13T11:02:38+01:00 run_76 -->
+<!-- last_updated: 2026-03-13T11:30:17+01:00 run_77 -->
+## 🏃 Run #77 Delta — 2026-03-13 11:30 Prague
+
+### 🖼️ Image Gen SOTA
+- No new image model releases confirmed in this 30-min window
+- **Coarse-Guided Visual Generation arXiv 2603.12057** ⚡:
+  - Synthesizes fine visual samples from degraded/low-fidelity coarse references via weighted h-h mechanism
+  - Covers image restoration, super-resolution, and sketch-to-image synthesis in a unified framework
+  - **Practical**: enables coarse sketch or low-res reference as consistent style anchor in Digital-Stud pipelines
+- **Seedream 4.5 workflow guide** confirmed on artlist.io — practical creation tutorial for public use
+- Z-Image + Nano Banana 2 remain top free/fast options; Reve Image 2 API still most capable paid tier at $0.01/image
+
+### 🎬 Video Gen SOTA
+- **⚡ Sora 1 officially sunsetted — March 13, 2026 (TODAY)**:
+  - Sora 1 no longer available for US users as of today (community.openai.com/t/1375322)
+  - Sora 2 now the default standard across ChatGPT and Video API
+  - Sora 2 Video API: custom characters/objects, 16:9 + 9:16 export, 20-second generation
+  - **Practical**: migrate any existing Sora 1 API calls to Sora 2; check content export from old projects
+- **⚡ Veo 3.1 developer API update — confirmed TODAY** (Google Threads post + Mashable):
+  - Enhanced Ingredients to Video model, now with **native vertical/portrait format**
+  - **SOTA 4K and 1080p resolution options** now in API
+  - Pricing confirmed: $0.15/sec (Fast), $0.40/sec (Standard), both include audio
+  - Third-party gateways from $0.15/video available now
+  - **Practical**: Veo 3.1 vertical mode = direct social-ready output for Digital-Stud reels/shorts
+- **⚡ Helios — code + weights fully released** (github.com/PKU-YuanGroup/Helios):
+  - [March 4 2026] Training/inference code + weights: Helios-Base, Helios-Mid, Helios-Distilled
+  - 14B autoregressive diffusion transformer; **19.5 FPS on single H100** for minute-scale video
+  - Up to 20.89 FPS with Group Offloading + Context Parallelism + Cache-DiT optimizations
+  - Helios-Distilled available for consumer GPUs
+  - Day-0 Diffusers + vLLM-Omni + SGLang-Diffusion + Ascend-NPU support
+  - **Practical**: Helios-Distilled is the new open-source speed champion — test for character animation loops
+- **RealWonder arXiv 2603.05449** (March 5 2026) — Real-Time Physical Action-Conditioned Video Gen:
+  - Generates video conditioned on physical actions (keyboard input / game controller) in real-time
+  - By Wei Liu, Ziyu Chen, Zizhang Li, Yue Wang, Hong-Xing Yu, Jiajun Wu (Stanford/Berkeley)
+  - **Practical**: action-conditioned generation pathway for interactive character demos
+- **InSpatio-WorldFM arXiv 2603.11911** (TODAY, March 13) — Open-Source Real-Time Generative Frame Model:
+  - Spatial intelligence world model; action-conditioned control; dedicated training data + architecture
+  - Open-source, real-time; targeted at robotics + interactive gen
+  - **Practical**: potential base for real-time scene generation in Digital-Stud interactive demos
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 full changelog confirmed** (docs.comfy.org/changelog, released today March 13):
+  - Modular asset architecture with async two-phase scanner + background seeder (faster loading)
+  - **Painter node** for enhanced image editing
+  - **Reve Image API nodes** now official (no third-party install needed)
+  - Updated workflow templates including Reve Image integration
+  - **Practical**: update ComfyUI to v0.17.0 today — Reve nodes are now built-in
+- **HuggingFace Daily Papers — March 13 2026** page live (huggingface.co/papers/date/2026-03-13)
+  - Good signal aggregator for today's arXiv papers across all domains
+
+### 🦾 Pose / Avatar / 3D
+- **NBAvatar arXiv 2603.12063** (TODAY, March 13) — Neural Billboard Avatars:
+  - Realistic rendering of head avatars with non-rigid deformations from hand-face interactions
+  - Handles occlusions (hand over face), articulated jaw/lip motion, hair dynamics
+  - **Practical**: foundation for Digital-Stud hyper-realistic face+hand avatar rendering pipeline
+- **SPARK arXiv 2603.11480** — Skeleton-Parameter Aligned Retargeting on Humanoid Robots:
+  - Retargets human motion to robot skeletons with Kinodynamic Trajectory Optimization
+  - **Practical**: cross-skeleton motion transfer technique applicable to non-human character rigs
+- **Video Streaming Thinking VST-7B arXiv 2603.12262** — online VideoLLM with low QA latency:
+  - Streams video frames and answers questions in real-time; strong on both online + offline benchmarks
+  - **Practical**: real-time video understanding as QA backbone for Digital-Stud pipeline monitoring
+
+### 🎓 LoRA / Identity
+- No new LoRA code releases this window
+- **flimmer trainer** — still no public GitHub link found; watch @araminta_k
+- **HunyuanVideo-1.5 Diffusers support confirmed** (huggingface.co/tencent/HunyuanVideo-1.5):
+  - HunyuanVideo-1.5 (8.3B params) now fully integrated into Hugging Face Diffusers
+  - LoRA adapters save in checkpoint/lora/ directory
+  - **Practical**: standard Diffusers LoRA training workflow now available for HunyuanVideo-1.5
+
+---
+
 ## 🏃 Run #76 Delta — 2026-03-13 11:02 Prague
 
 ### 🖼️ Image Gen SOTA
