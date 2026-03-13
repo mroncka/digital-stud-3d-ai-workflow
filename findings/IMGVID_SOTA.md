@@ -1,4 +1,47 @@
-<!-- last_updated: 2026-03-13T12:30:07+01:00 run_79 -->
+<!-- last_updated: 2026-03-13T13:02:06+01:00 run_80 -->
+## 🏃 Run #80 Delta — 2026-03-13 13:02 Prague
+
+### 🖼️ Image Gen SOTA
+- **FireRed-Image-Edit 1.1 ComfyUI integration confirmed**: Official HuggingFace repo `FireRedTeam/FireRed-Image-Edit-1.1-ComfyUI` now live with downloadable workflow files; multi-image and single-image workflows included; community r/comfyui thread confirmed with workflow shared; portrait consistency + multi-element fusion + stylized text reference + makeup editing now accessible in ComfyUI without custom plumbing
+- **Luma AI Uni-1 — new #1 on logic benchmarks**: Unified image understanding + generation in single autoregressive transformer; tops RISEBench over Nano Banana 2 and GPT Image 1.5 on reasoning-based tasks; 76+ art style transformations, sketch-to-image, identity transfer, multi-image composition; API access coming soon via Luma API (no pricing yet as of March 13); available at lumalabs.ai/uni-1
+- **FLUX.2 Klein community LoRA ecosystem expanding**: "Consistence Edit LoRA" (civitai 1939453) for cross-image consistency; 8-reference image editing workflow (civitai 2213699) with LoRA support; 50+ training runs documented; Klein consistency LoRA released and active on r/comfyui; community advocating for HuggingFace as preferred LoRA sharing over CivitAI
+- **SeedVR2 upscaler** — emerging as best i2i upscale method per r/comfyui March 2026 thread; "devilishly good out of the box"; overtaking ESRGAN variants for video-frame upscaling; Z-Image Turbo workflow integration confirmed on CivitAI (model 2221604)
+- **FameGrid Qwen LoRA** (civitai articles/22271) — specialized fine-tune for hyper-realistic social media portrait images; useful for character consistency in marketing/content workflows
+- **DeepSeek V4** — rumored to include image + video generation capabilities (Financial Times); release timeline approximately next week per Reddit r/LocalLLaMA; open-source; potentially significant if confirmed open weights with multimodal gen
+- **arXiv March 13 image papers**: "Trust Your Critic: Robust Reward Modeling and RL for Faithful Image Editing" (HF Daily Papers); "How Long Can Unified Multimodal Models Generate Images" (2603.07540); "Pinterest Canvas" (2603.06453) large-scale image gen system for editing/enhancement
+
+### 🎬 Video Gen SOTA
+- **SkyReels-V4 API confirmed live** at skyreels.ai/api-platform: API documentation published; "Meet the All-New SkyReels V4" page live; 70 credits for new users; MMDiT dual-stream architecture (one branch video, one branch audio, cross-attention for sync); paper arXiv:2602.21818v2; V4 ComfyUI nodes **not yet widely available** (V1 via Kijai/SkyReels-V1-Hunyuan_comfy exists; V4 wrapper pending); kinovi.ai also hosting V4
+- **SkyReels-V4 honest AV sync assessment**: Per wavespeed.ai benchmark, V4 shows "relatively modest advantages in Audio-Visual Synchronization and Audio Quality" vs top competitors — true co-generation advantage is in beat-matched/voice-guided pacing rather than raw quality gap; LTX-2.3 A2V is mood/energy conditioning NOT true lip-sync (r/StableDiffusion confirmed)
+- **WanGP v10.9872 (March 12)** — "Prompt Enhancer has just Been Abliterated" (deepbeepmeep/Wan2GP); most recent significant update; covers Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX, Flux in single launcher
+- **Wan 2.7 — still no weights or GitHub push confirmed** as of March 13 13:02 Prague; Wan-Video/Wan2.2 repo shows maintenance commits only; community skepticism persists; no announcement on official channels
+- **Kiwi-Edit additional details** (github.com/showlab/Kiwi-Edit): Python 3.10 + CUDA 12.8 + PyTorch 2.7 required; released March 3; unified semantic video-to-video editing; useful for character video post-processing (style, lighting, background replacement without regeneration)
+- **LTX-2.3 speed gap vs LTX Desktop**: r/comfyui thread confirms LTX Desktop (official app) generates faster than raw ComfyUI workflow out-of-box; likely due to optimized pipeline; GGUF path in ComfyUI is community's workaround — benchmark your setup before committing to either
+
+### 🔧 ComfyUI Ecosystem
+- **FluxKVCache OOM (issue #12906) — RESOLVED in v0.17.0**: Official changelog confirms "Enhanced memory usage optimization for KV cache models" + "improved dynamic VRAM handling with better error management for AcceleratorError compatibility"; safe to use FluxKVCache node after updating to v0.17.0; previous workaround (disable dynamic VRAM) no longer needed
+- **ComfyUI-StableAnimator** (github.com/HJH-AILab/ComfyUI_StableAnimator): independent model loader node + bone map export from video frames; closest confirmed match to "DirectAnimator" concept; relevant for character animation skeleton-to-video pipeline
+- **SeedVR2 node in ComfyUI**: Available via Manager; confirmed as go-to i2i upscaler in r/comfyui March 2026 poll; pairs well with Z-Image Turbo workflow
+- **Best i2i upscale method March 2026** (r/comfyui community answer): SeedVR2 (default pick), then img2img with "invention" for stylistic deviation; ESRGAN still valid for non-AI upscaling
+- **ComfyUI-CRLF security advisory** (GHSA-562r-8445-54r2): CRLF injection vulnerability in Manager ConfigParser via HTTP query params; mitigated in Manager v4.1b2 (ships with v0.17.0) — update is important for security
+- **Workflow template v0.9.21** now ships with ComfyUI v0.17.0; includes updated LTX-2.3 I2V and T2V starters
+- **GDC 2026 recap (NVIDIA)**: NVFP4 + FP8 quantization for LTX-2.3 and FLUX.2 Klein via ComfyUI Template Browser; RTX Video Super Resolution node for video output; AMD ROCm 7.1 / RX 9000 series confirmed support coming
+
+### 🦾 Pose / Avatar / 3D
+- **NBAvatar 2603.12063 — no code drop yet** as of 13:02 March 13; project page at david-svitov.github.io/NBAvatar_project_page still "code pending review"; watch daily
+- **ComfyUI_StableAnimator bone map node** — exports skeleton/pose maps from video frames; useful for pose conditioning in Wan 2.2 Fun ControlNet or LTX-2.3 IC-LoRA pipelines; install via Manager search "StableAnimator"
+- **SkyReels-V4 pose/reference control**: MMDiT architecture supports multimodal input references including image + mask; full ControlNet-style pose conditioning not documented yet but inpainting + editing confirmed; watch SkyreelsAI GitHub for V4 ControlNet release
+- No new pose paper on arXiv confirmed for March 13 beyond what was captured in run #79
+
+### 🎓 LoRA / Identity
+- **ID-LoRA (2603.10256) — no code repo published yet** as of March 13 13:02; id-lora.github.io demo still live; Tel Aviv University review timeline unknown; this is the highest-priority code release to watch for Digital-Stud pipeline
+- **ai-toolkit (ostris) — no new commit today** per search; last significant update was pre-run #79; stable for FLUX.2 character training
+- **FLUX.2 Klein LoRA training community consensus** (r/StableDiffusion): rank 16-32 for character faces (30 min on 4090); rank 64+ for style; 40 epoch max (Civitai training limit enforced as of recent changelog); musubi-tuner preferred for HunyuanVideo 1.5
+- **Video2LoRA 2603.08210** — no code drop confirmed yet; paper describes LoRA adapters for DiT video models with semantic control parameters; relevant when released for per-character motion LoRA
+- **CivitAI training epoch limit**: Now capped at 40 epochs for all LoRA runs per recent changelog; "After reviewing training stability and failure rates" — affects anyone using CivitAI cloud training; train locally for >40 epochs
+
+---
+
 ## 🏃 Run #79 Delta — 2026-03-13 12:30 Prague
 
 ### 🖼️ Image Gen SOTA
