@@ -1,4 +1,51 @@
-<!-- last_updated: 2026-03-13T04:01:34+01:00 run_62 -->
+<!-- last_updated: 2026-03-13T04:30:23+01:00 run_63 -->
+## 🏃 Run #63 Delta — 2026-03-13 04:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Leaderboard clarification (March 12-13)**: Two crowd-sourced leaderboards diverge — arena.ai (LM Arena) puts **GPT Image 1.5 at ~1265 Elo** (top), while awesomeagents.ai puts **Nano Banana 2 at 1280 Elo** (top). Depends on voter pool composition. Both are SOTA; pick by use-case.
+- **Z-Image Turbo**: Sub-second generation ($0.01–$0.03/img), open-weight, excellent for real-time interactive apps. AI-Toolkit now supports Z-Image-Turbo LoRA training (de-distill adapter required).
+- **Qwen Image** (Alibaba): Only model with LoRA training *via API* ($35 one-time train). Layered image gen for compositing. Confirmed as community standard for dataset gen from single reference image.
+- **Ideogram 2.0**: Still best-in-class for text rendering (readable signs, logos, posters). Both v2 and Turbo variants.
+- **FLUX.2 [flex]**: 1181 Elo on LM Arena; handles inpainting tasks well alongside Klein.
+- **Seedream 5.0 Lite Model ID**: `seedream-5-0-260128` (fal.ai), confirmed 10 reference image connections (vs 14 for full 5.0), clean text rendering, context-aware editing. Best inpainting performance reported by community.
+- **FLUX Image-to-Video**: Confirmed active in Media-AI master list (March 2026). BFL img→vid pipeline entering market; no pricing published yet.
+
+### 🎬 Video Gen SOTA
+- **Kling 3.0 "Element Binding"** (comfy.org blog confirmed): New facial consistency system maintaining character stability in multi-shot. Distinct from motion control — Element Binding is about identity lock across cuts. Kling 3.0 beats 2.6 on complex scenes/artifacts; 2.6 still faster for rapid iteration.
+- **Kling 3.0 API**: Full 4K 60fps native, AI Director mode, multilingual (CN/EN/JP/KR/ES), up to 15s video, multi-character coreference (3+ chars). Pricing on fal: $0.224/s (no audio), $0.28/s (audio).
+- **Seedance 2.0 on fal.ai**: Listed as "coming soon" with Python/JS SDK, serverless pay-per-second. Volcano Engine (ByteDance cloud) still primary access path for now. Community 1-min film demos confirmed cinematic quality with integrated audio-video joint gen.
+- **Open-Sora 2.0** (HPC-AI Tech, March 12, 2026): 11B params, unified T2V + I2V, commercial-level quality at fraction of cost. Fully open-source architecture. 256px or 768px output. Democratization play.
+- **HunyuanVideo-1.5 cache optimizations**: DeepCache + TeaCache + TaylorCache all confirmed working — significant speedup. Step-distilled model (8-12 steps, 75% time reduction). FP8 inference support. LightX2V framework integration.
+- **Wan 2.2 Animate community**: 1 full minute continuous animation confirmed via "WAN 2.2 Extended" workflow + lip-sync. Ongoing community momentum, now natively in ComfyUI frontend.
+
+### 🔧 ComfyUI Ecosystem (March 13 additions)
+- **Wan Animate "Skeletal Adaptive Binding" node** (kijai, NEW): Brand-new node enabling direct pose or retargeted pose for Wan Animate. Confirmed via r/comfyui thread. Key feature: supports both retargeted pose AND direct pose input to same node.
+- **SCAIL One-Touch template** now live on comfy.org/templates — official template for "One-Touch SCAIL Pose Control based on composition." Lowest-friction SCAIL onboarding yet.
+- **ComfyUI-JakeUpgrade**: Maintains OpenPose+DWPose combo node (Open+DW Pose JK). Also SCAIL 2.1 + One To All 2.1 main model entries confirmed in node compatibility table.
+- **Wan 2.2 Animate + Qwen-Image-Edit 2509** natively in ComfyUI (confirmed blog.comfy.org post): The model animates any character from reference image based on performer video — face expressions + movements. Paired with Qwen for pre-animation editing.
+- **Kling 3.0 Motion Control ComfyUI** (comfy.org blog): Full-body motion transfer with Element Binding. Builds on Kling 2.6 Motion Control node infrastructure.
+- **Updated ControlNet Union for Flux** (r/comfyui, 1k+ upvotes): "with this new union - Flux is just amazing!" Flux+ControlNet now production-quality for pose/depth/canny control. Note: no AnimateDiff motion model for Flux yet.
+- **SAM + VNCCS pose transposition**: Community workflow confirmed — use SAM to segment, transpose result into VNCCS pose node for precise character pose matching.
+
+### 🦾 Pose Estimation Deep-Dive
+- **SCAIL architecture confirmed**: 1.3B and 14B model variants. Trained on 250K motion-rich video-pose pairs (20K multi-character). 14B trained on 128× H100s for 4+ days. NLF (Neural Lift Field) for 3D depth understanding. Cylindrical 3D skeleton rendering preserves occlusion.
+- **SCAIL + Uni3c camera motion** (Tamas Cseh, community): Matrix-themed Simpsons workflow combining SCAIL pose tracking with Uni3c camera motion — cited as "last week in multimodal AI" shoutout. Production-level combo.
+- **SCAIL vs DWPose**: SCAIL fundamentally 3D (NLF depth), DWPose fundamentally 2D. SCAIL integrates ViTPose for face/hands and converts to DWPose format for optional alignment — hybrid best-of-breed. Benchmark conclusion: "SCAIL Pose is unequivocally the best model for replicating character motion from reference video."
+- **VNCCS Pose Studio**: 257 upvotes / 96 comments on r/comfyui. SAM integration confirmed for pose transposition. Batch processing: "best results if pose dummy locks alike — huge batches at a time."
+- **ComfyUI WAN 2.2 Animate v2 (kijai)**: NOW SMALLER than v1 while improving quality. New V2 model with pose detection nodes included. Confirmed via YouTube tutorial.
+
+### 🎓 LoRA Training Deep-Dive
+- **diffusion-pipe** (tdrussell): Emerging as the community standard multi-model video LoRA trainer. Supports Wan 2.1/2.2, HunyuanVideo, LTX Video in single tool. Hybrid image+video dataset training.
+- **Flimmer** (Alvdansen Labs / Timothy Bielec): Open-source, WAN 2.1+2.2 specific. Reddit confirmed. Simpler entry point than diffusion-pipe for Wan-only use cases.
+- **Wan 2.2 LoRA training via AI Toolkit**: YouTube tutorial confirmed (5B I2V variant). 20-50 images → consistent character. MoE architecture allows independent LoRA on high-noise + low-noise experts for fine-grained control.
+- **Klein LoRA full AI Influencer pipeline** (YouTube): FLUX.2 Klein 9B for dataset creation → AI-Toolkit LoRA training → content generation. Trigger word: rare tokens (`ohwx_name`). 12-20 high-res images, varied angles. Combines with PuLID adapters + ControlNet OpenPose.
+- **Z-Image-Turbo LoRA** (AI Toolkit): de-distill training adapter required. Style LoRA confirmed; character LoRA testing in progress.
+- **LTX-2 character LoRA** (AI Toolkit): YouTube tutorial confirmed. LTX-2 now a viable character-consistent video LoRA target.
+- **Video dataset caption discipline**: Critical — videos auto-truncated to ~4-5s, captions must match the truncated content visible during training (common mistake: caption written for full video but only first ~4s trains).
+- **Recommended 2026 character LoRA stack**: Z-Image or Qwen for dataset generation from 1 reference → diffusion-pipe for video LoRA training → ComfyUI-WAN-Animate for inference.
+
+---
+
 ## 🏃 Run #62 Delta — 2026-03-13 04:01 Prague
 
 ### 🖼️ Image Gen SOTA
