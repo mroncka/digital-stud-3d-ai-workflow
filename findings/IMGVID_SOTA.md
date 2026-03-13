@@ -1,4 +1,54 @@
-<!-- last_updated: 2026-03-13T13:02:06+01:00 run_80 -->
+<!-- last_updated: 2026-03-13T13:30:02+01:00 run_81 -->
+## 🏃 Run #81 Delta — 2026-03-13 13:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **GPT-5.4 confirmed released today** (aisearch.substack.com March 13): alongside LTX-2.3 and other model drops; GPT 5.4 likely iterates GPT-Image-1.5 with improved reasoning + image editing; no open-source weights; watch for API changes on OpenAI pricing page
+- **Nano Banana 2 Pro — community prompt library growing**: YouMind-OpenLab/awesome-nano-banana-pro-prompts GitHub repo active as of March 13 2026 05:08 UTC; "Hand-picked by our team" featured prompts include wide quote card with portrait; highlights growing ecosystem for Nano Banana commercial use
+- **China AI image gap closing** (Forbes Feb 2026 update): After Nano Banana Pro, Chinese models (HiDream, Qwen-Image, FameGrid) reducing delta against Google/OpenAI in composition and reasoning tasks; relevant for API budget decisions — Qwen-Image via WanGP is a viable free local option
+- **FireRed-Image-Edit 1.1 community uptake confirmed**: Reddit r/comfyui thread with workflow included going viral; portrait consistency + stylized text reference use cases dominating early tests
+
+### 🎬 Video Gen SOTA
+- **LTX-2.3 CONFIRMED RELEASED TODAY (March 13 2026)** — major release: fastest 4K video generation model; native 4K output; HDR EXR broadcast-spec workflow (ltx.studio/blog/ai-video-for-broadcast); 10-bit color depth; native portrait mode; native audio/vocoder rebuilt; improved I2V; Day-0 ComfyUI support confirmed via `blog.comfy.org/p/ltx-23-day-0-supporte-in-comfyui`; LTX Studio interview with CTO Yaron Inger live; community benchmarks show it faster than LTX-2.2 by ~40%; update ComfyUI to v0.17.0 and find workflow in Template Library → Video → LTX-2.3
+- **Kling 3.0 (not 2.0) is current** — Kling 3.0 Omni Edit with Motion Control confirmed active March 11-12; side-by-side vs Seedance 2.0 comparison being circulated on Instagram (March 12); "Kling 2.0" is legacy; Kling 3.0 API endpoint at klingai.com; Motion Control lets you puppet subjects from reference video — high relevance for character animation pipeline
+- **Seedance 2.0 confirmed competition-ready**: Instagram reel showing Kling 3.0 vs Seedance 2.0 same-prompt comparison posted March 12; Seedance 2.0 API at fal.ai (scripts/api_test_seedance.py covers 1.5); worth adding Seedance 2.0 endpoint to test script
+- **SkyReels V4 — CLOSED SOURCE CONFIRMED**: Reddit user (LindaSawzRH) states "No, this will not be open source/weights. If you look back through all of their other papers when they planned to release..." — V4 paper and API available but no local inference; V3 and prior versions open-source via SkyworkAI GitHub; ComfyUI nodes confirmed only for V1/V2/V3 (kijai/ComfyUI-WanVideoWrapper covers V3)
+- **Wan 2.7 open weights — community uncertainty**: Reddit r/StableDiffusion thread "wan 27 will be released this month" exists but one commenter notes "Wan isn't releasing open weights anymore"; no GitHub push; treat as unconfirmed until official announcement
+- **WanGP now supports Qwen Image** (deepbeepmeep/Wan2GP): Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX Video, Flux all in single launcher; v10.9872 is current (March 12); excellent for GPU-poor workflows
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 full changelog (released today March 13)**:
+  - Modular asset architecture with async 2-phase scanner + background seeder (faster startup)
+  - Python fault handler for crash debugging
+  - KV cache memory optimization + AcceleratorError fix (FluxKVCache OOM resolved)
+  - **New nodes bundled**: Painter node (enhanced image editing), Reve Image API nodes
+  - Enhanced Flux model patching: pre-attention patches, post-input patches for Qwen image model
+  - Fixed text encoder LoRA loading for wrapped models
+  - batch_size > 1 fixes for multiple models
+  - Fixed audio extraction and truncation bugs
+  - ComfyUI Manager updated to v4.1b2 (CRLF security fix included)
+  - Frontend v1.41.18, comfy-kitchen v0.2.8, comfy-aimdo v0.2.10
+  - Workflow templates updated to v0.9.21 (includes LTX-2.3 starters)
+- **ElevenLabs now available as Partner Node** (Threads post from ComfyUI March 7): world-class voice AI directly in node graph; drag-and-drop TTS/voice generation; significant for audio-driven video workflows (pair with LTX-2.3 A2V or SkyReels V4 API)
+- **kijai/ComfyUI-WanVideoWrapper active features**: Holocine Structured Prompt & Shot Attention (PR #1615) for multi-shot video; less reliant on torch.compile (VRAM improvement); supports WanVideo, ReCamMaster, VACE, Phantom, ATI, HuMo, Lynx, MoCha; SkyReels V3 via WanVideoWrapper confirmed (issue #1916); SkyReels V4 NOT supported (closed-source)
+- **ComfyUI-SkyReels-A2 node exists** (github.com/ComfyUI-Workflow/awesome-comfyui entry): "ComfyUI-SkyReels-A2: ComfyUI nodes for SkyReels-A2 model" — enables multi-element video generation (dual-branch architecture) locally; install via Manager search "SkyReels-A2"
+- **LTX-2.3 ComfyUI workflow path**: ComfyUI v0.17.0 → Template Library → Video → LTX-2.3; official `docs.comfy.org/tutorials/video/ltx/ltx-2-3` page live; GGUF quantized versions available for low-VRAM
+
+### 🦾 Pose / Avatar / 3D
+- **FMPose3D accepted to CVPR 2026** (@TrackingActions on X March 13): new 3D pose estimation from @mwmathislab; monocular 2D→3D lifting; state of the art for single-camera pose extraction — relevant for pipeline when code releases post-CVPR June 2026
+- **Causal Intervention GNN for Whole-Body Pose** (arXiv 2603.09418): multi-level skeleton GNN with local kinematics + long-range dependencies; structural constraints enforced; potential upgrade path over DWPose for whole-body (including hands) in video pipelines
+- **LTX-2 ControlNet pose/depth confirmed** (RuneXX/LTX-2-Workflows on HuggingFace): official LTX-2 ControlNet models at runcomfy.com/comfyui; extends to LTX-2.3 architecture; enables pose-guided video generation without Wan dependency
+- **TheDenk/wan2.2-controlnets collection**: confirmed HuggingFace collection with pose, depth, canny models for Wan 2.2; code at github.com/TheDenk/wan2.2-controlnet; this is the official Wan 2.2 pose ControlNet path
+
+### 🎓 LoRA / Identity
+- **ai-toolkit (ostris)**: no new commit confirmed today; stable for FLUX.2 Dev and Klein character training
+- **ID-LoRA (2603.10256)**: no code repo yet; Tel Aviv University; still pending review
+- **SoLA (2603.11239)**: no code or demo release confirmed today
+- **Video2LoRA (2603.08210)**: no code release; paper describes motion LoRA for DiT video models
+- **Civitai 40-epoch hard cap**: now enforced; train locally via ai-toolkit or musubi-tuner for >40 epochs
+- **FLUX.2 Klein LoRA training consensus** (r/StableDiffusion): rank 16-32 for faces (30 min 4090); rank 64+ for style; musubi-tuner recommended for HunyuanVideo 1.5; ai-toolkit for FLUX.2 Dev/Klein
+
+---
+
 ## 🏃 Run #80 Delta — 2026-03-13 13:02 Prague
 
 ### 🖼️ Image Gen SOTA
