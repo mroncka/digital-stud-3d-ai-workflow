@@ -1,3 +1,59 @@
+<!-- last_updated: 2026-03-13T03:30:00+01:00 run_61 -->
+## 🏃 Run #61 Delta — 2026-03-13 03:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana 2** (Google/Gemini 3.1 Flash): New #1 on Chatbot Arena at Elo 1280. 4× faster than v1, batch API with 50% discount for non-real-time. Photorealism & multi-subject leader. Free tier available.
+- **FLUX.2 Pro v1.1** (BFL): Elo 1265, sub-second, strong photography precision. `$0.025–0.07/img`. Dev open-weight self-hostable.
+- **GPT Image 1.5** (OpenAI): Elo 1264, ~95% text-rendering accuracy. `$0.04–0.13/img`.
+- **Stable Diffusion 4 Ultra** (Stability AI, March 2026): Upgraded DiT architecture, open-weight photorealism benchmark. `$0.006–0.035/img`.
+- **Recraft V4** (Feb 2026): #1 HuggingFace design benchmarks, SVG export, `~$0.04/img` via FAL.AI.
+- **Tripo P1.0** (GDC 2026): Native 3D diffusion → engine-ready assets directly; new frontier beyond 2D.
+- **Architecture note**: Rectified Flow (FLUX, SD3, Sora) now dominant over DDIM/DDPM. DiT (AdaLN-Zero conditioning) + MLLM text encoders (HunyuanVideo) are current best practice.
+- **Free APIs**: Google Gemini free tier; FAL.AI 600+ models (free signup credits); Replicate free tier; HF open-weight.
+
+### 🎬 Video Gen SOTA
+- **Kling 3.0** (Kuaishou): Native 4K @ 60fps, 15s, multi-shot storyboard, persistent character consistency, multi-language audio. Visual quality leader. API via PiAPI / Segmind.
+- **Sora 2** (OpenAI): 25s clips (extendable), native dialogue+SFX+music, 6 style presets. Duration champion.
+- **Seedance 2.0** (ByteDance, Feb 12 2026): 20s @ 1080p, dual-channel audio, 4-input types (text/image/video/audio). No public API yet (⚠️ any 3rd-party Seedance 2.0 API is unofficial as of March 2026). Free trial via Volcano Engine.
+- **Veo 3.1** (Google): 9:16 native vertical, best lip-sync & character identity, 1080p+4K upscale. Via Gemini API.
+- **Wan 2.6** (Alibaba, open-weight): Community #1 self-hosted pick; MoE 14B, VBench leader for open-source, LoRA from 2.1/2.2 compatible, consumer GPU friendly. Zero per-gen cost.
+- **LTX-Video 2.3** (Lightricks): ComfyUI day-0 support (March 5). Fastest: near-real-time 30fps @ 1216×704. Audio-video sync.
+- **HunyuanVideo 1.5** (Tencent): 13B dual-stream transformer, FP8, multi-GPU, strong motion coherence. ComfyUI native support.
+- **SkyReels V4**: Unified multimodal video audio gen, repair & edit foundation model.
+- **Free video API access**: fal.ai (Veo/Sora/Kling via single API, pay-per-use). Cliprise (47+ models). Kling O1 via PiAPI (free credits).
+
+### 🔧 ComfyUI Updates (March 2026)
+- **v0.16.1 (March 5)**: Kling 3.0 Motion Control enabled; ResolutionSelector node; LTXAV 2.3 native; SCAIL WanVideo; SDPose-OOD; Dynamic VRAM as default.
+- **v0.16.0 (March 5)**: LongCat-Image native; ACE-Step 1.5 lycoris key alias (LoKR); Z-image pixel-space; zeta chroma weights loading.
+- **App Mode + App Builder (March 10)**: Convert workflows into shareable no-install apps. ComfyHub launched.
+- **ElevenLabs integration (March 7)**: Voice cloning, TTS, sound effects directly in ComfyUI.
+- **Comfy Cloud free tier (March 2)**: 400 free credits/month for cloud processing.
+- **NVIDIA RTX acceleration (March 10, GDC)**: FP4 model support + RTX Video Super Resolution in ComfyUI. Confirmed ~30× faster upscaling vs alternatives.
+- **Hunyuan 3D Advanced (March 10)**: Production-ready 3D post-processing in ComfyUI.
+- **LTX-2.3 day-0 (March 5)**: Enhanced audio-video quality.
+- **Key community nodes**: Impact Pack (FaceDetailer, mandatory), ComfyUI Cluster (200+ models, auto-picks best).
+
+### 🦾 Pose Estimation SOTA
+- **RTMPose-m**: 75.8% AP COCO, 430+ FPS on GTX 1660 Ti (ONNX). RTMPose-s: 72.2% AP, 70+ FPS on Snapdragon 865 mobile.
+- **RTMO** (one-stage): 1.1% higher AP than competing one-stage, ~9× faster with same backbone. In MMPose v1.3.0.
+- **DWPose-l** (256×192): 72.2% Body AP / 66.5% Whole AP on COCO-WholeBody. ICCV 2023 best-in-class for whole-body.
+- **YOLOv11 Pose / YOLO26**: Strong occlusion handling, real-time. YOLO26 (Ultralytics): NMS-free, edge/low-power optimized.
+- **HEViTPose** (2026, Nature): New ViT-based HPE with improved accuracy/efficiency tradeoff.
+- **DWPose in ComfyUI** (comfyui_controlnet_aux): Now confirmed working with Wan 2.2 Animate for pose-conditioned video. `dw_openpose_full` node covers body+hands+face. TorchScript backend recommended for GPU speed.
+
+### 🎓 LoRA Training SOTA
+- **OneTrainer** emerging as top choice over AI-Toolkit: 2× speedup, built-in TensorBoard validation loss (prevents overfitting), batch captioning/masking, Prodigy optimizer support.
+- **Kohya_ss**: Still most reliable for SDXL+A1111 character LoRA pipelines (March 2026 tutorial confirmed).
+- **Flux LoRA best practice**: `rank 16–32`, `lr 4e-4`, `~1000 steps @ bs1`. Minimal tagging critical (Flux has strong pre-biases). Trigger: `3–5 rare letters + class` (e.g. `zkw woman`).
+- **SDXL best practice**: `rank 32–64`, `lr 5e-5 UNet / 1e-5 TE`, Prodigy optimizer, 15–30 epochs, 30–50 images, Noise Offset 0.035–0.1.
+- **Dataset gen workflow**: Qwen Image Edit (from 1 reference → consistent 40-60 candidate set) → select best 30-50 → train.
+- **ID-LoRA** (arxiv March 2026): Joint appearance+voice generation in single model from text+image prompt. Emerging for multi-modal identity preservation.
+- **Multi-character LoRA**: Single LoRA with multiple trigger words per character now production-viable.
+- **Flimmer trainer**: Video LoRA training toolkit for DiT models (March 3 2026 release). Enables character-consistent video fine-tuning.
+- **Facial drift prevention (2026 best practice)**: LoRA + inpainting workflow; identity anchoring + temporal regularization for video sequences.
+
+---
+
 ## 🔥 Run #59 Delta — 2026-03-13 02:30 Prague
 
 ### 🖼 Image Gen SOTA
