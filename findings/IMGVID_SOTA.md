@@ -1,4 +1,106 @@
-<!-- last_updated: 2026-03-13T23:01:59+01:00 run_100 -->
+<!-- last_updated: 2026-03-13T23:30:14+01:00 run_101 -->
+## 🏁 Run #101 Delta — 2026-03-13 23:30 Prague
+
+### 🖼️ Image Gen — FLUX.2 & SD4 Update
+- **FLUX.2 Klein 4B Distilled**: ~1.2s inference, 8.4GB VRAM, unified T2I + image editing in one model. Best choice for interactive character consistency workflows in ComfyUI. Supports: style transforms, semantic edits, object replacement, multi-reference composition, face swapping. Now officially documented at docs.comfy.org/tutorials/flux/flux-2-klein
+  - 4B Base: ~17s inference, 9.2GB VRAM
+  - 9B: Higher quality, slower; 12GB+ VRAM recommended
+  - Key limitation: face identity preservation weaker than FLUX.2-dev full model for LoRA inference — use Klein for fast iteration, Dev for final output
+- **FLUX.2 ControlNet (Shakker Labs)**:
+  - Depth ControlNet for FLUX.2 available on HuggingFace (Shakker-Labs/FLUX.1-dev-ControlNet-Depth)
+  - Canny ControlNet available (Shakker-Labs/FLUX.1-dev-ControlNet-Canny-v3)
+  - Pose ControlNet: Community models available via CivitAI — use with DWPose skeleton for character pose control
+  - No official BFL pose ControlNet yet; community models are production-usable
+- **FLUX.3 / BFL Next Model**: No announcement as of March 13, 2026. Black Forest Labs has not teased a successor. Monitor bfl.ml and @bfl_ml on X.
+- **Stable Diffusion 4 Ultra**: Confirmed open weights + photorealism benchmark achieved (Stability AI, March 2026). Architecture: upgraded DiT. Best for photorealistic non-FLUX workflows. Available via Stability AI API and local weights.
+- **ComfyUI v0.17.0 (March 13, 2026)** — key updates:
+  - Modular asset architecture with async two-phase scanner (faster model loading)
+  - FLUX.2 Klein KV cache model support
+  - Enhanced audio nodes suite
+  - Gemini 3.1 Flash-Lite API node
+  - v0.16.4 (Mar 7): Math Expression node, TencentSmartTopology API node
+  - v0.16.1 (Mar 5): ResolutionSelector node, CURVE type support, Kling 3.0 Motion Control enabled
+  **Action**: Update ComfyUI to v0.17.0+ before running FLUX.2 Klein KV cache workflows.
+
+### 🎬 Video Gen — Open Source Deep Dive
+- **Wan 2.6 — Best Open-Source for Character Consistency**:
+  - Reference-to-Video (R2V) mode: up to 150 reference frames, 3 simultaneous character references
+  - Multi-shot from ONE prompt: up to 15-second stories, temporal markers, automatic scene segmentation
+  - Prompt structure: `[Global style]. Shot 1 [0-3s]: ... Shot 2 [3-7s]: ... Shot 3 [7-10s]: ...`
+  - R2V officially in ComfyUI Workflow Library (blog.comfy.org/p/wan26-reference-to-video)
+  - VRAM: 16GB+ recommended for full R2V; 12GB possible with quantized weights
+  - Best API: WaveSpeedAI Wan 2.6 (most affordable 1080p + native audio)
+  - Open weights: huggingface.co/Wan-AI (23 models)
+  **Immediate action**: Update `comfyui/workflows/wan22_img2vid.json` to reference R2V mode and multi-shot prompt structure.
+- **SkyReels V4 — Status Update**:
+  - Still limited preview as of March 13, 2026. No open API yet. Mid-March broader access expected.
+  - Architecture: Dual-stream MMDiT (video branch + audio branch, shared text encoder)
+  - First model to generate video + temporally aligned audio simultaneously
+  - 1080p @ 32fps, 15s max, text/image/video/mask/audio inputs
+  - Monitor: skyreels.ai for API access announcement
+- **LTX-2.3 GGUF**:
+  - Confirmed working at 12GB VRAM with distill LoRA (unsloth/LTX-2.3-GGUF + QuantStack/LTX-2.3-GGUF)
+  - Unsloth Dynamic 2.0 quantization: ~50% memory reduction vs full precision
+  - 8GB VRAM: possible with aggressive optimization (Q4_K_M quant + tiled generation)
+  - Day-0 official ComfyUI support: blog.comfy.org/p/ltx-23-day-0-supporte-in-comfyui
+  - Lightricks released official ComfyUI workflows March 5 (ltx.io/model/model-blog/ltx-2-3-release#comfyui)
+  **Action**: Test LTX-2.3 GGUF as local fallback when Wan 2.6 VRAM budget is tight.
+
+### 🦾 Human Pose & Animation — arXiv March 2026 Sweep
+Full batch of relevant papers published this month:
+
+| Paper | arXiv | Key Contribution | Relevance |
+|---|---|---|---|
+| **Kling-MotionControl** | 2603.03160 | Unified DiT: body+face+hands, 10× accel, beats Runway Act-Two | ⭐⭐ Character animation |
+| **Text-to-Skeleton Cascades** | 2603.08028 | 2-stage for acrobatic/stunt motion + DINO-ALF for large poses | ⭐ Complex motion |
+| **Ani3DHuman** | 2602.19089 | Photorealistic 3D animation: kinematics + video diffusion priors | ⭐⭐ 3D pipeline |
+| **FootMR** | 2603.09681 | 30% ankle joint error reduction, MOOF dataset | ⭐ Foot accuracy |
+| **DrPose** | 2603.02619 | Direct reward fine-tuning for single-image 3D human recovery | ⭐ Pose recovery |
+| **SkeleGuide** | 2603.01579 | Explicit skeleton reasoning for context-aware human synthesis | ⭐ Posing in scene |
+| **Hoi3DGen** | 2603.12126 | Human-object interaction → textured 3D mesh | ⭐ HOI scenes |
+| **TARViTPose** | 2603.05929 | Temporal aggregate-restore ViT for video pose estimation | ⭐ Video pose |
+| **NBAvatar** | 2603.12063 | Realistic head avatar with hand-face interaction rendering | ⭐ Head avatar |
+| **Sketch2Colab** | 2603.02190 | Storyboard sketches → coherent 3D multi-human motion | ⭐ Storyboard |
+| **CIGPose** | 2603.09418 | Causal intervention GNN for whole-body pose SOTA | ⭐ Pose quality |
+
+**Kling-MotionControl (2603.03160) — Deep Dive**:
+- DiT-based, multi-granularity: body, facial expression, hand gestures in one pass
+- Adaptive cross-identity motion transfer: transfer motion from person A to character B
+- 3D-aware free-view camera control from text description
+- 10× inference acceleration via multi-stage distillation
+- Evaluated vs Dreamina, Runway Act-Two, Wan-Animate — top on human preference
+- This is the technical backbone of Kling 3.0 Motion Control — read paper for implementation insight
+
+**Ani3DHuman (2602.19089) — Recommended for Digital-Stud 3D pipeline**:
+- Bridges kinematic skeleton-based methods and video diffusion priors
+- Layered motion representation: rigid motion (skeleton) + residual non-rigid motion (cloth, hair)
+- Self-guided stochastic sampling for out-of-distribution poses
+- Input: character image + motion sequence → photorealistic 3D animation video
+- GitHub: arxiv.org/abs/2602.19089 (code TBA, monitor)
+
+**RTMW (real-time)**: RTMPose successor now with 2D and 3D whole-body estimation (hands+face+body unified). Production-ready, MMPose-based. Best choice for real-time pose extraction in ComfyUI ControlNet workflows.
+
+### 🎛️ LoRA Training — OneTrainer + Community Consensus Update
+- **OneTrainer 1.7 (March 2026)**:
+  - Native FLUX.2 Dev support added
+  - Built-in dataset auto-captioning with Florence-2 (no separate script needed)
+  - Training presets: character LoRA, style LoRA, face LoRA
+  - GUI-based: lower barrier than AI-Toolkit for beginners
+  - GitHub: github.com/Nerogar/OneTrainer
+- **Full-body character LoRA on FLUX.2-dev — CivitAI community consensus (March 2026)**:
+  - Steps: 1500–2000 total (sufficient for rank 16 character LoRA)
+  - Learning rate: 4e-4, cosine-with-restarts schedule, 3–5 restarts over training
+  - Batch size: 4 (gradient accumulation × 2 if VRAM limited)
+  - Rank: 16 for character/identity; 32 for full-body style
+  - Dataset: 20–40 images, diverse backgrounds, diverse poses, consistent costume
+  - Caption strategy: Florence-2 captions + manual review + trigger word prepended every caption
+  - AI-Toolkit `flux-train-network` `.toml` preferred for reproducibility over CLI args
+  - **New finding**: Including 3–5 images from different lighting conditions significantly improves LoRA robustness in inference diversity
+- **CivitAI Beginner Flux.2 Klein Character Dataset Builder** (uploaded March 2026):
+  - Workflow: Flux.2 Klein Simple Fast Consistent Character Dataset Builder with prompt saver
+  - Useful for bootstrapping dataset before LoRA training — generates character reference images from single seed
+  - Available on CivitAI (search "Flux.2 Klein Character Dataset Builder")
+
 ## 🏁 Run #100 Delta — 2026-03-13 23:02 Prague
 
 ### 🖼️ Image Gen Free APIs
