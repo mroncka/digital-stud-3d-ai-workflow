@@ -1,4 +1,104 @@
-<!-- last_updated: 2026-03-13T04:30:23+01:00 run_63 -->
+<!-- last_updated: 2026-03-13T05:02:31+01:00 run_64 -->
+## 🏃 Run #64 Delta — 2026-03-13 05:02 Prague
+
+### 🖼️ Image Gen SOTA
+- **FLUX.2 [klein] model lineup clarified**:
+  - 9B distilled: sub-0.5s T2I + single-reference editing + multi-reference composition; FLUX Non-Commercial License
+  - 4B distilled: Apache 2.0 (fully open), runs on RTX 3090/4070 ~13GB VRAM
+  - 9B/4B base (undistilled): for LoRA fine-tuning & research
+  - FP8 + NVFP4 quantizations: up to 2.7× faster, 55% less VRAM on RTX GPUs (NVIDIA collaboration)
+  - FLUX.2 [klein] 9B-KV: KV-cache support for accelerated multi-reference editing (confirmed via sglang releases)
+- **Nano Banana 2 API details confirmed**:
+  - Model ID: `gemini-3.1-flash-image-preview` (Gemini API + Vertex AI)
+  - Requires **paid API key** — free tier does NOT include image gen
+  - Nano Banana Pro = `Gemini 3 Pro Image Preview` (deprecated March 9, 2026 — replaced by Nano Banana 2)
+  - Nano Banana (original) = `Gemini 2.5 Flash Image` (speed tier, still available)
+- **GPT Image 1.5 fal.ai pricing confirmed**:
+  - Low: $0.009/img (1024²) / $0.013 (other sizes)
+  - Medium: $0.034/img (1024²) / $0.051 (1024×1536)
+  - High: $0.133/img (1024²) / $0.200 (1024×1536)
+  - Text tokens: $0.005/1K input, $0.010/1K output
+- **Seedream 5.0 Lite fal.ai pricing**: $0.035/img T2I; edit endpoint separate (`/edit/api`)
+  - Model ID confirmed: `fal-ai/bytedance/seedream/v5/lite/text-to-image`
+  - Edit endpoint: `fal-ai/bytedance/seedream/v5/lite/edit`
+  - Features: live web retrieval, multi-step reasoning, multilingual text rendering, sketch-guided edits, style/color transfer, inpainting — all in one model
+
+### 🎬 Video Gen SOTA
+- **⚠️ CRITICAL: Seedance 2.0 global API indefinitely postponed**
+  - Original fal.ai launch date: Feb 24, 2026 — missed
+  - Cause: Legal threats from Disney, Netflix, Paramount, Sony, Warner Bros. — copyright infringement + deepfake concerns
+  - Current status: China-only via Jimeng AI + CapCut China (Jianying); Dreamina international still on Seedance 1.5 Pro
+  - fal.ai page: "Available on fal.ai soon" (still holding page, no date)
+  - **Action**: Remove Seedance 2.0 from "imminent API" list; monitor for legal resolution
+- **Kling 3.0 Motion Control ComfyUI (Partner Nodes)**: Element Binding detail confirmed:
+  - Multi-angle facial uniformity during long-duration movement
+  - Occlusion-resistant identity (partial blockage from hands/accessories handled)
+  - Enhanced emotional accuracy via multiple facial reference inputs
+  - Motion-consistent clarity during camera work (zooms, pans, tracking)
+- **HunyuanVideo 1.5 native ComfyUI support** (blog.comfy.org confirmed): Update ComfyUI to 0.3.60+, download workflows from blog
+  - fal.ai pricing: $0.075/second of output video at 480p, up to 121 frames
+  - T2V + I2V modes, 720p native (upscalable to 1080p), diverse style support
+- **Veo 3.1 API details** (released Jan 13, 2026, paid preview):
+  - "Ingredients to Video": up to 3 reference images for character consistency
+  - "Scene Extension": generate clips connecting to prior content (60+ second potential)
+  - "First and Last Frame": smooth transitions between 2 images + audio
+  - Vertical video support for social media
+  - Native audio: conversations, sound effects, synchronized generation
+  - Access: Gemini API paid preview only
+- **WAN 2.2 Animate + Qwen-Image-Edit 2509** native ComfyUI support confirmed (blog.comfy.org):
+  - Dual-mode: animate any character from performer video OR replace character in video
+  - Body motion via spatially-aligned skeleton signals
+  - Requires ComfyUI 0.3.60+
+
+### 🔧 ComfyUI Ecosystem
+- **Comfy Cloud out of beta** (March 9, 2026):
+  - Hardware: NVIDIA Blackwell **RTX 6000 Pro** GPUs, 96GB VRAM, 180GB RAM
+  - Pricing: ~0.266 credits/second (30% cheaper since Jan 2026 price drop)
+  - ~90% of local custom nodes available in cloud with zero setup
+  - Free tier available; pay-per-use (charged only during active workflow execution)
+  - Model library: Qwen, LTX-2, HunyuanVideo, Nano Banana 2, Grok, Kling 3.0 + custom LoRA upload
+  - Planned: Workflow API deployment for production integration
+- **App Mode + App Builder + ComfyHub** (March 10, 2026):
+  - App Mode: hides node graph → clean UI showing only essential inputs; single-click activation
+  - App Builder: configure which node inputs/outputs become app-facing; rename, reorder, group params
+  - Shareable app URLs: recipients run in browser without installation (especially on Comfy Cloud)
+  - ComfyHub: community platform (preview) for sharing finished apps + workflows (separate from Node Registry)
+  - 212 upvotes on r/comfyui launch post; confirmed video: "App Mode is the Easy Button We've Been Waiting For"
+- **LTX-2.3 Day-0 native ComfyUI support** (March 5, 2026):
+  - Finer visual details via new latent space + updated VAE
+  - Improved 9:16 portrait video quality (social/mobile)
+  - Reduced audio noise, better dialogue/music/ambient
+  - Improved I2V motion consistency, eliminated frozen-frame glitches
+  - Smarter text encoder for complex prompts
+  - Templates in ComfyUI Template Library for T2V + I2V
+- **HunyuanVideo 3D (HY 3D) 3.0 Partner Nodes** advanced features:
+  - 3D Parts Decomposition: splits assets into editable components (armor, accessories, wheels)
+  - UV Unwrapping: automatic UV layouts for 3D models
+  - Smart Topology: dense geometry → clean production-friendly meshes
+- **Node versioning community concern**: r/comfyui thread "Most important next step for ComfyUI" — fresh install breaks 2-3 month old workflows; community requesting node version metadata in Manager
+
+### 🦾 Pose Estimation
+- **One-to-All Animation accepted at CVPR 2026**: Legitimizes the approach for character animation via single reference image. GPU-poor option: 1.3B model runs free on Kaggle 16GB GPU (confirmed Dec 22, 2025 update)
+- **SCAIL One-Touch template on comfy.org/templates**: Listed under Wan2.1 SCAIL model filter — "One-Touch SCAIL Pose Control based on the composition of the Reference Image." Trending section.
+- **ComfyUI-WanAnimatePreprocess (kijai)**: Official GitHub repo confirmed — runs ViTPose model, face crops, SAM2 segmentation keypoint list. Models go to `ComfyUI/models/detection`. Skeletal Adaptive Binding enables smoother animation transfer for non-standard proportions (cartoons, stylized characters).
+- **VNCCS Pose Studio expanded details** (r/StableDiffusion, 307 upvotes; LinkedIn post):
+  - Interactive 3D viewport with bone gizmos + full Undo/Redo
+  - Dynamic Body Generator: Age, Gender blending, Weight, Muscle, Height
+  - Multi-Pose Workflow: batch outputs in single node
+  - Natural Language Integration: auto-generates descriptive lighting prompts
+  - Reference Tracing: load background images for precise character alignment
+  - Lazy loading for Pose Library (performance fix confirmed in CHANGELOG.md)
+
+### 🎓 LoRA Training
+- **diffusion-pipe (tdrussell)**: Confirmed multi-model support: Wan 2.1/2.2, HunyuanVideo, LTX Video — hybrid image+video dataset training. Emerging community standard for cross-model video LoRA.
+- **Wan 2.2 LoRA via AI-Toolkit (5B I2V)**: YouTube tutorial confirmed production workflow — MoE architecture benefit: independent LoRA on high-noise vs low-noise experts for fine-grained control. 20-50 images → consistent character.
+- **One-to-All Animation 14B LoRA integration**: kijai's WanVideoWrapper now integrates One-to-All 14B with both retargeted and direct pose input — LoRA trained on Wan can benefit from this architecture.
+- **LTX-2.3 character LoRA**: Confirmed working via AI-Toolkit. LTX-2.3's improved I2V consistency makes it a better LoRA training target than LTX-2.x.
+- **Community dataset caption tip**: For video LoRA, write captions for only the visible truncated content (~4-5s), not full intended video. Mismatch is a common training failure mode.
+- **Comfy Cloud LoRA upload**: Custom LoRAs from HuggingFace and Civitai now directly loadable in Comfy Cloud workflows — enables cloud-side inference with locally-trained LoRAs.
+
+---
+
 ## 🏃 Run #63 Delta — 2026-03-13 04:30 Prague
 
 ### 🖼️ Image Gen SOTA
