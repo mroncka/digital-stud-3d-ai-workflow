@@ -1,3 +1,56 @@
+<!-- last_updated: 2026-03-14T00:30:13+01:00 run_103 -->
+## 🏁 Run #103 Delta — 2026-03-14 00:30 Prague
+
+### 🖼️ Image Gen — Nano Banana 2 & Seedream 5.0 Breakout
+- **Google Nano Banana 2** (= Gemini 3.1 Flash Image, Feb 2026): Pro-level quality at Flash speed. 500 free req/day via Gemini 2.5 Flash API. $0.01–0.02/image for paid. Supports up to 5 consistent characters, advanced text rendering, production-ready. Available on Gemini, Vertex AI, Google Ads, Search.
+- **ByteDance Seedream 5.0 Lite** (Feb 2026): Reasoning-before-generation architecture. Real-time web search integration, JSON-structured prompting, hex color code accuracy, 12+ languages. Accessible via fal.ai.
+- **FLUX 2 Pro** (BFL, Nov 2025 / active Mar 2026): 32B params. Multi-reference image gen (up to 10 refs), ~60% first-attempt complex typography accuracy. `dev` = open-weight 32B; `klein` = 4B/9B distilled (~13GB VRAM); `pro`/`flex` = API-only.
+- **HunyuanImage 3.0** (Tencent): 80B MoE open-source, world-knowledge-intensive, handles 1000-word prompts. 40GB+ VRAM. Best open-source beaten only by ChatGPT image and Nano Banana on aesthetics.
+- **GLM-Image**: 9B autoregressive + 7B DiT hybrid; best-in-class open-weight bilingual text rendering (EN+ZH). ~20GB VRAM.
+- **Z-Image-Turbo** (Tongyi-MAI): 6B distilled, sub-second inference, 16GB VRAM, Apache 2.0. Strong bilingual.
+- **Qwen-Image**: All-rounder, multilingual text rendering, multiple variants (Lightning / Layered / Edit), Apache 2.0.
+- **Free API options**: Gemini Image API (500/day), OpenRouter (24+ free models), ImageRouter.io (free tier), fal.ai free credits.
+- **FLUX Image-to-Video** noted in media list as new March 2026 offering — BFL entering video space.
+
+### 🎬 Video Gen — Wan 2.6 + Kling 3.0 + LTXAV 2.3
+- **Wan 2.6 I2V**: Now natively supported in ComfyUI (v0.16.0 added SCAIL WanVideo support). Best open-source I2V locally per r/comfyui Feb 2026 consensus. Accessible via fal.ai.
+- **Kling 3.0** (Feb 2026): 15s video, 4K output, native audio-video co-generation. Motion control integration in ComfyUI.
+- **LTX-2 / LTXAV 2.3**: ComfyUI-LTXVideo custom node pack (Lightricks) is dedicated and merged into ComfyUI core. IC-LoRA workflow already in repo (`ltx23_ic_lora.json`).
+- **SkyReels V4**: In repo (`skyreels_v4.json`). Continues as strong open-source video option.
+- **HuMo models** (new Mar 2026): Audio-driven video generation with lip sync — audio → video motion driving. Native ComfyUI node added.
+- **Topaz video enhancement**: ComfyUI v0.17.0 added Topaz API nodes for post-processing video.
+- **Seedance API**: Already covered in `api_test_seedance.py`.
+
+### 🛠️ ComfyUI — Major Platform & Node Updates
+- **ComfyUI App Mode + App Builder + ComfyHub** (Mar 10, 2026): Transforms workflows into no-install shareable apps. ComfyHub marketplace for community apps. Distribution without node graph exposure.
+- **v0.17.0 (Mar 13, 2026)**: FluxKVCache node (Flux 2 Klein KV cache), Painter node, Reve Image API nodes, modular asset architecture with async loading, enhanced VRAM handling.
+- **v0.16.4 (Mar 7, 2026)**: Math Expression node, TencentSmartTopology API node, Gemini 3.1 Flash-Lite in LLM node.
+- **v0.16.0 (Mar 5, 2026)**: ResolutionSelector (aspect ratio presets), CURVE type support, LongCat-Image, Dynamic VRAM mode default, SCAIL WanVideo + LTXAV 2.3 + z-image pixel space support.
+- **NVIDIA integration**: RTX Video Super Resolution + NVFP4 models in ComfyUI App View (GDC 2026). RTX 5090 optimized, AMD RX 9070 XT supported.
+- **ComfyUI Manager v4.1b2+**: 562+ custom node packs searchable by pack or individual node name. Full localization.
+- **Comfy Cloud**: Out of beta — global ComfyUI without local install.
+- **Any-Pose Portrait workflow**: 3D char → Qwen Edit pose transfer → face repainting → Flux 2 Klein 4K upscale. New VNCCS Utils Pose Studio node.
+- **Audio nodes**: Recording, 3-band EQ, ElevenLabs API, Wav2vec2 encoder, HuMo audio-to-video.
+- **Performance**: Temporal rolling VAE (massive VRAM reduction for video), reduced LoRA memory for Flux 2, LoRA requantization for non-QuantizedTensor fp8.
+
+### 🕺 Pose Estimation — YOLO26 + DWPose still active
+- **YOLO26-Pose** (Ultralytics, latest): Non-human keypoint support (machinery, sports, infra), MuSGD + Residual Log-Likelihood, no NMS at inference, variants n/s/m/l/x. Better occlusion handling. Significant upgrade from YOLO11-pose.
+- **RTMPose**: Confirmed highest overall accuracy in comparative studies (Mar 2026). Still the accuracy king. DWPose uses RTMPose backbone — relevant: WildActor paper uses DWPose for pose filtering.
+- **Hugging Face Modular Diffusers** (Mar 5, 2026): Composable diffusion pipeline blocks with better ControlNet/IP-Adapter integration. New flexible pose guidance.
+- **Any-Pose ComfyUI**: VNCCS Utils Pose Studio → 3D gizmo posing → Qwen Edit transfer → face repaint → Flux 2 Klein upscale. Available workflow.
+- **mmGAT** (arXiv 2603.08551): mmWave radar + Graph Attention Network pose estimation. 35.6% MPJPE reduction, 14.1% PA-MPJPE improvement, works in dark/low-light. Research-stage.
+- **Diffusion-based 3D Pose** (arXiv 2508.21363v3, Mar 7): Hierarchical temporal pruning for efficiency.
+- **Panoramic Pose Estimation** (SSRN 6379323): Training-free framework, handles full scene FOV.
+
+### 🎓 LoRA Training — FLUX 2 + Face Identity
+- **FLUX 2 LoRA training** (fal.ai): Two pathways — T2I LoRA and (presumably) video LoRA. VRAM requirements for Flux training diminishing rapidly on Kohya SS.
+- **OneTrainer**: Emerging as sophisticated alternative to Kohya SS. Advanced param tuning, reduced overfitting. SDXL + Flux + SD 3.5.
+- **Kohya SS** (Jan 2026 updates): 8GB GPU viable for many Flux tasks. GUI improvements. Still industry standard.
+- **Civitai Trainer** (production): AdamW8Bit now default recommended for 2026. AdamW8Bit / Prodigy / CAME optimizers. 15–50 image datasets. Serverless parallel jobs.
+- **SOTA params 2026** (character LoRA): dim=32, lr=5e-4 (UNet) / 1e-4 (TE), steps=2500–4000+, AdamW8Bit, cosine w/ restarts, batch=2–4, noise_offset=0.03–0.1, min_snr_gamma=5. **Key finding: disable text encoder training for character models** — only train UNet.
+- **ID-LoRA** (arXiv 2026): Identity-Driven In-Context LoRA for audio-visual personalization. Negative temporal positions in RoPE space. 73% human preference over Kling 2.6 Pro for voice similarity, 24% cross-env speaker improvement. ~3K pairs, single GPU.
+- **FastFace**: Training-free identity preservation via joint mechanism application. No retraining needed.
+- **SDXL still relevant** for specific use cases (nsfw, community fine-tunes); FLUX 2 / Qwen-Image leading for SFW.
 <!-- last_updated: 2026-03-13T23:30:14+01:00 run_101 -->
 ## 🏁 Run #101 Delta — 2026-03-13 23:30 Prague
 
