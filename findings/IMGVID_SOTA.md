@@ -1,4 +1,92 @@
-<!-- last_updated: 2026-03-13T11:30:17+01:00 run_77 -->
+<!-- last_updated: 2026-03-13T12:02:14+01:00 run_78 -->
+## 🏃 Run #78 Delta — 2026-03-13 12:02 Prague
+
+### 🖼️ Image Gen SOTA
+- **FLUX.2 Klein 9B** — confirmed active, community LoRA ecosystem growing fast (CivitAI, 4chan /ldg/)
+  - GGUF Simple Cloth Swap workflow published on CivitAI this week (community contribution)
+  - Community noting "shiny plastic skin" artifact at high res/upscale — workaround LoRAs being made
+  - FluxKVCache node now **built into ComfyUI v0.17.0** (released today) — significant perf win
+- **RedCraft | 红潮 (ZiB AGILE Distilled)** — FLUX.1[dev] model integrating Qwen2-VL-72B aesthetic understanding; uploaded March 8, 2026 (CivitAI)
+- **Z-Image DPO "Veris"** — LoRA released March 3, 2026 on HuggingFace; FLUX-based DPO aesthetic model
+- **Qwen-Image-Layered-Control-V2** — layer extraction workflow published this week (artplus/PrismLayersPro dataset, LoRA-based, stackable on V1)
+- **Coarse-Guided Visual Generation 2603.12057** (previously noted) — weighted h-h mechanism for sketch→image; practical for Digital-Stud style-anchored generation
+- No new major open-source image base model releases this week
+
+### 🎬 Video Gen SOTA
+- **⚡ LTX-2.3 + LTX Desktop — full production release confirmed** (ltx.io/model/model-blog/ltx-2-3-release):
+  - Rebuilt VAE for sharper fine detail; larger text connector; improved I2V (less Ken Burns effect)
+  - **Synchronized audio+video in a single DiT model** (audio-video foundation model)
+  - Native portrait/vertical support up to 1080×1920 (first time in LTX) — TikTok/Reels ready
+  - Base checkpoint + distilled checkpoint + LoRA + latent upscalers all live on HuggingFace
+  - **LTX Desktop**: free, open-source, production-grade video editor built on LTX-2.3 engine
+  - ~5M downloads since January 2026; strong community LoRA/quantization/ComfyUI extension ecosystem
+  - **Practical**: LTX-2.3 now tier-1 open-source option alongside Wan 2.2; test for character animation + audio-sync workflows
+- **Seedance 2.0 batch generation** (March 6, 2026) — platform now supports up to 20 clips per session (dreamina.capcut.com); free daily generations
+- **⚡ Wan 2.7 — release confirmed for March 2026** (Reddit r/StableDiffusion):
+  - "Comprehensive upgrades over version 2.6" — significant image quality + video fidelity improvements
+  - Exact date not yet confirmed; watch Wan-Video GitHub/HuggingFace
+  - **Practical**: when released, test immediately against Wan 2.2 for Digital-Stud character workflows
+- **Kling 3.0 Motion Control API** (March 11, 2026):
+  - **API costs reduced up to 60%** (atlascloud.ai developer guide)
+  - Pro Motion Control tier: reference video → drive AI character from still image; physics-aware
+  - Motion Control now available in ComfyUI via official blog.comfy.org post
+  - **Practical**: direct integration path — use any motion capture/reference video to animate Digital-Stud character stills
+- **Helios-Distilled** — consumer GPU variant confirmed available (github.com/PKU-YuanGroup/Helios); Group Offloading + Cache-DiT for up to 20.89 FPS
+- **Sora 2 Video API** — custom characters/objects, 16:9+9:16, 20s; Sora 1 now fully deprecated
+- **Latent Action Post-Training via Skill-Compositional World Models 2603.10422** (arXiv):
+  - Fine-tunes LTX-Video, HunyuanVideo-1.5, Wan2.2 for action-conditioned video generation
+  - Practical path to interactive character animation via latent action representations
+
+### 🔧 ComfyUI Ecosystem
+- **⚡ ComfyUI v0.17.0 — Released TODAY (March 13, 2026)** (docs.comfy.org/changelog):
+  - **FluxKVCache node**: Flux 2 Klein KV cache model support (major speed win)
+  - **ResolutionSelector node**: aspect ratio presets built-in
+  - **Math Expression node**: simpleeval evaluation
+  - **Painter node**: built into core (image editing; was previously third-party)
+  - **Reve Image API nodes**: now official in core
+  - Modular asset architecture with async two-phase scanner + background seeder (faster load)
+  - Dynamic VRAM mode now default; text encoder LoRA loading fix for wrapped models
+  - Frontend v1.41.18; ComfyUI-Manager updated to v4.1b2
+  - Fixed audio extraction/truncation issues; resolved model detection deep clone bugs
+  - **Update today: `git pull` or portable update**
+- **ComfyUI v0.16.0** (March 5, 2026) — preceded v0.17.0:
+  - LTXAV 2.3 model support; Kling 3.0 Motion Control; WanVideo SCAIL; LongCat-Image
+- **App Mode + App Builder + ComfyHub** (March 10, 2026):
+  - App Mode: single click → workflow becomes user-friendly UI (no node graph exposed)
+  - App Builder: choose which inputs/outputs to expose
+  - Shareable App URLs: distribute workflows without installation
+  - ComfyHub: community platform for apps/workflows (live)
+  - **Practical**: wrap Digital-Stud generation workflows as shareable apps for client demos
+- **ComfyUI AMD Radeon RX 9000 ROCm 7.1 support** confirmed (rocm.blogs.amd.com)
+- **DirectAnimator custom node** (YouTube tutorial): load characters → environments → Mixamo animation → shot composition → export video; emerging pipeline for in-ComfyUI character animation
+- **Wan 2.2 infinite video workflows**: FreeLong + ComfyUI-LongLook for extended length (YouTube tutorials active this week)
+- **NVIDIA GDC 2026 blog** (blogs.nvidia.com): NVFP4 + FP8 checkpoints for LTX-Video via ComfyUI Template Browser; RTX Video Super Resolution integration
+
+### 🦾 Pose / Avatar / 3D
+- **Controllable Complex Human Motion Video Generation via Text-to-Video (arXiv 2603.08028)**:
+  - Pose-conditioned video generation with 2D skeletons, depth maps as explicit structural signals
+  - Blender-based synthetic dataset of 2,000 videos released
+  - LoRA fine-tuning rank 64 on video DiT; HunyuanVideo-1.5, Wan2.2 backbone comparisons
+  - **Practical**: directly applicable — Blender dataset + LoRA rank 64 is the recipe for Digital-Stud pose-controlled character video
+- **NBAvatar 2603.12063** (confirmed, March 13) — hand-face occlusion in avatar rendering; code watch on project page
+- **Latent Action Post-Training 2603.10422** — skill-compositional world models; action conditioning for LTX-Video/Wan2.2
+
+### 🎓 LoRA / Identity
+- **⚡ ID-LoRA arXiv 2603.10256 — code + demo confirmed live** (id-lora.github.io, Tel Aviv University):
+  - Identity-Driven Audio-Video Personalization with In-Context LoRA
+  - Single model jointly generates subject's **appearance + voice** (audio-video unified)
+  - Negative temporal positions in RoPE encoding to separate reference audio from generation targets
+  - Classifier-free guidance variant amplifying speaker-specific features
+  - Built on LTX-2 diffusion backbone; only ~3K training pairs on single GPU
+  - Outperforms commercial models including Kling 2.6 Pro
+  - **Practical**: this is the clearest path yet to unified face+voice Digital-Stud persona generation — demo/code available now
+- **Kohya musubi-tuner** — confirmed active repo in community (github.com/kohya-ss/musubi-tuner); cited alongside ai-toolkit and OneTrainer as the active triad
+- **Boring Reality LoRA for HunyuanVideo** — fine-tuned for raw/phone-shot aesthetic (anti-cinematic); community model (TikTok community)
+- **FLUX.2 Klein LoRA training** — community r/StableDiffusion thread active this week; rank selection and image quality discussion; ai-toolkit confirmed working path
+- **SoLA arXiv 2603.11239** (March 13) — Reversible Lifelong Model Editing via Semantic Routing-Based LoRA; master decision mechanism without auxiliary routing networks; relevant for persistent identity across sessions
+
+---
+
 ## 🏃 Run #77 Delta — 2026-03-13 11:30 Prague
 
 ### 🖼️ Image Gen SOTA
