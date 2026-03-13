@@ -1,4 +1,119 @@
-<!-- last_updated: 2026-03-13T05:30:18+01:00 run_65 -->
+<!-- last_updated: 2026-03-13T06:01:18+01:00 run_66 -->
+## 🏃 Run #66 Delta — 2026-03-13 06:01 Prague
+
+### 🖼️ Image Gen SOTA
+- **FireRed-Image-Edit 1.1** (released March 9, 2026 — full spec confirmed):
+  - Open-source SOTA for image editing — surpasses closed-source on instruction following + visual consistency
+  - Superior identity consistency — open-source leader in character preservation
+  - Multi-element fusion (10+ elements with automatic cropping/stitching)
+  - Portrait makeup effects, text style reference, professional photo restoration
+  - 4.5s end-to-end generation with only 30GB VRAM
+  - Native ComfyUI support + GGUF format compatibility
+  - **REDEdit-Bench** (March 9): 1,673 bilingual editing pairs across 15 categories — new eval standard
+  - HuggingFace + GitHub: github.com/FireRedTeam/FireRed-Image-Edit
+- **Gemini API free tier expansion confirmed**:
+  - 1,500 images/day via Gemini Flash free API — only major provider with meaningful free production-tier image gen
+  - 100–500 images/day depending on model variant, rate limit 10–15 req/min
+  - Reference: awesomeagents.ai/pricing/image-generation-pricing/ (March 2026)
+- **API pricing snapshot confirmed (March 2026)**:
+  - Cheapest: Stability AI SDXL ~$0.003/image
+  - FLUX.2 Klein 4B: $0.014/image
+  - Imagen 4 Fast: $0.02/image  
+  - GPT Image 1.5 Mini: $0.005/image (20-40% price cut Feb 2026 vs predecessor)
+  - FLUX.2 Pro: $0.03/1MP image (quality-to-cost leader per awesomeagents.ai)
+  - MiniMax Image-01: $0.01/image
+  - GLM-Image 16B: $0.015/image
+- **Image Generation Models — Technical History survey** (arXiv 2603.07455, March 2026): Comprehensive VAE → GAN → Diffusion → Flow Matching survey; useful academic reference for project documentation
+- **Nano Banana 2 (Gemini 3.1 Flash Image) full spec**:
+  - 4K output in under 10 seconds
+  - Multi-character consistency across up to 14 reference images
+  - Integrated image editing + style transfer + image-to-video conversion
+  - advanced prompt understanding (camera angles, lighting, artistic styles)
+- Community prompt repos surfaced: awesome-nano-banana-pro-prompts (10,000+ prompts, 16 languages), nanobanana-trending-prompts (X-ranked), awesome-seedance-2-prompts (500+ video prompts)
+
+### 🎬 Video Gen SOTA
+- **SkyReels V4 full architecture confirmed** (launched today, March 13):
+  - **Dual-stream Multimodal Diffusion Transformer (MMDiT)**: one branch synthesizes video, another generates audio simultaneously with shared multimodal encoder
+  - 1080p / 32FPS / 15-second output
+  - Unified interface: generation + editing + inpainting + video extension via channel concatenation
+  - Rich multimodal conditioning: text, images, audio references, masks simultaneously
+  - **Leaderboard position: #3 on Artificial Analysis Text-to-Video with Audio Arena** (behind Veo 3.1 and Sora-2)
+  - ⚠️ **No public API yet as of March 2, 2026 preview** — official site free tier with daily generation limits only; API access coming
+  - Open-source positioning: first open-source unified video-audio gen model
+  - Access: skyreels.ai, also via kinovi.ai/skyreels-v4 and Atlas Cloud
+- **WAN 2.7 sites surfaced** (wan2-7.net, wan27ai.com, wan2-7.org):
+  - Marketing landing pages confirm feature set: precision multimodal control (text, image, video, audio), 4K multi-shot with audio sync, cinematic composition
+  - Three-step directorial workflow with intuitive command logic
+  - ⚠️ No official Alibaba/Wan-Video GitHub release confirmed yet — community/third-party sites only. Monitor Wan-Video/Wan2.2 GitHub for official release
+- **MLPerf Inference v6.0** (March 2026): Adds Text-to-Video benchmark based on **Wan 2.2-T2V-A14B-Diffusers** validated using VBench — signals Wan 2.2 as industry inference benchmark standard
+- **RealWonder** (March 2026 YouTube/arXiv): Real-time physical action-conditioned video generation — physics-aware model distillation for streaming long videos with motion control; new frontier paper
+- **HunyuanVideo-Avatar confirmed spec**: MM-DiT model, 10GB VRAM with TeaCache, multi-character dialogue, audio-driven + emotion-controllable; ComfyUI nodes available (Yuan-ManX/ComfyUI-HunyuanVideo-Avatar)
+- **Seedance 2.0 full spec confirmed** (Feb 10, 2026 release): Industry's first quad-modal input model (text + image + video + audio), 2K video output, ByteDance; API via PiAPI, FluxPro, Atlas Cloud
+
+### 🔧 ComfyUI Ecosystem
+- **v0.17.0 full changelog confirmed** (March 13, 2026):
+  - Modular asset architecture: async two-phase scanner + background seeder → improved loading performance
+  - Python fault handler added for debugging/stability
+  - Enhanced memory optimization for KV cache models
+  - Dynamic VRAM handling with AcceleratorError compatibility improvements
+  - **FluxKVCache node**: Flux 2 Klein KV cache — memory-efficient Flux model patching with cleanup + pre-attention patches
+  - **Painter node**: Sophisticated image manipulation directly in ComfyUI workflows
+  - **Reve Image API nodes**: create, edit, remix operations from Reve API (unified dynamic node, operation-specific params)
+  - Qwen image model: pre-attention + post-input patches added
+  - Fixed text encoder LoRA loading for wrapped models
+  - Fixed batch_size > 1 processing issues on various models
+  - Fixed audio extraction and truncation issues
+  - Frontend: updated to v1.41.18 + comfy-kitchen 0.2.8 + comfy-aimdo 0.2.10
+  - Workflow templates updated to v0.9.21
+  - ComfyUI Manager updated to v4.1b2
+- **Reve Image API node** (community): Also available as standalone custom node — lum3on/ComfyUI_Reve-API + comfy.icu/extension/lum3on__ComfyUI_Reve-API
+- **ComfyUI Desktop v0.8.17**: bumped to ComfyUI 0.16.4; check for 0.17.0 desktop update
+- **Node dependency standards initiative** confirmed active: Comfy-Org beginning formal standards across backend/frontend; version metadata storage for nodes manager requested by community (r/comfyui discussion active)
+
+### 🦾 Pose Estimation
+- **YOLO26** — new significant release:
+  - First YOLO model to natively unify **five computer vision tasks** in single model family (detection, segmentation, pose, OBB, classification)
+  - **43% faster CPU inference** vs previous YOLO versions — major edge deployment gain
+  - Improved non-human keypoint support, faster convergence, improved occlusion handling
+  - Ultralytics blog: ultralytics.com/blog/ultralytics-yolo26-vs-other-ultralytics-yolo-models-for-pose-estimation
+  - **Practical**: strong upgrade path for pose ControlNet preprocessing pipelines in ComfyUI
+- **FaceCam: Portrait Video Camera Control via Scale-Aware Conditioning** (arXiv 2603.05506, published March 2026):
+  - Face-tailored scale-aware camera transformation representation
+  - Overcomes geometric distortions without 3D priors
+  - Trains on multi-view studio captures + monocular videos with synthetic camera motion + multi-shot stitching
+  - Superior camera controllability + identity/motion preservation
+  - **Practical**: directly relevant for portrait animation camera control workflows
+- **Text-to-Skeleton Cascades for Complex Motion Video Generation** (arXiv 2603.08028, March 9, 2026):
+  - Two-stage cascaded framework: autoregressive T2S → pose-conditioned video diffusion
+  - Stage 1: autoregressive transformer predicts 2D pose sequences from natural language (captures long-range temporal dependencies)
+  - Stage 2: **DINO-ALF (Adaptive Layer Fusion)** — multi-level DINO feature fusion for deformation-aware appearance conditioning
+  - Handles complex actions (flips, cartwheels, martial arts) without manual pose annotation
+  - Includes Blender-based synthetic dataset of 2,000 complex motion videos
+  - **Practical**: key paper for automating pose sequences in character animation workflows
+- **Skeleton-to-Image Encoding for Vision-Pretrained Models** (arXiv 2603.05963):
+  - S2I encoding: 3D joint coordinates (x,y,z) → RGB channels with body-part semantics partitioning
+  - Format-agnostic skeleton representation — handles heterogeneous datasets (NTU-60, NTU-120, PKU-MMD)
+  - Integrates with MAE/DiffMAE for self-supervised skeleton learning
+- **Kling MotionControl Technical Report** (arXiv 2603.03160): Precise fine-grained control, robustness to rapid/complex dynamics, natural cross-identity transfer with faithful identity preservation — published March 2026
+- **Motion Forcing** (arXiv 2603.10408): Decoupled framework for video generation decomposing into three progressively dense stages (inspired by Diffusion Forcing); robust complex motion handling
+
+### 🎓 LoRA Training
+- **Video2LoRA** (additional confirmed detail):
+  - Hypernetwork: 3D-VAE encoder + Transformer decoder predicts semantic-specific LoRA components
+  - ~50KB per semantic condition — 150× smaller than CogVideoX LoRA, 20× smaller than single-semantic variants
+  - Strong zero-shot generalization to unseen semantics
+  - Unified semantic-controlled video gen with per-condition hypernetwork weights
+- **ID-LoRA additional confirmed detail**:
+  - First In-Context LoRA for joint audio-visual identity preservation
+  - Negative Temporal Positions: reference audio tokens assigned negative RoPE positions → clean separation from generation target
+  - Identity Guidance: CFG variant amplifying speaker-specific features
+  - Benchmarks: 73% speaker similarity preference over Kling 2.6 Pro, 65% speaking style transfer preference, 24% cross-environment robustness improvement
+- **Wan 2.2 LoRA ecosystem note**: MLPerf v6.0 using Wan 2.2-T2V-A14B-Diffusers as benchmark model → increased community tooling for LoRA training against this base expected
+- **AI-Toolkit / Kohya March 2026 status**: No major new releases this week — tooling stable; community focus shifting toward video LoRA (Wan, LTX 2.3, HunyuanVideo)
+- **Three LoRA implementation families** (HF taxonomy confirmed): (1) HuggingFace peft, (2) diffusers integration, (3) standalone (AI-Toolkit, Kohya) — each with distinct video model behavior; important to match implementation family to target model
+
+---
+
 ## 🏃 Run #65 Delta — 2026-03-13 05:30 Prague
 
 ### 🖼️ Image Gen SOTA
