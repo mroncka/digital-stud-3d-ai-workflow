@@ -1,4 +1,140 @@
-<!-- last_updated: 2026-03-13T07:00:26+01:00 run_68 -->
+<!-- last_updated: 2026-03-13T07:30:20+01:00 run_69 -->
+## 🏃 Run #69 Delta — 2026-03-13 07:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Midjourney V8 — correction: NOT released on March 13** (confirmed via MJ Weekly Roundup + Reddit):
+  - March 11 office hours: "early next week" = week of March 16 is the target
+  - Initial V8 release will be on **alpha.midjourney.com** (alpha site) — not main site
+  - Some features will NOT be included at initial V8 release (edit model likely post-release)
+  - Features confirmed in V8: tiling, chaos, exp — all working
+  - Personalization system included; new upscaler and new video model also part of cascade
+  - Team debating: rough-edge early ship vs a few more days of polish
+  - X poll (@andyorsow March 13): "Midjourney V8 today?" — 55 votes, split Yes/No/Two more weeks
+  - Wikipedia "Midjourney" page does confirm March 2026 V8 release — but not confirmed as today
+  - **Action**: check alpha.midjourney.com week of March 16; monitor updates.midjourney.com
+- **FLUX Image-to-Video** (GitHub Media-AI list — "NEW March 2026"):
+  - FLUX I2V pipeline listed as new addition in March 2026 (jayeshmepani/Media-AI)
+  - Transforms photos into videos using FLUX architecture
+  - No standalone GitHub repo confirmed yet — likely BFL internal or community implementation
+  - **Action**: watch black-forest-labs GitHub and HuggingFace for FLUX I2V model card
+- **WaveSpeedAI FLUX.2 Klein 4B LoRA** (WaveSpeed blog — live):
+  - WaveSpeed deployed FLUX.2 Klein 4B with full LoRA support via their API
+  - Text-to-image LoRA workflows directly accessible at wavespeed.ai
+  - Signals community LoRA infrastructure for Klein 4B is forming rapidly
+  - **Practical**: first production LoRA API for Klein 4B — test at wavespeed.ai
+- **Klein Consistency LoRA** (HuggingFace — community release):
+  - First community LoRA for FLUX.2 Klein 9B confirmed on Reddit r/comfyui
+  - "Klein consistency LoRA has been released" — download link on HuggingFace
+  - Community notes: most Klein LoRAs on HuggingFace vs CivitAI (more "pro environment")
+  - **Practical**: ⚡ first community-trained Klein LoRA is live — test for character consistency
+- **Qwen Image Layer Editing** (Alibaba Qwen — March 13, Instagram @iggyredips):
+  - New Qwen image model that splits images into editable layers with transparent backgrounds
+  - Layer-aware editing — separate foreground/background/elements before editing
+  - Instruction-based: part of the broader Qwen image editing ecosystem
+  - **Practical**: interesting for compositing workflows; watch for ComfyUI node integration
+- **ComfyUI v0.17.0 desktop installation bug — confirmed** (Reddit r/comfyui):
+  - Post title: "Do NOT Install The Newest ComfyUI Desktop Update"
+  - Fails to install custom nodes: Kijai, RGThree, and many others
+  - **Workaround**: switch to nightly + run `pip install -r requirements.txt`; or use portable version
+  - Affects popular video workflow nodes (Kijai's WanVideoWrapper, VideoHelperSuite, etc.)
+  - **Action**: hold desktop update; use portable ComfyUI or apply pip workaround before updating
+- **GPT-5.4** (OpenAI — recent, March 2026):
+  - Stronger reasoning, improved coding, better professional workflow handling
+  - Continues GPT-5.3 Instant line (more accurate, richer web search results)
+  - Image generation: GPT-image-1.5 confirmed as underlying model in Sora 1 → persists post-sunset
+  - **Practical**: GPT-image-1.5 survives Sora 1 deprecation; still accessible via API
+
+### 🎬 Video Gen SOTA
+- **LTX-2.3 full details confirmed** (ltx.io blog — March 8, 2026 release date corrected):
+  - **22 billion parameters** with rebuilt latent space and improved VAE
+  - **4K support + native audio-video** within single model (first LTX with native portrait 1080×1920)
+  - **LTX Desktop**: free, open-source professional video editor built on LTX-2.3 engine
+    - Reddit r/comfyui: "LTX Desktop is better than ComfyUI" — debate thread active
+    - Official ComfyUI workflows for LTX-2.3 released March 5, 2026 via LTX blog
+  - Better fine details, sharpened edge preservation, complex multi-subject prompt handling
+  - Improved I2V: reduced freezing and static outputs
+  - GGUF (Q5_K_S quantized) available for Colab T4 GPU
+  - **Practical**: ⚡ update ltx23_ic_lora.json workflow with full LTX-2.3 parameter set
+- **Wan GitHub — still no Wan 2.7 repo** (confirmed March 13 07:30 check):
+  - Wan-Video GitHub org: only Wan2.1 and Wan2.2 public repos — no Wan2.7 created today
+  - Community consensus (r/generativeAI March 13): "best open source = Wan 2.6"
+  - Wan.video free beta: 15-second multi-shot 1080p + native audio + "Video Roleplay" character consistency
+  - API: Alibaba Cloud Dashscope — wan.video also offers direct free tier
+  - **Action**: still monitoring; Wan 2.7 remains "March 2026 planned" with no confirmed date
+- **OmniForcing paper** (arXiv 2603.11647 — very recent):
+  - Real-time joint audio-visual generation via real-time diffusion with causal attention
+  - Addresses latency of bidirectional attention in joint AV models (e.g., LTX-2.3, SkyReels V4)
+  - First real-time joint AV generation framework — significant if implementations follow
+  - **Action**: watch for ComfyUI node; high relevance for low-latency character video
+- **Sora integration into ChatGPT** (March 13 — fyep.org.pk, Facebook ProPakistani):
+  - "ChatGPT to Get Built-In Sora AI Video Generation Feature" — reported March 13
+  - OpenAI plans to continue Sora as separate application even after ChatGPT integration
+  - **Practical**: Sora 2 API access confirmed for US users; Sora 2 only going forward
+- **Seedance 2.0** (ByteDance — confirmed from LinkedIn Mar 14 roundup):
+  - First quad-modal input: text + image + video + audio
+  - Signals ByteDance pushing beyond T2V/I2V toward full multimodal video generation
+  - **Action**: watch for open-source weights; ByteDance has history of open releases
+- **PixVerse $300M funding** (Bloomberg via MarketScreener — March 13):
+  - Alibaba-backed AI video startup PixVerse raises $300M in new funding round
+  - Signals continued major investment in AI video generation space
+  - PixVerse is a consumer-facing video product; API also available
+- **Q1 2026 AI model count**: 267 listed models in Q1 2026 (ainvest.com), driven by OpenAI, Google, Alibaba
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 full changelog confirmed** (docs.comfy.org/changelog):
+  - Painter node (new) — enhanced image editing
+  - Reve Image API nodes (new) — expanded image generation API access
+  - FluxKVCache node — FLUX.2 Klein KV cache support (memory optimization)
+  - Pre-attention + post-input patches for Qwen image model
+  - Updated workflow templates v0.9.21
+  - Frontend v1.41.18; comfy-kitchen 0.2.8; comfy-aimdo 0.2.10
+  - ComfyUI Manager v4.1b2 improved package reporting
+  - **Bug**: Desktop version fails to install Kijai/RGThree nodes — use portable + pip workaround
+- **Wan 2.2 Fun Camera Control — official ComfyUI tutorial confirmed** (docs.comfy.org):
+  - Camera motion types: Pan Up/Down/Left/Right, Zoom In/Out, combos
+  - Performance benchmark (RTX4090D 24GB, 640×640):
+    - fp8_scaled: ~536s first gen, ~513s second
+    - With 4-step Lightning LoRA: ~108s first, ~71s second
+  - Default params: 81 frames, speed 1.0
+  - Apache 2.0 licensed
+  - **Practical**: ⚡ use Lightning LoRA + camera control for fast prototyping (71s/gen)
+- **Reve Image API nodes** (new in v0.17.0):
+  - Reve Image is a new image gen API accessible directly in ComfyUI
+  - Potentially competitor to FLUX/SD — watch for quality benchmarks
+  - **Action**: test Reve Image node — may offer free API tier
+- **FLUX Fun Control** (new GitHub topic March 2026):
+  - FLUX-based Fun Control pipeline mentioned in media-AI master list
+  - Similar approach to Wan 2.2 Fun Control but for FLUX static images
+  - No dedicated repo confirmed yet
+
+### 🦾 Pose Estimation
+- **No new pose estimation model or tool released March 13** (confirmed via search)
+- **Wan 2.2 Fun Control camera + pose benchmarks confirmed** (71s/gen with Lightning LoRA):
+  - 4-step Lightning LoRA is the production path for pose+camera video iteration
+  - RTX4090D benchmark now documented for planning session length
+- **DWPose + Wan 2.2 Fun Control** remains the reference stack (as documented in run 68)
+- **Bumblebee long-sequence motion generation model** (Korean startup — March 13 press release):
+  - New AI model for "long sequence motion generation" from AI startup Bumblebee
+  - Animation production focus — "AI is coming for animation production"
+  - No open-source/weights info yet; watch for GitHub
+  - **Practical**: relevant if long-sequence character animation is a target use case
+
+### 🎓 LoRA Training
+- **Klein Consistency LoRA live** (HuggingFace — community, run 69 confirmation):
+  - Confirmed community LoRA for Klein 9B on HuggingFace — first Klein LoRA in the wild
+  - Consistency LoRA: improves temporal/style consistency across generations
+  - **Practical**: ⚡ test for consistent character portraits with Klein 9B
+- **WaveSpeedAI Klein 4B LoRA API** — confirms viable LoRA inference pipeline for Apache 2.0 model
+- **LTX-2.3 LoRA training** — still no community guide; LTX Desktop may accelerate this
+  - LTX Desktop's tight integration with LTX-2.3 engine may expose training functionality
+  - Watch ltx.io/blog and LTX GitHub org for training guide
+- **AI-Toolkit / Kohya / OneTrainer** — no new releases confirmed (unchanged from run 68)
+- **Wan 2.2 Fun Control Lightning LoRA** (4-step speed LoRA):
+  - Confirmed in official ComfyUI benchmarks: 71s/gen on RTX4090D vs 536s baseline
+  - **Practical**: use for rapid pose+camera video iteration during prototyping
+
+---
+
 ## 🏃 Run #68 Delta — 2026-03-13 07:00 Prague
 
 ### 🖼️ Image Gen SOTA
