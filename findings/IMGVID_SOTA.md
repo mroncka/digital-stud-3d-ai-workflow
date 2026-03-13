@@ -1,4 +1,85 @@
-<!-- last_updated: 2026-03-13T20:03:17+01:00 run_94 -->
+<!-- last_updated: 2026-03-13T20:30:15+01:00 run_95 -->
+## 🏁 Run #95 Delta — 2026-03-13 20:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **FireRed-Image-Edit-1.1 (Xiaohongshu/Red)** — NEW open-source SOTA for image editing, released March 3, 2026. Based on Qwen-Image foundation + FireRed-Image-Edit-1.0. Beats open-source competitors on ImgEdit (4.56), GEdit EN (7.943), REDEdit EN (4.26) benchmarks. Key capabilities:
+  - Identity consistency preservation across multi-reference edits
+  - Multi-element fusion (10+ elements in single edit)
+  - Portrait makeup, text style reference, photo restoration
+  - 4.5 seconds end-to-end on 30GB VRAM (distillation + quantization + static compilation)
+  - Built-in Agent module: auto-handles >3 reference images (Gemini API for ROI detection, crop, stitch, instruction rewriting)
+  - ComfyUI: official weights on HuggingFace (`FireRedTeam/FireRed-Image-Edit-1.1-ComfyUI`). Pre-built single-image and multi-image ComfyUI workflows available. Also: GGUF format for low-VRAM deployment.
+  - GitHub: github.com/FireRedTeam/FireRed-Image-Edit
+- **Z-Image-Turbo: Officially on Comfy-Org Blog + Examples Page** — Confirmed first-class support. Official blog.comfy.org post: "Z-Image Turbo in ComfyUI: Realism at Lightning Speed". Example page: comfyanonymous.github.io/ComfyUI_examples/z_image/. Installation is now fully standard:
+  - Text encoder: `qwen_3_4b.safetensors` → `ComfyUI/models/text_encoders/`
+  - Diffusion model: `z_image_turbo_bf16.safetensors` → `ComfyUI/models/diffusion_models/`
+  - VAE: `ae.safetensors` (Flux 1 VAE) → `ComfyUI/models/vae/`
+  - Comfy-Org quantized weights: `Comfy-Org/z_image` HF repo (base + Omni variants)
+  - Community utility: `Koko-boya/Comfyui-Z-Image-Utilities` — LLM-powered prompt enhancement using official Z-Image system prompt
+  - Performance: 4.8s per 2K image on RTX Pro 6000 Blackwell; fits 16GB VRAM consumer GPU
+- **GPT Image 1.5 full pricing + rate limits** (OpenAI, updated Mar 2026):
+  - Low quality: $0.009 (1024²), $0.013 (1024×1536)
+  - Medium: $0.034 / $0.05
+  - High: $0.133 / $0.20 (22× spread low→high)
+  - Image output token pricing: $32/M tokens
+  - Rate limits by tier: Tier1=5 IPM, T2=20, T3=50, T4=150, T5=250 IPM
+  - IMPORTANT: Starting March 31, 2026, container usage billed per 20-minute session
+- **FLUX Kontext Pro/Max confirmed API pricing** (bfl.ai/pricing):
+  - FLUX.1 Kontext [pro]: $0.04/image (4 credits @ $0.01/credit)
+  - FLUX.1 Kontext [max]: $0.08/image (8 credits)
+  - FLUX.2 [klein] 4B: from $0.014/image (megapixel-based)
+  - FLUX.2 [pro]: from $0.03/image
+  - Batch pricing: multiply base cost × number of images
+
+### 🎬 Video Gen SOTA
+- **FLUX Image-to-Video clarified**: No standalone FLUX I2V model exists as of March 2026. Workflow = generate with FLUX.2 → pipe to dedicated video model (Veo 3.0, Seedance 2.0, Kling 3.0, Wan 2.2 i2v). FLUX.2 [dev] 32B open-weight (Apache 2.0) is the current best open-weight base for this pipeline.
+- **HY-WorldPlay (Tencent HunyuanWorld 1.5) — open-source confirmed** (github.com/Tencent-Hunyuan/HY-WorldPlay):
+  - Released Dec 17, 2025; RL code **WorldCompass** released March 8, 2026
+  - 24 FPS real-time interactive 3D world generation, keyboard/mouse control
+  - Dual model variants: WorldPlay-8B (HunyuanVideo base) + WorldPlay-5B (WAN base, low-VRAM)
+  - WorldCompass RL: novel post-training for memory-aware models (Context Forcing distillation)
+  - Metrics: PSNR 18.94, SSIM 0.585, LPIPS 0.371 — outperforms Gen3C, ViewCrafter, GameCraft
+  - Relevant for: Digital-Stud interactive character world / scene generation use cases
+- **Seedance 2.0 — API confirmed, closed source** (ByteDance / Volcano Engine, announced Mar 4, 2026):
+  - Pricing: 28 RMB/M tokens with video input; 46 RMB/M tokens pure generation
+  - Effective cost: ~$0.14/second high-quality video (~1 RMB/sec)
+  - 15-second video = 308,880 tokens ≈ 15 RMB ≈ $2.10 USD
+  - Resolution tiers: 720p (Basic) ~$0.10/min, 1080p ~$0.30/min
+  - NO open weights — API-only via Volcano Engine
+  - Validated cultural: AI short drama 'Huo Qubing' viral March 2026, demonstrating commercial deployment cost viability at <$0.14/sec
+- **March 2026 Video SOTA community ranking** (r/generativeAI thread, Mar 11 2026):
+  - Best Cinematic/Audio: Veo 3.1
+  - Best Raw Quality/4K: Kling 3.0 Pro
+  - Best Control: Runway Gen-4.5
+  - Best Open Source: Wan 2.6 (Wan 2.7 pending)
+
+### 🛠️ ComfyUI v0.17.0 Full Changelog (March 13, 2026)
+- Architecture: Modular asset system + async two-phase scanner + background seeder (faster loading)
+- **New nodes confirmed**:
+  - Math Expression node (simpleeval library for dynamic calculations in workflows)
+  - Imagen 5 API node + support image editing (Google Partner Node)
+  - Image-to-Image API node (generic I2I support across API providers)
+  - New audio nodes for audio-driven generation (audio input → video conditioning)
+- **Node Replacement system**: Official system to handle node compatibility on workflow import (no more broken red nodes on version mismatch). API available for custom node devs.
+- Template library: Updated to v0.9.18 with LTX-2 T2V workflow included by default
+- Desktop: Still v0.8.17 — will catch up in next Desktop build
+
+### 🦴 Pose Estimation & Character Animation
+- **Sapiens2 at ICLR 2026 — open weights available**: facebookresearch/sapiens GitHub + HuggingFace checkpoints. Covers 2D pose, body part segmentation, depth, surface normals at 1024×1024 native. 300M training images. Direct upgrade to Sapiens v1 (ECCV 2024). Integration path: replace Sapiens v1 checkpoint paths in existing ComfyUI pose node (ComfyUI-Sapiens).
+- **SCAIL-Pose ComfyUI aspect ratio note**: 9:16 recommended for best results; width+height must both be divisible by 32. Context overlap=48 with shift=7 prevents fade-outs on extended animations.
+
+### 🎛️ LoRA Training SOTA
+- **AI-Toolkit LTX-2 LoRA official support confirmed** (r/StableDiffusion post): ostris added LTX-2 to supported models. Official recommended settings for RTX 5090 + 64GB CPU RAM: 5-second video training. Config files in ostris/ai-toolkit releases.
+- **AI-Toolkit Wan 2.2 5B I2V LoRA confirmed** (ostris YouTube "How to Train a Wan 2.2 5B Image to Video LoRA With AI Toolkit" — 24K views, 7 months ago). Separate from video training: also "How to Train a Wan 2.1 Character LoRA Using Only Images" — image-only dataset for character LoRA works on Wan.
+- **HunyuanVideo Keyframe LoRA (Dashtoon, open-source)**: Low-rank adaptation across linear+conv layers, expanded input patch embedding for keyframe conditioning. Trained on 25,000 samples (20K OpenVideo1M + 5K proprietary human-focused). Training ~1.5h/400 steps on RTX 3060 12GB + 32GB RAM. GitHub: dashtoon/hunyuan-keyframe-lora (verify URL).
+- **IPRO: Identity-Preserving Reward-guided Optimization for I2V** (arXiv:2510.14255v3, updated 2026):
+  - ArcFace embeddings as differentiable reward model (cosine similarity scoring)
+  - Multi-view facial scoring: all ground-truth frames as facial feature pool → prevents copy-paste artifacts
+  - KL-divergence regularization prevents reward hacking
+  - Truncated gradient backpropagation for stability
+  - Applicable to any I2V model; no base model architecture changes required. Compatible with HunyuanVideo LoRA pipeline.
+- **OneTrainer vs AI-Toolkit 2026 consensus**: OneTrainer = advanced GUI, better wiki, more granular params, better overfitting prevention; AI-Toolkit = beginner-friendly, faster setup, good for rapid iteration. Both equally recommended for FLUX.1 Dev character LoRAs. For video LoRA, AI-Toolkit ahead (official model support).
+
 ## 🏁 Run #94 Delta — 2026-03-13 20:03 Prague
 
 ### 🖼️ Image Gen SOTA
