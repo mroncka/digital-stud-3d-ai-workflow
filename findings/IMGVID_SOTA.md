@@ -1,4 +1,146 @@
-<!-- last_updated: 2026-03-13T06:30:16+01:00 run_67 -->
+<!-- last_updated: 2026-03-13T07:00:26+01:00 run_68 -->
+## 🏃 Run #68 Delta — 2026-03-13 07:00 Prague
+
+### 🖼️ Image Gen SOTA
+- **Midjourney V8 — IMMINENT** (confirmed March 11 office hours + aiviewer.ai):
+  - "V8 is days away" — final distillation run (speed optimization) completed late February
+  - V8 confirmed released in March 2026 (aiviewer.ai: "With the release of version 8 in March 2026...")
+  - Core improvements: text rendering, speed, creative quality, photorealism
+  - Release strategy: opt-in non-default model first, then cascade of updates
+  - Still no official MJ API as of March 2026 (Midjourney has no official API)
+  - **Practical**: watch midjourney.com/updates — V8 opt-in may be live now
+- **FLUX.2 [klein] 4B — Apache 2.0 confirmed** (BFL blog + HuggingFace):
+  - 4B model uses Qwen3B backbone — 1.3 seconds / 4 steps on RTX 6000 Pro
+  - Fully Apache 2.0 licensed — commercial use, local deployment, fine-tuning all permitted
+  - Unified generation + editing in single compact architecture (no model swapping)
+  - Free demo at bfl.ai; quantized NVFP4 variant for RTX 5000 series
+  - FLUX.2 [klein] 9B retains FLUX Non-Commercial license
+  - **Practical**: 4B Apache 2.0 is the go-to for lightweight production FLUX pipelines
+- **Grok Imagine multi-image-to-video** (xAI — live March 13, 2026):
+  - Build videos from up to 7 images — multi-reference video creation
+  - Free tier: ~3-10 images/2h, 5-10 short 480p videos/day (requires X account)
+  - Comparable to Vidu Q2's 7-reference approach but as closed API
+  - Mashable review: "lags behind rivals (Veo 3, Sora, Midjourney) in video quality"
+  - **Practical**: free multi-image-to-video option worth testing; Vidu Q2 likely better for character consistency
+- **Nano Banana 2** (Google — live in Gemini App + Search):
+  - High-quality image generation with faster editing and iteration
+  - Integrated across Google products (Gemini app, Google Search)
+  - API access for developers; used in Nano Banana Pro + Veo 3.1 product ad workflows
+  - Positioned as Google's fast-gen complement to Imagen 3
+  - **Practical**: relevant for cloud API fallback in pipelines; monitor pricing
+- **Adobe Firefly Image Model 4 Ultra** (generally available):
+  - Photorealistic image generation; third-party integrations (Google + OpenAI support)
+  - Firefly Video model now generally available
+  - Clean IP/commercial use focus — Adobe's differentiator
+  - **Practical**: useful for commercial-safe image gen; not relevant for local/open-source workflows
+- **Notion AI image generation** (March 9, 2026):
+  - `/ai image` command in Notion pages — creates cover images, charts, diagrams
+  - Iterative refinement in-app
+  - **Practical**: minor for Digital-Stud but signals broad image-gen commoditization
+- **Qwen-Image 2.0 correction**: launched February 10, 2026 (not March 13 as initially reported)
+  - 7B (down from 20B in v1), native 2K, strong text rendering confirmed
+  - Gigazine (Feb 12) + Reddit r/LocalLLaMA thread confirm Feb 10 launch date
+  - API availability: monitor Alibaba Cloud Qwen docs
+
+### 🎬 Video Gen SOTA
+- **WAN 2.7 — no GitHub release yet confirmed** (search March 13):
+  - Wan-Video GitHub org still shows only Wan2.1 + Wan2.2 repos (last update July 28, 2025)
+  - Unofficial sites (wan27ai.com, wan2-7.app) exist as placeholders
+  - Alibaba internal leak from run 67 still the strongest signal — "scheduled March"
+  - Community on Reddit r/generativeAI (March 11): "Best open source right now = Wan 2.6"
+  - **Action**: continue monitoring Wan-Video/Wan2.1 and Wan-Video GitHub daily
+- **WanGP v10.9872** (deepbeepmeep — March 12, 2026):
+  - **Prompt Enhancer just added** — auto-improves prompts before video generation
+  - Now 1214 commits ahead of Wan-Video/Wan2.1 upstream
+  - Supports: Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX, Flux — single optimized repo
+  - **Practical**: ⚡ update WanGP to v10.9872 for prompt enhancement — direct quality improvement
+- **SkyReels V4 — still limited preview, no open-source yet** (confirmed March 13):
+  - V4 platform: 1080p / 32 FPS / 15s / native audio-visual sync (PAPER tech) / inpainting
+  - API access: not yet available; free tier with daily limits on skyreels.ai
+  - Open source: "likely coming" (Reddit r/StableDiffusion) but no confirmed date
+  - **Action**: watch skyreels.ai and arXiv 2602.21818 author GitHub for model drop
+- **HunyuanVideo WorldCompass RL** (Tencent — March 8, 2026):
+  - Released RL post-training code for WorldPlay-8B (based on HunyuanVideo)
+  - Framework for improving action-following + visual quality in long-horizon autoregressive video
+  - Signals Tencent's path: WorldPlay for interactive world models, HunyuanVideo for video gen
+  - **Practical**: not directly actionable for character video gen yet; watch for downstream fine-tuning
+- **MiniMax Hailuo 2.3** (VEED day-one partner):
+  - Enhanced dynamic expression, more realistic/stable visuals vs Hailuo 02
+  - Available through VEED platform; MiniMax API also accessible
+  - Part of M2.5 ecosystem (Mastering Hailuo guide confirms M2.5 as platform baseline)
+  - **Practical**: solid I2V option with good expression control; check minimax.io API pricing
+- **Video market consensus** (r/generativeAI March 2026 ranking):
+  - Best cinematic/audio: Veo 3.1
+  - Best raw quality/4K: Kling 3 Pro
+  - Best control: Runway Gen-4.5
+  - Best open source: Wan 2.6 (WAN 2.7 not yet released)
+  - Best local/production: LTX-2.3
+
+### 🔧 ComfyUI Ecosystem
+- **Wan 2.2 Fun Control V2V + Pose + Camera** (ComfyUI docs tutorial + YouTube):
+  - Full DWPose + Depth + Canny V2V workflow in ComfyUI with long video + camera control
+  - Tutorial covers: pose control, depth control, camera trajectory, multi-segment stitching
+  - ComfyUI official docs: docs.comfy.org/tutorials/video/wan/wan2-2-fun-control
+  - **Practical**: ⚡ directly relevant — complete reference workflow for pose-controlled character video
+- **Qwen Edit pose transfer in ComfyUI** (myaiforce.com tutorial):
+  - Use Qwen Image Edit (2511 variant) in ComfyUI to transfer pose from reference image to portrait
+  - High-success rate for pose transfer without LoRA — instruction-based edit approach
+  - **Practical**: useful complement to ControlNet for pose transfer in static images
+- **FLUX ControlNet community implementations** (Invoke Studio Sessions video):
+  - Community FLUX ControlNet models for image control (depth, canny, pose) being integrated
+  - Note: FLUX is DiT-based — canonical ControlNet incompatible; community workarounds via adapter layers
+  - Reddit r/StableDiffusion (2026): "ControlNet cannot be used on FLUX DiT directly — ZIT models compatible"
+  - **Practical**: for FLUX pose control, use IP-Adapter or reference image methods rather than ControlNet
+- **LTX-2.3 ComfyUI V2V with pose/depth/canny** (Facebook ComfyUI group query):
+  - Community actively seeking LTX2 V2V workflow with OpenPose/Depth/Canny GGUF
+  - No official node yet — watch ltx.studio GitHub and Comfy-Org/ComfyUI releases
+- **ComfyUI v0.17.0 adoption stable** — no additional user-facing issues reported beyond initial release
+
+### 🦾 Pose Estimation
+- **Wan 2.2 Fun Control DWPose — confirmed production-ready** (ComfyUI docs):
+  - Official ComfyUI tutorial: DWPose + Depth + Canny multi-control for Wan 2.2
+  - Includes full workflow for pose video → video-to-video with character control
+  - Camera control integration: long video generation with pose + camera trajectory
+  - **Practical**: ⚡ this is the reference implementation to use now for pose-conditioned video
+- **FLUX ControlNet pose — use adapter approach** (community consensus 2026):
+  - Direct ControlNet on FLUX DiT not supported; use IP-Adapter or reference image conditioning
+  - Community FLUX ControlNet models exist but via adapter layers (not canonical ControlNet)
+  - SDXL OpenPose ControlNet: `thibaud/controlnet-openpose-sdxl-1.0` still the mature choice for SDXL
+- **RTMPose status** (OpenMMLab, confirmed stable):
+  - RTMW (whole-body alpha) available: body + hands + face + feet 133 keypoints
+  - RTMPose3D: 133 keypoints with 3D estimation via rbarac/rtmpose3d (HuggingFace)
+  - MMPose last major release: v1.3.0 (January 2024) — stable, no new milestone March 2026
+  - RTMO: one-stage real-time multi-person, integrates coordinate classification — high FPS
+  - **Practical**: RTMW is best whole-body option if DWPose insufficient; RTMPose3D for 3D-aware workflows
+- **Kevin Wesley ComfyUI nodes** (January 2026 gist):
+  - 14 practical custom nodes: conditional batch processing, gating, real workflow improvements
+  - Useful complement for automation and conditional logic in pose pipelines
+- **Diff-PC paper** (arXiv 2602.00639):
+  - Identity-preserving + 3D-aware controllable diffusion for pose control
+  - Previous methods incl. Pose-ControlNet struggle with facial expression + pose accuracy
+  - Diff-PC addresses this gap — implementation pending; watch for ComfyUI node
+
+### 🎓 LoRA Training
+- **AI-Toolkit / Kohya / OneTrainer — no new release this week** (confirmed March 13 search):
+  - No new GitHub release tags found for any of the three main training toolkits
+  - All three remain stable at previous versions — check repos directly for minor commits
+- **LTX-2.3 LoRA — community actively seeking** (ComfyUI Facebook group + dev.to guide):
+  - Complete LTX-2 ComfyUI guide published (dev.to/gary_yan — March 2026)
+  - Covers: installing ComfyUI + LTX-2 custom nodes, T2V and I2V workflows
+  - No official LoRA training guide yet; production studio fine-tune (10 min / 1 day / 1 GPU) suggests receptivity
+  - **Action**: watch ltx.studio/blog and HuggingFace LTX org for training guide
+- **FLUX.2 Klein 4B (Apache 2.0) opens LoRA possibilities**:
+  - Apache 2.0 license means fine-tuning and LoRA training commercially permitted
+  - 4B size makes training feasible on single consumer GPU (vs 12B FLUX.1-dev)
+  - No dedicated LoRA training script yet — likely first community experiments within weeks
+  - **Practical**: ⚡ FLUX.2 Klein 4B LoRA training is the next high-value experiment to watch
+- **WanGP v10.9872 prompt enhancer** may reduce need for careful prompt engineering in LoRA inference
+- **Wan 2.2 Fun Control LoRA** (4-step LoRA for speed): confirmed in ComfyUI Fun Control workflow
+  - Speed-quality tradeoff LoRA for Wan 2.2 control workflows available
+  - **Practical**: use for faster iteration in pose-controlled video prototyping
+
+---
+
 ## 🏃 Run #67 Delta — 2026-03-13 06:30 Prague
 
 ### 🖼️ Image Gen SOTA
