@@ -1,3 +1,65 @@
+## 🔥 Run #59 Delta — 2026-03-13 02:30 Prague
+
+### 🖼 Image Gen SOTA
+- **FLUX 2** (Black Forest Labs, 32B): Now clear photorealism leader; Flex tier ~$0.03/img, Klein 9B ~$0.02/img; Kontext variant for context-aware editing. Runs locally (FLUX.1 [dev] Apache 2.0, [schnell] open-weight).
+- **Nano Banana 2 / Gemini 3.1 Flash Image** (Google): 1-3s gen, SOTA text rendering, ~$0.08/img; **only API with meaningful free tier** (Gemini free tier). 4× faster than v1.
+- **MiniMax Image-01**: $0.01/img, cinematic quality, best cost/quality ratio.
+- **GLM-Image** (Zhipu/Z.ai): Apache 2.0, hybrid 16B autoregressive+diffusion decoder, $0.015/img, #1 industrial text rendering (CVTG-2k 0.9116).
+- **Z Image Turbo** (Alibaba Qwen): Open-source, <3s photorealistic, 6GB VRAM, strong for face/headswap in ComfyUI.
+- **SDXL Base 1.0**: Still free via Pixazo API, no usage limits; best community ecosystem for ControlNet LoRA.
+- **FLUX.1 Kontext [dev]**: $0.015/img for context-aware multi-step editing on fal.ai / 302ai.
+- **NEW — FLUX Image to Video** (March 2026): BFL announced I2V capability, live on fal.ai.
+- **FireRed-Image-Edit**: New SOTA image editing model (open-source); outperforms Qwen-Image-Edit and Seedream.
+
+### 🎬 Video Gen SOTA
+- **Wan 2.6** (Alibaba, latest): Reference-to-video mode (upload 3-8s ref clip → extract appearance + voice), 15s 1080p, native audio/lip-sync. fal.ai: $0.10/s 720p | $0.15/s 1080p | Flash $0.05/s. Apache 2.0.
+- **Wan 2.2** still strongest pure local option: MoE 14B, 8GB VRAM quantized, runs locally. MSVBench: I2V parity with commercial models on Video Consistency. GGUF Q2_K–Q8_0 HuggingFace.
+- **Seedance 2.0** (ByteDance, Feb 2026): Quad-modal input (9 imgs + 3 vids + 3 audio), 2K, Director mode, 90%+ usable rate. API via piapi.ai / Atlas Cloud. Public Replicate/fal slugs still stabilising.
+- **Kling 3.0** (Kuaishou): Up to 2-min single generation, best human motion (martial arts, complex actions), native audio. Cheapest API: **$0.029/s**. Free tier 66 credits/day.
+- **Sora 2** (OpenAI): Best physics/gravity sim, 25s + native audio. $0.10-0.50/s API.
+- **Veo 3.1** (Google): Only true 4K native AI video. $0.15/s API. Integrated with Nano Banana + Whisk.
+- **Runway Gen-4.5**: Best editing ecosystem (inpainting, motion brushes, style transfer). $0.12/s Replicate. No native audio.
+- **LTX-2.3** (Lightricks): Open-source audio-video model, Day-0 ComfyUI support, 9:16 portrait support, improved VAE for sharper textures. Self-hostable.
+- **HunyuanVideo** (Tencent, 13B): Best open-source I2V for cinematic quality; 60-80GB GPU (FP8 saves ~10GB). Community license.
+
+### 🔧 ComfyUI Updates (March 2026)
+- **App Mode + App Builder + ComfyHub** (March 10 2026): Revolutionary — node-graph-free interface for non-technical users, URL-shareable apps, community marketplace. Major for Digital-Stud workflow distribution.
+- **NVIDIA RTX nodes**: ComfyUI_NVIDIA_RTX_Nodes — RTX Video Super Resolution (4K upscale, 30× faster). Install via Manager → 'RTX'.
+- **NVFP4 + FP8** native support: FLUX.2 Klein 4B/9B NVFP4/FP8; LTX-2.3 FP8 available. Up to 2.5× perf gains + 60% VRAM reduction on RTX 50xx.
+- **LTX-2.3 Day-0 support**: Native ComfyUI node, Template Library workflows for I2V and T2V, 9:16 portrait, cleaner audio.
+- **Wan2.2 Animate Character Swap**: New ComfyUI node — video guided by input video + reference image + prompt. Key for Digital-Stud character consistency pipeline.
+- **HY 3D 3.0 advanced post-processing**: 3D Parts Decomposition, UV Unwrapping, Smart Topology — all in ComfyUI workflows now.
+- **Z Image Turbo Headswap**: Dedicated ComfyUI workflow for seamless head replacement preserving original lighting/pose/style.
+- **ReActor Face Swap** (updated): Pre-saved Face Models (.safetensors) + GFPGAN restoration + video face swap via VideoHelperSuite.
+- **Comfy Cloud out of beta**: ~90% of local custom nodes accessible in cloud, zero config.
+- **ComfyUI MCP Server**: MCP protocol bridge — connect AI assistants (Claude Desktop) directly to ComfyUI for automated generation.
+- **Dynamic VRAM** optimization merged to main.
+- **Grok video workflow**: 15s photorealistic video gen with text rendering in ComfyUI Template Library.
+
+### 🦴 Pose Estimation SOTA
+- **DWPose via comfyui_controlnet_aux**: Still the gold standard for ComfyUI ControlNet. DWPreprocessor handles hands/body/face. Recommendation: stick to DWPose or standard pose — avoid mixing preprocessors.
+- **RTMPose** (SimCC+GAU): Lightweight, heatmap-free. `rtmlib` pip package for inference without mmcv dependencies.
+- **RTMO**: One-stage real-time multi-person pose, pure ONNX Runtime; pip+CLI for webcam/image/video in minutes.
+- **YOLOv11**: Improved backbone/neck over v8; 17-keypoint pose (51-dim output: 17×3). Competitive for deployment.
+- **ViTPose/ViTPose++**: Transformer backbone + RT-DETR detector; best for crowd/complex scenes.
+- **DynPose** (CVPR 2025): Sparse attention approach — substantially improves efficiency of HPE.
+- **FASTCC**: Builds on SimCC+RTMPose, adds lightweight detection; strong mobile/edge performance.
+- **3D Pose in ComfyUI**: Emerging extensions for 3D pose manipulation beyond standard 2D skeleton.
+- **Active issue**: DWPose GPU acceleration (onnxruntime-gpu) still not smooth in ComfyUI — runs on CPU by default.
+
+### 🎨 LoRA Training SOTA
+- **OneTrainer** now preferred over AI-Toolkit for Flux character LoRAs: built-in validation loss curves catch overfitting, 2-4× faster on same HW (3s/iter on RTX 5060Ti @ 512²). Presets for Klein 9B, Z-Image Turbo, Flux.
+- **Kohya-ss (sd-scripts)**: Still most stable for pure SDXL LoRA; development slowing vs OneTrainer.
+- **Dataset sweet spot**: 17-50 images; 512×512 halves training time vs 1024² with similar results. Consistent angles/lighting critical for face identity.
+- **In-Context LoRA (IC LoRA)** (Alibaba Tongyi): 20-100 samples → cross-image character consistency; trains on image collections with text stitched together rather than isolated prompts. Final model: few MB.
+- **T-LoRA** (Sakana AI): Timestep-dynamic rank adaptation — adjusts LoRA rank per diffusion step; weight normalization prevents mode collapse on multi-subject training. Key for video LoRAs.
+- **Video2LoRA** (arXiv 2603.08210): Hypernetwork predicts semantic-specific LoRA weights per video; <150MB model, 23K trainable vars (~30KB) per semantic condition. New March 2026 paper.
+- **Flimmer-trainer**: New video LoRA training toolkit for diffusion transformer models (03/03/2026).
+- **LoRA Rank guidance**: 8-16 typical; 128 for complex/multilingual models; DoRA (Decomposed Rank-Adaptation) for improved fidelity.
+- **Facial drift prevention**: Flux/SDXL LoRA + inpainting combo; inpaint face region separately with LoRA strength 0.7-0.9 for long sequences.
+
+---
+
 ## 📅 Run #57 Delta — 2026-03-13 01:32 Prague
 
 ### 🎬 Video Gen SOTA
