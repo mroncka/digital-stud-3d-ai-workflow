@@ -1,4 +1,148 @@
-<!-- last_updated: 2026-03-13T08:30:14+01:00 run_71 -->
+<!-- last_updated: 2026-03-13T09:03:48+01:00 run_72 -->
+## 🏃 Run #72 Delta — 2026-03-13 09:03 Prague
+
+### 🖼️ Image Gen SOTA
+- **Midjourney V8 — still not released** (09:03 Prague confirmed):
+  - No alpha.midjourney.com launch announcement detected as of 09:03 Prague
+  - V8 Final Round rating party ongoing; release window remains March 16–18
+  - Community Instagram post references "MJ V8 drops + SD 4.0 same day" — monitor for SD 4.0 confirmation
+  - Estimate start date for MJ V8: ~March 15, 2026 (per startupamandi.in roundup)
+- **FLUX.2 Klein 9B KV upgrade** ⚡ (March 12, 2026 — new model):
+  - New HuggingFace model: `black-forest-labs/FLUX.2-klein-9b-kv`
+  - Source: Threads/@openerai_lab, March 12 at 4:17 PM
+  - KV cache variant — reduces VRAM for repeated sampling; pairs with ComfyUI FluxKVCache node (v0.17.0)
+  - FP8 variant: `black-forest-labs/FLUX.2-klein-9b-fp8` — fits in ~29GB VRAM, RTX 4090+
+  - **Practical**: ⚡ upgrade image_gen_flux.json to Klein 9B-KV for lower VRAM + faster iterative sampling
+- **GuangyuanSD / Dark Beast KLEIN 9b V2 BFS** (HuggingFace, March 3, 2026):
+  - Community model: face-swap specialized, built on FLUX.2 Klein 9B
+  - Repo: `GuangyuanSD/FLUX.2-klein-9B-Blitz-ComfyUI`
+  - "Next-level face-swap specialized evolution of the Dark Beast lineage"
+  - **Practical**: test for Digital-Stud face consistency use case alongside flux2_face_swap.json
+- **Reve Image 1.0 — pricing + API confirmed** (March 10, 2026 launch + API now in ComfyUI):
+  - Pricing: $0.04/image base; available via Lumenfall unified API (2 providers)
+  - Also: WaveSpeed API routing uses Reve Image for photorealism via intelligent routing
+  - **ComfyUI v0.17.0**: Reve Image API nodes added natively in this release
+  - Venture Beat: "new best AI image generation model" — tops industry benchmarks on prompt adherence + aesthetics
+  - **Practical**: ⚡ add Reve Image API test script to pending_artifacts; compare to Ideogram 3.0 for text-in-image
+- **Stable Diffusion 4.0** — possible release today:
+  - Instagram source (DUhUMs-ElqA): "today marks a monumental showdown: MJ V8 drops + SD 4.0" — unverified
+  - No official Stability AI announcement found as of 09:03
+  - **Action**: monitor Stability AI GitHub/blog next run for SD 4.0 confirmation
+- **ByteDance Seedream 4.0** (theaitrack.com, March 1, 2026):
+  - Released to rival Google Nano Banana; Reve Image 1.0 referenced as free competitor with 12B params
+  - Seedream 4.0 focuses on high-fidelity image generation
+  - **Context**: Seedream series (images) separate from Seedance (video); both from ByteDance
+
+### 🎬 Video Gen SOTA
+- **Wan 2.7 — feature list confirmed** ⚡ (wan2-7.net official product page):
+  - **1080P** video output (major upgrade from 720P max in 2.2)
+  - **Flexible 2–15 second** duration (vs. fixed 5s/10s/15s in 2.6)
+  - **Start & end frame control** — specify first and last frames of video (new)
+  - **Grid-to-video** — input 9-grid image layout → video generation (new)
+  - **Subject + voice reference** — multi-modal conditioning (new)
+  - **Instruction editing** — edit existing videos via text instructions (new)
+  - **Video cloning** — clone style/motion from reference video (new)
+  - GitHub: Wan-Video org has 3 repos (Wan2.1, Wan2.2, Diffusers fork); Wan 2.7 repo not yet published
+  - **Timing**: no GitHub/HuggingFace repo yet; release still "March 2026" — watch daily
+- **Wan-Alpha v2.0** (WeChatCV/Wan-Alpha — CVPR 2026):
+  - High-quality text-to-video, CVPR 2026 accepted paper
+  - Different codebase from Alibaba Wan-Video; WeChatCV (WeChat AI)
+  - Qualitative results show "various scenes with accurate and clearly rendered" content
+  - **Practical**: monitor for open weights; CVPR acceptance = peer-reviewed quality
+- **WanGP v10.9872** (deepbeepmeep/Wan2GP — March 12, 2026):
+  - "Prompt Enhancer has just Been Abliterated" — removed from pipeline
+  - WanGP is a community wrapper for Wan models with GP (GPU-optimized) inference
+  - **Practical**: if using WanGP for Wan 2.2 inference, update to v10.9872 and disable prompt enhancer
+- **Helios** ⚡ (ByteDance — open source, March 6-12, 2026):
+  - 14B parameter video generation model; real-time long video generation
+  - **19.5 FPS on single H100** — genuinely real-time
+  - Features: Group Offloading (VRAM ~6GB), Context Parallelism, Cache-DiT integration
+  - March 12 update: 20.89 FPS optimization on H100
+  - Full support: Diffusers, SGLang-Diffusion, vLLM-Omni, Ascend-NPU (as of March 4-6)
+  - Gradio demo available; open-source Apache license
+  - **Practical**: ⚡ Helios = fastest open-source long video model; add to pipeline for near-real-time character animation
+- **DiffSynth-Studio LTX-2.3 support** (modelscope — March 12, 2026):
+  - modelscope/DiffSynth-Studio added LTX-2.3 audio-video generation support
+  - Supports: text-to-audio/video, image-to-audio/video, IC-LoRA
+  - Alternative inference path to ComfyUI for LTX-2.3
+  - **Practical**: DiffSynth = Python-native pipeline for LTX-2.3 without ComfyUI overhead
+- **Seedance 2.0 API — PAUSED** ⚠️ (March 2026 confirmed):
+  - Official Seedance 2.0 API remains unreleased due to copyright concerns from entertainment industry
+  - "Indefinite pause" on overseas API deployment
+  - Third-party platforms claiming Seedance 2.0 API are using unauthorized interfaces
+  - **Practical**: do not build Seedance 2.0 API workflows; Seedance 1.5 Pro is the safe path
+  - **Update needed**: api_test_seedance.py in repo may target 2.0 — verify it targets 1.5 Pro
+- **ID-LoRA** ⚡ (arXiv:2603.10256 — Tel Aviv University + LTX-2):
+  - "Identity-Driven Audio-Video Personalization with In-Context LoRA"
+  - Built on LTX-2 model; rank 128 LoRA
+  - Key innovation: **negative RoPE temporal positions** for reference tokens ([-T_ref, 0)) vs. target tokens ([0, T_target])
+  - Enables clean separation of reference identity from generated content
+  - Identity guidance via classifier-free guidance variant amplifying speaker-specific audio features
+  - Trained with only ~3K pairs on single GPU
+  - Project page: id-lora.github.io
+  - **Practical**: ⚡ this is the state-of-the-art approach for Digital-Stud character identity + audio alignment in LTX-2.3 videos; follow for ComfyUI implementation
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 slow generation — workaround confirmed**:
+  - Issue #12876: affects ZiT, FLUX.2 Klein, Wan 2.2 workflows
+  - Root cause: preview rendering overhead, not core generation
+  - Fix: `--preview-method latent2rgb` CLI flag OR Settings > Execution > Live preview method → "latent2rgb" or "none"
+  - **Action**: apply this setting in all Digital-Stud ComfyUI instances after upgrading to 0.17.0
+- **WanVideoWrapper issue #1964** (opened March 13, 2026 — new active issue):
+  - New issue opened today alongside existing #1926 (model loader class fix)
+  - Issue #1963 (xiecon, March 11) and #1964 (March 13) suggest active compatibility work
+  - **Action**: check issues #1963 and #1964 before using WanVideoWrapper on 0.17.0
+- **Kiwi-Edit ComfyUI integration status** (confirmed: API-only for now):
+  - Kiwi-Edit runs through ComfyUI API nodes (cloud/API-based)
+  - No native local ComfyUI node yet; WanVideoWrapper issue #1956 references Kiwi-Edit for future integration
+  - Community NLF_pose rig referenced alongside Kiwi-Edit for VFX+AI workflows
+  - Reddit r/StableDiffusion post confirms "I would love a ComfyUI workflow for this"
+  - **Action**: use Kiwi-Edit via API nodes until local node drops; watch kijai/ComfyUI-WanVideoWrapper#1956
+- **ComfyUI App Mode + ComfyHub** (March 10, 2026 — Globe Newswire announcement):
+  - New features: App Mode, App Builder, shareable app URLs, ComfyHub
+  - Enables publishing workflows as shareable apps with clean UI
+  - **Practical**: Digital-Stud character generation workflow → publish as ComfyHub app for team/clients
+- **DiffSynth-Studio March 12** (modelscope):
+  - LTX-2.3 audio-video support added (text-to-audio/video, image-to-audio/video, IC-LoRA)
+  - Alternative Python-native inference path for LTX-2.3 without ComfyUI
+
+### 🦾 Pose Estimation
+- **ComfyUI-Skeletonretarget** (cedarconnor — confirmed detail):
+  - Aligns and retargets skeletal pose data from driving video to match target body proportions/position
+  - Directly addresses proportion mismatch when using motion transfer from reference actors
+  - **Practical**: key node for Digital-Stud; driving actor skeleton → retarget to character rig → Wan 2.2 Fun Control
+- **NLF_pose rig** (referenced in VFX+AI newsletter alongside Kiwi-Edit):
+  - Non-linear film pose rig; referenced as professional-level pose tool for ComfyUI workflows
+  - **Action**: investigate NLF_pose rig GitHub/HuggingFace for local ComfyUI use
+- **Wan 2.2 Fun Control — full documentation confirmed**:
+  - Alibaba PAI team comprehensive docs for ComfyUI workflow
+  - Supported control types: OpenPose (human pose) + Canny + Depth + MLSD + trajectory
+  - Complete preprocessing pipeline documented
+  - **Practical**: ⚡ use Fun Control over base Wan 2.2 for any pose-guided character animation
+
+### 🎓 LoRA Training
+- **AI-Toolkit LTX-2.3 LoRA — NOT YET RELEASED** ⚠️ (corrected from run 71):
+  - @100PercentRobot X post: "LTX-2.3 LoRA training coming to AI Toolkit (hopefully soon!)" — Ostris confirmed working on it
+  - Status: in development, not yet released; v0.4.8 claim from run 71 was premature
+  - AI-Toolkit already supports LTX-2 (base) LoRA training; 2.3 upgrade in progress
+  - **Action**: follow ostrisai on X; check GitHub ostris/ai-toolkit releases for LTX-2.3 support
+  - RunPod guide for LTX-2.3 LoRA training on PyTorch template is available (r/StableDiffusion post)
+- **ID-LoRA negative RoPE technique** (arXiv:2603.10256):
+  - Key insight: reference tokens at negative temporal positions prevent identity bleed into generation
+  - Enables In-Context LoRA for audio-video identity preservation
+  - 3K training pairs sufficient on single GPU with rank 128
+  - **Practical**: technique applicable to custom LTX-2 LoRA training setups even before official toolkit support
+- **SimpleTuner — no confirmed v1.2** (corrected from run 71):
+  - Latest confirmed: v1.1.2 (masked loss, new regularization)
+  - v1.2 not yet confirmed on GitHub; monitor bghira/SimpleTuner releases
+  - SimpleTuner documentation includes crop/resize options in DATALOADER.md for large-dataset preprocessing
+- **Kohya face_crop_aug_range** (confirmed existing feature — not a new update):
+  - Existing parameter in sd-scripts; face augmentation does random crop centering on face
+  - Discussion #836 + Issue #59 document the feature
+  - **Practical**: set `face_crop_aug_range = 1.0 3.0` for face LoRA training; reduces background bleed
+
+---
+
 ## 🏃 Run #71 Delta — 2026-03-13 08:30 Prague
 
 ### 🖼️ Image Gen SOTA
