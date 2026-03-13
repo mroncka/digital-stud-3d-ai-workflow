@@ -1,4 +1,67 @@
-<!-- last_updated: 2026-03-13T16:30:20+01:00 run_87 -->
+<!-- last_updated: 2026-03-13T17:03:27+01:00 run_88 -->
+## 🏁 Run #88 Delta — 2026-03-13 17:03 Prague
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana Pro = Gemini 3 Pro Image model** (CNET "best overall", Mar 2026): 4x faster than NB v1, 94% text rendering accuracy, multi-turn editing via natural language, best character consistency + realism. Paid API: $0.134/img (2K), $0.24/img (4K). Note: "Nano Banana" branding is Google's consumer name for Gemini image gen.
+- **Gemini 2.5 Flash Image**: Free tier = 500 requests/day (no credit card, via Google AI Studio), 1024x1024, 10 req/min. Paid: $0.039/img with full commercial rights. **Most generous free production tier confirmed.**
+- **FLUX Kontext series** (Black Forest Labs): Reference-guided generation preserving subjects + styles. FLUX Kontext Max = 25 credits, best for character consistency across multiple generations + practical editing workflows. Native LoRA support confirmed for fine-tuning.
+- **Flux 2 Pro**: ~$0.03/img — scene transformations with subject consistency. Confirmed production-grade value sweet spot.
+- **Recraft V4**: Confirmed #1 HuggingFace benchmarks for design use cases. Only major generator producing native SVG vectors — critical for logos/brand assets. ~$0.04/img.
+- **Ideogram 3.0**: Typography SOTA (near-zero spelling errors in text rendering). ~$0.03/img. Recommended over GPT Image 1.5 specifically for logo+text tasks.
+- **FAL.AI unified API**: 600+ models (Flux, Recraft, Ideogram, Nano Banana) via single API, typically 30–50% cheaper than direct providers. Community-preferred multi-model gateway.
+- **Picsart AI Playground** (launched Mar 9, 2026): Access to 90+ models in single unified prompt — includes Flux Kontext, Ideogram, Recraft, GPT Image, video models (Sora 2, Kling, Luma Ray), audio (ElevenLabs). One-stop creative platform worth monitoring.
+- **Flux Schnell** (open-weight Apache 2.0): Still SOTA for free/local fastest inference. 2-step generation. Free via Baseten or ComfyUI local. Outperforms DALL-E 3 and MJ 6 on benchmarks.
+- **GLM-Image** (Jan 2026): First open-source industrial-grade autoregressive image model — notable as alternative architecture to diffusion. Watch for community adoption.
+- **SDXL via Pixazo API**: Confirmed free unlimited. Still community standard for local/budget workflows.
+- **WaveSpeedAI image API**: Hosts FLUX.1, LoRAs, ControlNet via single high-speed API. Good for batch workflows.
+
+### 🎬 Video Gen SOTA
+- **LTX-2.3** (Lightricks, released Mar 6, 2026) — Corrected version number from run 87 (was "LTX-2", correct name is LTX-2.3). Key new specifics: 22B parameter DiT architecture; new VAE for sharper fine details/textures/facial features; portrait 9:16 support (TikTok/Reels/Shorts); 24fps and 48fps options; 8-step distilled variant for consumer GPU speed; LoRA fine-tuning support confirmed; available on fal.ai (fal.ai/ltx-2.3). Available locally on RTX 4090. Community r/StableDiffusion mastering guide published.
+- **Wan 2.6** (Alibaba, Dec 2025 — still current community focus Mar 2026): 15-second multi-shot 1080p with native audio sync; "Video Roleplay" feature — cast characters from reference videos into new scenes; multi-character interaction with holistic visual reference + timbre preservation; open-source weights on HuggingFace; free beta at wan.video; API via Alibaba Cloud. WaveSpeedAI: Wan 2.6 Video-Extend API = extend short clips into longer videos. **Note: some community reports of quality regression vs Wan 2.2 (r/StableDiffusion "feels like CGI/3D/anime") — worth testing before committing to 2.6.**
+- **Wan 2.2 GGUF quantization path**: Wan2.2-T2V-A14B-GGUF (Q2_K to Q8_0 formats) = reduces VRAM from 60GB → 6–16GB depending on quantization level. Consumer-accessible full 14B model. Wan2.2-TI2V-5B = dual T2V+I2V, 5B params, runs on RTX 4090 (24GB).
+- **Kling 3.0 NEW CLARIFICATION** (per atlascloud comparison vs Sora 2, Feb 4 release): 15-second 4K confirmed in some sources alongside 2-minute. **Most likely: 15s max per generation clip in 4K mode; 2-minute total sequence via multi-shot editing (6 camera cuts = "AI Director" paradigm).** Run 87 data was partially accurate. Multi-shot editing workflow is the key differentiator vs Sora 2.
+- **OmniHuman 1.5** (ByteDance): Compared vs Kling AI Avatar (PiAPI blog). OmniHuman 1.5 API now available via PiAPI. Relevant for Digital-Stud character animation — portrait-to-video with full body animation.
+- **Sora 2 vs Kling 3.0** (atlascloud deep dive): Considered co-SOTA for text-to-video. Sora 2 = better cinematic physics + synchronized audio; Kling 3.0 = better multi-shot editing + native audio co-gen. Kling 3.0 has open API (via PiAPI/ModelsLab); Sora 2 is subscription only.
+- **HunyuanVideo-I2V benchmarks**: Text alignment 61.8%, visual quality 96.4%, motion 66.5% — outperforms Runway Gen-3 + Luma 1.6. Available HuggingFace: tencent/HunyuanVideo (base), tencent/HunyuanVideo-1.5 (Dec 24 2025 release).
+- **Cliprise**: Unifies 47+ video models, routes shots based on need. Worth investigating as unified video API alongside fal.ai.
+- **WaveSpeedAI video API** (current lineup confirmed): Wan 2.5/2.6, Seedance 1.0, Kling Omni3, Vidu Q3, Hailuo 02 + WaveSpeed optimized models. New models added continuously.
+
+### 🛠️ ComfyUI Updates
+- **App Mode + App Builder + ComfyHub** (launched Mar 10, 2026, official press release GlobeNewswire): The most significant ComfyUI product shift since launch. App Mode = node graph disappears → clean purpose-built interface for non-technical users. App Builder = select which node inputs/outputs appear to end users; hide complex configurations. ComfyHub = community platform for discovering/sharing finished workflows + apps (separate from Comfy Node Registry). Shareable URLs = apps distributed via single link with workflows+layouts+config encoded in URL. **Critical for Digital-Stud: shareable workflow apps possible without node graph exposure.**
+- **Comfy Cloud out of beta** (official announcement): 90% of community custom nodes accessible on cloud, no config needed. Pay-per-execution (charges only during active GPU). NVIDIA Blackwell RTX 6000 Pro GPUs (96GB VRAM). Free tier for new users. Upcoming: Workflow API deployment, parallel execution, team plans.
+- **Hunyuan 3D advanced features** (ComfyUI blog, official Partner Nodes): 3D Parts Decomposition (split complex models into editable components — armor/accessories/etc.); UV Unwrapping (automatic UV layout for texturing); Smart Topology (convert dense geometry → production-ready meshes). Available as templates in ComfyUI workflow library. **Directly relevant to Digital-Stud 3D pipeline.**
+- **LTX-2.3 ComfyUI node** (ComfyUI-LTXVideo): Note — Manager shows date 2026-02-11 even after successful updates; update date tracking may be unreliable in Manager. Check actual node version independently.
+- **v0.17.0 complete release timeline** (GitHub releases confirmed): v0.16.0 → v0.16.1 → v0.16.2 → v0.16.3 (all Mar 5) → v0.16.4 (Mar 7) → v0.17.0 (Mar 13 = today). NVFP4 + FP8 models: LTX-2.3, FLUX.2 Klein 4B, FLUX.2 Klein 9B confirmed.
+- **Node versioning community problem**: r/comfyui thread — old workflows hit "missing nodes" errors. Node version pinning is the next major requested feature. Workaround: backup ComfyUI-portable folder before any major update.
+
+### 🦴 Pose Estimation SOTA
+- No major new releases found this run — run 87 data remains current. Key standing highlights:
+  - Sapiens (facebookresearch/sapiens): Still SOTA for unified human vision tasks. 0.3B–2B params.
+  - YOLO26 Pose: Current production standard (Ultralytics). Supersedes YOLO11 on benchmarks.
+  - UniAnimate-W: Body-proportion-aware animation workflow, Isi-dev/ComfyUI-UniAnimate-W.
+  - OpenPose + InstantID v2.0: In development, watch for release.
+  - **SDPose** (arXiv 2509.24980): Diffusion-prior pose estimation — available in ComfyUI v0.16.0+.
+
+### 🎛️ LoRA Training SOTA
+- **FLUX.2 optimal training params** (empirical 50+ runs study, Feb 2026 — kgabeci.medium.com): Critical new findings:
+  - Network dimensions: **128/64/64/32** (4:2:2:1 ratio: linear_dim/linear_alpha/conv_dim/conv_alpha) — outperforms default 32/32/32/32 across all applications
+  - Weight decay controls color science: 0.0001 = clean/separated; 0.00001 = cinematic analog feel (lifted blacks, subtle channel bleed); 0.001 = oversaturated/unusable. **Optimal for cinematic: 0.00001**
+  - Training steps sweet spot: ~7,000 for dev model. Under 3K = raw/weathered/artifacts. Over 10K = anatomical distortion. 7K = subject fidelity + texture/grain/bloom.
+  - Best sampler after 300+ tests: **DPM++ 2M Ancestral + SGM Uniform** for film grain/analog texture
+  - FLUX layer targeting confirmed: layers 7, 12, 16, 20 for lighter models (less concept overfitting) — FurkanGozukara guidance still current.
+- **Musubi-tuner Feb 2026 update**: Added LoHa + LoKr support (LyCORIS algorithms) — hierarchical/rank-wise weight decomposition. Memory: 12GB+ VRAM for images, 24GB+ for video, 64GB RAM recommended. FLUX.1 Kontext support added.
+- **AI-Toolkit vs OneTrainer vs Kohya battle (community Reddit 2026)**:
+  - AI-Toolkit (ostris): "Go-to for LoRA training, 80% of the time it works great" — popular, accessible, good FLUX defaults
+  - OneTrainer switch insight: User reports that switching to OneTrainer revealed AI-Toolkit overfitting. OneTrainer gives cleaner generalization for character LoRAs. **Recommendation: use OneTrainer for character/face identity, AI-Toolkit for style.**
+  - Kohya musubi-tuner: Still preferred by users familiar with Kohya SD-scripts. Wan2.1/2.2 LoRA via musubi-tuner confirmed working.
+- **Wan video LoRA known issue** (GitHub issue #621, musubi-tuner): Wan2.2 I2V-A14B LoRA training "has no effect" — workaround: specify high + low noise simultaneously and adjust timestep settings. Key community finding.
+- **HunyuanVideo LoRA AMD/ROCm** (GitHub: AlphafromZion/hunyuan-video-lora-amd): AMD GPU training path confirmed. Face crops 10-15% of dataset = identity lock confirmed for both HunyuanVideo I2V + character LoRA.
+- **Dashtoon Hunyuan Keyframe LoRA**: Open-source keyframe-based video generation via LoRA. Training process uses keyframes for temporal consistency. Insiders.dashtoon.com. Watch for community adoption.
+- **SDXL Character dataset best practices** (Civitai definitive guide confirmed): 150-200 images; 20-30% close-ups, 40-50% mid-shots, 20-30% full body; max 77 token captions; WD14 Tagger v3 auto + manual correction; alpha mask training for BG removal. Skin tone consistency = critical dataset requirement.
+- **SDXL face drift issue** (confirmed ongoing, r/SD): Training Illustrious-XL character LoRA = good character consistency but face/style drifts from dataset. Mitigation: stricter masking + lower LR for face crops.
+- **Qwen Image Edit 2509 LoRA** (AI-Toolkit, YouTube tutorial): Train with <10GB VRAM — subject-in-scene insertion LoRA. Alternative use-case for image editing workflows.
+- **Z-Image LoRA best practices 2026** (dev.to guide): Complete production guide for Z-Image-Base LoRA training — block swap optimizer, LoRA weight 0.8–1.0 at inference.
+
 ## 🏁 Run #87 Delta — 2026-03-13 16:30 Prague
 
 ### 🖼️ Image Gen SOTA
