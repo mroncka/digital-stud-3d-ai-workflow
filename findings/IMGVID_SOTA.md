@@ -1,4 +1,63 @@
-<!-- last_updated: 2026-03-13T21:01:37+01:00 run_96 -->
+<!-- last_updated: 2026-03-13T21:30:01+01:00 run_97 -->
+## 🏁 Run #97 Delta — 2026-03-13 21:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Stable Diffusion 4 Ultra (Stability AI, released Mar 6 2026)** — SIGNIFICANT: Open weights, photorealism benchmark setter, upgraded DiT (diffusion transformer) architecture. Key claim: enables **real-time video generation directly on consumer GPUs**. Maintains full open weights status. Best local open-weight photorealism model as of this run.
+- **API Pricing Landscape March 2026** (verified awesomeagents.ai Mar 11 2026):
+  - FLUX.2 Klein 4B: $0.014/image (cheapest quality option)
+  - Fal.ai FLUX.2: $0.025/image
+  - Replicate FLUX.2 Pro: $0.03/image
+  - Nano Banana 2 (Google Gemini API): FREE tier — 1,500 images/day
+  - GPT Image 1.5: $0.009-$0.20 (quality-dependent)
+  - SD 4 Ultra: ~$0.035/image via Stability API
+  - **Recommendation**: Nano Banana 2 free tier for bulk iteration; FLUX.2 Klein 4B ($0.014) for quality-constrained budgets
+- **WaveSpeedAI API launches (Mar 6 2026)**: Qwen Image 2.0 Pro T2I API, Qwen Image 2.0 Edit API, Qwen Image 2.0 Pro Edit API, Nano Banana 2 Fast API — all REST, ready-to-use. Best single API hub for Qwen and Nano Banana access currently.
+- **DeepSeek V4 (imminent — NOT YET RELEASED)**: FT + multiple sources confirm DeepSeek V4 = native multimodal with text+image+video gen. Originally rumored "next week" from Mar 2 announcement. Track weekly — if released open-weight with image/video, will be major disruptor.
+- **Grok Imagine major update March 2026**: Not full details captured; community notes significant quality jump. Monitor.
+- **Pinterest Canvas** (arXiv 2603.06453, Mar 2026): Production-scale image gen system at Pinterest. Built on FLUX.1 Kontext architecture with multimodal CFG innovations. Key: 18% engagement lift on production. Validates Kontext multi-image conditioning for real-world creative workflows. Not directly deployable but confirms architecture direction.
+
+### 🎬 Video Gen SOTA
+- **Seedance 2.0 Cinematic Video Generator (WaveSpeedAI, Mar 2026)**: WaveSpeed launched "Cinematic Video Generator" powered by Seedance 2.0. Community notes: "generated videos no longer have that typical AI 'plastic' look." API-accessible via WaveSpeedAI. Seedance 2.0 = ByteDance flagship; now more accessible than Seedance 1.5 Pro.
+- **HunyuanVideo**: No confirmed v2 release found this run. Still on v1 open weights (HuggingFace). Tencent active at GDC 2026 (VISVISE multimodal motion gen) but no standalone HunyuanVideo v2 announcement this week.
+- **SkyReels V4**: Joint audio-video generation (V2 was video-only infinite-length). V4 details: audio+video simultaneous generation, open-source weights confirmed on HuggingFace. Quality jump from V2 for cinematic use cases. Digital-Stud has `comfyui/workflows/skyreels_v4.json` — now confirmed relevant.
+- **LTX-2.3 community validation**: YouTube "Best AI video in ComfyUI — LTX 2.3 Tested on RTX 3090" confirms consumer hardware viability. ComfyUI template v0.9.21 referenced (check if updated for 2.3 from 2.0).
+
+### 🛠️ ComfyUI v0.17.0 — Full Changelog (Released March 13, 2026)
+- **Modular asset architecture**: Async two-phase scanner + background seeder → faster model loading
+- **Python fault handler**: Better crash debugging and stability reporting
+- **KV cache optimization**: Enhanced memory management for FluxKVCache node (FLUX.2 Klein)
+- **Qwen model patches**: Pre-attention and post-input patches for Qwen image model — improves inference quality
+- **New nodes**:
+  - `Painter` node — enhanced in-canvas image editing
+  - `Reve Image API` nodes — cloud image generation API integration
+  - `FluxKVCache` node — KV cache acceleration for FLUX.2 Klein
+  - **Topaz API nodes** — native Topaz video/image enhancement (upscale, restore, detail enhance) accessible from Comfy Cloud or local ComfyUI
+- **Audio/Video sync fix**: Auto-trim audio to match video length in saves → eliminates A/V sync issues
+- **Text encoder LoRA loading fix**: Fixed broken LoRA loading for wrapped model architectures
+- **Workflow templates**: Updated to v0.9.21
+- **Frontend**: Updated to v1.41.18
+- **WaveSpeedAI node pack**: 70+ model integrations (Flux, Hunyuan, Kling, Wan, etc.) directly in ComfyUI; WaveSpeedAI Preview node for multi-type media dataset processing
+- **Bjornulf Custom Nodes v0.76-0.79** (not official but major pack): 170+ nodes — audio/video sync (`Bjornulf_AudioVideoSync`), TTS, STT, LoRA handling, character generation, loop/randomize, API integrations. Breaking changes v0.50+ for AudioVideoSync node input types.
+
+### 🦴 Pose & Character Control
+- **ControlNet Union + Z-Image-Turbo** community workflow confirmed working: Multi-ControlNet (pose + depth + style) with Union adapters on Z-Image-Turbo. Validated Mar 2026 r/comfyui post with custom dashboard UI.
+- **LTX-2.3 IC-LoRA pose control**: `Lightricks/LTX-2.3-22b-IC-LoRA-Pose-13b` (from run 96) confirmed on HuggingFace. ComfyUI setup requires Kijai workflow + KJNodes. Recommend checking `comfyui/workflows/ltx23_ic_lora.json` to reference 22B variants.
+- **Tencent VISVISE (GDC 2026 debut)**: "Industry's first deployable multimodal motion generation large model + fully integrated AI-powered 3D modeling pipeline." Relevant for 3D+motion Digital-Stud pipeline. Watch for open release.
+
+### 🎛️ LoRA Training SOTA
+- **Musubi Tuner (SECourses, released Mar 8 2026)**: 1-click install app for LoRA training. Currently supports: Wan 2.2 model LoRA training, Wan 2.1 LoRA training, Qwen Image model LoRA training, automatic Qwen VL captioning. **Key for Digital-Stud**: first simple tool combining Wan 2.2 video LoRA + Qwen Image LoRA in one UI.
+- **Stable-LoRA** (arXiv 2603.05204, March 2026): Addresses core LoRA instability. Weight-shrinkage strategy — progressively shrinks matrix A during early training via exponential decay. Results: eliminates instability without memory overhead, consistent improvements across diverse models. Theoretical proof of stable feature learning. Not yet in Kohya/AI-Toolkit but expect integration soon.
+- **SimpleTuner v4.1.0** (latest):
+  - FLUX.2 dual T2I/I2I training (with optional reference images)
+  - Z-Image guide with training support
+  - LTX-2 audio config (now required manual setup for audio dataset auto-loading)
+  - OmniGen edit training
+  - Kontext editing support with QKV fusion
+  - FLUX.2 Klein 9B training support (GitHub issue: some Vast.ai hardware failures noted)
+- **OneTrainer** now supports: Z-Image, Qwen Image, FLUX.1, FLUX.2 Dev, FLUX.2 Klein, Chroma, SD family — most comprehensive model support of any GUI trainer
+- **FLUX.2 character LoRA confirmed on FLUX.2-dev** (not FLUX.1): r/StableDiffusion Mar 2026 post with fictional character training using Ostris AI-Toolkit on RunPod. Two characters trained successfully. Confirms FLUX.2-dev is the correct base model.
+- **OneTrainer community insight (r/malcolmrey Feb 2026)**: "Base OneTrainer template is better than the tweaked AI Toolkit one (and trains faster with smaller file size)" — for high-volume batch character training, OneTrainer now preferred over AI-Toolkit by some community members.
+
 ## 🏁 Run #96 Delta — 2026-03-13 21:01 Prague
 
 ### 🖼️ Image Gen SOTA
