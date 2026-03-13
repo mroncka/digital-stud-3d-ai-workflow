@@ -1,4 +1,48 @@
-<!-- last_updated: 2026-03-13T19:02:29+01:00 run_92 -->
+<!-- last_updated: 2026-03-13T19:30:15+01:00 run_93 -->
+## 🏁 Run #93 Delta — 2026-03-13 19:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Qwen-Image 2.0 architecture details confirmed**: 7B params (8B Qwen3-VL encoder + 7B diffusion decoder); native 2048×2048; multi-stage resolution training. #1 on AI Arena blind human eval for T2I + editing. DPG-Bench: 88.32 (vs FLUX.1 dev 83.84). Open weights: NOT yet released (app-only Feb 10, 2026). Prediction markets active (manifold.markets) on open-weight release ETA. WaveSpeedAI REST API incoming. Qwen-Image LoRA Training Competition extended to **March 18, 2026** (Beijing Time) — musubi-tuner now supports Qwen image fine-tuning per kohya-ss/musubi-tuner.
+- **Qwen-Image-2512 open-source variant launched** — per VentureBeat. Separate open-weights model competing with Nano Banana Pro. Hybrid approach: open weights + commercial API tier. Watch HuggingFace for weights.
+- **Reve Image 1.5 (Reve AI, Palo Alto)** — NEW SOTA leader on benchmarks per VentureBeat. Freemium ($5/unit base; $20/mo Pro). WaveSpeedAI REST API available (Reve Remix Fast, no cold starts, affordable per-image). "Halfmoon" model variant follows complex prompts. No open weights. ComfyUI native nodes confirmed in v0.17.0 (`Reve Image API nodes`). Strong for compositional + lighting-accurate scenes.
+- **GLM-Image full spec (Zhipu AI, z.ai)**: 16B hybrid autoregressive + diffusion decoder. 9B AR module (from GLM-4-9B) + 7B diffusion decoder (CogView4 DiT). Trained entirely on Huawei Ascend hardware (US export restriction workaround). CVTG-2k text rendering: 0.9116 word accuracy (best open-source, beats Z-Image-Turbo 0.8585). DPG-Bench: 84.78. Native Glyph-byT5 character-level encoding → superior Chinese text rendering. ComfyUI node: not yet confirmed, but open-source weights available. Best use case: overlay text, Chinese typography, dense-knowledge image generation.
+- **Z-Image Turbo ControlNet — fal.ai API confirmed**: REST API pricing = $0.0065/MP. Supports depth + canny + pose (separate, not union). fal-ai/z-image/turbo/controlnet endpoint live. Commercial use allowed. Optimal union strength: 0.55–0.75 (lower = natural detail, higher = rigid adherence). DPM++ 2M Karras sampler, 18–24 steps.
+- **Z-Image LoRA node compatibility note**: Default ComfyUI LoRA node reportedly corrupts Z-Image Turbo data; use Z-Image Power Nodes' dedicated LoRA loader instead (from ComfyUI-ZImagePowerNodes). Auto-prompts node also available (YouTube: "Z-Image Turbo 2026: Next Level LoRA Node & Auto Prompts").
+
+### 🎬 Video Gen SOTA
+- **Kling 3.0 Motion Control ComfyUI-Kie-API pricing confirmed**: 12 credits/sec ($0.06) @ 720p; 20 credits/sec ($0.10) @ 1080p. Element Binding: multi-angle facial uniformity, occlusion resistance, multi-ref emotion accuracy. Experimental status in ComfyUI-Kie-API pack. Workflow: ref image + driving video → identity-preserving output.
+- **LTX-2.3 IC-LoRA union control details confirmed**: Supports depth + human pose + edges in single pass (union). IC-LoRA motion tracking (frame-by-frame). No official FLF2V ComfyUI template yet (community gap). 9:16 portrait quality significantly improved for social media verticals. Better audio (cleaner dialogue, music, ambience). ComfyUI Day-0 support confirmed via native nodes.
+- **LTX-2 trainer (fal.ai managed)**: Upload 10–50 training videos. Configure LoRA rank + steps. Returns weights for ComfyUI inference. 24GB+ VRAM recommended for local training. Official training docs: docs.ltx.video.
+- **Wan2.2 AMD ROCm support confirmed**: AMD Radeon RX 9000 Series (ROCm 7.1) ComfyUI integration documented (rocm.blogs.amd.com). Runs 8GB VRAM minimum for 720P T2V. Full Wan2.2 open-source, no proprietary lock-in. Supports style transfer + motion capture.
+- **SkyReels V4 status**: No new V5 announcement found. V4 (already in completed_artifacts) remains current.
+
+### 🛠️ ComfyUI & Tooling
+- **kijai/ComfyUI-SCAIL-Pose confirmed on GitHub** — No formal releases yet. Active development. Cleaned/simplified SCAIL-Pose preprocessing nodes. Watch for first tagged release. Install via ComfyUI Manager (search "SCAIL-Pose"). No GGUF quantized version noted yet in kijai's repo.
+- **DreamActor-M2 ComfyUI status**: Node integration confirmed available via Promptus platform (March 2, 2026 review). GitHub node not yet public for general install. ByteDance: DreamActor-M2 outperforms Kling 2.6 in high-velocity motion control (decouples spatial identity from motion). Self-bootstrapped training (no skeleton, RGB-driven). Watch 42.uk engineering log for implementation details.
+- **WanVideoWrapper Wan2.1 LoRA compatibility confirmed**: LoRAs trained on Wan2.1 remain compatible with Wan2.2 via WanVideoWrapper. Memory optimization update rolled out for Wan2.2. WanVideoWrapper has no formal releases (rolling main branch — install via git clone / ComfyUI Manager).
+- **AMD Radeon RX 9000 + ComfyUI (ROCm 7.1)**: Official AMD blog post with setup guide. Enables consumer AMD GPU deployment for full ComfyUI workflows including Wan2.2.
+
+### 🦴 Pose Estimation & Character Animation
+- **SCAIL ComfyUI-SCAIL-Pose**: Available on GitHub (kijai), no formal release tag. Simplified implementation of zai-org/SCAIL-Pose. Install path: ComfyUI Manager search. Monitor for GGUF/quantized variant.
+- **DisPose ICLR 2025**: Plug-in ControlNet hybrid for dense motion field from sparse skeleton. No ComfyUI node confirmed yet. Watch arXiv + zai-org GitHub.
+- **Human animation 2026 landscape summary**: Best for production → SCAIL (complex 3D motion), DreamActor-M2 (universal, no skeleton), Kling 3.0 Motion Control (identity preservation, API), LTX-2.3 IC-LoRA (pose control via union). RTMPose remains best for real-time keypoint extraction feeding any of the above.
+
+### 🎛️ LoRA Training SOTA
+- **musubi-tuner Wan2.2 dual-model LoRA config (CRITICAL UPDATE)**:
+  - Two separate LoRA models required: high-noise model (timesteps 875–1000) + low-noise model (timesteps 0–875)
+  - Optimal: network dim/alpha = **16** (50% smaller files vs. rank 32, minimal quality loss)
+  - LR: **3e-4**; LR scheduler power: **8** (up from 4 in 2.1 guides)
+  - Optimizer: AdamW, weight_decay=0.1
+  - Timestep sampling: shift method, discrete_flow_shift=1.0
+  - LoHa/LoKr now supported via PR #900 (Feb 15, 2026 update)
+  - --block_swap_optimizer_patch_params flag: enables Z-Image fine-tuning optimization
+- **LoRA Gym** — open-source Wan2.1/2.2 training pipeline (GitHub). Built on musubi-tuner. 16 training script templates covering T2V + I2V + style + character. Production-tested. Recommended as starting point over raw musubi-tuner for Wan2.2 video LoRA.
+- **FLUX.2 Klein production guide (Apatero/Kevin Gabeci, Mar 2026)**: Distilled LoRA strength = **0.6** (not default 1.0); steps = **30** for SOTA results. Serverless training pipeline handles 100s of jobs with 15–50 image datasets. Key insight: local guides differ significantly from scaled production systems — use separate regularization batches.
+- **OneTrainer models supported (updated March 2026)**: Z-Image, Qwen Image, FLUX.1, FLUX.2 Dev + Klein, Chroma, Stable Diffusion (all variants). OneTrainer now competitive with AI-Toolkit for character LoRAs — faster training + smaller file size reported (r/malcolmrey, Feb 2026). GUI + CLI modes.
+- **AI-Toolkit LTX-2 LoRA support**: ~7s/step at 97 images for character LoRA. Standard training (not IC-LoRA). LTX-2 IC-LoRA training requires official Lightricks ltx-trainer package.
+- **Z-Image LoRA best practices (dev.to 2026 guide)**: Use Z-Image Power Nodes LoRA loader (not default ComfyUI loader). Block swap optimizer flag for VRAM-limited setups. Cloud option: Floyo single-node training.
+- **Qwen-Image LoRA competition (Alibaba Tongyi Lab, @Ali_TongyiLab)**: Extended to March 18, 2026 (Beijing Time). musubi-tuner now supports Qwen image training. Good opportunity for dataset collection + technique benchmarking.
+
 ## 🏁 Run #92 Delta — 2026-03-13 19:02 Prague
 
 ### 🖼️ Image Gen SOTA
