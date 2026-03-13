@@ -1,4 +1,163 @@
-<!-- last_updated: 2026-03-13T08:03:13+01:00 run_70 -->
+<!-- last_updated: 2026-03-13T08:30:14+01:00 run_71 -->
+## 🏃 Run #71 Delta — 2026-03-13 08:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Midjourney V8 — still not released** (08:30 Prague confirmed):
+  - No alpha.midjourney.com live announcement as of 08:30
+  - V8 Final Round rating party still running (updates.midjourney.com) — this runs until release
+  - David Holz still targeting "early next week" from March 11 OH; release window = March 16–18
+  - New detail: V8 includes new upscaler + new video model + redesigned personalization system
+  - Creative AI #66 newsletter: "V8 could drop any day now" alongside GPT-5.4 hype
+  - **Action**: monitor alpha.midjourney.com every run; once live, update SOTA immediately
+- **Ideogram 3.0** (released ~March 3, 2026 — confirmed):
+  - Enhanced text rendering (no more weird letters — key improvement)
+  - Enhanced style control
+  - Addresses text generation historically weak in AI image models
+  - **Practical**: competitor to Reve Image 1.0 for text-in-image use cases; compare both
+- **FLUX.2 Klein ecosystem** — 4chan /g/ thread March 12 reference:
+  - "New FLUX.2 Klein 9B models" on HuggingFace as of resource news 03/12/2026
+  - Likely new community-trained Klein 9B LoRAs or merged model variants
+  - **Action**: check HuggingFace FLUX.2 Klein 9B new uploads from March 12 next run
+- **Meta "Avocado" model delayed** (NYT March 12, 2026):
+  - Meta delayed rollout of code-named "Avocado" AI model due to performance concerns
+  - Vibes (AI video app similar to Sora) is the only released product from Meta AI division so far
+  - "Open source" status of Avocado still debated internally
+  - **Impact**: Meta not a near-term open-source image competitor; Llama path remains separate
+
+### 🎬 Video Gen SOTA
+- **Grok Imagine multi-image-to-video** ⚡ (announced March 13, 2026 — LIVE NOW):
+  - xAI Grok Imagine: build videos from up to 7 images
+  - Feature is live now across all Grok plans
+  - Source: @grok X announcement + basenor.com coverage
+  - **Practical**: multi-image → video is directly relevant for Digital-Stud character consistency workflows
+  - Closed API for now; monitor for xAI API access
+- **ChatGPT built-in Sora integration** (announced March 13, 2026):
+  - ChatGPT getting Sora AI video generation natively built in
+  - No separate Sora access needed — direct from ChatGPT UI
+  - **Impact**: lowers barrier for prompt-to-video; not open weights, but API may follow
+- **Sora 1 deprecated in US** (March 13, 2026):
+  - Sora 1 no longer available in the United States as of today
+  - OpenAI urging users to export Sora 1 content before this date
+  - Sora 2 is now the active model
+  - OpenAI plans to continue operating Sora as a separate application even after ChatGPT integration
+- **Wan 2.7 — confirmed for March 2026** ⚡ (Reddit r/StableDiffusion):
+  - "Wan 2.7 is scheduled for release in March, featuring comprehensive upgrades over version 2.6"
+  - Significant improvements across image quality (full details TBC at release)
+  - Note: Wan versioning jumped from 2.2 → 2.7 (likely internal iteration numbering)
+  - **Action**: ⚡ high priority — check Wan-Video GitHub for Wan 2.7 repo/release; update wan22_img2vid.json when released
+- **Wan 2.2 Animate** (Apache-2.0, Wan-AI HuggingFace — aiquickbites.com March 7):
+  - 4,889 HuggingFace likes; Apache-2.0 licensed
+  - Separate from base Wan 2.2 — animation-focused variant
+  - vLLM-Omni FP8 quantization PR open for Wan 2.2 transformer (unified quantization framework)
+  - vLLM-Omni supported models: Wan-AI/Wan2.2-T2V-A14B-Diffusers + Wan-AI/Wan2.2-TI2V-5B-Diffusers
+  - **Practical**: Wan 2.2 Animate for character animation loops; FP8 path for faster inference
+- **Higgsfield AI — Voiceover/Voice Change/Translate** (launched March 2026):
+  - New Higgsfield features: Voiceover, Change Voice, Translate — all in-platform
+  - No external tools required for audio-video workflows
+  - **Context**: Higgsfield was reviewed by community as strong for realistic human motion
+- **Kiwi-Edit** ⚡ (showlab/Kiwi-Edit — GitHub, arXiv:2603.02 range):
+  - Unified video editing via MLLM encoder + video DiT with progressive training
+  - Supports: instruction video editing + reference image + instruction video editing
+  - SOTA on OpenVE-Bench (3.02) and RefVIE-Bench
+  - **Practical**: ⚡ reference-image-guided video editing is key for Digital-Stud character preservation; test on ComfyUI when node drops
+- **Causal Forcing** (thu-ml/Causal-Forcing — GitHub):
+  - "Autoregressive Diffusion Distillation Done Right for High-Quality Real-Time Interactive Video Generation"
+  - Real-time interactive video generation via autoregressive diffusion distillation
+  - Official codebase on GitHub (thu-ml)
+  - **Practical**: foundational research for real-time character video; watch for ComfyUI node
+- **LTX-2.3 Video Extend** (WaveSpeedAI blog post):
+  - WaveSpeedAI added LTX-2.3 Video Extend API — extend existing videos using LTX-2.3
+  - Complements the I2V LoRA API (already noted in run 70)
+  - **Practical**: video extend = useful for longer character clips from still frames
+- **GDC 2026 — ComfyUI + NVIDIA RTX Video Super Resolution** (NVIDIA Blog):
+  - ComfyUI featured at GDC 2026 (March 17-21) alongside NVIDIA RTX Video Super Resolution
+  - New NVFP4 models for ComfyUI (NVIDIA FP4 quantization for RTX 50-series)
+  - App View mode highlighted for streamlined creative workflows
+  - **Practical**: NVFP4 = RTX 5090 path for much faster LTX-2.3/FLUX inference; watch for ComfyUI NVFP4 model releases post-GDC
+- **FastVideo** (hao-ai-lab/FastVideo — GitHub activity March 2026):
+  - Unified inference + post-training framework for accelerated video generation
+  - Active development as of March 2026
+  - **Practical**: alternative inference accelerator to ComfyUI for video generation pipelines
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 — additional detail confirmed** (Comfy-Org/ComfyUI GitHub releases):
+  - PR #12621: `refactor(assets): modular architecture + async two-phase scanner & background seeder`
+  - This is the key structural change; also bumped comfy-aimdo to 0.2.9 in same release
+  - `--whitelist-custom-nodes` argument: new CLI flag for whitelisting specific custom nodes
+  - Known regression: slow generation issue reported (GitHub issue #12876) — "partially unload" memory spill on shared memory; workaround: check dynamic VRAM settings
+- **ComfyUI-PainterI2V** (princepainter/ComfyUI-PainterI2V — GitHub releases):
+  - Enhanced Wan 2.2 Image-to-Video node fixing slow-motion in 4-step LoRAs (e.g. lightx2v)
+  - Directly addresses the main complaint about Wan 2.2 accelerator workflows
+  - **Practical**: ⚡ install PainterI2V when using lightx2v/4-step LoRAs in Wan 2.2 I2V workflows
+- **WanVideoWrapper v1.4.7** (Comfy Registry, 2026-02-01):
+  - Latest stable registry release (no formal GitHub releases page, but registry tracks versions)
+  - Lynx face-to-video support (noted separately) — face image + text → video
+  - Known issue #1926: WanVideoWrapper model loader broke with latest ComfyUI update
+    - Fix: update `class` in `nodes_model_loading.py` line 63 (`3d7b49e`)
+    - **Action**: if WanVideoWrapper fails after upgrading to 0.17.0, apply this fix
+- **cedarconnor/ComfyUI-Skeletonretarget** (GitHub — new discovery):
+  - Custom node: align and retarget skeletal pose data from driving video to target body proportions
+  - **Practical**: ⚡ key for Digital-Stud — retarget reference actor motion to character body; test with DWPose-extracted skeletons
+- **ComfyUI-WanAnimatePreprocess** (GitHub — helper nodes for Wan 2.2 Animate):
+  - ViTPose model execution node
+  - Face crops with SAM2 segmentation
+  - **Practical**: preprocessing pipeline for Wan 2.2 Animate character workflows
+- **SDPose_OOD native ComfyUI** (natively integrated March 8, 2026):
+  - Multi-person pose estimation via ComfyUI_YOLO_For_Multi integration
+  - Handles out-of-distribution poses better than standard DWPose
+  - **Action**: test SDPose_OOD for complex multi-person or unusual-angle character shoots
+- **Sora 1 → Sora 2 migration note** (from Facebook/ProPakistani post):
+  - ChatGPT integration with Sora planned; Sora continues as standalone app
+  - Sora 1 data export deadline: March 13, 2026 (US)
+
+### 🦾 Pose Estimation
+- **YOLO26 Pose** ⚡ (Ultralytics, January 2026 — now full profile confirmed):
+  - **Key improvement**: flexible non-human keypoint support (removes human-centric assumptions)
+  - Enables custom structural landmarks: machinery components, sports markers, infrastructure
+  - MuSGD optimizer (hybrid SGD + Muon) for faster convergence and stable keypoint predictions
+  - 43% faster CPU inference than YOLO11-N — edge device viable
+  - End-to-end predictions: no NMS post-processing
+  - **Practical**: ⚡ upgrade DWPose-based pose pipelines to YOLO26 for non-standard character proportions/angles
+- **RTMPose-M INT8 edge quantization** (research — March 2026):
+  - RTMPose-M (13.6M params) fine-tuned + INT8 quantized = 22 FPS real-time on edge NPUs
+  - Published in "Synthetic-Child" AIGC pipeline paper
+  - ViTPose used for confidence filtering and targeted augmentation
+  - Dual ControlNet for FLUX-1 Dev: custom PoseInjectorNode (pose + depth conditioned on FLUX-1 dev)
+  - Synthesized 12,000 photorealistic images across 10 posture categories with COCO-format GT export
+  - **Practical**: INT8 RTMPose path for low-latency character pose extraction
+- **Wan 2.2 Fun Control** (Alibaba PAI team — confirmed full profile):
+  - Multi-modal control: OpenPose (human pose) + Canny + Depth + MLSD + trajectory control
+  - Full ComfyUI documentation available for Wan2.2 Fun Control video with pose preprocessing
+  - **Practical**: ⚡ complete pose→video pipeline for character animation; use Wan 2.2 Fun Control over base Wan 2.2 when pose guidance needed
+- **HEViTPose** (early 2026 — new research):
+  - High-accuracy and efficient Vision Transformer variant for 2D human pose estimation
+  - Not yet in ComfyUI nodes but arXiv published; watch for implementation
+
+### 🎓 LoRA Training
+- **AI-Toolkit v0.4.8** (confirmed — LTX-2.3 LoRA training support):
+  - LTX-2.3 LoRA training now officially supported in AI-Toolkit v0.4.8
+  - **Practical**: ⚡ primary tool for LTX-2.3 style/character LoRA training; update from v0.4.x if behind
+- **SimpleTuner v1.2** (March 2026 release):
+  - Better SDXL + FLUX baseline performance
+  - New focal-loss cropping for dataset preprocessing
+  - **Practical**: useful for face/character training datasets — focal crop puts subject in center
+- **Kohya face training improvements** (community guide):
+  - `face_crop_aug_range` now recommended default 1.0–3.0 for face-focused datasets
+  - Helps prevent background bleed-in when training character faces
+  - **Practical**: update kohya_config_example.toml with `face_crop_aug_range = [1.0, 3.0]`
+- **LTX-2.3 LoRA training on RunPod** (confirmed path — additional detail):
+  - AI-Toolkit v0.4.8 is the tool; official Lightricks/LTX-2 GitHub has training scripts
+  - WaveSpeedAI LTX 2.3 I2V LoRA API: test custom style before training locally (free tier)
+  - LTX-2.3-22b-IC-LoRA-Motion-Track-Control: official motion control LoRA (HuggingFace)
+- **Character face identity LoRA — community best practice March 2026**:
+  - Klein 9B recommended over Klein 4B for character identity (more capacity)
+  - Use BFL official training config: rank 128 / alpha 64, ~3000 steps
+  - "Instance concept images" (per-character) at 1024px minimum
+  - For face fidelity: combine LoRA with IP-Adapter face model at inference (CFG 3.5–4.5)
+  - **Practical**: IP-Adapter + character LoRA combo = stronger face fidelity than LoRA alone
+
+---
+
 ## 🏃 Run #70 Delta — 2026-03-13 08:03 Prague
 
 ### 🖼️ Image Gen SOTA
