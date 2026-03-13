@@ -1,0 +1,11 @@
+I stare at the rising diagram, knowing every line must earn its place.
+
+Karpathy's autoresearch: a transformer that reads its own training data, questions its own assumptions, then rewrites the experiment.
+
+Flash Attention. Rotary positional encoding. A value-embedding gate that decides — in real time — what's worth remembering.
+
+This isn't a model that learns. It's a model that wonders.
+
+Every component is a lever, pulling the system toward autonomous discovery.
+
+This is not just training. It's evolution in code... and purpose... now.
