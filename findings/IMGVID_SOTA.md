@@ -1,4 +1,128 @@
-<!-- last_updated: 2026-03-13T09:03:48+01:00 run_72 -->
+<!-- last_updated: 2026-03-13T09:30:20+01:00 run_73 -->
+## 🏃 Run #73 Delta — 2026-03-13 09:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana 2** ⚡ (Google Gemini 3.1 Flash Image — March 12-13, 2026):
+  - Powered by **Gemini 3.1 Flash Image** — SOTA speed + quality for image gen
+  - **Free access**: default model on **Flow** (0 credits), **Freepik Image Generator**, **PolloAI**, **LovartAI**, Higgsfield AI
+  - Focus: sharp realism, detailed textures, cinematic lighting — excellent for game art and concept art
+  - "Face consistency" praised (PolloAI Instagram demos March 13)
+  - Substack guide: "Nano Banana 2 is SOTA Image Gen Model" (Aakash Gupta, March 12)
+  - **Practical**: ⚡ test Nano Banana 2 on Freepik/Flow immediately — it's free; compare to Reve Image for Digital-Stud character gen
+- **Grok Imagine — multi-image video** ⚡ (March 13, 2026 — live now):
+  - New feature: create a single video using **up to 7 input images** (characters, places, objects, any mix)
+  - Grok synthesizes all 7 into one coherent output clip — multi-reference video synthesis
+  - **Live now**: iOS, Android, Web for X Premium subscribers
+  - **API**: $0.05/second for 720p video — very competitive price
+  - Also: Video Extension (Extend from Frame) feature already live since early March 2026
+  - **Practical**: ⚡ 7-image multi-ref → Grok video = fastest workflow for multi-character scene generation; add to Digital-Stud pipeline as cheap API path
+- **Midjourney V8** — still not released (09:30 Prague):
+  - Estimate pushed to ~March 15-17 based on "final round" rating party signal
+  - No launch announcement detected
+- **Stable Diffusion 4.0** — not confirmed (09:30 Prague):
+  - Instagram "MJ V8 + SD 4.0 same day" post remains unverified
+  - No official Stability AI blog or GitHub release found
+- **Modular Diffusers** — announced March 12 (Dan Goldman "Today in Generative Media"):
+  - New architecture for modular diffusion model pipelines
+  - LTX-2.3 GGUF quantized version now on HuggingFace (mentioned same newsletter)
+  - **Practical**: monitor HuggingFace for LTX-2.3 GGUF adoption in ComfyUI loaders
+
+### 🎬 Video Gen SOTA
+- **LTX-2.3 full spec confirmed** ⚡:
+  - **Rebuilt VAE**: higher-quality training data → sharper outputs, better texture and edge detail
+  - **Larger text connector**: more capable bridge between prompt encoding and generation; reduces prompt drift
+  - **Better I2V**: reworked training eliminates "Ken Burns" effect and static videos
+  - **Cleaner audio**: new training set filtering + new vocoder → fewer artifacts, tighter alignment
+  - **Native portrait**: first native vertical video up to **1080×1920** — critical for TikTok/Reels/mobile
+  - **LTX Desktop**: full professional video editor released alongside model, **free + open source** for non-commercial
+  - Available: HuggingFace Spaces (Lightricks/LTX-2-3), ComfyUI v0.16.0+ (LTXAV 2.3 support confirmed in changelog)
+- **Kling 3.0 Motion Control API** ⚡ (March 4, 2026):
+  - **V3.0 Motion Control**: element consistency via binding mechanisms; precise motion direction + control
+  - **Native 4K 60fps** — market leader for 4K quality
+  - **AI Director mode**: autonomous creative decisions (shot selection, composition)
+  - **Physics simulation**: realistic fluid dynamics and material behavior
+  - **Video-driven character animation**: motion control supports video-driven avatar generation
+  - March 2026 ranking: Kling 3.0/3 Pro = #1 for 4K quality; Veo 3.1 = best audio-native cinematic
+  - **Practical**: Kling 3.0 Motion Control API = best paid path for precise character animation; test motion binding for Digital-Stud
+- **InfinityStory** (arXiv March 2026):
+  - Unlimited video generation with world consistency + character-aware shot transitions
+  - Solves long-form video coherence problem across shot boundaries
+  - **Practical**: directly relevant for Digital-Stud multi-scene character narratives
+- **Wan 2.7** — no GitHub/HuggingFace repo yet (confirmed at 09:30):
+  - Feature list confirmed (run 72); still "planned March 2026"; watch Wan-Video org daily
+- **Helios** — confirmed stable (ByteDance, open-source, 19.5 FPS H100, ~6GB VRAM via Group Offloading):
+  - March 12 update: 20.89 FPS peak; full Diffusers + SGLang + vLLM-Omni + Ascend-NPU support
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 — complete changelog confirmed** (March 13, 2026):
+  - **FluxKVCache node**: explicit support for FLUX.2 Klein 9B-KV model (new in this release)
+  - **Qwen image model**: pre-attention + post-input patches added
+  - **Text encoder LoRA loading**: fixed for wrapped models
+  - **batch_size > 1**: fixed on various models
+  - **Painter Node**: enhanced image editing capabilities (enhanced, likely upgraded from previous)
+  - **Reve Image API Nodes**: expanded — now natively in v0.17.0
+  - **Modular asset architecture**: async two-phase scanner + background seeder → faster loading
+  - **Python fault handler**: better debugging/crash reports
+  - **KV cache memory optimization**: enhanced VRAM handling
+  - **Frontend**: bumped to v1.41.18; custom node published subgraphs endpoint added
+  - **Slow gen fix** (issue #12876): use `--preview-method latent2rgb` CLI flag (confirmed workaround)
+- **ComfyUI v0.16.0** (March 5, 2026 — previous milestone):
+  - ResolutionSelector node with aspect ratio presets
+  - CURVE type support for advanced parameter control
+  - Native LongCat-Image implementation
+  - Dynamic VRAM mode now default
+  - **LTXAV 2.3 model support** added (one week before v0.17.0)
+  - Z-image pixel space support
+- **ComfyUI v0.16.4** (March 7, 2026):
+  - Math Expression node (simpleeval)
+  - TencentSmartTopology API node
+  - **Gemini 3.1 Flash-Lite** model support added to LLM node
+  - fp16 audio encoder fix
+- **NVIDIA RTX Nodes GDC 2026** (NVIDIA Blog, March 12):
+  - NVFP4 models for local video generation via ComfyUI
+  - RTX Video Super Resolution integration
+  - ComfyUI App View at GDC 2026 demo
+- **3D character animation node** (YouTube "ComfyUI custom node for image gallery"):
+  - New node: load characters → add environments → animate using **Mixamo** → compose shots → export video
+  - Early step toward full 3D-to-video pipeline inside ComfyUI
+  - **Practical**: ⚡ directly relevant for Digital-Stud 3D+AI workflow — bridges Mixamo animations to ComfyUI video output
+- **OpenClaw 2026.3.2** — new community ComfyUI release (r/comfyui):
+  - Alternative community build; monitor for workflow-breaking changes
+
+### 🦾 Pose Estimation
+- **NLF_pose rig** — no GitHub repo found yet (confirmed not found 09:30):
+  - Referenced in VFX+AI newsletter (alexvillabon.substack.com) alongside Kiwi-Edit
+  - May be a proprietary/private tool; continue monitoring
+- **Wan 2.2 Fun Control + Mixamo 3D node** — new combined workflow possible:
+  - The new Mixamo ComfyUI node (3D character animation) + Wan 2.2 Fun Control (OpenPose)
+  - Pipeline: Mixamo anim → extract OpenPose keyframes → Fun Control conditioning → Wan 2.2 video
+  - **Practical**: ⚡ prototype this pipeline; it's the cleanest Digital-Stud 3D-to-AI-video path available today
+
+### 🎓 LoRA Training
+- **SimpleTuner version correction** ⚠️ (definitive, run 73):
+  - Latest confirmed: **v4.1.0** (breaking change — LTX-2 audio config now required to be set manually)
+  - v4.0.0: January 2026 — enterprise-grade multi-user, new model support (major version bump from v1.x)
+  - v1.2.2: much older release (Sana + SD3.5 support) — NOT a recent release
+  - **Practical**: if using SimpleTuner for LTX-2 training, upgrade to v4.1.0 but note the LTX-2 audio config breaking change
+- **AI Toolkit — LTX-2 LoRA confirmed working** (community validation):
+  - reddit.com/r/StableDiffusion/1qbt1eo — "AI Toolkit now officially supports training LTX-2 LoRAs"
+  - Ostris recommended settings: RTX 5090 + 64GB CPU RAM for 5-second video LoRA training
+  - Image-only training also works: "better likeness with video only but images still work decently" (reddit/1rla8q5)
+  - Ostris YouTube tutorial: "How to Train a LTX-2 Character LoRA with AI Toolkit" published
+  - **LTX-2.3 LoRA**: still in development — @100PercentRobot confirmed "coming hopefully soon"; no release tag yet
+- **HyperLoRA** ⚡ (ByteDance ComfyUI-HyperLoRA — github.com/bytedance/ComfyUI-HyperLoRA):
+  - Parameter-efficient adaptive generation for portrait identity
+  - **~50-step finetuning** to obtain a better ID LoRA
+  - License: **GPL 3.0** — open source, commercial use restricted
+  - Directly integrated in ComfyUI as a custom node
+  - **Practical**: ⚡ test HyperLoRA for fast Digital-Stud character LoRA creation (50 steps vs. 1000+ standard)
+- **ID-LoRA project page live**: https://id-lora.github.io (confirmed; code not yet released)
+  - arXiv:2603.10256 — Tel Aviv University; on 4chan /g/ /ldg/ thread (strong community interest signal)
+  - "Preferred over Kling 2.6 Pro by 73% of annotators for voice similarity, 65% for speaking style"
+  - **Wait for code release** at id-lora.github.io; subscribe to alerts
+
+---
+
 ## 🏃 Run #72 Delta — 2026-03-13 09:03 Prague
 
 ### 🖼️ Image Gen SOTA
