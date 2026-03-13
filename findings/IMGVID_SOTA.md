@@ -1,4 +1,99 @@
-<!-- last_updated: 2026-03-13T09:30:20+01:00 run_73 -->
+<!-- last_updated: 2026-03-13T10:01:03+01:00 run_74 -->
+## 🏃 Run #74 Delta — 2026-03-13 10:01 Prague
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana 2 release date CORRECTION** ⚠️ (run 73 had wrong date):
+  - Official Google Blog & CNBC: released **February 26-27, 2026** (not March 12-13)
+  - Was already rolling out across Google products (Gemini, Search, Ads) before March
+  - Vertex AI note: "We recommend using Gemini 3.1 Flash Image when generating images"
+  - Enterprise availability: Google Cloud Blog Feb 27 — "Pro-level image generation gets faster and more accessible"
+  - aimlapi.com confirms: "Released in February 2026, Nano Banana 2 merges advanced reasoning with Flash architecture"
+  - **Correction to run 73**: Nano Banana 2 is a ~2-week-old release by March 13, not brand-new today
+- **Reve 2** — free tier confirmed, no generation limits:
+  - reve.com — AI image generator + editor, free plan with no generation caps
+  - Natural-language edits + drag-and-drop image editor
+  - "Reve AI just launched a massive update" (YouTube tutorial, 2026)
+  - Competitive with Ideogram 3.0 for typography; no limits = strong Digital-Stud prototyping tool
+  - **Practical**: ⚡ use Reve 2 as unlimited free image editor alongside Nano Banana 2 generation
+- **FLUX.2 Klein 9B Base** — separate from 4B, confirmed on HuggingFace:
+  - `black-forest-labs/FLUX.2-klein-base-9B` — 9B parameter rectified flow transformer
+  - Supports multi-reference image generation (not just text-to-image)
+  - 8+ ComfyUI workflow templates available at comfy.org/templates/model/flux-2-klein/
+  - 4B Distilled: ~1.2s on RTX 5090, 8.4GB VRAM; 4B Base: ~17s, 9.2GB VRAM
+  - **Practical**: 9B with multi-reference = better for character consistency; 4B distilled = best speed/VRAM trade-off
+- **Z-Image** (Tongyi-MAI / Alibaba, 6B family):
+  - Z-Image-Turbo ranked **#8 overall** on LM Arena image leaderboard (LinkedIn March 14 2026 digest)
+  - Efficient open-source image generation; strong for fast local deployment
+  - **Watch**: monitor HuggingFace for open-weight release
+- **Sora 1 sunset** — US users March 13, 2026 (OpenAI Community):
+  - Sora 1 no longer available for US users from today; content export recommended
+  - Sora 2 continues as the active version
+- **Image API pricing landscape** (WaveSpeedAI guide, March 2026):
+  - Gemini API free tier includes image generation via Flash models (Nano Banana 2 = free in Gemini API dev tier)
+  - FLUX.2 Dev is free for local/self-hosted deployment
+  - **Practical**: For Digital-Stud zero-cost pipeline: Gemini API (Nano Banana 2 free tier) + FLUX.2 Dev local = no-cost image generation stack
+
+### 🎬 Video Gen SOTA
+- No major new releases detected since run 73 (09:30 Prague) — landscape stable
+- **Open-Sora 2.0 arXiv v3 update** (2503.09642v3):
+  - v3 revision published; uses HunyuanVideo VAE (4×8×8 compression ratio); patch size 2×2
+  - Focus: commercial-level video generation training efficiency
+  - **Practical**: reference for understanding HunyuanVideo VAE architecture in custom pipelines
+- **Wan 2.7** — still no GitHub repo (confirmed 10:01 Prague); Wan-Video org has 3 repos (Wan2.1, Wan2.2, WanX)
+- **MotionStream** (arXiv 2511.01266v5):
+  - Sub-second latency, **up to 29 FPS** streaming generation on a single GPU
+  - Motion-controlled teacher model with sinusoidal embeddings + channel-wise concatenation
+  - Interactive motion controls for real-time video generation
+  - **Practical**: most relevant real-time video gen paper for interactive Digital-Stud demos
+
+### 🔧 ComfyUI Ecosystem
+- **HunyuanVideo 3D (HY 3D) in ComfyUI** ⚡ (Threads @comfyui, March 2026):
+  - "HY 3D advanced features are now available in ComfyUI"
+  - Brings **production-ready 3D post-processing** from HunyuanVideo 3D into ComfyUI
+  - Enables 3D mesh generation and post-processing directly in the node graph
+  - **Practical**: ⚡ HY 3D + Mixamo animation node = new Digital-Stud 3D pipeline candidate; generate 3D → animate → render via ComfyUI
+- **WanVideoWrapper issue #1964** — opened March 13, 2026 (new bug, NOT a fix):
+  - Issue opened today — unknown content but active; follow kijai/ComfyUI-WanVideoWrapper/issues/1964
+  - Issue #1963 (SCAIL: Purple color shift without distilled LoRA, CFG 4, 28 steps) — still open from March 11
+  - **Practical**: when using WanVideoWrapper for SCAIL workflows, use distilled LoRA or reduce CFG; avoid CFG 4 + 28 steps without distilled LoRA
+- **ComfyUI v0.17.0 — no hotfix released** since morning (confirmed stable as of 10:01)
+- **ComfyUI Manager v4.1b2** — confirmed released March 6 (GitHub Actions run timestamp)
+- **FLUX.2 Klein in ComfyUI** — official tutorial page live at docs.comfy.org/tutorials/flux/flux-2-klein
+  - Covers text-to-image, image editing, style transforms, semantic edits, object replacement, multi-reference composition
+  - Update path: update ComfyUI → browse Templates → Flux.2 Klein 4B & 9B under Images
+
+### 🦾 Pose Estimation
+- **Wan 2.2 Fun Control** — official ComfyUI workflow template now live ⚡:
+  - comfy.org/workflows/video_wan2_2_14B_fun_control/ — ready-to-use template
+  - comfyui-wiki.com full guide: supports OpenPose, Depth (MiDaS), Canny, MLSD
+  - YouTube tutorial: "NEW! Wan 2.2 Fun ControlNet in ComfyUI — Canny, Depth & Pose tracking"
+  - **Practical**: ⚡ use official template as starting point for Digital-Stud pose conditioning; faster than manual node setup
+- **XLabs-AI OpenPose ControlNet for FLUX** — still pending:
+  - GitHub: "We are working on releasing new ControlNet weight models for Flux: OpenPose, Depth and more!"
+  - Available now: Depth V3, Canny V3, HED V3 for FLUX.1-dev
+  - No OpenPose weight yet — watch XLabs-AI/x-flux for release announcement
+- **MotionStream** — see Video section above (29 FPS interactive motion control)
+- **YOLO26 Pose training stability fix** confirmed in Ultralytics releases:
+  - "More stable YOLO26 Pose training — reduces risk of training going backwards due to negative loss behavior"
+  - Better consistency of pose metrics over epochs
+  - ComfyUI-YOLO node (kadirnar) supports YOLO26; install via Manager
+- **Skeletonretarget confirmed in Manager** — cedarconnor/ComfyUI-Skeletonretarget listed in custom-node-list.json
+  - Installable directly via ComfyUI Manager search
+
+### 🎓 LoRA Training
+- **AI-Toolkit LTX-2 image training** — community validation expanded:
+  - reddit.com/r/StableDiffusion/1rla8q5: "better likeness with video only but images still work decently"
+  - Image-only training confirmed working (slower convergence but viable)
+  - Ostris YouTube tutorial published; RTX 5090 + 64GB RAM recommended for video LoRA
+- **XLabs-AI training scripts** (LoRA + ControlNet for FLUX):
+  - GitHub: XLabs-AI/x-flux provides LoRA and ControlNet training scripts for Flux.1-dev
+  - ComfyUI workflows included in repo
+  - **Practical**: alternative to AI Toolkit for FLUX LoRA training; more tightly integrated with XLabs ControlNet ecosystem
+- **No new HyperLoRA or ID-LoRA code release** today (10:01 Prague) — watch id-lora.github.io
+- **OneTrainer** — no new update detected since run 73; stable
+
+---
+
 ## 🏃 Run #73 Delta — 2026-03-13 09:30 Prague
 
 ### 🖼️ Image Gen SOTA
