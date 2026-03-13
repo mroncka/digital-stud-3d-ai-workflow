@@ -1,4 +1,68 @@
-<!-- last_updated: 2026-03-13T19:30:15+01:00 run_93 -->
+<!-- last_updated: 2026-03-13T20:03:17+01:00 run_94 -->
+## 🏁 Run #94 Delta — 2026-03-13 20:03 Prague
+
+### 🖼️ Image Gen SOTA
+- **FLUX Image to Video confirmed NEW March 2026** — listed in jayeshmepani/Media-AI master list (last updated Mar 6, 2026) under "NEW March 2026" entries. Transform photos into stunning videos directly from FLUX pipeline. No separate confirmed ComfyUI node yet — watch for kijai or Comfy-Org official support.
+- **Qwen-Image character dataset generation workflow**: Confirmed community workflow — single reference image → Qwen Image Edit in ComfyUI → consistent character dataset for LoRA. See r/comfyui "How to Generate a Consistent Character Dataset for LoRA using Qwen Image" post. Use QwenVL ComfyUI node + image edit mode for consistent multi-angle dataset generation. Replaces manual photography or Dreambooth single-image hacks.
+- **Nano Banana Pro 2 (Google)**: Launched Feb 27, 2026. Improved speed + enhanced text rendering vs Nano Banana 1. No open weights. API via Google AI Studio. ComfyUI integration: unofficial nodes only (search "NanoBanana" in ComfyUI Manager). Best for fast commercial prototyping with strong text overlay generation.
+
+### 🎬 Video Gen SOTA
+- **Wan 2.7 confirmed for March 2026** — Insider Reddit leak (r/StableDiffusion "WAN 2.7 will be released this month"): Alibaba internal manager confirmation. "Comprehensive upgrades over version 2.6." Architecture/feature details TBD at launch. Wan-AI HuggingFace org currently has 23 models. Watch for announcement within March 2026.
+- **LTX-2.3 full architecture confirmed**: 22B parameter DiT. Four official model variants:
+  1. Full dev (bf16) — highest quality, ~24GB VRAM
+  2. Distilled (8-step) — 8x faster inference, ~12GB min
+  3. Distilled LoRA adapter — apply over full dev for fast inference
+  4. Upscalers: spatial (x2, x1.5) + temporal (x2 FPS)
+  3-stage community workflow for DPose + union IC control: LTX-2.3 T2V → spatial upscale → temporal upscale = 4K/50FPS output. FLF2V: use TTP Toolset FirstLastFrame nodes or kijai's workflows (no official template).
+- **SkyReels V4 API**: Privacy Policy published March 12, 2026 (effective same date) — API platform live at skyreels.ai/api-platform. Free tier with daily limits confirmed. Commercial API pricing announced at launch.
+- **FaceCam (arXiv:2603.05506)**: Generates video under customizable camera trajectories from monocular portrait video. Uses Scale-Aware Conditioning. ComfyUI integration: none confirmed yet. Relevant for Digital-Stud portrait video control use cases.
+
+### 🛠️ ComfyUI & Tooling
+- **ComfyUI v0.17.0 FluxKVCache KNOWN BUG**: GitHub issue #12906 — instant OOM on RTX 5090 and similar GPUs even with fp8 quantized Flux. VRAM baseline 14GB without node → immediate OOM with FluxKVCache node. Workaround: use TeaCache node (ComfyUI-TeaCache) instead for KV-style caching with Flux; provides speed gains with minor quality tradeoff. PR submitted to fix AcceleratorError handling.
+- **ComfyUI v0.17.0 template updates**: Updated workflow templates to v0.9.18 (commit by @comfyui-wiki). Portfolio of default templates now includes LTX-2 T2V workflow out of box.
+- **ComfyUI Desktop**: Still at v0.8.17 (bumped from 0.16.4 → will catch up to 0.17.0 in next Desktop build). If using Desktop portable, requires manual update.
+- **ElevenLabs ComfyUI Partner Node full capability list confirmed**: TTS, Voice Cloning (pitch/pace/emotion preserve), Audio Transcription, Voice Isolation, Dialogue Generation (multi-speaker), Sound FX Generation. Runs in parallel with all other Partner Nodes. Enables: Prompt → Image → Video → Voiceover in single ComfyUI workflow. Setup: update ComfyUI → search "ElevenLabs" in Partner Nodes panel.
+- **ComfyHub early access**: Creator portal live at comfy.org/hubearlyaccess. Distinction: ComfyHub = finished apps/workflows; Registry = custom nodes for developers. Shareable app URLs from App Mode. App Builder accessed via "Build" button in App Mode or top toolbar.
+- **DWPose for Wan 2.2 Animate**: Confirmed ComfyUI node (VP Land tutorial, Mar 4, 2026). DWPose Estimator node works for Wan 2.2 animate pipeline. Integrates via ComfyUI's HYPON_CONTROINEL_BUS. Handles body/face/hands separate enable flags per resolution channel.
+
+### 🦴 Pose Estimation & Character Animation
+- **SCAIL-Pose ComfyUI full model list confirmed** (nextdiffusion.ai tutorial):
+  - `models/diffusion_models/`: Wan21-14B-SCAIL-preview_fp8
+  - `models/loras/`: wan21-lightx2v-i2v-14b-480p-cfg-step-distill
+  - `models/text_encoders/`: umt5-xxl-enc-bf16
+  - `models/controlnet/`: Wan21_Uni3C_controlnet_fp16
+  - `models/detection/`: vitpose-l-wholebody.onnx + yolov10m.onnx
+  - `models/clip_vision/`: clip_vision_h.safetensors
+  - `models/vae/`: Wan2_1_VAE_bf16
+  - WanVideo Context: context_frames=81, context_overlap=48, fuse_method=linear
+  - DPM++ scheduler, shift=7 (prevents fade-outs in extended animations)
+  - SCAIL auto-extracts 3D pose sequences from reference videos — no manual pose generation
+  - Face/hands: ViTPose-L wholebody (converted to DWPose format for compatibility)
+  - Cloud: RunPod recommended for sub-24GB VRAM setups
+- **Sapiens2 published at ICLR 2026** — MAJOR FINDING. Meta Research. High-res transformers for human-centric vision: 2D pose, part segmentation, depth, normals. 1024×1024 native resolution, 300M training images. Significant generalization improvements over Sapiens v1 (ECCV 2024). Open weights: Meta GitHub (facebookresearch/sapiens) + HuggingFace checkpoints. PDF: openreview.net/pdf?id=IVAlYCqdvW. Direct upgrade path for any pose estimation pipeline currently using Sapiens v1.
+- **New animation papers this week (arXiv, March 2026)**:
+  - `arXiv:2603.08028` — Controllable Complex Human Motion Video Generation (DINO-ALF): Text → skeleton autoregressive transformer → pose-conditioned diffusion. DINO-ALF handles self-occlusions (acrobatics, stunts). Blender synthetic dataset 2,000 complex-motion videos.
+  - `arXiv:2603.10408` — Motion Forcing: Decoupled framework for visual quality + physical consistency trilemma.
+  - `arXiv:2603.09883` — DISPLAY: Human-object interaction via sparse motion guidance (wrist coords + object bbox). Directable without full skeleton.
+  - `arXiv:2603.08590` — PRISM: Streaming human motion generation, per-joint latents. Unifies text-to-motion + pose-conditioned in single model. Autoregressive segment chaining.
+  - `arXiv:2603.09611` — ParTY: Part-guidance for expressive text-to-motion synthesis.
+  - `arXiv:2603.03160` — Kling MotionControl technical report: Element Binding deep-dive, multi-ref facial uniformity, occlusion resistance.
+  - `arXiv:2603.05506` — FaceCam: Portrait video under customizable camera trajectories (Scale-Aware Conditioning).
+
+### 🎛️ LoRA Training SOTA
+- **AI-Toolkit v0.28.0 WAN video LoRA confirmed**: Supports Wan video model training (not just image LoRAs). This is the first AI-Toolkit release with native Wan support. Complements musubi-tuner for users who prefer AI-Toolkit's interface. Check ostris/ai-toolkit GitHub releases for v0.28.0 changelog.
+- **Qwen Image LoRA dataset guide (community)**: r/comfyui workflow — single reference image → Qwen Image Edit mode → multi-angle consistent dataset. Use QwenVL node in ComfyUI. Significantly reduces dataset prep time for character LoRAs. Competition deadline March 18 still active.
+- **FLUX.1 Dev LoRA community consensus (March 2026)**:
+  - Dataset: 15–25 high-quality images (512–1024px); trigger word in every caption
+  - Rank: 16–32 for character; 8–16 for style
+  - Alpha: equal to rank (1.0 ratio)
+  - LR: 1e-4 with cosine schedule, 1500–2000 steps for 20-image dataset
+  - Optimizer: AdamW8bit (bitsandbytes) or Prodigy for adaptive
+  - Prodigy advantage: auto-LR, forgiving with small datasets; set d_coef=2.0 for stable convergence
+  - Resolution: 512–1024 mixed buckets; avoid pure 512 for FLUX (trained at higher res)
+  - OneTrainer: now recommended equally with AI-Toolkit for FLUX.1 character LoRAs (faster, smaller output files per r/malcolmrey benchmarks)
+- **SDXL character LoRA is still viable in 2026** for local low-VRAM setups (6–8GB): SDXL performs better at 512-768px portraits vs FLUX on <8GB VRAM. OneTrainer updated March 2026 with Z-Image + Qwen support reduces need to maintain separate SDXL pipeline.
+
 ## 🏁 Run #93 Delta — 2026-03-13 19:30 Prague
 
 ### 🖼️ Image Gen SOTA
