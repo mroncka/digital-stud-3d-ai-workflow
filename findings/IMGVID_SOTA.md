@@ -1,4 +1,49 @@
-<!-- last_updated: 2026-03-13T15:30:17+01:00 run_85 -->
+<!-- last_updated: 2026-03-13T16:01:02+01:00 run_86 -->
+## 🏁 Run #86 Delta — 2026-03-13 16:01 Prague
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana Pro** (Google, Hacker News thread Mar 2026): Confirmed separate from Nano Banana 2; Pro tier adds even higher quality. HN community noting Google's UX friction vs quality (models good, tooling less so).
+- **Z-Image Turbo** (Alibaba, 6B params): Strong LoRA training support confirmed (rundiffusion.com page); bilingual text rendering + expressive characters; ~$0.03/img API; LoRA weight 0.8–1.0 at inference. Small footprint makes it viable for local training experiments.
+- **FreeFuse confirmed SOTA** for multi-subject/identity preservation: Adaptive token-level method achieving new top benchmark in identity preservation for multi-LoRA fusion. Relevant for multi-character scenes.
+- **FastFace**: Training-free identity preservation for SDXL using distilled generation — useful when you can't train a new LoRA on the fly.
+- **OpenRouter**: Expanding into image models; confirmed free tier LLM collection. Watch for image model additions.
+
+### 🎬 Video Gen SOTA
+- **Kling 3.0 Pro duration clarification**: Kling 3.0 = up to 15s per clip; Kling 2.6 = up to 60s (piapi.ai comparison confirmed). Run 85 correction was right on 15s for Kling 3.0 clips; 60s is from Kling 2.6 via extended generation.
+- **Kling 3.0 Motion Control Partner Node** (ComfyUI blog, Mar 2026): Now natively available via Partner Nodes in ComfyUI. Key: Element Binding system for facial consistency across angles + emotions; stable face through partial occlusion (hats, hands); multi-reference image support for expression fidelity; face restoration during camera movement. **Direct pipeline integration path confirmed.**
+- **Seedance 2.0 vs Kling 3.0** (The Silicon Review, Mar 2026): Seedance 2.0 confirmed as strong competitor — detailed comparison now published. Both support native audio; Seedance 2.0 stronger on text-in-video, Kling 3.0 better motion fluidity.
+- **Sora 2 API**: Confirmed "planned but not yet fully public" — available through aggregators (fal.ai, etc.) but no direct OpenAI API key access yet as of Mar 13. Azure OpenAI Sora 2 = no ETA (MS Q&A thread confirms).
+- **Veo 3.1 pricing clarified**: $0.20–0.60/s depending on resolution/audio; first-last-frame control confirmed; reference-to-video for character consistency confirmed.
+- **Wan 2.6 clarification**: Open-source branded but commercial — weights NOT freely released; only API access. Wan 2.2 T2V-A14B = still the best fully open-weights model (Alibaba Cloud). Wan 2.1-I2V-14B-720P-Turbo = fastest open-source I2V on SiliconFlow.
+- **HunyuanVideo clarification**: Base repo = 13B params (not 1.5's 8.3B) — both open. HunyuanVideo 1.5 = 8.3B consumer variant. Both on GitHub. Full HunyuanVideo (13B) available on fal.ai.
+- **Consistent video generation stack** (r/generativeAI "current SOTA" thread): Community consensus method = ControlNet pose + DWPose keyframes + Wan 2.2 / Kling 2.6 + face swap in post. LoRA + IP-Adapter for reference identity locking.
+
+### 🛠️ ComfyUI Updates
+- **Kling 3.0 Motion Control Partner Node** confirmed live (blog.comfy.org): Element Binding = most important new feature for Digital-Stud character consistency. Install via Partner Nodes tab.
+- **HY 3D Advanced Features** (Mar 9, 2026, blog.comfy.org): 3D Parts Decomposition + UV Unwrapping + Smart Topology = production-ready 3D post-processing for game/film pipeline. Partner Node install. **Very relevant for Digital-Stud 3D pipeline.**
+- **NVIDIA RTX acceleration** (GDC 2026): ComfyUI App View = simplified no-node interface for video workflows; FP4 model support; RTX Video Super Resolution; DLSS 4.5 Dynamic Multi Frame Generation arriving March 31. Optimized for RTX 5090 + AMD RX 9070 XT.
+- **ComfyUI v0.17.0** (released today Mar 13): Painter node for image editing; Reve Image API nodes (Create/Edit/Remix in single dynamic node); ResolutionSelector with aspect ratio presets; Math Expression node (simpleeval); Flux 2 Klein KV Cache node (VRAM efficiency); LTXAV 2.3 support; SCAIL WanVideo support; TencentSmartTopology node.
+- **VNCCS Pose Studio** (r/comfyui): New node for character pose control in ComfyUI — upload FBX files, export animation as image sequence. More 3D-to-ComfyUI pipeline tooling.
+- **Shima 2.0** (relaunched Mar 12, 2026): ComfyUI extension enabling new workflow capabilities — worth investigating for pipeline automation.
+- **WAN2.2 Animate + Qwen-Image-Edit 2509** (blog.comfy.org): Native support in ComfyUI — model animates any character by performer video replication (facial expressions + movements). Combined with Qwen-Image-Edit for image manipulation pipeline.
+
+### 🦴 Pose Estimation SOTA
+- **STEP framework** (arXiv 2503.13344, Mar 2026): Simultaneous Tracking and Estimation of Pose for Animals — Transformer-based discriminative model; not directly human pose but shows Transformer architecture direction for tracking + estimation unified.
+- **DWPose pip package** confirmed: `controlnet-dwpose` on PyPI — ONNX runtime, CPU+GPU, body+hands+face dense keypoints. Easy install for pipeline integration.
+- **SCAIL confirmed open**: Studio-Grade Character Animation via 3D Pose Control (WAN model) — YouTube tutorials confirm it works. Uses 3D pose extraction → video conditioning. **Direct pipeline relevance for Digital-Stud.**
+- **One-to-All Animation** (ComfyUI Wan 2.1): Published workflow for alignment-free character animation with long video support. Single performer reference → multiple character appearances. Blog.comfy.org post.
+- **SDPose** (diffusion-prior OOD, ComfyUI v0.16.0+): Better on unusual body configurations vs DWPose — confirmed standing in v0.17.0.
+- **ControlNet race** (r/StableDiffusion thread "Is the ControlNet race dead?"): Community debate — FLUX.2 + Qwen native editing reducing ControlNet need; LoRA training may slow as foundation models absorb conditioning. Worth monitoring.
+
+### 🎛️ LoRA Training SOTA
+- **Musubi-tuner (Kohya)** — February 2026 update confirmed: Added LoHa/LoKr support; supports FLUX.2 [dev]/[klein], Z-Image-Base, Qwen-Image-Layered, HunyuanVideo; block swap optimizer patches for Z-Image fine-tuning. **Primary tool for video model LoRA (HunyuanVideo).**
+- **Kohya sd-scripts LoRA+ tech** (v0.9.1+): 16x LR ratio between LoRA-A and LoRA-B = 30% faster convergence; fused backward pass = SDXL from 24GB → ~10GB VRAM with bf16; block-wise training + alpha mask training for transparent BG. Worth enabling explicitly in configs.
+- **Civitai Definitive SDXL Character Guide** (confirmed 2025-2026 standard): Dataset 150–200 imgs (20-30% close-ups, 40-50% mid, 20-30% full-body); BRIA RMBG-2.0 or Photoroom for BG removal; WD14 Tagger v3 with character_tags_first; OneTrainer: LR 4e-6, 100 epochs, batch 2, rank 64, Adafactor/AdamW8bit, fp16, masked training; reserve 10-15% for validation; TensorBoard loss monitoring.
+- **Flux LoRA layer selection** (FurkanGozukara confirmed): Target specific layers (7, 12, 16, 20) for lighter models with less overfitting. Useful for concept LoRAs.
+- **Wan 2.2 + FLUX + Qwen tutorial** (FurkanGozukara, Medium Mar 2026): Combined upgrade tutorial covering LoRA custom training for all three models — historical art / virtual characters. LoRA enables cross-model style/subject fine-tuning.
+- **r/StableDiffusion "Switching to OneTrainer"**: User reports training Z-Image character LoRA successfully with OneTrainer — first confirmed community report. Kohya SS still slow on AMD.
+- **FreeFuse** (research 2025-2026): Multi-subject LoRA fusion with adaptive token-level merging — new SOTA for combining multiple identity LoRAs without interference. Track for implementation in musubi-tuner.
+
 ## 🏁 Run #85 Delta — 2026-03-13 15:30 Prague
 
 ### 🖼️ Image Gen SOTA
