@@ -1,3 +1,52 @@
+## 📅 Run #57 Delta — 2026-03-13 01:32 Prague
+
+### 🎬 Video Gen SOTA
+- **Wan 2.6** (Alibaba): 15s multi-shot 1080p, native audio sync, "Video Roleplay" for char consistency, open weights on HuggingFace (23 models), free beta at wan.video. RTX 4090: ~4min/5s@480p.
+- **Seedance 2.0** (ByteDance): Multi-shot native single-pass, quad-modal input (text+img+vid+audio), native audio/lip-sync 8+ langs, 2K resolution, $0.30/clip. First model with 4K+audio+multi-shot combined.
+- **HunyuanVideo** (Tencent): 13B param, dual-stream transformer, fully free+open-source, commercial use allowed, multi-GPU scaling, FP8 weights. Confirmed SOTA open-source.
+- **Kling 3.0** (Kuaishou): 4K@15s, AI Director mode, Element Binding facial consistency (new March 9 in ComfyUI), multi-shot 6-cut editing, free tier, $7/mo paid.
+- **Veo 3.1** (Google): First native 3840×2160 (no upscaling), lip-sync, scene extension 60s+, $0.15-0.40/sec.
+- **LTX-Video 2.3**: 30fps@1216×704 faster than real-time, portrait 9:16 support, improved I2V fewer frozen frames, audio-video gen, Day-0 ComfyUI support (Mar 5, 2026).
+- **SkyReels V4** (Kuaishou SkyWork): Cinematic storytelling, Wan2.2-based, CinematicPreset node in ComfyUI. ← [COMMITTED RUN 56]
+
+### 🖼️ Image Gen SOTA
+- **Nano Banana 2** (Google, Gemini 3.1 Flash Image, Feb 2026): Arena #1 at Elo 1280. Free tier 500-1000 images/day on AI Studio (no CC), batch API $0.01/img.
+- **FLUX.2 Pro v1.1** (BFL): Elo 1265, sub-second speed, open-weight Dev variant free self-hosted.
+- **FLUX.2 Klein 4B/9B**: NVFP4+FP8 variants for lower VRAM — directly useful for Digital-Stud workflows.
+- **GPT Image 1.5** (OpenAI): ~95% text accuracy, Elo 1264, $0.04-0.13/img.
+- **Seedream 4.5** (ByteDance): $0.03/img, strong typography.
+- **Stable Diffusion 3.5**: $0.006/img API or free self-hosted; enterprise-ready per CGAIGroup Feb 2026.
+
+### 🔧 ComfyUI Updates (v0.16.0/0.16.1 — Mar 5, 2026)
+- **ResolutionSelector node**: aspect ratio presets.
+- **LTXAV 2.3 + SCAIL WanVideo model support** added natively.
+- **Kling 3.0 Motion Control** Partner Nodes (Mar 9): Element Binding facial consistency across angles/occlusion.
+- **LTX-2.3 Day-0 support**: 9:16 portrait, improved I2V, audio-video.
+- **Shima 2.0** (Mar 12): 100+ new custom nodes — character loading, Mixamo animation, environment mgmt, video export.
+- **WanSoundImageToVideoExtend** node: audio-driven video with precise length control.
+- **ElevenLabs TTS nodes** in ComfyUI (Mar 9).
+- **NVFP4 checkpoint support** (fp4 matrix multiply) + RTX Video Super Resolution node (real-time 4K upscale for RTX GPUs).
+- **ByteDance Seedream-5 API node**, **Veo 3.1 API node**, **KlingAvatar node**, **Recraft V4 nodes**, **Topaz video enhancement nodes**.
+- Dynamic VRAM mode now default. FP8 dynamic VRAM perf improvements. Reduced LoRA memory reservations (esp. Flux2).
+- **Tripo 3.0** (3D gen) + **Rodin Gen-2** (img-to-3D) integrated.
+
+### 🦾 Pose Estimation SOTA
+- **YOLO26** (Jan 2026): NMS-free inference, 71.6 mAP@50-95 (YOLO26x on COCO), 43% faster CPU vs prev gen, MuSGD optimizer, RLE precision. Best for edge/low-power.
+- **YOLO11 Pose** (production standard 2025-26): 89.4% mAP@0.5 COCO Keypoints, 30+FPS@T4.
+- **Sapiens 2** (Meta): +4 mAP over Sapiens 1 on 2D pose, +24.3 mIoU body-part seg. New SOTA for human-centric vision.
+- **DETRPose** (2025): First real-time transformer multi-person pose, beats YOLO11-X on COCO test-dev.
+- **RTMPose**: 75.8% AP (RTMPose-m), 90+ FPS CPU / 430+ FPS GPU (TensorRT). Best whole-body.
+- **SDPose-OOD models**: Now in ComfyUI API nodes (v0.16.1). Out-of-domain robust estimation.
+- **ComfyUI-YoloNasPose-Tensorrt**: TensorRT-accelerated YOLO-NAS-POSE nodes.
+
+### 🎓 LoRA Training SOTA
+- **AI-Toolkit (Ostris)**: Leading Flux.1 LoRA trainer — OFT, BOFT regularization support, multi-concept batching; v0.6+ recommended. Fastest convergence for face identity.
+- **Kohya ss GUI**: Flux LoRA training via GUI with FP8 base model support, CAME optimizer added, lycoris support (IA3, LoCon, LoHa, LoKr, full).
+- **OneTrainer**: Cross-platform GUI, FP8 training support, multi-resolution bucketing, EMA, supports Flux+SDXL+SD3. Good for character consistency.
+- **Flux LoRA best practices 2026**: 10-20 steps @ lr=1e-4 for face, ~500 images. OFT regularization reduces overfitting. Trigger word + dense captions = strong identity preservation.
+- **LyCORIS networks**: LoKr (Kronecker product) significantly outperforms standard LoRA for face identity on Flux — 2x fewer params for same quality.
+- **SDXL**: Still viable for style/character LoRA, cheaper to train. AI-Toolkit and Kohya both support.
+
 ## 🔄 Run #55 Delta — 2026-03-13 00:30 Prague
 
 ### 🎬 Video Gen SOTA
