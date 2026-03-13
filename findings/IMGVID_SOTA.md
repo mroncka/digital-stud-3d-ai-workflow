@@ -1,4 +1,100 @@
-<!-- last_updated: 2026-03-13T10:01:03+01:00 run_74 -->
+<!-- last_updated: 2026-03-13T10:30:01+01:00 run_75 -->
+## 🏃 Run #75 Delta — 2026-03-13 10:30 Prague
+
+### 🖼️ Image Gen SOTA
+- **GPT-Image-1 / OpenAI image API** — no new access changes confirmed this window; stable
+- **Seedream 5.0 Lite** — now available on WaveSpeedAI (wavespeed.ai):
+  - ByteDance Seedream V5.0 Lite Edit Sequential launched on platform
+  - Adds "Edit Sequential" mode for iterative image editing chains
+  - **Practical**: fast, low-cost image editing pipeline; test via WaveSpeed API
+- **Flux Kontext LoRAs** — launched on Scenario.com:
+  - Train custom AI editing models with before-and-after image pairs
+  - Supports: lighting control, pose changes, style editing, object replacement
+  - scenario.com/changelog/1-100-introducing-sora-2-and-flux-kontext-loras
+  - **Practical**: Flux Kontext LoRA = most practical approach for controlled image edits without inpainting
+- **Z-Image LoRA OneTrainer import fix** — Draw Things app changelog:
+  - "Fix Z-Image LoRA trained by OneTrainer import issues" — confirmed OneTrainer→Z-Image LoRA pipeline now functional
+  - **Practical**: Z-Image + OneTrainer = fully open training pipeline for efficient 6B model
+- **Kling 4.0 spotted** — startupfa.st listing (featured March 13, 2026):
+  - Listed as "AI Video Generator for Text to Video & Image to Video" with new capabilities
+  - No official announcement yet — watch Kling/Kuaishou channels
+  - **Watch**: Kling 4.0 may be imminent given 3.0 now stable in ComfyUI
+
+### 🎬 Video Gen SOTA
+- **Veo 3.1 Gemini API updates — TODAY** ⚡ (Google Threads @google, official):
+  - "Today we're releasing updates to Veo 3.1 in the Gemini API and Google AI Studio"
+  - Enhanced **Ingredients to Video** model — now with native vertical format (portrait mode)
+  - **SOTA 4K and 1080p resolution options** now available
+  - Pricing (costgoat.com March 2026): API $0.10–$0.50/sec; Gemini Advanced $19.99/mo (Veo 3.1 Fast); Ultra $249.99/mo
+  - Third-party gateways (aifreeapi.com): as low as $0.15/video via gateway
+  - **Practical**: Veo 3.1 portrait mode = perfect for Digital-Stud character video; Ingredients to Video for asset-driven shots
+- **Kling 3.0 Motion Control in ComfyUI v0.17.0** ⚡:
+  - Confirmed in changelog: "Enabled Kling 3.0 Motion Control for enhanced video generation capabilities"
+  - Instagram reels showing "THE SUBSTANCE Created using Kling AI 3.0 Motion Control" circulating March 13
+  - **Practical**: ⚡ Kling 3.0 Motion Control now usable directly inside ComfyUI API node workflows
+- **RealWonder** — real-time physical action-conditioned video generation (arXiv 2603.05449, March 2026):
+  - Simulates physical consequences of 3D actions (forces, robotic manipulations)
+  - Real-time generation; YouTube demo video published
+  - **Practical**: relevant for physics-aware animation in Digital-Stud rigs
+- **Wan 2.2 AI video workflow article** — The Dispatch, March 13, 2026:
+  - "AI Video Workflows Are Becoming More Structured, More Selective and Less Experimental"
+  - Confirms Wan 2.2 prominence in model-centric professional workflows
+  - No new hotfix or model update found for Wan 2.2 today
+- **SkyReels V5 context** — PixVerse V5 ranked above SkyReels V3 on video quality leaderboard:
+  - SkyReels V3 scores: 0.6698 CLIP, 27.22 FVD, 0.8119 (arXiv 2601.17323v1)
+  - PixVerse V5: 0.6542 CLIP, 29.34 FVD — SkyReels V3 wins on overall metrics
+  - SkyReels 4.0 API privacy policy live (March 12); no V5 announcement today
+
+### 🔧 ComfyUI Ecosystem
+- **ComfyUI v0.17.0 full changelog confirmed** — additional nodes vs run 74:
+  - **Minimax Hailuo Video Node** — new video generation node (docs.comfy.org changelog)
+  - **Vidu Video Node** — added Vidu model support for video workflows
+  - **Topaz API Nodes** — new support for Topaz video enhancement workflows in ComfyUI
+  - **Painter node** for enhanced image editing (I2V painting capabilities)
+  - **Reve Image API nodes** — Reve 2 directly accessible inside ComfyUI
+  - All confirmed in official changelog entry for March 13, 2026
+  - **Practical**: ⚡ Topaz upscaling now 1-click inside ComfyUI pipeline; Reve API node = free edits inline
+- **ComfyUI Docker container for DGX Spark** — community release (March 13, 2026):
+  - NVIDIA Developer Forums post by "martial", March 13, 2026, 2:05am
+  - "Today I released a Docker container for running ComfyUI on the DGX Spark"
+  - **Practical**: relevant for cloud/server deployments; not for local Digital-Stud workflow
+- **WanVideoWrapper #1964** — still open as of 10:30 Prague; no fix merged
+- **ComfyUI MMAudio** (kijai) — last updated 2026-03-09; compatible with v0.17.0
+- **ComfyUI-KJNodes** — KJ SageAttention 2.2 patch node confirmed for Wan 2.2 speed boost:
+  - "Patch Sage Attention KJ node included in ComfyUI-KJNodes" — digitalcreativeai.net tutorial
+
+### 🦾 Pose Estimation
+- No new releases or commits detected for XLabs-AI OpenPose FLUX weights (still pending)
+- **Wan 2.2 Fun Control** official template remains latest reference (comfy.org/workflows/video_wan2_2_14B_fun_control/)
+- **SkyReels V3 multimodal model** (GitHub SkyworkAI/SkyReels-V3) — includes controllable video via multimodal conditioning
+- No new DWPose or RTMPose updates detected this window
+
+### 🎓 LoRA Training
+- **ID-LoRA: Identity-Driven Audio-Video Personalization** ⚡ (arXiv 2603.10256, March 10, 2026):
+  - Adapts **LTX-2** joint audio-video diffusion backbone via parameter-efficient **In-Context LoRA**
+  - First method to jointly personalize both visual appearance AND voice in one generative pass
+  - No code release yet — watch id-lora.github.io and Lightricks/LTX-2 repo
+  - **Practical**: ⚡ most important LoRA paper of the week — when code drops, enables character voice+video identity in LTX-2.3
+- **LTX-2.3 22B IC-LoRA Motion Track Control** — already on HuggingFace:
+  - `Lightricks/LTX-2.3-22b-IC-LoRA-Motion-Track-Control`
+  - Guides video generation with motion track control via IC-LoRA
+  - **Practical**: use this IC-LoRA as drop-in for motion-guided LTX-2.3 generation now
+- **LTX-2.3 LoRA training on RunPod** confirmed working (reddit.com/r/StableDiffusion/1rowvp5):
+  - PyTorch template; old LTX-2 LoRAs reported as "decent" on new 2.3 model
+  - Full retrain on 2.3 gives better results
+- **flimmer trainer** — new Wan 2.1/2.2 video LoRA training toolkit ⚡ (araminta_k on X):
+  - "just released flimmer trainer today — video LoRA training toolkit, built from scratch, fully vibe coded"
+  - Supports Wan 2.1 + 2.2 (T2V and I2V), full pipeline from raw video
+  - GitHub: watch araminta_k repos for flimmer
+  - **Practical**: ⚡ first dedicated Wan 2.2 video LoRA trainer; simpler than AI Toolkit for video; test immediately
+- **FLUX.2 LoRA training guide** — kgabeci Medium post (2026):
+  - "FLUX.2 LoRA Training: The Complete 2026 Guide — From Someone Who Built the Training Platform"
+  - Built serverless LoRA training infra at Apatero; covers all key FLUX fine-tuning settings
+  - **Practical**: best current guide for FLUX.2 LoRA training on cloud infrastructure
+- **ostris/ai-toolkit** — no new commit specifically on March 13 confirmed; PyPI version 0.2.7
+
+---
+
 ## 🏃 Run #74 Delta — 2026-03-13 10:01 Prague
 
 ### 🖼️ Image Gen SOTA
