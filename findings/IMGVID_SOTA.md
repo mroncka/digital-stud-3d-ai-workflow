@@ -46,6 +46,53 @@
 - **LTX-2 LoRA community growing** (Reddit r/StableDiffusion, March): "Starting to be good LoRA models for LTX-2" but all start from same base. Community concern: poor NSFW base model affects fine-tuning quality. Clean fine-tuning base needed. Watch for LTX-2-specific base model release.
 - **No AI-Toolkit / OneTrainer release today**: No new commit or release found as of 12:30 Prague.
 
+## 🏁 Run #128 Delta — 2026-03-14 12:30 Prague  ★ PORTAL UPDATE RUN ★
+
+### 🖼️ Image Gen — ComfyUI v0.17.0 node details confirmed (LatentCut, Painter, Reve Image API, FluxKVCache); Meta Avocado image model delayed to May; Nano Banana 2 leads Chatbot Arena at 1280 Elo; Flux 2 Klein best for inpainting; Neural4D image-to-3D engine launch; LTX-2.3 lipsyncing confirmed
+- **ComfyUI v0.17.0 new nodes confirmed** (docs.comfy.org changelog, March 13): Previously not captured per-node detail:
+  1. `LatentCut Node` — cuts latents at precise points for granular latent space manipulation in complex workflows.
+  2. `Painter Node` — enhanced image editing capabilities in-node.
+  3. `Reve Image API nodes` — Reve Image 1.5 integration. Confirmed best prompt adherence, free tier at reve.com.
+  4. `FluxKVCache` — Flux 2 Klein KV cache support, enabling faster Flux 2 inference via KV-caching.
+  5. Modular asset architecture + async two-phase scanner + background seeder for faster loading.
+- **🚨 Neural4D image-to-3D engine** (press release March 14, eveningsun.com): Launched today. Solves broken meshes and baked lighting in AI asset generation. Computes watertight manifold geometry + pure albedo extraction → engine-ready 3D assets from 2D images. Direct Digital-Stud pipeline relevance: clean 3D mesh from generated 2D characters. GitHub: search neural4d.io.
+- **Meta Avocado delayed to May** (NYT March 12): Meta's next-gen multimodal model (Avocado=image gen, Mango=video gen) delayed from March to May+ 2026 due to benchmark underperformance vs competitors. No open-source release expected.
+- **Image leaderboard March 2026** (awesomeagents.ai): Nano Banana 2 leads at **1280 Elo**; GPT Image 1.5 and FLUX.2 Pro close behind. For open-source: Flux 2 Klein is current community consensus best image model.
+- **Flux 2 Klein for inpainting** (Reddit r/StableDiffusion, March 12): Community vote — Flux 2 Klein recommended over all others for inpaint tasks. Fast, high quality. ComfyUI FluxKVCache node (v0.17.0) speeds it further.
+- **LTX-2.3 lipsyncing** (Facebook/stablediffusionkorea, March 14): Confirmed testing of LTX-2.3 for lipsyncing. Lips synchronised with song lyrics including singer emotions. LTX 2.3 (IC-LoRA based) = now best open-source audio-visual lipsyncing model.
+- **Z-Image-Base/Edit** (GitHub issue #66 March 14): Community asks when Z-Image-Base/Edit will open-source. No answer from Tongyi-MAI. Still closed.
+- **ER-Pose** (arXiv 2603.08681): Single-stage multi-person pose estimation. Unified framework: joint localization + keypoint prediction in one pass. Reduces 2-stage overhead. Performance-relevant for real-time pose workflows.
+
+### 🎬 Video Gen — WanGP v10.9873 (Prompt Enhancer abliterated); Wan-Move motion control framework (OpenReview ICLR 2026); Veo 3.1 vertical video for Gemini confirmed; Sora→ChatGPT still planning; no Wan 2.7 today; LTX-2.3 lipsyncing
+- **WanGP v10.9873** (GitHub deepbeepmeep/Wan2GP, March 13 2026): "Prompt Enhancer has just Been Abliterated" — removes the prompt enhancer overhead from the pipeline. Cleaner direct prompting. Latest build of the most widely-used Wan local runner.
+- **🚨 Wan-Move** (OpenReview, ICLR 2026 submitted): Simple and scalable framework bringing motion control to video generative models. Uses latent trajectory guidance — provides continuous motion direction as a latent-space trajectory rather than a sparse keypoint map. Significantly more robust than existing motion-controllable methods. Key: latent trajectory = smooth, consistent motion over long video sequences. **Directly relevant to pose-guided character animation in Digital-Stud.**
+- **Veo 3.1 vertical video** (Mashable, March 14): Confirmed live in Google Gemini app. Generates social-ready 9:16 vertical videos natively (not cropped from landscape). Veo 3.1 = #1 overall on LMArena + best lip sync + native audio.
+- **Sora→ChatGPT**: Reuters report (March 10) confirmed OpenAI planning integration. Still "planned" only. Sora 1 sunset March 13. No news today.
+- **Wan 2.7**: Reddit (March 12): "scheduled for release in March with comprehensive upgrades over 2.6." No release as of 12:30 Prague. Community consensus: closed-source API-only when it lands. Monitor: deepbeepmeep/Wan2GP for immediate compat release.
+- **Helios** (arXiv 2603.04379, PKU-YuanGroup): 14B real-time video model at 19.5 FPS on H100. Weights available on HuggingFace. GitHub: PKU-YuanGroup/Helios. Multiple inference backends: HuggingFace Diffusers ModularPipeline + vLLM-Omni disaggregated serving.
+- **Open-Sora 2.0** (arXiv 2503.09642v3): Commercial-level video generation at lower training cost. Comparable to HunyuanVideo. Open-source.
+
+### 🛠️ ComfyUI — v0.17.0 confirmed (LatentCut, Painter, Reve, FluxKVCache); Wan 2.2+VACE+FreeLong confirmed community stack; FreeLong=ComfyUI-LongLook for longer Wan 2.2 video; Wan-Move latent trajectory control; ComfyUI Portal on real-time subject removal demo
+- **ComfyUI v0.17.0 full changelog** (docs.comfy.org, March 13): See image gen section for node details. Also: architecture improvement — modular asset loading with async background seeder. Desktop Windows build has launch bug (ChildProcess exit, forum.comfy.org issue March 14).
+- **Wan 2.2 + VACE + ComfyUI-LongLook (FreeLong)** (YouTube "Wan 2.2 Longer Video Generation via FreeLong", March 11): Confirmed community production stack for longer Wan 2.2 videos. FreeLong = temporal extension technique via ComfyUI-LongLook node. Full workflow: Wan 2.2 I2V/T2V + VACE temporal refinement + LongLook extension. Best local video quality stack as of March 14.
+- **Wan 2.2 First & Last Frame + VACE** (Threads, March 3): Confirmed workflow: Wan 2.2 F&L frame control + VACE in ComfyUI + Nano Banana Pro in Photoshop. Multi-tool character animation pipeline.
+- **Wan 2.2 GGUF Q6 I2V** (Facebook ComfyUI group, March): Sharing workflow — Wan 2.2_I2V_14B with GGUF Q6 quantized model. "Greatly reduced generation time, achieved better video." Q6 = best quality/speed tradeoff for VRAM-constrained setups.
+- **ComfyUI real-time subject removal demo** (Facebook ComfyUI group, March 14): TensorRT Node for ComfyUI enables best-performance real-time subject removal. Demo shared today.
+- **ComfyUI Prompt Node for LTX-2** (Reddit r/StableDiffusion): Community-built prompt assist node for LTX-2. Freeze option to keep generating with same prompt.
+
+### 🕺 Pose — ER-Pose single-stage multi-person (arXiv 2603.08681); Multi-view Whole-Body Triangulation v5 (arXiv 2503.21692v5); Motion Forcing (captured run 127) still relevant; Wan 2.1 Fun ControlNet confirmed production pose workflow
+- **ER-Pose** (arXiv 2603.08681, March 9 2026): Single-stage multi-person pose estimation. Keypoint-driven representation learning. Unified localization + keypoint prediction → removes two-stage dependency. Key for real-time full-body character pose extraction.
+- **Multi-view Whole-Body Pose Triangulation v5** (arXiv 2503.21692v5, updated March 2026): Multi-view + multi-person 3D whole-body pose estimation in unconstrained scenes. Latest revision adds robustness improvements. 3D multi-view approach = most accurate for Digital-Stud multi-camera setups.
+- **Wan 2.1 Fun ControlNet** (runcomfy.com): Confirmed production workflow — controlled video generation with Depth, Canny, OpenPose control. Depth + Canny = most stable. OpenPose supports character pose transfer. Available on RunComfy as template workflow.
+- **DiffSynth-Studio** (modelscope, GitHub): Open-source diffusion model engine integrating HunyuanVideo + Wan2.1 + ControlNet. Provides unified API for pose-conditioned video generation. Watch: modelscope/DiffSynth-Studio.
+- **RPePose / RePose** (arXiv 2601.00625): Real-time 3D pipeline — detection → high-speed tracking → 2D/3D pose → temporal refinement. Modified temporal smoother. Production-ready real-time 3D pose pipeline for character animation reference.
+
+### 🎓 LoRA — AI-Toolkit / Kohya activity light today; Wan 2.2 rank 16/alpha 16 confirmed community best practice; LTX-2 LoRA community growing; Wan 2.2 hybrid subject mixing via low-rank noise; Reversible Lifelong LoRA (run 127) still most novel
+- **Wan 2.2 LoRA rank 16/alpha 16** (GitHub kohya-ss/musubi-tuner discussions #455): Community consensus — Wan 2.2 is much larger than SDXL so rank 16 LoRA is "much bigger and more capable." Standard: rank 16 / alpha 16 for character LoRA. Sometimes rank 8 for fast testing.
+- **Wan 2.2 hybrid subject mixing** (Reddit r/StableDiffusion, March): Wan22 14B T2V hybrid subjects by mixing two prompts via low-rank noise. Technique: blend two subject LoRAs at noise level for creative character combinations. Workflow: standard Wan 2.2 14B + LightX2V 4-step LoRA + MMAudio. Community upvoted technique.
+- **LTX-2 LoRA community growing** (Reddit r/StableDiffusion, March): "Starting to be good LoRA models for LTX-2" but all start from same base. Community concern: poor NSFW base model affects fine-tuning quality. Clean fine-tuning base needed. Watch for LTX-2-specific base model release.
+- **No AI-Toolkit / OneTrainer release today**: No new commit or release found as of 12:30 Prague.
+
 ## 🏁 Run #127 Delta — 2026-03-14 12:06 Prague
 
 ### 🖼️ Image Gen — Minimal delta vs run 126; Z-Image-Edit still unreleased; ImageEdit-R1 multi-agent RL editing confirmed; UniRef-Image-Edit multi-reference editing; arXiv eess.IV 2026-03 batch captured; ComfyUI Desktop Windows launch failure (March 14 known bug)
