@@ -1,3 +1,49 @@
+<!-- last_updated: 2026-03-14T05:30:00+01:00 run_113 -->
+## 🏁 Run #113 Delta — 2026-03-14 05:30 Prague
+
+### 🖼️ Image Gen — Wan 2.6 community darling + ID-LoRA beats Kling 2.6 Pro + ComfyHub 148+ templates + SkyReels-V4 audio-video + VIVECaption T2I bottleneck paper + FLUX.2 sub-second gen
+- **Wan 2.6 "community darling"** (r/generativeAI March 2026): Community consensus thread names Wan 2.6 as the best open-source option for free local video (surpassing Wan 2.2 in visibility). Relevant for Digital-Stud: upgrade Wan 2.2 workflows to track 2.6 compatibility.
+- **FLUX.2 sub-second generation confirmed** (awesomeagents.ai March 2026): FLUX.2 Pro v1.1 achieves sub-second generation with open-weight flexibility. 1265 Elo, $0.025–$0.07 Replicate/fal.ai. Best price-to-quality API for Digital-Stud burst generation.
+- **Gemini free tier: 100 images/day** (aifreeapi.com March 12 2026): Best free tier for image gen confirmed. Nano Banana 2 on Gemini 3.1 Flash Image architecture. Three separate access channels (AI Studio, Gemini app, API) for limit splitting.
+- **VIVECaption: Split approach to caption quality** (arXiv 2603.07401v1): Caption quality identified as critical training bottleneck for T2I/T2V. VIVECaption proposes split captioning approach. Direct relevance to Digital-Stud LoRA dataset preparation — caption quality = training quality.
+- **SD 3.5 first anime checkpoint** (reconfirmed from run 112): Still no competing checkpoint released this half-hour cycle. Anime ckpt confirmed stable CivitAI release.
+- **AIMomentz open benchmark** (pressconnects.com): Open AI image evaluation platform with human-preference voting + provenance tracking. Alternative to Chatbot Arena for head-to-head model ranking.
+- **Meta Avocado delayed** (NYTimes March 12 2026): Meta's new image/LLM model "Avocado" delayed after performance concerns. Outperformed Gemini 2.5 and Meta's prior model per internal leak, but not released. Watch for late March / Q2 release — potential top-tier image contender.
+
+### 🎬 Video Gen — Wan 2.6 open-source darling + SkyReels-V4 unified audio-video + ID-LoRA beats Kling 2.6 Pro 73% + LTX-2.3 "world's fastest 4K" confirmed + Cliprise 47-model routing
+- **Wan 2.6 now community consensus #1 open-source** (r/generativeAI March 2026): Named "current darling" by active March 2026 community thread. Succeeds Wan 2.2 in community mindshare. Update Digital-Stud pipeline references: Wan 2.6 is current default.
+- **SkyReels-V4 unified audio-video** (vidau.ai, Artificial Analysis leaderboard #3): Parallel video + audio generation via shared MMDiT. Ranks above Wan 2.6, Kling 2.6, Seedance on several dimensions. Unified editing/inpainting via channel concatenation. Three-stage production pipeline: low-res full seq → keyframe upscale → frame interpolation.
+- **ID-LoRA preferred over Kling 2.6 Pro by 73%** (arXiv 2603.10256v1): In human preference study, ID-LoRA beats Kling 2.6 Pro for voice similarity (73%) + speaking style (65%). Face similarity: 0.772 vs Kling 0.754. Lip sync LSE-C: 3.09 vs Kling 2.40. **Confirmed open-source method beating top commercial model for identity-preserving T2V.**
+- **LTX-2.3 "world's fastest 4K"** (March 5 2026 release, reconfirmed): 22B params, rebuilt VAE + 4x larger text connector + native 1080×1920. Fast Flow + Pro Flow variants. Free <$10M revenue license.
+- **Kling 3.0 in ComfyUI Partner Nodes** (blog.comfy.org): Element Binding for facial consistency confirmed in ComfyUI. Multiple face reference images + occlusion-through (hats/hands/fans). Available via Partner Nodes.
+- **Cliprise: 47-model routing** (fal.ai comparison): Routes video shots to best model per need across 47 video models. Alongside fal.ai (Veo, Sora, Kling via one API), ImagineArt (Wan 2.2/2.6 + HunyuanVideo). Useful for Digital-Stud multi-model output quality benchmarking.
+- **Wan 2.2 vs Wan 2.6 delta**: Research confirms 2.6 preferred in community but 2.2 remains MLPerf T2V v6.0 reference model. Dual-track: 2.2 for benchmarks, 2.6 for production.
+
+### 🛠️ ComfyUI — App Mode + App Builder + ComfyHub launched March 10 + 148 Partner Node templates + Comfy Cloud out of beta (Blackwell RTX 6000 Pro 96GB) + NVIDIA RTX 4K upscaler node + HY3D advanced 3D nodes
+- **🚨 ComfyUI App Mode + App Builder + ComfyHub LAUNCHED March 10 2026** (GlobalNewswire): Any ComfyUI workflow → shareable no-install app via URL. App Builder controls which nodes/outputs exposed to end users. ComfyHub = public discovery/run platform (preview: comfy.org/workflows). **Major platform shift — Digital-Stud workflows can now be distributed as apps.**
+- **148+ Partner Node templates** (comfy.org/workflows): Kling 3.0 T2V/FLF2V/motion, Seedance 1.5 Pro FLF2V, Wan 2.6 I2V, Veo3, Grok image/video, Seedream 5.0 Lite, Nano Banana 2 + Pro, FLUX.2 [max] object swap, Kling O3, ElevenLabs TTS, HY3D. 148 templates live.
+- **Comfy Cloud out of beta** (blog.comfy.org): NVIDIA Blackwell RTX Pro 6000 GPUs, 96GB VRAM / 180GB RAM. Pay-for-active-GPU-time. ~90% of community custom nodes supported. Free tier available. **Cloud option for Digital-Stud burst GPU runs.**
+- **NVIDIA RTX Video Super Resolution Node** (GDC 2026, NVIDIA blog): Real-time 4K upscaler as standalone ComfyUI node. 30x faster than local alternatives. Available now via Manage Extensions → Search. NVFP4 + FP8 model variants: 2.5x performance gain, 60% lower memory. FLUX.2 Klein 4B/9B + LTX-2.3 NVFP4 support.
+- **HY3D Advanced Features** (blog.comfy.org): 3D Parts Decomposition + UV Unwrapping + Smart Topology via Partner Nodes. Split 3D assets into editable components, auto-UV for texturing, clean topology for game engine export. **Directly useful for Digital-Stud 3D asset pipeline.**
+- **Kling 3.0 Motion Control** (blog.comfy.org): Element Binding in ComfyUI Partner Nodes. Face consistency through any angle/occlusion/expression.
+- **Wan 2.6 I2V workflow template** (comfy.org templates): Official Partner Nodes template live. Upgrade path from Wan 2.2 confirmed.
+
+### 🕺 Pose — OA-NBV RTMPose visibility confirmed + Controllable Complex Human Motion arXiv reconfirmed + ID-LoRA pose-aware identity video + Wan 2.6 character consistency best practices
+- **OA-NBV RTMPose occlusion-aware NBV** (arXiv 2603.11072, reconfirmed run 113): RTMPose keypoint visibility scores used for next-best-view selection. RTMPose confirmed as quality metric standard for keypoint visibility.
+- **Controllable Complex Human Motion T2V** (arXiv 2603.08028v1, reconfirmed): Text → 2D pose sequence → pose-conditioned video. Depth + optical flow structural signals. Standard for multi-person / choreography Digital-Stud scenes.
+- **ID-LoRA pose-aware identity** (arXiv 2603.10256v1): Negative temporal RoPE positions separate reference audio tokens from video target — clean separation without strict alignment. Pose information implied in reference video frames. Face similarity 0.772 maintained across head motions. Critical for Digital-Stud pose-consistent character video.
+- **Wan 2.2 I2V character consistency best practices** (runcomfy.com): Reference image anchors pose/composition. Character LoRA preserves identity through expression/head-turn. T2V-trained LoRAs generalize to I2V. Prioritize front/3/4/side views in training set. Short clips (21–41 frames) for face quality.
+- **DWPose + RTMPose unchanged as combined standard** (reconfirmed): No new challenger. DWPose for skeleton extraction, RTMPose for keypoint quality scoring. 
+
+### 🎓 LoRA — ID-LoRA 0.772 face similarity beats Kling + VIVECaption captioning bottleneck + OneTrainer TensorBoard validation confirmed + Wan 2.6 LoRA compatibility + SECourses musubi-tuner 1-click
+- **ID-LoRA: 3000 training pairs, single GPU** (arXiv 2603.10256v1): In-Context LoRA on LTX-2 joint audio-video backbone. ~3,000 training pairs sufficient for production-quality identity LoRA. Negative RoPE positions for clean reference/target separation. Cross-dataset generalization confirmed (CelebV-HQ → TalkVid). **Breakthrough: near-zero training cost, beats Kling 2.6 Pro commercially.**
+- **VIVECaption: caption quality = training quality bottleneck** (arXiv 2603.07401v1): Identifies caption quality as critical training bottleneck for T2I/T2V. Split approach improves dataset quality. Directly actionable: audit Digital-Stud LoRA training dataset captions.
+- **OneTrainer TensorBoard validation loss** (r/StableDiffusion reconfirmed): Confirmed advantage over AI-Toolkit: TensorBoard validation loss curve visible during training. AI-Toolkit has no validation loss display — overfitting invisible. OneTrainer detects overfitting in real-time. SOTA recommendation unchanged: OneTrainer (T2I/SDXL/FLUX/ZIT), musubi-tuner (T2V Wan/HunyuanVideo).
+- **SECourses musubi-tuner 1-click** (HuggingFace MonsterMMORPG, GitHub FurkanGozukara): Covers Wan 2.1, Wan 2.2, Qwen Image, Qwen Image Edit. LoRA + full fine-tune. 6GB VRAM minimum. Actively maintained. Best quickstart for Wan video LoRA training.
+- **Wan 2.6 LoRA compatibility**: Community tracking Wan 2.6 LoRA format — musubi-tuner compatibility expected. Monitor GitHub discussions for format confirmation before production training.
+- **SDXL identity LoRA community thread** (r/comfyui March 2026): Active thread on optimizing SDXL/RealVisXL for synthetic character identity. Settings: Kohya SS, character-focused captions, ~30 epochs, validation split. Confirms ongoing community demand for non-FLUX identity LoRA options.
+- **Musubi-tuner format conversion** (reconfirmed run 113): Must convert musubi-tuner LoRAs before ComfyUI use. AI-Toolkit format loads directly. No change from run 112.
+
 <!-- last_updated: 2026-03-14T05:01:43+01:00 run_112 -->
 ## 🏁 Run #112 Delta — 2026-03-14 05:01 Prague
 
