@@ -1,4 +1,55 @@
-<!-- last_updated: 2026-03-14T16:30:12+01:00 run_136 -->
+<!-- last_updated: 2026-03-14T17:03:01+01:00 run_137 -->
+## 🏁 Run #137 Delta — 2026-03-14 17:03 Prague
+
+### 🖼️ Image Gen — March 14 2026 (48h sweep)
+- **Leaderboard (Arena, Mar 14)**: 1. Nano Banana 2 (1280 Elo) 2. FLUX.2 Pro v1.1 (1265) 3. GPT Image 1.5 (1264, best text ~95%) 4. Nano Banana Pro (1217) 5. FLUX.2 Max (1206) 6. Midjourney v7 (~1200) 7. Imagen 4 Ultra (~1180). No new #1 challenger this run.
+- **Nano Banana 2** medium article Mar 14: "Image generators can now think" — reasoning-based generation confirmed; 512px option for lower cost. Full production momentum.
+- **FLUX.2 Dev open-weight**: Self-hostable. FLUX.2 Pro on Adobe Firefly (Mar 10) alongside 25+ models. BFL maintaining price-performance lead at $0.025–0.07/img.
+- **GLM-Image (Zhipu, Apache 2.0)**: Best text rendering benchmark 0.9116 CVTG-2k. $0.015/img. No new update this run, still best open for text overlay.
+- **ModelScope Helios**: 14B real-time long VIDEO gen at 19.5 FPS/H100 (T2V+I2V+V2V). Not image-only but relevant for unified pipeline. Watch for ComfyUI integration.
+- **Adobe Firefly AI Assistant** (Mar 10): Now in Photoshop web+mobile beta. 25+ gen models integrated. Generation→editing flow without leaving Photoshop.
+- **No new free tier announcements** on fal.ai/Replicate/Together/Fireworks in last 48h. Cloudflare Workers AI FLUX.2 free tier still active.
+
+### 🎬 Video Gen — March 14 2026 (48h sweep)
+- **Video Arena leaderboard (Arcada Labs, Mar 14)**: 1. Grok Imagine 2. Google Veo 3.1 3. Kling 3.0 4. OpenAI Sora 2 5. Runway Gen-4.5 6. WAN Video 2.6 (549 upvotes) 7. Kling v2.6 Pro (507). SkyReels V4 not yet on main public arena (preview only).
+- **Grok Multi-Image to Video** (Mar 14 announcement): New feature — combine multiple input images into cohesive video. API: $0.05/s at 720p+audio (live since Jan 28). Video Extension (extend-from-frame) live early March. Now tops Video Arena.
+- **OpenAI Sora 2 on Atlas Cloud**: API guide published Mar 13. Best-in-class physics simulation. Access via Atlas Cloud API.
+- **SkyReels V4**: Still in limited preview (free daily tier). No public API yet. V3 open-source on HuggingFace confirmed.
+- **WanGP v10.9873** (Mar 13): GGUF CUDA +15% speed confirmed. Wan 2.7 still no official release yet as of Mar 14.
+- **Veo 3.1 (Google)**: Leads for audio-native cinematic work and dialogue (per Beebom comprehensive test). Not free — Vertex AI enterprise only.
+- **LTX-2.3**: Full ComfyUI day-0 templates confirmed. IC-LoRA character consistency training supported. NVFP4 2.5x speedup on RTX 50 series.
+- **ModelScope Helios** (X.com, Mar 14): 14B model T2V/I2V/V2V at 19.5 FPS on single H100. No ComfyUI node yet. Apache-style expected, watch HuggingFace.
+- **VISVISE (Tencent, GDC)**: Full-stack AI animation + modeling at GDC 2026. Primarily game-focused, not yet ComfyUI-integrated.
+
+### 🔧 ComfyUI — March 14 2026 (48h sweep)
+- **ComfyUI App Mode + ComfyHub** (Mar 10): Most-discussed this week. Convert workflow → shareable no-code app. Hub = marketplace. Top subreddit topic Mar 13-14.
+- **comfyui-zld nodes for LTX-2.3** (Reddit, Mar 2026): S3/S4 Guider, EMASyncGuider HYBRID, EMAGGuider, CFGGuider (cfg=1) — quality improvements for LTX-2.3 inference.
+- **ComfyUI-Skeletonretarget** (cedarconnor, active): Retargets driving video skeleton to match target character body proportions. Separates individual skeletons from OpenPose output into masks. Key node for multi-person ControlNet pipelines.
+- **ComfyUI-SAM3** update (Reddit r/comfyui): Interactive click-to-segment in-canvas. SAM 3D Body for pose estimation integrated. Model flip in Blender is known quirk.
+- **ComfyUI-MVAdapter** (huanngzh, Mar 2026): Multi-view adapter for consistent 3D generation — relevant for Digital-Stud 3D workflow.
+- **DWPose Estimator node for Wan 2.2 Animate** (YouTube short, active): Confirmed working combo for video animation with pose control.
+- **No major new video node packs** released in last 48h. Ecosystem consolidating around existing packs.
+
+### 🧍 Pose Estimation — March 14 2026 (48h sweep)
+- **Text-to-Skeleton Cascades paper** (arxiv 2603.08028, Mar 2026): Two-stage: AR Transformer → 2D pose sequences from text → Pose-to-Video via DINO-ALF. Blender dataset of 2000 complex-motion videos released. Highly relevant for automated character animation.
+- **RealWonder** (arxiv 2603.05449, Mar 2026): Real-time action-conditioned video gen — 3D reconstruction + physics sim + 4-step distilled video generator. HuggingFace paper page live. Demo video on YouTube.
+- **PoseFA** (ScienceDirect, Mar 2026): Pose-Aligned Diffusion for realistic human image generation. Addresses pose transfer + semantic detail preservation. Not yet ComfyUI-integrated.
+- **ComfyUI-Skeletonretarget** (cedarconnor): Production-ready skeleton retargeting. Separates OpenPose skeletons per person for multi-person ControlNet. Directly usable in Digital-Stud pipelines.
+- **SAM 3D Body** (Meta/facebookresearch): Superior pose+shape estimation. ComfyUI integration via ComfyUI-SAM3. Known Blender orientation flip issue.
+- **DWPose + Wan 2.2 Animate**: Confirmed working combo (YouTube short). DWPose still SOTA for ComfyUI pose preprocessing.
+- **RTMPose/RTMO/DWPose**: No new checkpoint releases this run. DWPose large remains recommended for quality, DWPose tiny for speed.
+
+### 🎓 LoRA Training — March 14 2026 (48h sweep)
+- **FLUX.2 LoRA production maturity** (Apatero platform, Mar 2026): Documented best practices from hundreds of training jobs. Optimal: 15-50 identity images, serverless GPU fleet, VRAM management. Now production-ready at scale.
+- **LTX-2.3 IC-LoRA** (Identity-Consistent LoRA): Character identity across video frames. Lightricks-supported. Full fal.ai endpoint. Directly relevant for Digital-Stud character pipelines.
+- **CogVideoX Video2LoRA** framework: LightLoRA (<50KB per semantic condition, 150MB total). Hypernetwork predicts semantic-specific LoRA. Zero-shot generalization to unseen semantics (camera motion, effects, style). No per-condition retraining.
+- **Identity-Driven Audio-Video Personalization** (Mar 2026 paper): In-context LoRA for synchronized video+audio — acoustics adapt to environment while preserving face identity. Novel approach for talking-head video.
+- **WildActor** framework: Unconstrained identity-preserving video via asymmetric identity-preserving attention + viewpoint-adaptive Monte Carlo sampling. Iteratively re-weights LoRA for consistent character representation across viewpoints.
+- **Kohya SS / Musubi Tuner**: Face-restoration scripts added for LoRAs — prevents face alteration when combining multiple LoRAs. Multi-view captioning strategy for better identity separation.
+- **AI-Toolkit (ostris)**: DGX Spark (GB10, bf16) compatibility confirmed for March 2026. Still primary for FLUX LoRA.
+- **OneTrainer**: Still best for SDXL/SD1.5. Improved multi-LoRA composition via concept separation.
+- **Async-RL LoRA families** (HuggingFace blog, Mar 2026): Three implementation families documented — peft / unsloth / trl. Relevant for caption model fine-tuning (VLM dataset prep).
+
 ## 🏁 Run #136 Delta — 2026-03-14 16:30 Prague
 
 ### 🖼️ Image Gen — March 2026 Key Updates
