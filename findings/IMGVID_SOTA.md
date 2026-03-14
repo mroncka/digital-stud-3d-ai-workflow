@@ -1,4 +1,81 @@
-<!-- last_updated: 2026-03-14T20:30:11+01:00 run_144 -->
+<!-- last_updated: 2026-03-14T21:01:16+01:00 run_145 -->
+## 🏁 Run #145 Delta — 2026-03-14 21:01 Prague
+
+### 🎬 Video Gen — March 14 2026 (21:01 sweep) — Veo 3.1 pricing + Sora ChatGPT integration
+
+- **Veo 3.1 Pricing published** (kjae.online/google-veo-3-1-the-complete-guide, Vertex AI release notes):
+  - Consumer: Google AI Pro $19.99/mo → Veo 3.1 Fast (~90 videos/month)
+  - Consumer: Google AI Ultra $249.99/mo → Veo 3.1 Standard + 4K support
+  - API pay-per-second: Fast = $0.10/sec (no audio) / $0.15/sec (with audio) → 8s clip = $0.80–$1.20
+  - API pay-per-second: Standard = $0.40/sec → 8s clip = $3.20
+  - True 4K (3840×2160), native audio (dialogue+SFX+ambient), 24 FPS, max 8s/generation
+  - Portrait/landscape support added in January 2026 update
+  - Vertex AI confirms: Video Extension for Veo 3.1 now in Preview
+  - Google AI Studio report (discuss.ai.google.dev): Safety filter change noted today — "Did Google AI Studio silently change safety filtering today" (Veo 3.1 blocking AI avatar images generated via Nano Banana Pro)
+  - **STATUS: Full API path for Veo 3.1 confirmed. Add to api_test suite.**
+
+- **🆕 Sora integration into ChatGPT** (Mashable, Mar 14 2026): OpenAI plans to add Sora video generation directly into ChatGPT interface. Insiders confirm. Sora 1 deprecated March 13 2026. Sora 2 active on Atlas Cloud with complete API guide. Adds ChatGPT as a video gen endpoint.
+
+- **🆕 Grok Multi-Image to Video** (Mar 13 2026, basenor.com confirmed): xAI Grok can now generate video from multiple images simultaneously. Live on iOS/Android/web as of March 13. "Meaningful step up from single-image generation." Free in Grok subscription. Relevant as a zero-cost I2V path alongside Kling free tier.
+
+- **🆕 Higgsfield Soul Cinema + Soul 2.0** (Mar 14 2026, higgsfield.ai/soul-cinema): Soul 2.0 (high-quality image/portrait gen) + Soul Cinema (cinematic Genre-Based Motion Logic video). **5,000–10,000 FREE gens** for new accounts. Soul Cinema produces motion video from single portrait. Feature: "Genre-Based Motion Logic" → cinematic movement presets. Actively posted on Instagram March 14 community. **Free I2V path worth testing alongside Kling 3.0 free tier.**
+
+- **Wan 2.2 GGUF Q6 community workflow confirmed** (markdkberry.com, DeepNetGroup): Using Wan 2.2 I2V 14B GGUF Q6 quantized model — significantly reduced generation time with better video quality. GGUF path now community-proven for local pipelines.
+
+- **Meta Avocado delayed to May 2026** (NYT, Reddit r/LocalLLaMA): Meta's flagship multimodal model (LLM + image/video gen) pushed from mid-March to at least May. Leaders of Meta AI division flagged performance concerns in post-training phase. Watch for May release as potential open-source competitor.
+
+- **LTX 2.3 first open-source audio-video model confirmed** (ltx.io/model/model-blog/ltx-2-3-release, HF blog azhan77168/ltx-2-3): DiT architecture, synchronized video+audio in single inference pass, improved visual detail, runs locally on consumer NVIDIA RTX GPUs. Official ComfyUI workflows March 5 2026. WaveSpeedAI Video Extend integration live. LTX Desktop: separate free native app. Known bug: CheckpointLoaderSimple in official ComfyUI workflow → use community workflow. 5M+ downloads since Jan 2026.
+
+- **Google vs xAI price war confirmed** (Instagram gptproto.official, Mar 13): "In the AI video generation space, Google and xAI are engaged in a textbook-quality price war." Veo 3.1 Fast at $0.10/sec vs Grok video pricing. Watch for further price drops.
+
+### 🖼️ Image Gen — March 14 2026 (21:01 sweep) — New consolidations + Higgsfield Soul 2.0
+
+- **🆕 Higgsfield Soul 2.0 (image)**: High-quality portrait/image generation. 5,000–10,000 free gens. Community creating editorial/fashion portraits directly from prompts (Instagram confirmed). **Free image gen path worth including in free-API matrix.**
+
+- **🆕 ImagineLab.art** (Editorialge Media, Mar 12–14 2026, Times of India): Unified AI creative studio. Integrates Imagen 4.0 Ultra, FLUX.2 Max, FLUX.2 Pro (image), Google Veo 3.1 + Kling O1 (video), Nano Banana Pro (infographics), EDT token economy, bKash/UPI payment. Low-relevance: Indian market focus, no open API. Note as aggregator portal.
+
+- **Nano Banana 2 confirmed = Gemini 3.1 Flash Image** (Medium: seeds-for-the-future, confirmed): "Nano Banana 2 (Gemini 3.1 Flash Image) is the current SOTA image generation model from Google. Multi-modal model — processes and generates images." Dynamic creation via Nano Banana 2 Pro API confirmed working in No-code automation (Instagram Mar 14). Nano Banana 2 + OCR + Claude Code pipeline published (gaodalie.substack.com). Prompt repo: YouMind-OpenLab/awesome-nano-banana-pro-prompts (GitHub, updated Mar 14).
+
+- **NVIDIA RTX Video Super Resolution (RTX VSR) ComfyUI Day 0** (Threads: @comfyui, @won.wizard, Mar 13): 4x upscale (1280×716 → 5120×2864). Node package: NVIDIA_RTX_Nodes. "Day 0 availability" in ComfyUI. Korean ComfyUI community (Threads: @openerai_lab) has install manual for Nvidia_RTX_Nodes_ComfyUI. **Add to upscaling stack alongside SeedVR2 and Z-Image-Turbo.**
+
+- **FLUX.2 Klein 9B-KV multi-reference limit clarified** (Threads @openerai_lab, Zhihu, Latent.Space): KV variant limited to max 4 reference images for multi-reference editing. 2–2.5x faster than base 9B for editing workflows. HF trending as of Mar 9 2026. GGUF Q8 workflow confirmed.
+
+- **Sora 1 deprecated March 13 2026** (Reddit r/ChatGPT, Facebook Sora group): OpenAI deprecated Sora 1 on March 13. Export reminder sent. All generations moving to Sora 2. Sora integration into ChatGPT forthcoming (Mashable).
+
+- **GPT-5.4 bug patched silently** (Instagram, Mar 14): OpenAI patched GPT-5.4 bug degrading document/chart parsing accuracy + high-res image localization. No redeployment needed. Affects image understanding pipelines using GPT-5.4 as VLM.
+
+### 🔧 ComfyUI — March 14 2026 (21:01 sweep) — RTX VSR confirmed + LTX 2.3 workflow note
+
+- **NVIDIA RTX VSR Day-0 in ComfyUI confirmed** (Threads @comfyui, Mar 13): Node: NVIDIA_RTX_Nodes. 4x upscale confirmed working. Korean community install guide on Zhihu. RTX hardware required. Stack with SeedVR2 for two-stage 4K pipeline: SeedVR2 frame enhancement → RTX VSR 4x spatial upscale.
+
+- **LTX Desktop vs ComfyUI comparison** (Reddit r/comfyui 1rnvghr): Community thread "LTX Desktop is better than ComfyUI — what are we doing wrong?" — Official ComfyUI workflows for LTX 2.3 published March 5 2026 at ltx.io. Known CheckpointLoaderSimple bug. Use community-provided workflow workaround. LTX Desktop handles some tasks better out-of-the-box.
+
+- **LTX 2.3 WaveSpeedAI Video Extend** (wavespeed.ai/blog): Video Extend capability for LTX 2.3 via WaveSpeedAI platform. Useful for extending generated video clips beyond 8-second limit.
+
+- **Wan 2.2 I2V GGUF Q6 ComfyUI workflow** (markdkberry.com/workflows/research-2026): Full workflow documentation for GGUF Q6 quantized Wan 2.2 I2V 14B in ComfyUI. "Greatly reduced generation time, achieved better video quality." Production-ready path for local RTX 4090 pipeline.
+
+### 🧍 Pose / Depth / 3D — March 14 2026 (21:01 sweep) — New arXiv papers
+
+- **Dense Dynamic Scene Reconstruction from Multi-View Videos** (arXiv:2603.12064, Mar 13): Multi-camera dynamic scene reconstruction — combines camera tracking across freely moving cameras with dense depth refinement. Relevant for Digital-Stud multi-angle character capture pipeline.
+
+- **Controllable Complex Human Motion Video Generation via Text-to-Motion** (arXiv:2603.08028, Mar 9): Text-conditioned human motion generation for video. References HunyuanVideo 1.5 technical report. Controlled complex human motion generation from text description. Relevant for character animation pipeline.
+
+- **DiT4DiT: Jointly Modeling Video Dynamics and Actions for VLA** (arXiv:2603.10448): DiT-based Vision-Language-Action model for robot learning. Secondary relevance — architecture patterns applicable to controllable video generation.
+
+- **EgoIntent** (arXiv:2603.12147, Mar 13): Egocentric step-level benchmark for intent understanding in first-person videos. Tangential — potential use for workflow video understanding.
+
+- **Scouts by Yutori — Vision generative AI research (Mar 5 2026)**: Tracking 5 new papers from March 5 2026 — focus on speeding up T2V diffusion and enabling real-time action-conditioned video generation. Watch yutori scout feed for ongoing tracking.
+
+### 🎓 LoRA Training — March 14 2026 (21:01 sweep) — Wan 2.2 "Spicy" + AI influencer workflows
+
+- **Wan 2.2 Spicy** (atlascloud.ai/blog 10-best-image-to-video): "Uncensored, high-motion variant of Wan architecture." Supports **advanced LoRA (Low-Rank Adaptation) training** for video — specific stylistic/character fine-tuning. First confirmed reference to Wan 2.2 video LoRA support. **Relevant for character video LoRA pipeline.**
+
+- **AI Influencer workflow guide published** (aireviewcore.com/best-ai-influencer-tools-2026, Mar 14 2026): Full pipeline for building virtual influencer using Higgsfield Soul 2.0: "Go to the Character Tab, upload 20-30 reference images." Confirms 20–30 photo sweet spot for character consistency training. **Cross-reference with LoRA dataset size best practices (consistent with Flux.1-dev face LoRA guidance: 20-30 images minimum).**
+
+- **Nano Banana 2 Pro API No-code pipeline** (gaodalie.substack.com, Mar 14): Nano Banana 2 + OCR + Claude Code for document/image processing pipeline. Relevant for automated dataset captioning.
+
+- **GPT-5.4 document/chart parsing bug fixed**: Relevant for LLaVA-style captioning pipelines using GPT-5.4 as VLM for dataset auto-captioning.
+
 ## 🏁 Run #144 Delta — 2026-03-14 20:30 Prague
 
 ### 🎬 Video Gen — March 14 2026 (20:30 sweep) ★★ MAJOR: Veo 3.1 + Helios
