@@ -1,4 +1,104 @@
-<!-- last_updated: 2026-03-14T19:30:01+01:00 run_142 -->
+<!-- last_updated: 2026-03-14T20:00:55+01:00 run_143 -->
+## 🏁 Run #143 Delta — 2026-03-14 20:00 Prague
+
+### 🖼️ Image Gen — March 14 2026 (20:00 sweep) ★ STRONG WINDOW
+
+- **🆕 FLUX.2 Klein 9B-KV** (Black Forest Labs, released ~Mar 12 2026, HF trending #1): **2×–2.5× faster for image editing** vs FLUX.2 Klein 4B Base, no quality degradation. KV-cache architecture innovation. HuggingFace Space live. Community Consistency LoRA for image editing already released (r/StableDiffusion, same-day adoption). **Major upgrade for image editing pipeline.**
+
+- **🆕 Z-Image / Tongyi-MAI 6B family** (Alibaba, Mar 2026): Z-Image-Turbo ranked **#1 open-source model** on Artificial Analysis text-to-image leaderboard (8th overall). 8-step lightning generation. Z-Image-Turbo-SDA LoKr adapter (HF: F16/z-image-turbo-sda) fixes diversity collapse in distilled flow models. Z-Image-Turbo-AIO all-in-one repackage available on CivitAI. ComfyUI support confirmed (stable-diffusion-art.com tutorial). **Best open-source speed/quality tradeoff March 2026.**
+
+- **🆕 Luma AI Uni-1** (Mar 9 2026): Tops **RISEBench** for logic-based image processing — narrowly beats Nano Banana 2 and GPT-Image-1.5. Available via Luma API. First model to beat Nano Banana 2 on structured reasoning tasks.
+
+- **🆕 GPT-Image-1.5** (Mar 12 2026): Overtakes DALL·E 3. Elo 1264 on LM Arena. Free (rate-limited) via Gemini app. API: $0.50/1M input tokens. GPT-Image-1.5 Mini variant available. **Note: this appears to be a Google product (Gemini ecosystem), not OpenAI — same naming confusion as GPT-Image-1.**
+
+- **🆕 Ideogram v3** (early March 2026): ~90% accuracy for text rendering in images. Confirmed "Text Specialist" position. Stable API. Atlas Cloud guide published Mar 13 2026 covering Flux 2 Pro, Imagen 4, Ideogram v3.
+
+- **🆕 Nekofantasia v0.1** (HuggingFace: Nekofantasia/Nekofantasia-alpha, Mar 13 2026 early preview): First anime image gen model on **SD 3.5 Medium + Rectified Flow**. 16-channel VAE. 4M hand-curated anime artworks. Still in early training (funding constraints). LoRA training guidance: AdamW, network dim 32-64, bf16. Not production-ready yet but watch for v0.2.
+
+- **🆕 AIMomentz** (Mar 14 2026): Open AI Image Evaluation Platform with human preference benchmark + provenance tracking. Useful for model comparison in pipeline QA.
+
+- **🆕 Picsart AI Playground** (Mar 9 2026): 90+ image/video AI models from 24 providers in one unified prompt. Potential integration for rapid model testing.
+
+- **Free image gen API landscape March 2026:**
+  - fal.ai: Free tier active, FLUX.2 Klein 9B-KV available
+  - Replicate: hype.replicate.dev shows FLUX.2-klein-9b-kv at rank 75 trending
+  - Google Gemini API: Free tier 60 req/min, Nano Banana 2 + GPT-Image-1.5 access
+  - Craiyon: Unlimited free, no account
+  - Together.ai: FLUX.1-schnell free tier
+
+- **ControlNet in Flux ecosystem (March 2026)**: Community clarification — classic ControlNet cannot be used on DiT-based Flux models directly. Use FLUX.1-dev-Controlnet-Union (InstantX, HF) for depth/canny/pose. ZIT-based models can use ControlNet with lower VRAM. Any-Pose Portrait workflow (myaiforce.com): use 3D character → Qwen Edit → face fix → Flux 2 Klein upscale.
+
+- **Meta Mango image/video model + Avocado LLM**: Announced, targeting H1 2026 release. No API yet. Monitor.
+
+- **Microsoft MAI-Image-1**: First in-house Microsoft image model. Announced. No release date.
+
+### 🎬 Video Gen — March 14 2026 (20:00 sweep)
+
+- **Seedance 2.0 suspension status**: Still suspended globally. No ByteDance statement. International access blocked. SeedVR2 (frame enhancement model) is unaffected — confirmed working for skin texture enhancement (Facebook SD Korea group, Mar 14).
+
+- **Wan 2.2 GGUF Q6**: Still community SOTA for open-source video. No Wan 2.7 announcement. Wan-Animate confirmed beaten by Kling-MotionControl (per arXiv 2603.03160).
+
+- **Kling Kolors v3.0 / v2.1**: Both in active production. Kling API confirmed in use (Latent.Space AINews Mar 9-10 roundup). Seedream also mentioned alongside Kling Kolors.
+
+- **HunyuanVideo + SkyReels**: HunyuanVideo I2V active on NVIDIA DGX Spark. No new checkpoint this window.
+
+- **Image-to-video top tools March 2026** (Atlas Cloud review): Top confirmed tools — Kling 2.1, Wan 2.2, LTX 2.3, HunyuanVideo I2V, Runway Gen-4, Pika 2.2. Best for open-source local: Wan 2.2 + LTX 2.3.
+
+- **Grok multi-image-to-video**: GetStream.io article (Mar 13 2026) — "Developer's Guide to Building Vision AI Pipelines Using Grok" published. Grok Vision API documented. Rate limits TBD.
+
+### 🔧 ComfyUI — March 14 2026 (20:00 sweep) ★ CONFIRMED GDC COVERAGE
+
+- **🆕 NVIDIA Blog confirms ComfyUI GDC 2026 session** (blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc/): "AI-powered video generation with ComfyUI's App View, NVIDIA RTX Video Super Resolution and new NVFP4 models." Title: **"ComfyUI Streamlines Local AI Video Generation."** NVFP4 quantization models new. RTX VSR integration for video output enhancement. App View confirmed as the GDC demo feature.
+
+- **🆕 StableGen** (GitHub: sakalond/StableGen): AI-powered 3D generation & texturing Blender add-on. Works with SDXL, Flux, Qwen Image Edit. ControlNet: Depth + Canny + Pose units. Direct Digital-Stud relevance for Blender-based 3D workflow.
+
+- **🆕 Any-Pose Portrait Workflow** (myaiforce.com, Mar 2026): Full ComfyUI workflow — 3D character → transfer pose to portrait with Qwen Edit → face fix → Flux 2 Klein 4K upscale. Production workflow for character pose transfer.
+
+- **🆕 ComfyUI-LTXVideo node issue** (r/StableDiffusion, 1ro9pkp): Users hitting CheckpointLoaderSimple errors with official LTX2.3 workflows. Lightricks GitHub workflows have model loading bug. Workaround: use community workflow instead of official. Track fix.
+
+- **NVFP4 models** (new at GDC 2026): New NVIDIA quantization format for inference. Faster than NF4 on RTX 50 series. ComfyUI support being added. DLSS 4.5 also incoming Mar 31.
+
+- **Z-Image on ComfyUI**: stable-diffusion-art.com tutorial published. SDXL UNet architecture with LoKr adapter pattern. Confirmed working in ComfyUI.
+
+### 🧍 Pose / Depth / 3D — March 14 2026 (20:00 sweep) ★ MAJOR CONFIRMED
+
+- **🆕 YOLO26** (Ultralytics, released January 2026): Unifies detection, segmentation, pose, classification, OBB into one model family. NMS-free, optimized for edge devices. Pose improvements: non-human keypoint support, faster convergence, improved occlusion handling. Docs: docs.ultralytics.com/models/yolo26. Replaces YOLO11 as current YOLO SOTA. YOLO Demonstrator on NVIDIA Dev Forums (362223) for benchmarking. **Upgrade ComfyUI pose node to YOLO26 now.**
+
+- **🆕 Depth Anything 3 (DA3)** (ByteDance-Seed/Depth-Anything-3, arXiv 2511.10647): **FULLY CONFIRMED release.** Predicts spatially consistent geometry from arbitrary visual inputs (single or multiple views, with or without camera poses). Key stats: surpasses VGGT by **+35.7% camera pose accuracy, +23.6% geometric accuracy**. Uses vanilla DINOv2 encoder. Eliminates complex multi-task learning via depth-ray prediction representation. Can output 3D Gaussian Splatting parameters directly. Trained on public academic datasets only. **This is the new depth SOTA — replaces DA2 in pipeline immediately.**
+
+- **ZipMap benchmarks confirmed** (arXiv 2603.04385, Google DeepMind): 20×+ faster than VGGT. Processes 700+ frames in <10s on H100 (75 FPS). Matches/surpasses DUSt3R, MASt3R, VGGT, π³ on accuracy. Linear time complexity. Now indexed in 3D-Vision-World/All-3R-SLAM-in-this-Repo awesome list. **Best streaming 3D reconstruction as of March 2026.**
+
+- **AsyncMDE corrected spec** (arXiv 2603.10438): **237 FPS on RTX 4090**, 161 FPS on Jetson AGX Orin with TensorRT (previously reported as 161 FPS — RTX 4090 figure is 237 FPS). 3.83M parameters (25× smaller than DA2-ViTB). Recovers 77% of DA2 accuracy gap. Published March 10/11 2026.
+
+- **ControlNet + Flux clarification** (r/StableDiffusion, 1rhlytk, Mar 2026): Classic ControlNet incompatible with DiT-based Flux. Use InstantX/FLUX.1-dev-Controlnet-Union for pose/depth/canny on Flux. ZIT models support ControlNet with reduced VRAM. GitHub: Acly/krita-ai-diffusion issue #1667 tracking FLUX OpenPose ControlNet status.
+
+- **RTMPose / DWPose**: No new March 2026 release confirmed. Last MMPose release: v1.3.0 (Jan 2024, GitHub). DWPose referenced in PROMO paper (arXiv 2603.11675) as pose-only (no shape) — still in use for virtual try-on workflows.
+
+- **FMPose3D community adoption**: No reports yet in this window. CVPR 2026 acceptance confirmed (Jun 2-6 Denver). Code available now at AdaptiveMotorControlLab/FMPose3D.
+
+- **PRISM code confirmed live**: ZeyuLing/PRISM on GitHub. Streaming human motion generation, text-to-motion + pose-conditioned. CC BY 4.0.
+
+### 🎓 LoRA Training — March 14 2026 (20:00 sweep)
+
+- **Best practice Flux.1-dev face/character LoRA March 2026 (community consensus)**:
+  - Dataset: 30–50 face images, varied angles/lighting, cropped 512×512 or 1024×1024
+  - Captions: detailed natural language + unique trigger token (e.g. `[personname]`)
+  - Training tool: AI-Toolkit (ostris) preferred; Kohya flux_train_network.py as fallback
+  - Steps: 2000–4000 on RTX 4090; 800–1500 on DGX Spark (full precision, no quant)
+  - LR: 1e-4 with cosine schedule; network dim 16–32; alpha 16
+  - Result: "stable, consistent face that doesn't change over time" across prompts
+  - DGX Spark advantage: full FLUX.1-dev without quantization on 128GB unified memory
+
+- **Nekofantasia SD 3.5 LoRA training guidance** (HF model card, Mar 13 2026): AdamW optimizer, network dim 32-64, bf16 precision. Kohya_ss confirmed working with SD3.5 base. Watch for Nekofantasia v0.2 with completed training.
+
+- **Z-Image-Turbo-SDA** (HF: F16/z-image-turbo-sda): LoKr (Low-Rank Kronecker Product) adapter for diversity collapse in distilled flow models. Novel LoRA variant technique applicable beyond Z-Image — potential pattern for FLUX.2 Klein turbo models.
+
+- **Video2LoRA (BerserkerVV)**: No new updates this window. Original repo from Mar 9 2026.
+
+- **AI-Toolkit / Kohya / SimpleTuner**: No new releases confirmed in this 30-min window. SimpleTuner v0.9.8.1 still latest.
+
+- **OpenClaw-RL LoRA support**: Still unmerged. No ETA.
+
 ## 🏁 Run #142 Delta — 2026-03-14 19:30 Prague
 
 ### 🖼️ Image Gen — March 14 2026 (19:30 sweep)
