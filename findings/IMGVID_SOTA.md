@@ -1,4 +1,52 @@
-<!-- last_updated: 2026-03-14T18:30:01+01:00 run_140 -->
+<!-- last_updated: 2026-03-14T19:02:15+01:00 run_141 -->
+## 🏁 Run #141 Delta — 2026-03-14 19:02 Prague
+
+### 🖼️ Image Gen — March 14 2026 (19:02 sweep)
+- **🆕 Flux.2 Klein 4B Consistency LoRA** (lrzjason, Reddit r/comfyui 1rtkrej, Mar 14): Released same day (14:24 UTC). Targets two specific Klein 4B editing bugs: color shift and pixel offset drift. HF: `lrzjason/Consistance_Edit_Lora`. Civitai listing also available. Direct fix for production Klein editing pipelines.
+- **🆕 Grok Multi-Image to Video** (xAI, announced Mar 14): Grok now supports multi-image input for video generation. Tweet-announced @grok, March 14 2026. Accessible via xAI API. Distinct from Kling / Wan — uses Grok's image understanding stack. Pipeline relevance: multi-reference character video generation path.
+- **Nano Banana 2 edge computing context clarified**: NB2 described as 1.8B parameter edge model optimized for on-device inference (Android Messages integration confirmed via Google). Different use case from NB2 cloud image-gen. Two distinct product lines clarified by The Decoder.
+- **Zimage Turbo/Base** (community, Mar 2026): New image gen model pair. Base: better prompt following, creative, slower. Turbo: fast but "unfinished" look per community. Active r/StableDiffusion thread Mar 14.
+- **AI-image-to-video landscape** (Instagram reel, Mar 13): Side-by-side Kling 3.0 vs Seedance 2.0 comparison posted by deepnewsai. Kling 3.0 wins motion quality per community votes.
+- **OpenAI Interactive Visuals in ChatGPT** (Mar 14): Dynamic STEM-focused visuals added to ChatGPT. No direct image-gen model update but pipeline context for GPT-Image-1 usage in educational applications.
+- **No new standalone image-gen model released** in 18:30–19:02 window. Quiet pre-GTC Saturday evening confirmed.
+
+### 🎬 Video Gen — March 14 2026 (19:02 sweep)
+- **🚨 Seedance 2.0 SUSPENDED** (Reuters, March 14 2026): ByteDance has put on hold the *global launch* of Seedance 2.0 after copyright disputes (The Information report). Chinese domestic launch still proceeding but international access blocked. Pipeline impact: api_test_seedance.py workflows contingent on this — monitor for resolution.
+- **🆕 Sora → ChatGPT integration imminent** (Mashable/insiders, Mar 14): OpenAI plans to embed Sora video generator directly inside ChatGPT. Sora 2 API already on Atlas Cloud separately. Dual-path: conversational generation (ChatGPT) + programmatic (Atlas Cloud API).
+- **Helios community reception** (Facebook DeepNetGroup, Mar 14): "Real-time long video generation model introduced" post gaining traction. Community confirms three key advances: (1) no anti-drifting heuristics needed, (2) no self-forcing artifacts, (3) full minute-scale coherent generation. No ComfyUI node yet — expected within 7–10 days.
+- **LTX-2.3 "not professionally viable"** (Reddit r/StableDiffusion 1rtdl55, Mar 14, trending): Thread titled "I'm sorry, but LTX still isn't a professionally viable filmmaking tool." Key quote: "only use cases that have a chance in professional workflow are those allowing fine grained control." Contrast with Lightricks marketing. Note: ComfyUI inferencing improvement nodes (batch from r/SD 1rt0pta) specifically targeting LTX2.3 quality may partially address this.
+- **Wan 2.2 stable production**: No new Wan 2.7 signals. Current community consensus: Wan 2.2 9B GGUF Q6 on RunPod + ComfyUI = most reliable open-source video workflow as of March 14.
+- **HunyuanVideo + DGX Spark** (NVIDIA Dev Forums, Mar 12): Active thread "DGX Spark + Hunyuan3d 2.1" confirms users running HunyuanVideo fine-tuning on DGX Spark locally.
+
+### 🔧 ComfyUI — March 14 2026 (19:02 sweep)
+- **🆕 ComfyUI Docker container for DGX Spark** (NVIDIA Developer Forums 363342, confirmed Mar 12): Community-released Docker container for running ComfyUI natively on DGX Spark. Direct thread: `forums.developer.nvidia.com/t/comfyui-container-for-dgx-spark/363342`. Significant for local production deployment path.
+- **🆕 ComfyUI inferencing improvement nodes** (comfyui-zld, Reddit r/SD 1rt0pta, Mar 14): Batch release of anti-noise/blur nodes targeting LTX2.3: S3/S4 Guider, EMASyncGuider HYBRID, EMAGGuider, CFGGuider (cfg=1). Active community testing.
+- **🆕 DLSS 4.5 Dynamic Multi Frame Generation** (NVIDIA GeForce GDC announcement, available March 31 2026): Multi-frame generation for RTX 50-series. Relevant for ComfyUI real-time preview rendering on RTX 5090 local setups.
+- **GDC 2026 NVIDIA GeForce session confirmed** (NVIDIA.com, Mar 10): 20 new DLSS 4.5 + path-traced games. DGX Spark showcased as local AI workstation. ComfyUI + AI influencer pipeline demo mentioned.
+- **Floyo production LoRA training nodes** (floyo.ai): Production ComfyUI environment offering LoRA Training nodes in cloud. Alternative to RunPod/Vast for managed training.
+- **No new ComfyUI Helios node** yet. Watch GitHub for `PKU-YuanGroup/Helios-ComfyUI` in coming week.
+
+### 🧍 Pose / 3D — March 14 2026 (19:02 sweep)
+- **🆕 DVD: Deterministic Video Depth Estimation** (EnVision-Research/DVD, HF weights released Mar 11): Generative prior-based video depth estimation. Combines generative diffusion priors with temporal depth consistency. GitHub: `EnVision-Research/DVD`. HF weights available. Supersedes Depth Anything V2 for video sequences.
+- **🆕 Depth Anything 3 ROS2 Wrapper** (GerdsenAI, GitHub, Feb 2026): Camera-agnostic ROS2 wrapper for Depth Anything 3. Performance benchmarks published Feb 5 2026. Confirms Depth Anything 3 is a shipping model (pre-dates this run, but confirmed as real release). ComfyUI node expected.
+- **AsyncMDE** (arXiv 2603.10438, Mar 2026): Real-time monocular depth estimation via asynchronous spatial-temporal computation. Foundation model + lightweight model combo. Targets edge/real-time deployment.
+- **GGPT benchmarks confirmed** vs DUSt3R/VGGT: GGPT substantially outperforms both in-domain AND out-of-domain 3D reconstruction. Trained only on ScanNet++ with VGGT predictions. Generalizes across architectures. Key: operates in true 3D space vs image-space alternatives.
+- **Speed3R timings confirmed**: 12.4× speedup on 1000-view sequences, 10.9× for Speed3R-VGGT variant. Minimal accuracy trade-off. HF model card confirms BSD-3 code + CC BY-NC 4.0 weights.
+- **Controllable Complex Human Motion Video** (arXiv 2603.08028): Two-stage text-to-skeleton → pose-conditioned diffusion framework. LoRA adaptation for video DiT. Direct relevance for character animation pipelines.
+- **PRISM** (arXiv 2603.08590): Streaming human motion generation with per-joint SMPL latent dynamics. Enables real-time character motion streaming.
+- **Hoi3DGen** (arXiv 2603.12126): High-quality human-object interaction 3D generation using SMPL contact point analysis.
+- **DWPose/RTMPose**: No new checkpoints weekend Mar 14. RTMPose-l still best accuracy/speed for ComfyUI. Depth Anything 3 emerging as depth backbone.
+
+### 🎓 LoRA Training — March 14 2026 (19:02 sweep)
+- **🚨 DGX Spark $4,699 confirmed** (Reddit r/LocalLLaMA 1rno7sh, WCCFTech, Micro Center): NVIDIA raised DGX Spark 4TB Founder's Edition by $700 due to LPDDR5x memory shortages. Previous price: $3,999. New price: $4,699. Direct-to-consumer on NVIDIA store. Dell partnerships confirmed. Still the most capable consumer LoRA training device for 200B+ models. BF16 full fine-tuning of Qwen3.5-35B confirmed without quantization.
+- **SimpleTuner v0.9.8.1 released** (Reddit/community, Mar 2026): FLUX.1-dev fine-tuning via Dockerized SimpleTuner confirmed running on DGX Spark. NVIDIA Dev Forums thread active (Mar 12). Source: `flux-dev Finetuning simpletuner v0.9.8.1 released` community mention.
+- **Video2LoRA implementation confirmed** (GitHub: `BerserkerVV/Video2LoRA`, Mar 9 2026): Official implementation uses CogVideoX-I2V-5B as frozen backbone. LoRA weights ~50KB per condition, final model <150MB. Zero-shot generalization across camera motion, visual effects, style. Key pipeline integration target.
+- **Flux.2 Klein 4B Consistency LoRA** (today): Practical editing fix, HF available now. Training technique: standard FLUX LoRA on editing task pairs to regularize color/offset drift.
+- **AI-Toolkit (ostris)**: No new commits confirmed Mar 14. 50-Series GPU one-click installer confirmed functional (YouTube tutorial: `Ostris AI-Toolkit 50-Series One-Click Installer`). ComfyUI + AI-Toolkit + DGX Spark integration tutorial available (TikTok @cadis_ai).
+- **Controllable Complex Human Motion LoRA** (arXiv 2603.08028): LoRA adaptation of video DiT for complex motion. Training pipeline uses LoRA for efficient domain adaptation on limited complex-motion data. Technique transferable to character animation LoRA work.
+- **OpenClaw-RL**: LoRA Training support planned but not yet released (GitHub checklist item unmerged). Not production-ready for Digital-Stud pipeline yet.
+- **Character face LoRA community** (Instagram, Mar 2026): Active AI influencer market using Flux/SDXL LoRA for "stable, consistent faces that don't change over time." Technique: custom token + face dataset + AI-Toolkit. Production examples posted.
+
 ## 🏁 Run #140 Delta — 2026-03-14 18:30 Prague
 
 ### 🖼️ Image Gen — March 14 2026 (18:30 sweep)
