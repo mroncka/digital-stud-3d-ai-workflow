@@ -1,3 +1,47 @@
+<!-- last_updated: 2026-03-14T07:30:14+01:00 run_117 -->
+## 🏁 Run #117 Delta — 2026-03-14 07:30 Prague
+
+### 🖼️ Image Gen — Z-Image family (#1 open-source T2I, Apache 2.0) + Recraft V4 native SVG + Grok video+audio API + RunPod 2026: ComfyUI owns 70%+ image workflows
+- **Z-Image-Turbo** (Tongyi-MAI/Alibaba): NOW CONFIRMED #1 open-source model on T2I leaderboard. 6B parameter family. Ranked 8th overall (above many proprietary). Apache 2.0 license. Bilingual text (Chinese + English). Local deployment + API workflows fully supported. 15–30 image dataset sufficient for character LoRA (Z-Image specific best practice confirmed). `git clone` from Hugging Face and ComfyUI nodes available.
+- **Qwen-Image-2.0 7B variant released** (March 2026): Smaller efficient variant of Qwen-Image-2.0 (launched Feb 10). 7B vs full model. Unifies T2I + image editing + design. Open weights. Relevant to Digital-Stud: mid-range GPU deployable now.
+- **Recraft V4** (launched Feb 18 2026): Native SVG vector output (actual editable paths, not raster traces). Four variants: standard raster, Pro raster (2048×2048), two vector variants. Exploration Mode for rapid iteration. Best-in-class for brand assets, logos, icons. Typography as structural element. Key for Digital-Stud when producing print/brand output alongside generated characters.
+- **Grok Imagine API** (xAI, early March 2026): Video + audio generation API launched. Positioned as "new benchmark in speed, cost, and quality." Google (Veo) and xAI in "textbook-quality price war." Grok API pricing not yet confirmed. Watch for free tier / open access.
+- **RunPod 2026 State of AI Report**: ComfyUI owns **70%+ of image generation workflows** in production. Qwen has overtaken Meta Llama as most widely deployed self-hosted model. Video upscaling outpaces raw video generation 2:1 in usage. Modular video pipelines dominant. Implication: ComfyUI node investment is well-justified for Digital-Stud.
+- **Qwen Chat v0.2**: Adds web search, text-to-video generation, enhanced image capabilities. 1M context window open-source variant.
+- **Nano Banana 2 free tier clarification**: Free Google AI tier (ai.google.dev) does NOT support image generation — requires Gemini subscription. ~20 images/day only via Gemini app (not API). Paid subscribers: 35–100/day depending on plan. API access requires Gemini API subscription.
+- **AIMomentz platform**: First open benchmark for AI image generators via head-to-head human voting with tamper-proof audit trail. New evaluation signal beyond Chatbot Arena Elo.
+
+### 🎬 Video Gen — SkyReels V4 dual-stream audio+video launch (March 12) + Kling 3.0 4K/60fps confirmed + VBVR-Bench reasoning ceiling paper + Wan 2.7 still no release date
+- **🚨 SkyReels V4 launched March 12 2026**: Dual-stream MMDiT architecture — video and audio branches generate SIMULTANEOUSLY (not sequentially). Unified interface: generation + editing + inpainting + video extension. Perfect audio-video sync via parallel generation. Three-stage pipeline: 1080p + keyframe upscaling + intelligent interpolation. API live at skyreels.ai/dev (Privacy Policy effective March 12). Ranked 3rd on Artificial Analysis leaderboard (alongside Veo 3.1 and Sora 2, comparable to Kling 2.6). Open API available — highest-priority new tool to test for Digital-Stud audio-linked workflows. Includes custom ComfyUI nodes.
+- **Kling 3.0 fully confirmed**: Native 4K at 60fps. AI Director Mode for advanced cinematic control. Multi-shot scene generation with character consistency. Focus on professional filmmaking workflows. Proprietary (Kuaishou). Best-in-class for pure resolution output. Not open-source.
+- **VBVR-Bench (The Decoder, arXiv 2511.21145v2)**: Video reasoning ceiling paper — open-source models Wan2.2, CogVideoX, HunyuanVideo, LTX-2 score 0.273–0.371. Finding: more training data alone won't fix the reasoning ceiling. Temporal reasoning is a fundamental architectural gap, not a data scaling issue. Wan 2.7 and SkyReels V4's improved architectures are targeted responses.
+- **Spectrum (CVPR 2026, arXiv hanjq17/Spectrum)**: Training-free spectral diffusion feature forecaster enabling global long-range feature reuse with controlled error. Not a model — a plug-in optimizer for inference. Could accelerate ComfyUI workflows without retraining.
+- **Wan 2.7**: No release date confirmed beyond "March 2026." Reddit thread (r/StableDiffusion, March 13 2026) re-confirms internal Alibaba source says "scheduled for March" but no specific date. Still monitoring.
+- **Video reasoning benchmark context**: VBVR-Bench scores Veo 3.1 (0.512), Hailuo-2.3 and Ray 2 in commercial tier. Open models lag by ~30–40% on temporal reasoning tasks.
+- **DiffSynth-Studio**: Now confirmed as third primary option alongside AI-Toolkit and musubi-tuner for Wan 2.2 LoRA training (Hugging Face forum post). CLI-based, supports Wan 2.1/2.2. Less documented than musubi-tuner but active development.
+
+### 🛠️ ComfyUI — SkyReels V4 custom nodes + ComfyUI v0.17.1 released March 13 + SCAIL image editing nodes + FireRed-Image-Edit + Shima 2.0 relaunch
+- **ComfyUI v0.17.1 released March 13 2026** (GitHub Comfy-Org/ComfyUI releases): Latest stable. Desktop update also pushed — minor: Job Queue display changed ("####.##s" format, no longer shows queued/completed timestamps). Recommend updating if not on v0.17.1+.
+- **SkyReels V4 custom ComfyUI nodes**: Included in V4 release. Seamlessly integrates unified audio-video generation into existing ComfyUI workflows. Action: watch SkyReels GitHub for ComfyUI node repository link.
+- **FireRed-Image-Edit** (FireRedTeam/FireRed-Image-Edit, GitHub): Universal image editing foundation model. Native ComfyUI node support + GGUF format for lightweight local deployment. Production integration ready. Evaluate as editing step before/after character generation in Digital-Stud pipeline.
+- **Shima 2.0 nodes relaunch** (March 12 2026, YouTube): Modular node system for ComfyUI. "Build with Shima nodes, or any nodes." Production-focused ComfyUI extension ecosystem.
+- **HY 3D Advanced Features**: 3D Parts Decomposition + UV Unwrapping now live as Partner Nodes. Action (run 116): Update ComfyUI → Browse Templates → 3D → HY 3D advanced workflow. Confirmed available via comfyui official Threads post.
+- **LTX 2.3 ComfyUI official workflow templates** (comfyui-LTXVideo, March 5 2026): Two official templates: Image-to-Video + First/Last Frame (FLF2V). Available via comfy.org/workflows. LTX Desktop integration also confirmed (fal.ai image gen toggle optional).
+- **ComfyHub total**: Now confirmed >350 workflow templates as of March 10. Most popular categories: image gen (Flux/SDXL/Z-Image), video gen (Wan/LTX/HunyuanVideo), 3D (HY 3D).
+
+### 🕺 Pose — DINO-ALF (arXiv 2603.08028v1) confirmed: text→skeleton→video with Blender synthetic dataset (2000 videos) + no new releases
+- **DINO-ALF full details confirmed** (arXiv 2603.08028v1, "Controllable Complex Human Motion Video Generation via Text-to-Skeleton-to-Video"): Constructs and releases a Blender-based synthetic dataset of 2,000 complex-motion videos targeting acrobatic and stunt-like actions specifically. Text prompt → skeleton → video. Key insight: targets "complex motion" (acrobatics, stunts) not covered by standard T2V. Dataset release is open. Not yet in ComfyUI but open dataset = possible node development soon.
+- Confirmed stable recommendations: RTMPose for real-time body tracking, DWPose for ComfyUI ControlNet integration. No new alternatives emerged this sweep.
+
+### 🎓 LoRA — DiffSynth-Studio confirmed as third Wan trainer + musubi-tuner dataset augmentation (horizontal flip via pre-copy) + Z-Image LoRA 15–30 image threshold confirmed + alpha scaling nuance
+- **DiffSynth-Studio confirmed** as third LoRA training path for Wan 2.2 (alongside AI-Toolkit and musubi-tuner). CLI-based. Supports Wan 2.1/2.2. See Hugging Face Discussion "wan22_lora_training.md" (John6666/forum1).
+- **musubi-tuner dataset augmentation guidance** (Issue #736): For horizontal flipping — copy images first, flip them, add both originals and flips to dataset. Do NOT rely on in-training augmentation. Pre-copy recommended. Also: multi-resolution training confirmed optimal at 512+768+1024+1280px buckets on long edge, using 1280px images in dataset.
+- **Alpha scaling nuance** (musubi-tuner Discussion #288): Alpha scaling is supported in musubi-tuner (and kohya sdscripts) but NOT in diffusion-pipe and some others. Increased alpha scaling confirmed valid for musubi-tuner training runs.
+- **Z-Image LoRA character training threshold**: 15–30 images confirmed sufficient for strong identity lock. Rank 4–8 for subtle identity, 64–128 for strong lock. Z-Image-Turbo 3-step inference fast enough for rapid validation after each training checkpoint.
+- **Wan 2.7 LoRA trainability**: STILL unconfirmed. No musubi-tuner PR detected. No AI-Toolkit PR detected. Maintaining as #1 watch item.
+- **AI-Toolkit LTX-2 character LoRA**: Training guide published (YouTube: "How to Train a LTX-2 Character LoRA with AI Toolkit"). ~3000 steps at 7 seconds/step on RTX setup. Using 97 images confirmed working. fal.ai API alternative removes VRAM constraint entirely.
+- **Wan 2.2 I2V LoRA training** (AI-Toolkit, RunComfy guide): Orbital shot LoRA demonstrated end-to-end. Motion LoRA + character LoRA stackable confirmed. Best practice: separate motion and identity LoRA training, stack at inference.
+
 <!-- last_updated: 2026-03-14T07:01:15+01:00 run_116 -->
 ## 🏁 Run #116 Delta — 2026-03-14 07:01 Prague
 
