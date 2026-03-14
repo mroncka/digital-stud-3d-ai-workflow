@@ -1,4 +1,58 @@
-<!-- last_updated: 2026-03-14T17:03:01+01:00 run_137 -->
+<!-- last_updated: 2026-03-14T17:30:09+01:00 run_138 -->
+## 🏁 Run #138 Delta — 2026-03-14 17:30 Prague
+
+### 🖼️ Image Gen — March 14 2026 (even sweep)
+- **No new image model drops** in this 30-min window. NVIDIA GTC starts officially March 16 — expect image/vision announcements Monday.
+- **Grok Imagine #1 on Video Arena** (Image-to-Video leaderboard, Arcada Labs) confirmed by multiple sources. Grok multi-image-to-video (up to 7 images) live today, pricing $0.05/s 720p+audio.
+- **Flux.2 Klein 4B Consistency LoRA** (r/comfyui, Mar 14 2:24 PM): Addresses color shift + pixel offset in image editing. Technique borrowed from ByteDance Helios training — latent-space degradation + color calibration constraints. Released HuggingFace + Civitai. Useful for Digital-Stud edit-consistency workflows.
+- **Seedance 2.0** (Mar 14): E-commerce product image → video ads pipeline. ByteDance commercial product. Not open-source; API via volcengine.
+- **ACE Robotics Kairos 3.0** (Mar 14, open-source): 4B real-time generative world model. Sets new record for embodied world models. Not image gen but relevant for real-time generation research.
+- **No new free API tiers** on fal.ai/Replicate/Together/Fireworks in last 30 min.
+- **GTC 2026 watch items** (starts Mon Mar 16, 39k attendees): NVIDIA Rubin chip (1.6nm, silicon photonics, 10x cost/token vs Blackwell), Vera Rubin platform, agentic AI, NVFP4 inference improvements. Image/video gen likely in Day 1 keynote.
+
+### 🎬 Video Gen — March 14 2026 (even sweep)
+- **Wan 2.7**: Reddit r/comfyui thread (Mar 13 6:31 PM) — "planned for release in March, major upgrades over 2.6 (visual quality, audio, motion)". Still no official drop as of 17:30 Prague. Community anticipation high. No confirmed date beyond "March".
+- **SkyReels V4**: No public API update. Limited preview only. V3 open-source still current.
+- **Grok multi-image-to-video**: Up to 7 input images → coherent video. Live on xai.com. API $0.05/s. No dedicated ComfyUI node yet confirmed.
+- **Seedance 2.0 I2V**: Product image → video ad generation. ByteDance commercial API. volcengine access.
+- **HunyuanVideo I2V**: No new checkpoint this run. Existing ComfyUI nodes stable.
+- **LTX-2.3**: Still no new fine-tuning guide update since run 137. IC-LoRA + FLF2V confirmed production.
+- **Grok Imagine API**: Unified T2V / I2V / scene restyling / motion control / object editing. GROK_RUNNER community workflow (Mar 10) confirmed working: Grok + Qwen Image Editing Z Turbo + Wan 2.2 LoRAs + RIFE 60fps interpolation.
+
+### 🔧 ComfyUI — March 14 2026 (even sweep)
+- **ComfyUI App Mode + App Builder + ComfyHub** (launched Mar 13–14): MAJOR ecosystem shift.
+  - App Mode: 1-click workflow → no-code app (hides node graph)
+  - App Builder: selective input/output exposure controls
+  - ComfyHub: marketplace at comfy.org/workflows — shareable app URLs, browser-runnable via Comfy Cloud
+  - Available on Comfy Cloud + Comfy Local immediately
+  - NVIDIA ComfyUI App View shown at GDC 2026 for 4K local video gen on GeForce RTX
+- **ElevenLabs Partner Node** (ComfyUI official, Mar ~13): ElevenLabs world-class voice AI now available as native ComfyUI partner node. Drag/connect/run in node graph. KEY for Digital-Stud audio/talking-head pipelines.
+- **RTX Video Super Resolution** (new upscale model, Mar ~13 per ComfyUI Threads): New image + video upscale model for RTX series. ComfyUI native integration.
+- **Flux.2 Klein 4B Consistency LoRA** (Mar 14): see Image Gen section above.
+- **CrossOS Pynst** (Mar 14): Cross-platform Python installer for ComfyUI — Windows/Linux/macOS single-file deployment, auto install/repair/update. Not a generation node but useful for deployment.
+- **ComfyUI "Replace If Black" node** (community gist Mar 2026): Batch node that replaces black frames from failed pose estimators/ControlNet preprocessors. Useful for pipeline robustness.
+- **ComfyUI-Photoshop nodes**: PS → ComfyUI bridge (any image+prompt→image workflow). Active in community.
+- **Yedp Action Director node** (LinkedIn, Mar 2026): Depth/normal/pose estimation output node — separate channels for pose vs depth vs normal. Reduces coupling in multi-ControlNet pipelines.
+- **MiniMax-Remover** (community release Mar 2026): Fast high-quality object removal node for ComfyUI. Inpainting-free object eraser.
+
+### 🧍 Pose Estimation — March 14 2026 (even sweep)
+- **Hoi3DGen** (arxiv 2603.12126, Mar 2026): Text → high-quality textured meshes of human-object interactions with aligned animatable SMPL model. Segmented H-O mesh generation pipeline. Relevant for 3D character rigging in Digital-Stud.
+- **Dense Dynamic Scene Reconstruction + Camera Pose** (arxiv 2603.12064): Multi-camera dense reconstruction with camera pose estimation from freely moving cameras. Not directly ComfyUI but informs multi-angle capture strategies.
+- **ROBUST-MIPS dataset** (Nature Scientific Data 2026): Combined skeletal pose + instance segmentation benchmark. RTMPose cited as highest-accuracy baseline; MediaPipe fastest. RTMPose confirmed SOTA for accuracy/speed tradeoff in ComfyUI.
+- **Text-to-Skeleton Cascades** (2603.08028): Re-confirmed from run 137. AR Transformer → 2D joint sequences + DINO-ALF video. 2000-video Blender dataset. No ComfyUI node yet.
+- **Yedp Action Director**: Depth/normal/pose separation in node graph. Improves multi-ControlNet pose pipelines (see ComfyUI section).
+- **No new DWPose/RTMPose/YOLO-Pose checkpoints** this run. OpenMMlab repos unchanged.
+
+### 🎓 LoRA Training — March 14 2026 (even sweep)
+- **Flux.2 Klein 4B Consistency LoRA** (Mar 14, HuggingFace + Civitai): Edit-consistency LoRA. Techniques: latent-space degradation, color calibration constraints (from Helios training research). Addresses editing drift across ComfyUI pipeline iterations.
+- **AI-Toolkit ostris**: No new release this run. DGX Spark bf16 confirmed compatible (from run 137). Still primary for FLUX LoRA.
+- **Kohya SS / Musubi Tuner**: No new release. Face-restoration scripts for multi-LoRA composition remain latest update.
+- **OneTrainer**: Stable. Best for SDXL/SD1.5.
+- **Video LoRA pipeline reference** (ArtCompute post, r/StableDiffusion): "Feed image → very good I2V, trained < 1 week on single GPU, fully open-source: LTX-2 Image2Video." Suggests LTX-2.3 I2V is approachable for single-GPU LoRA training.
+- **Async-RL LoRA** (HuggingFace blog, Mar 2026): peft/unsloth/trl implementation families for VLM caption fine-tuning. Relevant for dataset prep automation.
+- **No new CogVideoX Video2LoRA / WildActor updates** since run 137.
+- **GTC 2026 LoRA watch**: NVIDIA DGX Spark + bf16 training ecosystem expected to feature in Monday keynote. Watch for new efficient fine-tuning announcements.
+
 ## 🏁 Run #137 Delta — 2026-03-14 17:03 Prague
 
 ### 🖼️ Image Gen — March 14 2026 (48h sweep)
