@@ -1,3 +1,59 @@
+<!-- last_updated: 2026-03-14T02:02:50+01:00 run_106 -->
+## 🏁 Run #106 Delta — 2026-03-14 02:02 Prague
+
+### 🖼️ Image Gen — InternVL-U unified model + Z-Image-Turbo #1 open-source + FireRed-Image-Edit
+- **InternVL-U 4B** (Shanghai AI Lab, Mar 6 2026): Unified multimodal model — understanding + reasoning + generation + editing in one 4B framework. Apache-compatible license. Includes **GenEditEvalKit** (unified eval toolkit) and **TextEdit Benchmark** for text-in-image editing evaluation. Available: github.com/OpenGVLab/InternVL-U
+- **Z-Image-Turbo** confirmed **#1 open-source on Artificial Analysis leaderboard** (Mar 2026). 6B, 16GB VRAM, Apache 2.0, strong multilingual text. Available via vLLM-Omni and HuggingFace.
+- **FireRed-Image-Edit** (FireRedTeam, Mar 9 2026): Powerful image editing foundation model + **REDEdit-Bench** — diverse image editing benchmark covering broader scenarios than prior benchmarks. github.com/FireRedTeam/FireRed-Image-Edit
+- **Nano Banana Pro: 1 billion generations in 53 days** (as of ~Mar 2026). Confirms production-grade reliability at scale.
+- **Google Gemini 3 Pro (Gemini 3.0 Preview) shut down Mar 9 2026**. Migrate to Gemini 3.1 Pro Preview (released Feb 19 2026, $2.00/$12.00 per 1M tokens).
+- **Adobe Firefly unlimited promo ends Mar 16 2026** — grab unlimited generations through all image models (up to 2K) and Firefly Video before deadline.
+- **DSH-Bench** (arXiv 2603.08090): New difficulty- and scenario-aware benchmark for subject-driven T2I evaluation — useful for evaluating character consistency LoRAs.
+- **AIMomentz eval platform** confirmed live (Mar 13): Head-to-head human voting with tamper-proof audit trail for every AI decision. First open cross-model benchmark.
+- **HyPER-GAN** (arXiv 2603.10604): Hybrid patch-based image-to-image translation for photorealism enhancement on synthetic renders — directly applicable to 3D render → photorealistic pass.
+
+### 🎬 Video Gen — Open-Sora 2.0 paper details + Sketch2Colab + Controllable Complex Motion
+- **Open-Sora 2.0** (arXiv 2503.09642v3): Detailed training paper. Architecture: joint image-video MMDiT + flow matching, bucket-based multi-resolution training. Training cost 40% cheaper than closed-source comparable. Full training code released. Key for self-hosted video gen at commercial quality.
+- **Sketch2Colab** (arXiv 2603.02190): Storyboard 2D sketches → coherent object-aware 3D multi-human motion with fine-grained agent control. Object-Aware 3D Controllable Flow. Relevant for multi-character scene planning from rough sketches.
+- **Controllable Complex Human Motion Video** (arXiv 2603.08028): Text-to-motion skeleton generation (DINO-ALF) → pose-conditioned video diffusion from reference image. Two-stage architecture. Enables text-driven full-body animation without manual pose keyframing.
+- **Community consensus updated** (Reddit r/generativeAI Mar 11 2026, 9 comments):
+  - Kling 3.0 = best creative precision + longest clip (2 min)
+  - Wan 2.6 / LTX 2.3 = self-hosted kings; LTX Desktop beats default ComfyUI settings (fix: euler_ancestral + 25 steps + CFG 3.5)
+  - Sora 2 Pro = best narrative coherence for multi-shot
+  - Seedance 2.0 = unique beat-sync + cheapest multi-reference
+- **LTX-2.3 First-Last-Frame (FLF2V)**: Official ComfyUI templates now include FLF2V workflow — generate video with controlled start + end frames. Useful for looped animations and transition control.
+
+### 🛠️ ComfyUI — App Mode + ComfyHub launched + NVIDIA GDC 2026 workflow session
+- **ComfyUI App Mode + App Builder + ComfyHub** (Mar 10 2026, globenewswire.com/3253141): Transformative release:
+  - **App Mode**: 1-click converts any workflow to clean UI hiding node graph
+  - **App Builder**: Select which inputs/outputs to expose to end users
+  - **Shareable App URLs**: Encode full workflow config + layout in URL
+  - **ComfyHub**: Public platform for discovering/sharing community apps (preview at comfy.org/workflows)
+  - Directly relevant for sharing Digital-Stud workflows as shareable apps.
+- **v0.17.1** released Mar 13 2026. workflow_templates → v0.9.18. Manager install guidance improved.
+- **ComfyUI @ NVIDIA GDC 2026** (blogs.nvidia.com/rtx-ai-garage-flux-ltx-video-comfyui-gdc): Session "Create Generative AI Workflow for Design and Visualization in ComfyUI" on Mar 17. NVFP4 models + RTX Video Super Resolution demo. GDC = San Jose Mar 16–19.
+- **Official template library expansion**: Z-Image-Turbo, Wan 2.2 14B I2V, Kling 3.0 Video/Image, LTX-2.3 I2V + FLF2V, Nano Banana Pro, Seedream, Grok Image Edit all available as official templates.
+- **Kie.ai node pack** (r/comfyui): Nano Banana Pro grid workflows (2×2/3×3 generation + slicing) + Kling 3.0 support.
+- **John's Custom Node Pack** (pre-release, r/comfyui Mar 2026): Deterministic multi-pass diffusion + fully independent tiled sampling + structured workflows. Useful for reproducible upscaling passes.
+- **ComfyUI Python stack updated** to Python 3.13 + PyTorch 2.10 + CUDA 13.0 + Triton 3.6 (as of Mar 7 2026, per community documentation).
+- **ComfyUI Desktop installer issues** (Mar 12): Torch version conflicts; workaround: use portable or git install.
+- **LTX-2.3 Motion Control in ComfyUI** (Facebook group Mar 2026): Community workflow mimicking Kling Motion Control via LTX-2.3 FLF2V — using first-frame pose + last-frame target.
+
+### 🕺 Pose Estimation — Any-Pose Portrait Editing workflow + OA-NBV + Sketch2Colab multi-human
+- **Any-Pose Portrait Editing** (myaiforce.com ComfyUI workflow): 3D character pose → Qwen Image Edit (pose transfer) → face fix → 4K upscale with FLUX.2 Klein. Full pipeline documented. Practical alternative to ControlNet for pose transfer without training.
+- **OA-NBV** (arXiv 2603.11072): Occlusion-Aware Next-Best-View planning for human-centered perception. 90%+ success in sim + real-world. 81% improvement in keypoint visibility vs baseline. Uses RTMPose for keypoint reliability under occlusion.
+- **Sketch2Colab multi-human pose** (arXiv 2603.02190): Object-Aware 3D Controllable Flow for coherent multi-agent motion from 2D storyboard sketches. Direct mapping: sketch → 3D joint trajectories → video.
+- **HTP (Hierarchical Temporal Pruning)** for diffusion-based 3D pose: 56.8% inference cost reduction, 81.1% avg speed improvement, SOTA on Human3.6M + MPI-INF-3DHP maintained.
+- **FFLF (First Frame Last Frame)** approach confirmed for consistent body pose across video sequences in LTX-2 workflows — pairs well with Any-Pose for pose-locked multi-shot character video.
+- **StableGen Blender addon**: Brings AI generation + texturing into Blender for 3D → ComfyUI pose workflow. github.com/sakalond/StableGen
+
+### 🎓 LoRA Training — rank-128 consolidated + Controllable Complex Motion two-stage training
+- **Rank-128 now community consensus** for full-body/character video LoRAs (WildActor + ID-LoRA both confirmed in run #105). Community validation: r/StableDiffusion, r/comfyui both echo rank-128 for character video; rank-32–64 for style/concept.
+- **Controllable Complex Motion video diffusion training recipe** (arXiv 2603.08028): DINO-ALF pose representation + 5B DiT backbone + LoRA on attention layers. Two-stage: (1) text-to-motion skeleton pre-training, (2) pose-conditioned video fine-tuning. Can be adapted for character-specific pose vocabulary.
+- **Multi-view reference strategy confirmed** (WildActor, run #105): 200+ environments + 8+ expressions for viewpoint generalization → reduces identity drift under novel camera angles.
+- **DSH-Bench**: New benchmark for subject-driven T2I generation evaluation — useful for measuring LoRA character fidelity without expensive human evaluation.
+- **AI-Toolkit priority confirmed**: Best for custom ControlNet + video LoRAs. OneTrainer + Prodigy still best for image character LoRAs. Kohya SS for SDXL advanced fine-tuning.
+- **vLLM-Omni inference**: Validated path for running Z-Image-Turbo efficiently — applicable for fast LoRA inference testing pipeline.
 <!-- last_updated: 2026-03-14T01:30:00+01:00 run_105 -->
 ## 🏁 Run #105 Delta — 2026-03-14 01:30 Prague
 
