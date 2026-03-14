@@ -1,4 +1,139 @@
-<!-- last_updated: 2026-03-14T20:00:55+01:00 run_143 -->
+<!-- last_updated: 2026-03-14T20:30:11+01:00 run_144 -->
+## 🏁 Run #144 Delta — 2026-03-14 20:30 Prague
+
+### 🎬 Video Gen — March 14 2026 (20:30 sweep) ★★ MAJOR: Veo 3.1 + Helios
+
+- **🆕🆕 Google Veo 3.1** (announced March 14 2026, Mashable confirmed): Successor to Veo 3 with:
+  - Improved audio synchronisation + richer audio generation
+  - Better narrative comprehension for in-context video
+  - Enhanced realism / true-to-life textures
+  - New **Veo 3.1 Fast** lightweight variant
+  - Audio support added to: Ingredients-to-Video, Scene Extension, First/Last Frame
+  - Available via Google Flow, Gemini app, Vertex AI
+  - Free unlimited access announced for some tier users
+  - **Appears in OSCBench evaluation** (arXiv 2603.11698) as "Veo-3.1-Fast" → confirms model is real and benchmarked
+  - **Significant upgrade for API video pipeline — adds Veo 3.1 as top competitor to Kling 2.5 and Wan 2.2**
+
+- **🆕 Helios** (ByteDance + PKU + Canva, GitHub: PKU-YuanGroup/Helios): Real-time long video generation model
+  - **19.5 FPS synthesis on single GPU** (128× faster than standard T2V models)
+  - 14B autoregressive diffusion transformer
+  - Generates **minute-scale videos** at near real-time on RTX 4090
+  - Supports T2V, I2V, V2V with unified input representation
+  - Memory-efficient: 4 model copies fit in single GPU VRAM
+  - Facebook/0xSojalSec post March 14 2026: "Video generation model with 19.5 FPS synthesis on GPU"
+  - Community note: current Wan 2.2 14B T2V queues hit 36-min wait per 3s clip — Helios directly addresses this
+  - **Relevant addition for real-time preview in Digital-Stud pipeline**
+
+- **🆕 OSCBench** (arXiv 2603.11698, March 12 2026): First benchmark for object state change in T2V models
+  - 1,120 prompts across 140 cooking scenarios (regular / novel / compositional)
+  - Models evaluated: Open-Sora-2.0, HunyuanVideo, HunyuanVideo-1.5, Wan-2.2, **Kling-2.5-Turbo**, **Veo-3.1-Fast**
+  - Key finding: all current SOTA models struggle with accurate object state transitions
+  - Useful as quality benchmark for video pipeline output validation
+
+- **🆕 DreamVideo-Omni** (arXiv 2603.12257, March 12 2026): Unified multi-subject customisation + omni-motion control
+  - Subject appearances + global motion (bounding boxes) + local dynamics (trajectories) + camera movements
+  - **Latent Identity Reward Feedback Learning** preserves identity under motion
+  - DreamOmni Bench: 1,027 curated videos
+  - Relevant for: face/character consistent video generation research
+
+- **🆕 Video2LoRA** (arXiv 2603.08210): Semantic-controlled video generation via per-video LoRA
+  - Reference-video-conditioned generation framework
+  - Enables scalable semantic control for video gen
+  - Relevant complement to face LoRA training pipeline
+
+- **Seedance 2.0**: Officially confirmed suspended March 14 2026 (Reuters, The Information, Economic Times). ByteDance cites copyright disputes with Disney/Paramount. No timeline for resumption. **SeedVR2 frame upscaler unaffected** — confirmed working in ComfyUI workflows (SeedVR2 → Nunchaku Qwen/Z-Image stack for 4K).
+
+- **SeedVR2 production workflow confirmed** (note.com/198619891990): SeedVR2 torch.compile → Nunchaku Qwen Image or Z-Image (recommend f8e4m3 over Nunchaku for Z-Image). Tested to 4K output. Production-ready.
+
+- **Wan 2.2 queue reality check**: 36-min wait per 3s clip on RunPod (community report Mar 14). Local RTX 4090 faster. Helios the answer for real-time previewing.
+
+- **LTX 2.3**: Lightricks released as fully open-source. Official ComfyUI workflows live March 5 2026. ~5M downloads since Jan 2026. LTX Desktop free access. Confirmed community note: r/comfyui CheckpointLoaderSimple bug in official LTX 2.3 workflow — use community workflow as workaround.
+
+- **Kling 2.5-Turbo**: Active in OSCBench evaluation. Still top commercial I2V option.
+
+### 🖼️ Image Gen — March 14 2026 (20:30 sweep) — Confirmations + New Details
+
+- **Z-Image-Turbo ControlNet-Union Inpainting confirmed** (HF: alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union): Now includes inpaint unit alongside depth/canny/pose. Community confirmed March 2026 (r/StableDiffusion 1rqfvrc). **Upgrade pose_controlnet workflow to use ZIT ControlNet-Union with inpaint.**
+
+- **Z-Image Face Detailer in ComfyUI**: Full tutorial live (nextdiffusion.ai). 8-step workflow: detect faces → build masks → Z-Image-Turbo enhance. 3 models. Production-ready.
+
+- **RedCraft ZiB(AGILE) Distilled** (CivitAI, Mar 8 2026): Faster iteration + preserved diversity + improved LoRA compatibility. BEST SDXL refiner for IL/PONY/XL/MJ/SD15. New ZIB Distilled FUNxAGILE variant.
+
+- **Nano Banana 2**: $0.07/image (~half predecessor cost), comparable speed. Still top commercial image gen with Uni-1 as logic-task leader. Available on fal.ai (learn/tools/how-to-use-nano-banana-2 guide live).
+
+- **FLUX.2 Klein 9B-KV community adoption confirmed**: GGUF Q8 workflow on SD Korea group (Facebook). ComfyUI-YarvixPA custom node has official Flux2 9B KV workflow. T2I Civitai workflow published Mar 13. Raster-to-vector workflow published. Full adoption by community.
+
+- **GPT-Image-1.5**: Available in ImagineArt — generate from scratch and edit in same workspace. Elo 1264 on LM Arena confirmed.
+
+- **Anonymization Prompt Learning (APL)** (IJCV 2026-02-783-6): New technique preventing generation of identity-specific images in T2I diffusion models. Relevant for privacy-safe face LoRA workflows.
+
+- **Custom Face Detection/Segmentation ComfyUI node** (r/comfyui 1rpwkek, r/StableDiffusion 1rrlh4o): Community-trained reliable face mask + fixing node for ComfyUI — works across anime/real, SFW/NSFW, extreme poses/occlusion. **Upgrade face_refinement workflow to use this node.**
+
+### 🔧 ComfyUI — March 14 2026 (20:30 sweep) — New confirmations
+
+- **ComfyUI App Mode officially announced** (Gigazine, March 12 2026): Simplified interface — builds workflows by combining nodes. Official "App View" UX layer on top of node editor. Confirmed GDC demo. AppMode article: gigazine.net/gsc_news/en/20260312-comfyui-app-mode
+
+- **NVIDIA GDC 2026 full announcement confirmed** (nvidia.com/en-us/geforce/news/gdc-2026-nvidia-geforce-rtx-announcements/):
+  - RTX Video Super Resolution for ComfyUI — real-time 4K upscaler for video generation
+  - NVFP4 model variants for FLUX.2 Klein (4B and 9B): up to **2.5× perf + 60% lower memory**
+  - ComfyUI-Manager: NVFP4 models loadable via Template Browser (checkpoint replacement method)
+  - **DLSS 4.5 Dynamic Multi Frame Gen: available March 31 2026**
+  - 20 new DLSS 4.5 + path-traced game announcements
+  - FLUX.2 Klein NVFP4 available via HuggingFace
+
+- **Blender to ComfyUI AI Renderer 2.0** (runcomfy.com): Full workflow confirmed using:
+  - Depth Anything 3 (DA3-BASE) for temporally consistent depth from footage
+  - Z-Image Turbo for aesthetic base generation
+  - Cinematic video output pipeline
+  - **Directly relevant — Digital-Stud Blender→ComfyUI→video pipeline confirmed working**
+
+- **ElevenLabs ComfyUI Partner Node**: Voice gen, speech-to-speech, transcription, sound effects — all wired directly into ComfyUI. LinkedIn post Casey Milone. **Adds audio layer to video pipeline.**
+
+- **StableGen Blender addon confirmed details** (sakalond/StableGen, GitHub):
+  - Blender 4.2–5.1 support
+  - ComfyUI backend at 127.0.0.1:8188
+  - Supported: TRELLIS.2 (3D gen), SDXL, FLUX.1-dev, Qwen Image Edit texturing
+  - Install: installer.py (packages up to ~33GB Qwen Nunchaku variant)
+  - Actively maintained, multi-view camera placement strategies
+
+- **AudioX ComfyUI nodes** (HKUSTAudio/AudioX): Generate sound effects + background music from video. New in ComfyUI hype.replicate.dev trending. **Extends video pipeline to audio-complete output.**
+
+- **SCAIL ComfyUI**: 3D-consistent pose animation for characters. Tutorial: nextdiffusion.ai/tutorials/scail-comfyui-3d-consistent-pose-animation-characters. Pose control + 3D consistency.
+
+- **LTX 2.3 official ComfyUI workflows** (ltx.io/model/model-blog/ltx-2-3-release#comfyui, March 5 2026): Confirmed live. Known bug: CheckpointLoaderSimple in official workflow. Use community workflow. LTX Desktop free and fast.
+
+- **ComfyUI-ZImagePowerNodes** (martin-rizzo/ComfyUI-ZImagePowerNodes, GitHub): Power nodes for Z-Image-Turbo. NVFP4 safetensors mentioned as possible quantization format. z_image_turbo_bf16 reference in README.
+
+### 🧍 Pose / Depth / 3D — March 14 2026 (20:30 sweep) ★ New 3D papers
+
+- **ZipMap status**: arXiv 2603.04385 confirmed indexed in awesome-3D-SLAM lists. 20×+ faster than VGGT, 75 FPS on H100. No new update this window.
+
+- **Depth Anything 3 ComfyUI integration confirmed**: Blender-to-ComfyUI AI Renderer 2.0 (runcomfy.com) uses DA3-BASE as monocular depth estimator. Also: "Rafael Silva – DepthAnythingV3 for Nuke – AI Depth Estimation" (pixelsham.com) — DA3 adapted for Nuke pipeline. Community adoption spreading fast.
+
+- **PRISM (ZeyuLing/PRISM)**: Streaming human motion generation confirmed on GitHub, CC BY 4.0. Text-to-motion + pose-conditioned. CVPR 2026.
+
+- **SCAIL**: 3D-consistent pose animation. ComfyUI tutorial confirms it works for character animation pipeline.
+
+- **FMPose3D**: No new community reports this window. CVPR 2026 confirmed (Jun 2-6 Denver). Code at AdaptiveMotorControlLab/FMPose3D.
+
+- **YOLO26**: No dedicated ComfyUI pose node confirmed yet. Custom face mask node (r/comfyui 1rpwkek) uses trained detection model — potentially YOLO-based but unconfirmed. Watch for YOLO26-ComfyUI community node.
+
+- **Web-Based Monocular Pose Estimation** (LinkedIn, Hosken): Browser-based motion capture with — mentions deadline March 16 2026. Relevant survey of monocular pose estimation landscape.
+
+### 🎓 LoRA Training — March 14 2026 (20:30 sweep) — New face dataset technique
+
+- **Face LoRA dataset automation** (r/comfyui 1rpwkek + r/StableDiffusion 1rrlh4o): Community-trained custom face detection + segmentation models for ComfyUI. Reliable across anime/real/SFW/NSFW/extreme poses. Can be used to automate dataset cropping and masking for face LoRA preparation. **Potential integration into LoRA dataset prep pipeline.**
+
+- **Nekofantasia v0.1** (HF: Nekofantasia/Nekofantasia-alpha): SD 3.5 Medium + Rectified Flow anime model. AdamW, dim 32-64, bf16. Kohya_ss confirmed for SD3.5 fine-tuning. Watch for v0.2 when training complete.
+
+- **DreamVideo-Omni** (arXiv 2603.12257): Latent Identity Reward Feedback Learning for identity preservation under motion — new LoRA-related technique for video identity consistency.
+
+- **Video2LoRA** (arXiv 2603.08210): Per-video LoRA for semantic-controlled video gen. Reference-video conditioning. New paradigm for video LoRA.
+
+- **AI-Toolkit / Kohya / SimpleTuner**: No new releases confirmed this window. SimpleTuner v0.9.8.1 still latest.
+
+- **Flux.1-dev face LoRA best practice (updated DGX Spark note)**: NVIDIA DGX Spark (128GB unified memory) can train FLUX.1-dev at full precision without quantization. Community report Mar 2026: "stable, consistent face that doesn't change over time." Full precision training = significantly better identity consistency than quantized path.
+
 ## 🏁 Run #143 Delta — 2026-03-14 20:00 Prague
 
 ### 🖼️ Image Gen — March 14 2026 (20:00 sweep) ★ STRONG WINDOW
