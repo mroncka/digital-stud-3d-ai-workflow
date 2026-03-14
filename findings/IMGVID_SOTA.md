@@ -1,3 +1,51 @@
+<!-- last_updated: 2026-03-14T06:30:00+01:00 run_115 -->
+## 🏁 Run #115 Delta — 2026-03-14 06:30 Prague
+
+### 🖼️ Image Gen — Seedream V4 1.8s 2K gen (12B MoE) + FLUX.2 full 10-model map + Nano Banana 2 confirmed default + HiDream I1 Fast lightweight variant + Seedream V5 Lite Edit new
+- **Seedream V4 (ByteDance)**: Lightning 1.8s 2K generation (10x faster than Seedream 3.0), unified T2I + editing in single 12B MoE model, up to 4K (4096×4096), multi-modal inputs with up to 6 reference images, batch 9 outputs. Top scores on MagicBench + Artificial Analysis. Faster and more efficient than FLUX.2's 32B for single-reference workflows; FLUX.2 still wins on complex multi-reference (10+ images) tasks. Available on Vidofy.ai. **Direct competitor to Z-Image-Turbo for Digital-Stud high-speed generation pipeline.**
+- **Seedream V5 Lite Edit** (new, March 2026 TikTok): Lightweight editing model for fast targeted edits — products, colors, branding, scene details while preserving composition and lighting. Built on Seedream V4 base. Useful for Digital-Stud scene variation without full re-generation.
+- **FLUX.2 full 10-model family confirmed** (melies.co): Budget (2-5 credits): Schnell, Klein, Dev. Mid (6-12): Flex, Pro, FLUX.2 Pro. Premium (15-25): Ultra, Kontext, Kontext Max, FLUX.2 Max. FLUX.2 [max] at 25 credits: highest editing consistency, 4K output, advanced prompt following, character + style consistency. **FLUX Kontext Max** for strongest prompt + character consistency. Firefly 5 integration (Adobe) handles scene transformations with subject consistency.
+- **Nano Banana 2 confirmed default** (aakash.g.com, Feb 26 2026): Became default in Gemini App and Google Flow editor. 3-5x faster than Pro (4-6s vs 10-20s), character consistency up to 5 chars, object fidelity up to 14 objects. Google AI Studio: 50 req/day free, no watermark, up to 2K res. NB2 at $0.067/image standard res API.
+- **HiDream I1 Fast**: 16-step lightweight variant, suited for low-VRAM rapid preview iterations. Available as ComfyUI template on comfy.org/workflows. Free tier with sign-up credits on chatslide.ai, no watermarks.
+- **Seedream 4.5 benchmark reconfirmed**: ~1147 Elo, $0.03/image. Still positioned as volume generation value tier below Nano Banana 2 / FLUX.2 Pro.
+
+### 🎬 Video Gen — Wan 2.7 planned March 2026 (major upgrade over 2.6) + Omni-Merge/DO-Merge 2026 for LTX-2 LoRA + Kling 3.0 up to 2 min + LTX-2 confirmed open-source + Pika AI Selves self-cloning
+- **🚨 WAN 2.7 PLANNED FOR MARCH 2026** (r/comfyui, Reddit thread): Major all-around upgrade over Wan 2.6. Expected improvements: visual quality, audio processing, motion generation capabilities. Release expected within March. **Critical for Digital-Stud planning: if 2.7 supports LoRA fine-tuning (unlike 2.6), it changes the identity training roadmap. Monitor closely. No fine-tune confirmation yet.**
+- **Omni-Merge / DO-Merge 2026 for LTX-2** (Yutori Scouts): Advanced LoRA merging framework for LTX-2. Enables merging multiple LoRAs trained on LTX-2. Relevant for Digital-Stud if LTX-2 becomes a LoRA training target for fast video character content.
+- **LTX-2 confirmed open-source** (TikTok/Reddit March 2026): Fast open-source video model with ComfyUI support. LTX-2.3 NVFP4 support coming soon per NVIDIA blog. Speeds up meaningfully on RTX 50 series.
+- **Kling 3.0 confirmed details** (vidau.ai, March 2026): Only major model supporting up to 2 minutes of video. Human motion quality benchmark leader. $0.029/second API (lowest industry rate). Up to 4K 60fps with Kling 3.0. Native audio generation. 66 free daily credits. Best for Digital-Stud long-form action/narrative sequences where per-second cost matters.
+- **Pika AI Selves** (vo3ai.com, March 7 2026): Clone yourself into AI videos — captures your specific face/identity and places it in generated video scenes. Direct Digital-Stud-relevant tool for actor replacement/avatar workflows. Launched March 7.
+- **HunyuanVideo 2.0** (bonega.ai, March 5 2026): Tencent updated HunyuanVideo to 2.0. FastVideo/hao-ai-lab: causal Wan pipeline added alongside HunyuanVideo 1.5 multi-step denoising. HunyuanVideo 1.5 now in FastVideo inference pipeline.
+- **Sora 2 & 3 API pricing reconfirmed**: $0.10/s 720p, $0.50/s Sora 2 Pro. Sora 3 preview (OpenAI, Mar 3 2026) per bonega.ai timeline.
+- **Wan 3.0 4K native output** (bonega.ai, March 2026 timeline): Listed in March video model avalanche. Separate from Wan 2.7 — may refer to next major release. Treat as unconfirmed; monitor for clarification.
+- **Kling API $0.015/second** (vidau.ai): Corrected from earlier $0.029/second figure — some sources show Kling 2.1 at $0.015/second. Different tiers: Kling 2.1 = $0.015/s, Kling 3.0 = $0.029/s confirmed.
+
+### 🛠️ ComfyUI — NVIDIA RTX Video Super Resolution as ComfyUI node (4K 30x faster local) + NVFP4 FLUX.2 Klein (2.5x faster, 60% VRAM less RTX 50) + ComfyHub marketplace live + 40% faster overall since Sep 2025
+- **🚨 NVIDIA RTX Video Super Resolution as ComfyUI node** (NVIDIA blog, GDC 2026 March 10): Upscales 10-second video clips to 4K at 30x faster than alternative local upscalers. Also available as standalone Python package via PyPI. **Direct upgrade for Digital-Stud post-processing: replace existing upscale nodes with RTX-VSR node for RTX hardware.** Requires RTX GPU.
+- **NVFP4 FLUX.2 Klein models** (NVIDIA GDC 2026): 2.5x faster + 60% lower VRAM vs FP32 on RTX 50 Series. FP8 format: 1.7x faster + 40% lower VRAM. NVFP4 LTX-2.3 coming soon. Available for FLUX.2 Klein 4B and 9B variants now. Action: test NVFP4 Klein on Digital-Stud image gen pipeline if RTX 50 hardware available.
+- **ComfyUI overall 40% faster** since September 2025 (NVIDIA blog metric). FP8 + Dynamic VRAM + optimized scheduling all contributing.
+- **ComfyHub marketplace live** at comfy.org/workflows (March 10 2026, GlobeNewswire): App Mode workflows publicly shareable via URL. 350+ templates in Comfy Cloud. Browse + one-click run without installation. **Useful for Digital-Stud workflow distribution to clients/collaborators.**
+- **App Mode + App Builder confirmed shipped** (March 10 2026, multiple sources): Node graph hidden, only user-facing controls exposed via URL-shareable UI. Corrects prior run's "March 13" date — actual launch March 10.
+- **ComfyUI-OpenClaw** (GitHub rookiestar28): Security-first orchestration layer for production ComfyUI deployments. Hardened automation APIs + embedded operator UX. Relevant for Digital-Stud automated batch generation pipelines.
+- **PyTorch + CUDA 2026 best practice** (Civitai article): Safest pairing documented for stable ComfyUI environments. Worth reading before upgrading CUDA for new model support.
+- **CUDA 13.1 community testing** (Facebook ComfyUI group): Performance optimization experiments ongoing. Not production-ready yet for ComfyUI — hold at current CUDA version.
+- **DGX Spark Docker container for ComfyUI** released (NVIDIA Developer Forums): Enterprise deployment path for ComfyUI at scale.
+
+### 🕺 Pose — DINO-ALF confirmed key (deformation-aware, run 114) + See4D cross-view video generation & sparse 3D reconstruction + egocentric AR/VR pose stable
+- **See4D: Pose-Free 4D Generation via Auto-Regressive Video Inpainting** (arXiv 2510.26796v2): Cross-view video generation and sparse reconstruction benchmarks. Generates 4D content (multi-view + time) without explicit camera pose estimation. Validated on cross-view video generation and sparse reconstruction. Relevant for Digital-Stud multi-angle character turnaround generation and 3D asset derivation from video.
+- **DINO-ALF (arXiv 2603.08028v1) reconfirmed**: Controllable Complex Human Motion video generation via text-to-skeleton. Experiments on synthetic dataset + Motion-X Fitness benchmark outperform prior methods on FID. This combines text → skeleton pose → video with deformation-aware appearance conditioning. **Recommended for Digital-Stud: text-described character actions → skeleton animation → video synthesis pipeline.**
+- **OA-NBV RTMPose standard unchanged**: No new direct challenger in this cycle.
+- **WiFi DensePose / RuView reconfirmed** from run 114. Still not immediately applicable.
+
+### 🎓 LoRA — Wan 2.7 trainability TBD (monitor) + DO-Merge 2026 for LTX-2 multi-LoRA merging + FLUX.2 complete settings reconfirmed + musubi-tuner stable + Wan 2.2 LoRA pipeline confirmed production standard
+- **Wan 2.7 LoRA trainability unknown** (no confirmation in sources): Wan 2.7 is planned for March but no source confirms fine-tuning support. If 2.7 adds LoRA support, it overturns the run 114 "Wan 2.2 wins for identity" recommendation. **Highest priority monitoring item for Digital-Stud: watch musubi-tuner GitHub and Wan release notes immediately upon 2.7 launch.**
+- **DO-Merge 2026 / Omni-Merge for LTX-2** (Yutori Scouts): Advanced LoRA merging framework for LTX-2. Enables combining character LoRA + style LoRA + motion LoRA into unified model. If Digital-Stud adopts LTX-2 for fast video, this is the multi-LoRA composition path.
+- **FLUX.2 complete training settings reconfirmed** (multiple sources, run 114+115 consistent): Rank 16-64, LR 1e-4 to 3e-4, alpha=rank/2, 1000-3000 steps, AdamW8bit, gradient checkpointing. Adobe Firefly / Flux 2 [pro] integration confirms FLUX.2 as production-grade for scene transformations with subject consistency.
+- **Wan 2.2 identity LoRA pipeline confirmed production standard**: Multiple sources, community consensus. musubi-tuner + Avatar Training mode. No change from run 114 recommendation.
+- **WAN LoRA noise level guidance reconfirmed**: Low-noise Wan 2.2 variants only; place LoRA on model path (both high + low branches).
+- **Regularization images + multi-angle + consistent captions reconfirmed**: No change from established best practice.
+- **Z-Image-Turbo LoRA 15-30 images reconfirmed** from run 114.
+
 <!-- last_updated: 2026-03-14T06:01:02+01:00 run_114 -->
 ## 🏁 Run #114 Delta — 2026-03-14 06:01 Prague
 
