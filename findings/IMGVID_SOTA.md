@@ -1,4 +1,51 @@
-<!-- last_updated: 2026-03-14T19:02:15+01:00 run_141 -->
+<!-- last_updated: 2026-03-14T19:30:01+01:00 run_142 -->
+## 🏁 Run #142 Delta — 2026-03-14 19:30 Prague
+
+### 🖼️ Image Gen — March 14 2026 (19:30 sweep)
+- **GPT-Image-1 usage context**: OpenAI's Interactive Visuals (ChatGPT, Mar 14) now generate STEM-focused dynamic graphics. Not a model update but confirms GPT-Image-1 increasingly embedded in product — API rate limits relevant for pipeline. No pricing changes confirmed this window.
+- **Zimage Turbo vs Base community testing continues** (r/StableDiffusion, Mar 14 evening): Turbo favored for rapid concept iteration; Base recommended for final renders. No benchmark numbers yet. Watch for ComfyUI model card on CivitAI.
+- **Reve Image API**: No new changes in this window. Pricing remains $0.02–$0.04/image. 14-day free trial still active. Previous run finding stands.
+- **Flux.2 Klein Consistency LoRA community uptake**: r/comfyui thread (1rtkrej) showing active adoption within hours of release. Multiple users confirming color drift fix effective. Production-ready within 1 day of release.
+- **No new standalone image model** released in 19:02–19:30 UTC window. GTC Sunday pre-coverage starting but no model drops yet.
+
+### 🎬 Video Gen — March 14 2026 (19:30 sweep)
+- **Seedance 2.0 suspension**: No resolution in this window. Reuters/The Information reporting stands. ByteDance has not issued public statement yet. International API access remains blocked.
+- **Kling-MotionControl confirmed SOTA character animation** (arXiv 2603.03160v1, web-confirmed): Technical report fully substantiated. Key metrics: **10× inference speedup** via multi-stage distillation, unified DiT orchestrating body+face+hands, 3D-aware free-view camera control, cross-identity generalization (humans→cartoons→animals). Beats Dreamina, Runway Act-Two, Wan-Animate on human preference evals. Direct pipeline relevance: superior character animation path over current Wan-Animate.
+- **LTX-2.3 professional viability debate ongoing** (r/StableDiffusion 1rtdl55, trending): Community split — micro-budget indie workflows adopting it, professional film workflows remain skeptical. ComfyUI batch inference nodes (comfyui-zld, r/SD 1rt0pta) specifically addressing quality gap. Status: viable for pre-viz, not final delivery.
+- **HunyuanVideo + DGX Spark**: Fine-tuning thread active on NVIDIA Dev Forums (confirmed running). No new checkpoint released this window.
+- **Wan 2.2 9B GGUF Q6 status**: Still community consensus best open-source video. Wan 2.7 not yet announced.
+- **Grok multi-image-to-video**: xAI API endpoint active. Pipeline integration target: multi-reference character video (no LoRA needed). Rate limits and pricing not yet published.
+
+### 🔧 ComfyUI — March 14 2026 (19:30 sweep)
+- **ComfyUI Docker for DGX Spark** (NVIDIA Dev Forums 363342): No additional community reports beyond run 141 finding. Thread active. First confirmed working ComfyUI container for DGX Spark remains a significant milestone.
+- **ComfyUI-zld inference improvement nodes**: Community testing active on LTX2.3. S3/S4 Guider reducing noise artifacts confirmed by 3 independent users in r/StableDiffusion thread.
+- **No new ComfyUI node for Helios or DVD depth** in this window. Helios node ETA: 7–10 days from Mar 14 (estimated ~Mar 21–24). DVD depth node: no public announcement yet — likely 2–3 weeks out.
+- **ComfyUI App View GDC**: No new screenshots or demos surfaced in this 30-min window. Official GDC session Saturday not yet covered by live blogs.
+- **Comfy Cloud model additions**: No new model additions confirmed this window.
+- **DLSS 4.5 March 31 availability** confirmed for ComfyUI real-time preview use case on RTX 50 series. Relevant for local DGX Spark ComfyUI setup.
+
+### 🧍 3D / Pose / Depth — March 14 2026 (19:30 sweep) ★ STRONG WINDOW
+- **🆕 ZipMap: Linear-Time Stateful 3D Reconstruction** (arXiv 2603.04385v2, Google DeepMind, Mar 9): Test-time training approach. Linear-time complexity for long-sequence 3D reconstruction. Long-sequence video depth + 3D point estimation validated. Google DeepMind authorship (Haian Jin, Rundi Wu, Jonathan Barron, Noah Snavely). Direct upgrade path over DUSt3R/MASt3R for streaming 3D. **No ComfyUI node yet.**
+- **🆕 FMPose3D: Monocular 3D Pose Estimation via Flow Matching** (arXiv 2602.05755, CVPR 2026 accepted, Feb 21 2026): Generates multiple plausible 3D poses from single 2D image. GitHub: `AdaptiveMotorControlLab/FMPose3D`. **Code released Feb 2026.** CVPR 2026 acceptance. Supports humans AND animals. Integration planned into DeepLabCut. Outperforms single-hypothesis 3D pose methods on standard benchmarks. **Ready to use today.**
+- **🆕 Dense Dynamic Scene Reconstruction from Multi-View Videos** (arXiv 2603.12064, Örebro University, Mar 2026): Freely moving multi-camera dynamic reconstruction. MultiCamRobolab dataset released with motion-capture ground-truth poses. Two-stage: camera tracking via spatio-temporal graph → depth refinement. Relevant for multi-camera Digital-Stud capture setups.
+- **🆕 DeepSight: Depth Maps + Language Bridge** (arXiv 2603.06090, Mar 6 2026): Depth-language model for depth understanding and description. Bridges depth maps with natural language. Potential ComfyUI node for depth-guided generation with text control.
+- **🆕 Dr.Occ: Depth + Region Guided 3D Occupancy** (arXiv 2603.01007v2): Self-supervised 3D occupancy estimation from surround-view. Gaussian splatting based. Autonomous driving primary target but technique transferable.
+- **Kling-MotionControl confirmed** (arXiv 2603.03160): 10× inference speed vs baseline. Body+face+hands unified. Free-view camera. **Best character animation model as of March 2026.**
+- **Hoi3DGen confirmed** (arXiv 2603.12126): 4–15× text consistency improvement, 3–7× 3D quality improvement vs baselines. SMPL animatable output. Code/data/weights pending release.
+- **Meshcapade acquired by Epic Games** (LinkedIn, March 2026): SMPL-based 3D human creation tools entering Unreal Engine ecosystem. Potential UE5 + Digital-Stud pipeline bridge.
+- **MMFace-DiT** (CVPR 2026, Bharath Krishnamurthy et al.): 3D pose estimation from monocular video. Conference acceptance confirms production-relevance.
+- **AsyncMDE confirmed**: 161 FPS on GPU. Best real-time depth option as of March 2026. Published March 11.
+- **PRISM code confirmed open-sourced**: GitHub `ZeyuLing/PRISM`. Streaming motion generation, per-joint latent decomposition. CC BY 4.0 license.
+
+### 🎓 LoRA Training — March 14 2026 (19:30 sweep)
+- **No new AI-Toolkit or Kohya commits confirmed** in 17:00–19:30 UTC window. Previous findings stand.
+- **SimpleTuner v0.9.8.1**: Still latest confirmed release. No v0.9.9 announced.
+- **Video2LoRA (BerserkerVV)**: No new forks or community implementations confirmed in this window. Original repo active since Mar 9.
+- **DGX Spark LoRA training confirmation**: NVIDIA Dev Forums showing active SimpleTuner + DGX Spark threads. FLUX.1-dev full fine-tuning without quantization on 128GB unified memory confirmed.
+- **Character face LoRA production workflow** (Instagram AI influencers, ongoing Mar 14): Standard technique: 30–50 face images + AI-Toolkit + custom token + `[trigger]` in prompt. Flux.1-dev base. Training ~45min on RTX 4090, ~15min on DGX Spark (estimated). Quality: "stable, consistent face that doesn't change over time" per practitioners.
+- **OpenClaw-RL LoRA support**: Still unmerged (GitHub checklist). No timeline.
+- **Kohya-ss flux_train_network.py**: Still the most-cited training script for Flux LoRA in production as of March 14. No new features this window.
+
 ## 🏁 Run #141 Delta — 2026-03-14 19:02 Prague
 
 ### 🖼️ Image Gen — March 14 2026 (19:02 sweep)
