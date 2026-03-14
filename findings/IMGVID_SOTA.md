@@ -1,4 +1,65 @@
-<!-- last_updated: 2026-03-14T17:30:09+01:00 run_138 -->
+<!-- last_updated: 2026-03-14T18:02:42+01:00 run_139 -->
+## 🏁 Run #139 Delta — 2026-03-14 18:02 Prague
+
+### 🖼️ Image Gen — March 14 2026 (18:02 sweep)
+- **Nano Banana 2 (Google Gemini 3.1 Flash Image) #1 leaderboard**: Chatbot Arena image leaderboard current standings (awesomeagents.ai, Mar 2026):
+  1. Nano Banana 2 — 1280 Elo (Google, $0.045/img, Feb 26 2026 launch)
+  2. FLUX.2 Pro v1.1 — 1265 Elo
+  3. GPT Image 1.5 — 1264 Elo
+  4. Nano Banana Pro — 1217 Elo
+  5. FLUX.2 Max — 1206 Elo
+- **FLUX.2 Klein 9B 2x speed** (BFL, @bfl_ml tweet Mar ~14): Image editing with multiple reference images now 2x faster. Same quality, no price increase. NVFP4 + FP8 variants from NVIDIA GDC: up to 2.5x perf gains, 60% lower memory overhead.
+- **Adobe Firefly Image Editor update** (Mar 10, 2026): Streamlined workspace for composition/style/detail — semantic layers, gen fill V3, batch editing. Not open-source but sets quality benchmark.
+- **arXiv image gen survey** (2603.07455): "Image Generation Models: A Technical History" — comprehensive survey useful for SOTA grounding.
+- **No new image model drops** on HuggingFace in this 30-min window. GTC 2026 (Mon) remains the next major expected drop point.
+- **fal.ai event**: "The Next Wave of AI is Real Time" — invite-only March 17 2026 5-7PM PT. Expect real-time image/video gen announcements.
+
+### 🎬 Video Gen — March 14 2026 (18:02 sweep)
+- **🆕 Veo 3.1 LAUNCH** (Google, Mar 14 2026): Google launched Veo 3.1 + lighter Veo 3.1 Fast. Available in Gemini, Vertex AI, and Google Flow. New features:
+  - Richer audio generation (ambient + dialogue sync)
+  - Better narrative comprehension for complex scenes
+  - Enhanced texture realism
+  - Audio added to Ingredients-to-Video and Scene Extension
+  - Precision editing: object insertion/removal in Google Flow
+  - Requires Google AI Pro subscription
+  - Mashable confirms: "Veo 3 is a more capable video generation model" vs Sora 2 in direct comparison
+- **Sora → ChatGPT integration** (reported by The Information, Mar 14): OpenAI plans to add Sora directly into ChatGPT chat interface. Standalone Sora app may be phased into ChatGPT main product. No timeline confirmed.
+- **Grok Video Arena #1 confirmed** (Arcada Labs Video Arena leaderboard): "ChatGPT's Sora trails Google Veo, Kling 3.0 & Grok" (Instagram post Mar ~14). Grok Imagine tops ranking. Community testing multi-image-to-video (7-image) workflows.
+- **LTX-2.3 community debate**: Reddit thread (r/StableDiffusion, Mar 14 "I'm sorry but LTX still isn't professionally viable"): V2V does NOT support combined audio+video input simultaneously — audio OR video input, not both. Community concern. Lightricks likely to patch.
+- **Hume AI TADA** (open-source, MIT license, Mar 14): Speech model 5x faster than rivals, zero hallucinated words. Open-sourced on GitHub + HuggingFace. Relevant for Digital-Stud audio-driven character video pipelines.
+- **Seedance 2.0 MPA cease-and-desist** (IMDB/Hollywood): Motion Picture Association sent C&D to ByteDance over unauthorized IP use. Legal risk factor for production use.
+- **Wan 2.7**: Still no release. Community thread (r/StableDiffusion Mar 13): "planned for March with comprehensive improvements". Status: anticipated.
+
+### 🔧 ComfyUI — March 14 2026 (18:02 sweep)
+- **ComfyUI v0.17.0 changelog** (docs.comfy.org, Mar 13 2026):
+  - Modular asset architecture with async two-phase scanner + background seeder
+  - Flux 2 Klein KV cache model support via new FluxKVCache node
+  - Painter node for enhanced image editing
+  - Reve Image API nodes
+  - ComfyUI Manager v4.1b2 (improved install guidance)
+  - Frontend v1.41.18
+  - Custom node published subgraphs endpoint
+- **Comfy Cloud out of beta** (blog.comfy.org): ~90% of local workflow custom nodes accessible in cloud. No setup/install needed.
+- **NVIDIA GDC blog** (blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc/): NVFP4 + FP8 for LTX-2.3 AND FLUX.2 Klein — 2.5x perf, 60% less VRAM. RTX Video Super Resolution integration. ComfyUI App View for local AI video gen at GDC.
+- **Flux.2 Klein 4B Consistency LoRA** (Reddit 1rtkrwp, Mar 14): Re-confirmed in this sweep. `lrzjason/Consistance_Edit_Lora` on HuggingFace. Consistent image editing, color calibration, paired with ComfyUI-EditUtils.
+- **Reve Image 1.5**: Community reports (via ComfyUI API nodes in v0.17.0) — mid-journey quality at competitive pricing. New dedicated ComfyUI node confirmed in changelog.
+- **Session tab restore bug** (Reddit 1rt68ij): Latest ComfyUI update broke multi-tab session restore. Workaround: manual reload. Not critical for pipeline.
+
+### 🧍 Pose Estimation — March 14 2026 (18:02 sweep)
+- **No new pose papers on arxiv Fri Mar 13** (latest listed). Next batch expected Mon Mar 16 (arXiv closed weekends).
+- **OpenClaw on AMD Ryzen AI Max** (AMD blog, Mar 13): ACE Step 1.5 commercial-grade AI music generation + character animation on Ryzen AI Max + Radeon. Not pose estimation directly but relevant for character animation pipelines.
+- **Higgsfield similarity-scoring tool** (PR Newswire, Mar 13): Responsible AI tool for generated content similarity scoring — detects IP conflicts. Useful for production deployment safety.
+- **Hoi3DGen** (2603.12126): Re-confirmed from run 138. SMPL human-object interaction mesh generation from text. No ComfyUI node yet.
+- **RTMPose + DWPose**: No new checkpoints. Status stable. Best accuracy/speed tradeoff in ComfyUI remains RTMPose (per ROBUST-MIPS benchmark).
+
+### 🎓 LoRA Training — March 14 2026 (18:02 sweep)
+- **Async-RL LoRA** (HuggingFace blog, Mar 2026): peft/unsloth/trl for VLM caption fine-tuning. Relevant for automated dataset captioning pipelines (pre-training step). Supports Qwen-VL, LLaVA, InternVL.
+- **Flux.2 Klein 4B Consistency LoRA** (lrzjason, Mar 14): See image/ComfyUI sections. Editing-specific LoRA, not character training but technique applicable.
+- **SimpleTuner**: No new release. LTX-2.3 video LoRA support being tracked in GitHub issues; not merged yet.
+- **LTX-2.3 single-GPU video LoRA**: ArtCompute/community posts suggest LTX-2 I2V is approachable for < 1-week training on single GPU. Hao AI Lab optimized pipeline: 4.55s for 5s 1080p video on 1 GPU — confirms feasibility of video LoRA iteration.
+- **No new Kohya SS / AI-Toolkit release** this run. AI-Toolkit DGX Spark bf16 compatibility confirmed (run 137). Primary FLUX LoRA toolchain unchanged.
+- **GTC 2026 (Mon)**: DGX Spark announced for consumers ($3000 range). bf16 local FLUX training on desktop-class hardware — could be a major LoRA training accessibility shift if confirmed Monday.
+
 ## 🏁 Run #138 Delta — 2026-03-14 17:30 Prague
 
 ### 🖼️ Image Gen — March 14 2026 (even sweep)
