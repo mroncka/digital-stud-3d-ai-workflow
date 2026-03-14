@@ -1,4 +1,49 @@
-<!-- last_updated: 2026-03-14T18:02:42+01:00 run_139 -->
+<!-- last_updated: 2026-03-14T18:30:01+01:00 run_140 -->
+## 🏁 Run #140 Delta — 2026-03-14 18:30 Prague
+
+### 🖼️ Image Gen — March 14 2026 (18:30 sweep)
+- **No new image model drops** in this 30-min window (18:00–18:30). Quiet pre-GTC Saturday evening.
+- **Stable Diffusion 4 Ultra confirmed** (Stability AI, ~Mar 8 2026): Photorealism improvements, upgraded DiT architecture, open weights maintained. Listed in community tool stacks as production-ready.
+- **Reve Image V1.1 Fast** (Reve AI, released ~Mar 11): Fast inference variant of Reve Image 1.5. Listed on theresanaiforthat and Prompt-Llama alongside full 1.5. Complements 4K native creation capability.
+- **Seedream 5.0 Lite** (Flux AI, Mar 2026): Lighter variant of Seedream 5.0 image gen model with faster inference and comparable quality to full model. Practical guide published on flux-ai.io.
+- **Nano Banana 2 pricing confirmed** (fal.ai): 0.5K=$0.06, 1K=$0.08 (default), 2K=$0.12. Google says NB2 delivers ~95% of NB Pro capability at ~50% cost. Practical guide published on fal.ai.
+- **NVIDIA GTC 2026** (March 16–19, San Jose): Major expected announcements for AI image/video gen infrastructure. Vera Rubin GPU, custom AI accelerators, DGX Spark consumer launch, agentic AI. Pipeline significance: RTX + NVFP4 optimizations for local inference.
+- **arXiv cs.CV/GR Mar 13** (latest weekend batch, 151 papers): No dedicated image-gen model paper found. Key adjacent: arXiv 2603.11573 (High-Contrast Projection Mapping, light field).
+- **GDC 2026 generative AI** (Mar 13–14, San Francisco): Gaming-focused AI session highlights "inevitable" generative AI integration in game pipelines. No direct image-gen model drops but workflow relevance for 3D asset generation.
+
+### 🎬 Video Gen — March 14 2026 (18:30 sweep)
+- **🆕 Helios (ByteDance, Mar 2026)**: Real-time long video generation model. GitHub: `PKU-YuanGroup/Helios`. Achieves minute-scale high-quality video generation in real-time. SGLang-Diffusion inference backend for unified image+video pipeline. No ComfyUI node yet.
+- **🆕 Video2LoRA** (arXiv 2603.08210): Scalable semantic-controlled video generation conditioned on reference video. Framework for per-frame LoRA adapters trained from reference video. Key for Digital-Stud character consistency workflows.
+- **Veo 3.1 community reaction** (post-launch sweep): Mashable, The Decoder, and community confirming: Veo 3.1 > Sora 2 in direct quality comparisons. Richer audio + narrative comprehension gap vs competitors. Google AI Pro subscription required ($19.99/mo tier).
+- **LTX-2.3 community breakdown** (r/StableDiffusion new, Mar 14): "Image-to-video is broken, LoRA training is broken, control videos are broken. Only T2V currently production-viable." Community frustration growing. Lightricks blog post on ltx.io confirms: "Production-Ready Engine. Designed to Be Built On." — PR vs reality gap.
+- **LTX-2.3 IC-LoRA colorizer** (Doctor Diffusion via ArtCompute, ~Mar 14): First practical IC-LoRA for LTX 2.3 — ~6 GPU hours to train. ArtCompute microgrants (5–50 GPU hours, auto-approved). Useful for custom style training.
+- **Wan 2.2 Spicy I2V LoRA** confirmed in production (multiple posts): ComfyUI + GGUF Q6 workflow on RunPod. Achieves fast high-motion generation. No Wan 2.7 yet.
+- **Sora 2 API** (AtlasCloud, Mar 2026): Full Sora 2 API now available via Atlas Cloud. Python examples published. Priced per-second of generated video. Integration path for non-ChatGPT deployments.
+
+### 🔧 ComfyUI — March 14 2026 (18:30 sweep)
+- **🆕 Inferencing improvement nodes batch** (Reddit r/StableDiffusion 1rt0pta, Mar 14): Community dev released "many new inferencing improvement nodes" for noise reduction, sharpness, and anti-blur for video models. Specifically targets LTX-2.3 and HunyuanVideo quality issues.
+- **Comfy Cloud beta exit confirmed**: ~90% of local custom nodes available in cloud. No local install. Sign of ecosystem maturation.
+- **ComfyUI AI influencer workflow** (Instagram post, Mar 2026): Custom ComfyUI workflow with LoRA training + Wan 2.2 for AI influencer content pipelines — directly relevant for Digital-Stud character pipeline.
+- **ComfyUI Dell Pro Precision** (TikTok @cadis_ai): Image re-styling workflow running on Dell Pro Precision — demonstrates enterprise local deployment path.
+- **GDC 2026 NVIDIA session**: Project Helix (Xbox) + NVIDIA GTC ComfyUI App View confirmed for upcoming week. RTX Video Super Resolution + NVFP4 for LTX-2.3 in-dev.
+
+### 🧍 Pose Estimation — March 14 2026 (18:30 sweep)
+- **🆕 Speed3R** (Visual-AI, arXiv 2603.08055, Mar 9 2026): Sparse feed-forward 3D reconstruction. 12.4x speedup on 1000-view 3D reconstruction via dual-branch sparse attention. Works with VGGT + π³ backbones. HuggingFace: `weining17/Speed3R_Pi3`. License: BSD 3-Clause (code) + CC BY-NC 4.0 (weights). Key for multi-view character capture pipelines.
+- **🆕 RuView WiFi DensePose** (ruvnet/RuView, GitHub, 30k+ stars, v1.0.0 Mar 1): WiFi CSI-based human pose estimation. No camera needed. 17-keypoint skeleton, through-wall sensing up to 5m. AETHER contrastive embedding model, 54,000 fps processing via Rust WASM. Hardware: ESP32-S3 ~$8/node. Novel modality for privacy-preserving motion capture.
+- **GGPT: Geometry-Grounded Point Transformer** (Mar 2026): 3D reconstruction with explicit geometric consistency. Combines feed-forward dense point maps + sparse SfM guidance. Global 3D coordinate space (not 2D projection). Better multi-view consistency vs SOTA.
+- **DogWeave** (Mar 2026): Single-image 3D mesh reconstruction using SDF + ControlNet for normal fusion. Technique applicable to human body mesh pipelines.
+- **DWPose / RTMPose**: No new checkpoint releases this weekend. Best accuracy/speed tradeoff in ComfyUI remains RTMPose.
+- **arXiv pose batch (Mar 13, 151 papers)**: No dedicated pose-only SOTA paper found in this batch. 4D pose + shape papers in CVPR 2026 submissions expected next month.
+
+### 🎓 LoRA Training — March 14 2026 (18:30 sweep)
+- **🆕 VIVECaption** (Adobe, arXiv 2603.07401, Mar 2026): Split approach to caption quality improvement for T2I/T2V training data. Structured captioning methodology, character detection finetuning, metric taxonomy for caption evaluation. Key for Digital-Stud dataset prep pipeline before character LoRA training.
+- **🆕 Video2LoRA** (arXiv 2603.08210, Mar 2026): Framework for per-video LoRA adapters enabling semantic-controlled video generation. Generalizable across video architectures. Key for reference-video-conditioned character consistency.
+- **Flux.2 Klein 4B Consistency LoRA** (lrzjason, Reddit 1rt0pta / 1rtkrwp, Mar 14): Re-confirmed active community traction. HF: `lrzjason/Consistance_Edit_Lora`. Editing LoRA technique directly applicable to character image editing pipelines.
+- **DGX Spark bf16 training confirmed** (NVIDIA forums + Micro Center, Mar 13): 128GB LPDDR5x unified RAM, 20-core Arm. Bf16 LoRA fine-tuning of Qwen3.5-35B without quantization confirmed. Consumer launch expected GTC week (Mar 16). Pricing ~$3,000. Major local training accessibility shift.
+- **Wan 2.1 LoRA serverless** (Medium, Mar 2026): Serverless deployment of Wan 2.1 LoRA via RunPod. Complete workflow: train → deploy → infer. Directly applicable for Digital-Stud video character consistency.
+- **No AI-Toolkit / SimpleTuner releases** this weekend. Confirmed: SimpleTuner LTX video LoRA PR not yet merged. Ostris AI-Toolkit last commit pre-weekend.
+- **FedMomentum** (arXiv 2603.08014): LoRA fine-tuning in federated settings via momentum-aware SVD. Academic — not directly applicable to single-GPU pipeline but interesting for distributed training research.
+
 ## 🏁 Run #139 Delta — 2026-03-14 18:02 Prague
 
 ### 🖼️ Image Gen — March 14 2026 (18:02 sweep)
