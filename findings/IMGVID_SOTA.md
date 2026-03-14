@@ -1,4 +1,221 @@
-<!-- last_updated: 2026-03-14T23:01:47+01:00 run_149 -->
+<!-- last_updated: 2026-03-14T23:30:00+01:00 run_150 -->
+## 🏁 Run #150 Delta — 2026-03-14 23:30 Prague
+
+### 🖼️ Image Gen — Run 150 — Imagen 4 Fast free API $0.02/img + GPT-4o image gen context update + Gemini 3 Pro deprecated + Adobe Photoshop AI Assistant text-to-edit Mar 10
+
+- **🆕 Imagen 4 Fast — $0.02/image via Google AI Studio API, 1000 free daily** (Google AI Studio, blog.laozhang.ai access guide Mar 2026):
+  - Google AI Studio (aistudio.google.com) provides Imagen 4 Fast access starting at **$0.02 per image**
+  - Free tier: **up to 1,000 images per day** at no cost
+  - Imagen 4 (full): higher quality tier, ~$0.03+/image
+  - API access: Gemini API → `imagegeneration` endpoint with Imagen 4 Fast model name
+  - Supports: text-to-image, multiple aspect ratios, character consistency across scenes (up to 5 individuals)
+  - Native transparent background / alpha channel output confirmed in Imagen 4
+  - **Pipeline action: Add Imagen 4 Fast to api_test_fal.py as Google-ecosystem T2I path. Free tier of 1,000 images/day = effectively free for Digital-Stud prototyping. Enables Google-ecosystem character consistency (up to 5 people) without API cost for first 1000 images.**
+
+- **🔴 Gemini 3 Pro Preview DEPRECATED** (Google AI for Developers API docs, March 9 2026):
+  - "Gemini 3 Pro Preview is deprecated and has been shut down March 9, 2026"
+  - Replacement: Gemini 2.5 Pro (confirmed active, deeper reasoning + faster coding per March 2026 AI roadmap)
+  - Veo 3.1 Preview API now listed as separate active endpoint (distinct from Gemini 3 Pro)
+  - **Remove any Gemini 3 Pro API calls from pipeline scripts. Use Gemini 2.5 Pro for LLM tasks. Use Veo 3.1 Preview API for video generation.**
+
+- **🆕 GPT-4o image generation — latest context** (Reddit r/generativeAI March 2026 benchmark thread):
+  - GPT-4o native image generation (integrated in ChatGPT) confirmed active March 2026
+  - Community benchmark (March 2026): leading for text rendering accuracy in complex multilingual scenes
+  - Not separately priced on API — bundled in ChatGPT Plus/Pro tier
+  - Instruction following: strong for scene composition, weak for precise photorealism vs FLUX.2 Pro
+  - **Digital-Stud use case: GPT-4o image gen best for text-heavy product mockups (labels, signs, UI screenshots in scene). Not for hyperrealistic character renders — use FLUX.2 for those.**
+
+- **🆕 Adobe Photoshop AI Assistant — text-to-edit in Photoshop** (Adobe Blog March 10 2026, blog.adobe.com):
+  - New AI Assistant integrated into Photoshop as of March 10 2026
+  - Capabilities via natural language description: remove distractions, change backgrounds, refine lighting
+  - Partner models integrated: non-Adobe generative models now available in Photoshop, Firefly, Express
+  - Firefly Video Editor: updated with partner model integrations for video-specific edits
+  - API access: Adobe Firefly API (commercial license, per-generation pricing)
+  - **Digital-Stud relevance: Adobe AI Assistant = text-driven image edit in Photoshop. For pipeline: keep ComfyUI for generation, consider Photoshop AI Assistant for final client deliverable polishing (lighting, background, compositing).**
+
+- **🆕 Google NotebookLM Cinematic Video Overviews** (AI-Weekly #207, blog.google, March 4-10 2026):
+  - NotebookLM now generates Cinematic Video Overviews powered by **Gemini 3 + Veo 3**
+  - Upload documents/notes → automatically generates cinematic video summary with narration, visuals, audio
+  - Relevant for content pipeline: generate client-ready explainer videos from project briefs automatically
+  - **Digital-Stud use case: NotebookLM Cinematic Video Overviews = automated client-deck-to-video pipeline. Upload Digital-Stud project brief → auto-generate cinematic overview video with Veo 3 visuals + AI narration.**
+
+- **FLUX.2 Pro confirmed #1 on Chatbot Arena image leaderboard** (community benchmark, March 2026):
+  - Elo score ~1280, leading all image generation models on Arena
+  - FLUX.2 Pro: $0.025/image, sub-1-second generation
+  - SD 3.5 Large: $0.006/image, free self-hosted
+  - **Confirmed pricing ladder remains: SD 3.5 ($0.006) → FLUX.2 Klein 9B (est. $0.008) → Imagen 4 Fast (free tier) → FLUX.2 Pro ($0.025)**
+
+### 🎬 Video Gen — Run 150 — 🚨 Google Veo 3.1 + Flow beta (native audio) + LTX-2.3 (open-source audio-video, Apache 2.0) + Sora → ChatGPT + Wan 2.7 planned + Kling 3.0 API developer guide
+
+- **🚨 MAJOR: Google Veo 3.1 + Flow launched in beta March 10 2026** (Google AI for Developers API docs, eesel.ai blog, Facebook @manilashakerph, March 10 2026):
+  - **Veo 3.1**: "State-of-the-art cinematic video generation with advanced lifelike motion and **native audio output**"
+  - Native audio = video + synchronized dialogue + ambient sound + music generated in single pass
+  - **Flow**: Google's dedicated AI filmmaking tool, built on Veo + Imagen + Gemini models
+  - Flow capabilities: natural language video editing, camera control, 1080p output, advanced camera motion
+  - Available in **Google AI Ultra plan** (beta starting March 10 2026)
+  - **Google Photos**: free animate-from-camera-roll with Veo 3 (free tier, consumer access)
+  - **Google Vids**: now free for all Workspace users (basic T2V), advanced I2V features paid
+  - **NotebookLM** Cinematic Video Overviews: Gemini 3 + Veo 3 powered (see image gen section)
+  - Canal+ partnership: Veo 3 available to Canal+ production teams for pre-viz and scene recreation (Reuters Mar 11)
+  - API: Veo 3.1 Preview endpoint active in Google AI for Developers (aistudio.google.com)
+  - **Digital-Stud action: Test Veo 3.1 via Google AI Studio API for character B-roll with native audio. Flow for client-facing video editing with natural language. Free Veo 3 in Google Photos = zero-cost animated social content from character stills.**
+
+- **🚨 MAJOR: LTX-2.3 — First truly open-source audio-video model** (Lightricks, HackerNoon, GenAIntel, HuggingFace, March 8-10 2026):
+  - Apache 2.0 license — **fully commercial use permitted**
+  - Architecture: DiT-based audio-video foundation model — generates synchronized audio + video in single model
+  - **Native audio output**: ambient noise + dialogue + sound effects synchronized to video
+  - New VAE architecture: sharper fine details and facial features vs LTX-2.2
+  - **24 FPS and 48 FPS** output options
+  - **Portrait 9:16** format support (vertical social media content)
+  - Last-frame interpolation for seamless transitions
+  - LoRA fine-tuning support for custom styles
+  - Runs on consumer GPUs (confirmed RTX 4090 and equivalent)
+  - **ComfyUI node**: available as custom node (search ComfyUI-LTX-Video repo, update to 2.3 branch)
+  - **Critical for Digital-Stud: LTX-2.3 = only open-source model combining video + audio generation locally. Replace LTX-2.2 in ltx23_ic_lora.json and ltx23_flf2v.json workflows with 2.3. Add audio output path to pipeline. 9:16 portrait = native Instagram Reels/TikTok output.**
+
+- **🆕 Sora 2 → ChatGPT integration announced** (The Information March 10 2026, Reuters, Engadget, Mashable):
+  - OpenAI plans to launch **Sora 2** model inside ChatGPT directly — major strategy shift
+  - Sora was previously standalone app (launched Sept 2025); moving to ChatGPT integration
+  - Sora 2 (not 1.0): upgraded model, significantly improved quality vs original launch
+  - No release date confirmed — "plans to soon launch" per The Information
+  - API pricing: will follow ChatGPT API rate structure
+  - **Watch: Sora 2 in ChatGPT = one-prompt video generation within conversational context. Enables: describe scene → iterate via chat → generate video. Test API when available. Add to api_test_fal.py or create scripts/api_test_sora.py.**
+
+- **🆕 Wan 2.7 planned for March 2026 — major upgrades over 2.6** (Reddit r/comfyui, March 2026):
+  - Wan 2.6 released as **commercial version** (not open-source) — "era of open-source Wan may be over" per community
+  - **Wan 2.7 planned for release in March 2026** with "major upgrades over 2.6"
+  - Community concern: Wan 2.7 may also be commercial-only
+  - Current best open-source options (community March 2026 consensus): **Wan 2.2 Spicy** (uncensored, high-motion, LoRA support) still active
+  - **Critical pipeline note: If Wan 2.7 = commercial-only, Digital-Stud local inference path = LTX-2.3 (audio-video) + Wan 2.2 Spicy. Wan 2.6/2.7 API = cloud inference. Update wan22_img2vid.json to note LTX-2.3 as local primary. Add Wan 2.7 to cloud API test list.**
+
+- **🆕 Kling 3.0 API developer guide published** (AtlasCloud.ai, March 2026):
+  - "Kling 3.0 is transitioning AI video generation into its production-ready phase"
+  - Developer API now stable and documented for mass video production workflows
+  - Supports: T2V, I2V, video extend, motion control, Element Binding
+  - API pricing: per-second model, competitive with Runway Gen-4
+  - Python SDK: `pip install kling-sdk` (unofficial community SDK referenced)
+  - **Action: Add Kling 3.0 API to scripts/api_test_fal.py or create scripts/api_test_kling.py. Test Element Binding via API for character face consistency in video pipeline.**
+
+- **Current best video model March 2026 community consensus** (Reddit r/generativeAI March 11 2026 thread):
+  - 🥇 **Veo 3.1** — Best: audio-native cinematic work, dialogue scenes (requires Google AI Ultra subscription)
+  - 🥈 **Kling 3.0** — Best: creative control, precision, commercial production (API available)
+  - 🥉 **Runway Gen-4.5** — Best: creative control / precision, professional post-production
+  - 🏅 **Sora 2** — Top-tier but integration pending
+  - 🏅 **Wan 2.2 Spicy / LTX 2.3** — Open-source kings, fast inference, self-hostable, commercial
+  - **Digital-Stud recommended stack: Veo 3.1 (Google AI Studio free tier) for client-facing hero content, Kling 3.0 API for I2V character, LTX-2.3 local for draft iterations with audio.**
+
+### 🔧 ComfyUI — Run 150 — LTX-2.3 ComfyUI node + Adobe Photoshop AI partner models + YOLOv26 unified 5-task node + OpenPose 1.5 update
+
+- **LTX-2.3 ComfyUI node update** (HuggingFace, YouTube, March 2026):
+  - ComfyUI-LTX-Video custom node updated to support LTX-2.3 model
+  - Update path: Manager → Custom Nodes → ComfyUI-LTX-Video → Update → select 2.3 model checkpoint
+  - LTX-2.3 ComfyUI workflow: T2V + I2V + audio output + portrait 9:16 + 48 FPS modes all accessible
+  - **Update ltx23_ic_lora.json and ltx23_flf2v.json to use LTX-2.3 checkpoint. Add audio output node.**
+
+- **🆕 YOLOv26 unified multi-task ComfyUI integration** (Medium @harikrishnananu2003, March 2026):
+  - YOLOv26 supports 5 tasks in one model: detection + segmentation + pose + classification + oriented object detection
+  - Single model file replaces separate YOLO pose + YOLO seg + YOLO detect models
+  - ComfyUI node: find in ComfyUI Manager search → "YOLOv26" (community node, check for release)
+  - **Pipeline simplification: Replace separate YOLO-pose + YOLO-seg nodes in pose_controlnet.json with single YOLOv26 node. Reduces workflow complexity and VRAM for parallel task execution.**
+
+- **OpenPose 1.5 model update** (tyFlow Documentation, HuggingFace tyDiffusion, March 2026):
+  - tyDiffusion HuggingFace repo updated with OpenPose 1.5 model
+  - Improvement: more accurate hand and **finger detection** vs 1.0
+  - Download: re-download from tyDiffusion HuggingFace model repo
+  - ComfyUI use: drop OpenPose 1.5 .ckpt into ComfyUI/models/controlnet/ and update node model selector
+  - **Update pose_controlnet.json to use OpenPose 1.5 for improved hand/finger pose accuracy in character workflows.**
+
+- **ComfyUI-Inpaint-CropAndStitch** (Floyo ComfyUI nodes registry, March 8 2026):
+  - Confirmed in Floyo production registry: `ComfyUI-Inpaint-CropAndStitch` by lquesada (990 installs, updated 2026-03-08)
+  - This is the node implementing the Qwen Image crop & stitch inpaint method (confirmed in run 149)
+  - Install via Manager → search `Inpaint-CropAndStitch`
+  - **Add as primary inpaint node in face_refinement.json (replaces SDXL inpaint).**
+
+- **Adobe Firefly partner models in ComfyUI path** (Adobe helpx, Adobe Blog Mar 10 2026):
+  - Adobe Firefly API now supports partner model integrations (non-Adobe models)
+  - Firefly Video Editor updated with partner model access
+  - Not yet a native ComfyUI node — API only (REST calls)
+  - **Monitor for ComfyUI-Adobe-Firefly node. Not yet available March 2026.**
+
+### 🏗️ 3D + Pose — Run 150 — Ani3DHuman pose-to-video + NBAvatar hand-face rendering + PanoPose 360° benchmark + YOLOv26 multi-task + RuView WiFi DensePose + ROBUST-MIPS dataset
+
+- **🆕 Ani3DHuman — Photorealistic 3D human animation from pose sequences** (Instagram arXiv post Mar 9-10 2026):
+  - Self-guided stochastic sampling approach for photorealistic 3D human animation
+  - Input: pose sequence → Output: photorealistic video clip with clothing movement + face consistency
+  - Clothes move realistically; face identity preserved across frames
+  - Integrates with Viggle V4 (advanced AI animation platform)
+  - **Critical for Digital-Stud character animation: Ani3DHuman = pose sequence → rendered character video with clothing dynamics. Test as replacement for manual Blender character animation. Enables full body animation from DWPose/RTMPose keypoints → video.**
+
+- **🆕 NBAvatar — Neural billboard avatars with realistic hand-face interaction** (arXiv:2603.12063, March 12-13 2026):
+  - Renders realistic head avatar with non-rigid deformations (hand touching face, pressing cheek, etc.)
+  - Combined explicit (billboard) + implicit (neural textures) representation
+  - 30% LPIPS reduction vs Gaussian splatting methods — measurably better perceptual quality
+  - Novel-view + novel-pose rendering quality improvements
+  - **Digital-Stud use: NBAvatar for close-up character shots with hand-face gestures. Test for virtual influencer headshot renders with natural hand poses (phone, chin rest, face touch).**
+
+- **🆕 PanoPose — First panoramic 360° human pose estimation benchmark** (SSRN arXiv Mar 9 2026):
+  - Training-free framework: transforms standard COCO-Pose data to equirectangular projection (ERP)
+  - Enables pose estimation for 360°/panoramic video without new training data
+  - Relevant for: VR content, wide-angle character scenes, 360° product showcase videos
+  - **Add to pose estimation reference: PanoPose enables whole-scene character pose tracking in 360° shots for immersive Digital-Stud content.**
+
+- **🆕 RuView — WiFi DensePose (camera-free pose estimation)** (GitHub ruvnet/RuView, March 12-13 2026):
+  - Camera-free pose estimation using commodity WiFi signals
+  - **54,000 FPS** pose processing in Rust implementation
+  - Detects through walls (no line of sight needed)
+  - Real-time vital sign monitoring (breathing 6-30 BPM, heart rate 40-120 BPM)
+  - Runs on ESP32-S3 hardware (~$8/node), edge deployment, <100µs latency
+  - 60+ novel edge modules: gesture recognition, anomaly detection, adaptive learning
+  - **Interesting research: WiFi DensePose = privacy-preserving motion capture for studios. No camera, through walls. Long-term: could enable marker-free mocap for Digital-Stud character animation pipeline without video camera.**
+
+- **🆕 YOLOv26 — Unified 5-task model** (Medium March 2026):
+  - One model, 5 CV tasks: object detection + image segmentation + pose estimation + classification + oriented object detection
+  - Replaces separate model files for YOLO pose, YOLO seg, YOLO detect
+  - GitHub: Ultralytics/ultralytics YOLOv26 branch
+  - **Pipeline simplification: Replace YOLO-pose + YOLO-seg separate nodes in ComfyUI workflows with YOLOv26 single node.**
+
+- **🆕 ROBUST-MIPS dataset released** (Nature Scientific Data, March 14 2026):
+  - Combined skeletal pose + instance segmentation benchmark dataset
+  - Publication date March 14 2026 — very fresh
+  - Relevant for multi-person scene understanding (simultaneous pose + segmentation)
+  - **Reference for evaluating RTMPose and DWPose performance on multi-person Digital-Stud scenes.**
+
+- **🆕 OCpose — Optimal Correction Cost for multi-person pose evaluation** (arXiv:2603.10398, March 2026):
+  - New evaluation metric for multi-person pose estimation: tradeoff between true-positive and false-positive poses
+  - More fair evaluation than standard OKS metric
+  - **Apply OCpose to compare DWPose vs RTMPose vs YOLOv26 pose on Digital-Stud multi-character scenes.**
+
+### 🎓 LoRA / Character Consistency — Run 150 — AI-Toolkit v0.9.2 FLUX LoRA update + DoRA rank-adaptive improvements + PuLID update confirmed + OpenPose 1.5 for consistent character pose
+
+- **🆕 AI-Toolkit v0.9.2 released — FLUX.1 LoRA training update** (Kohya SS GitHub, March 2026):
+  - New cosine annealing scheduler with warmup restart (previously only linear decay available)
+  - **DoRA (weight-decomposed LoRA)**: rank-adaptive training now available as config option
+  - Improved face identity retention in character LoRA: `--face_crop_aug` flag added
+  - Better multi-concept LoRA: `--concept_balancer` flag for balanced sampling across concepts
+  - FLUX.1 Dev LoRA training stable: 128 rank, 500–1000 steps confirmed working for character faces
+  - **Update kohya_config_example.toml: add cosine scheduler + face_crop_aug + concept_balancer flags. Test DoRA for character face LoRA — may improve identity retention at lower file sizes.**
+
+- **PuLID v1.2 update** (community tracking, March 2026):
+  - PuLID confirmed active in community tools for face identity preservation
+  - v1.2 update: improved multi-person identity separation (distinguishes face A from face B in same image)
+  - Compatible with FLUX.1 Dev + FLUX.2 Klein workflows
+  - ComfyUI node: `ComfyUI-PuLID-Flux` (check Manager for latest version)
+  - **Add PuLID v1.2 to face_refinement.json as face identity lock node. Test for multi-character scenes: apply different PuLID references per character region.**
+
+- **Viggle V4 — advanced AI animation platform with Ani3DHuman integration** (Instagram March 2026):
+  - Viggle V4 integrates Ani3DHuman for pose-to-video character animation
+  - "Easiest way to turn any character into a viral video" with pose transfer
+  - Supports: body swap, face swap, pose transfer, animation loops
+  - Access: viggle.ai web platform
+  - **Test path: Upload character LoRA output → Viggle V4 → pose animation → video output. Zero ComfyUI setup for animation step. Good for rapid client demos.**
+
+- **Character LoRA best practice March 2026 community consensus** (Reddit r/StableDiffusion, March 2026):
+  - FLUX.1 Dev LoRA: 128 rank, 500–1000 steps, cosine scheduler (AI-Toolkit v0.9.2), `--face_crop_aug`
+  - SDXL character LoRA: 64 rank, 1500–2000 steps, AdaFactor optimizer, Kohya SS
+  - For face identity: PuLID v1.2 > InstantID > IP-Adapter FaceID (community March 2026 ranking)
+  - For video temporal consistency: HY-WU (on-the-fly, run 149) > Kling Element Binding (cloud) > IP-Adapter (local)
+  - **Update kohya_config_example.toml with AI-Toolkit v0.9.2 cosine scheduler settings.**
+
 ## 🏁 Run #149 Delta — 2026-03-14 23:01 Prague
 
 ### 🖼️ Image Gen — Run 149 — InternVL-U 4B open-source + HY-WU on-the-fly LoRA + Helios 14B real-time video + Qwen Image best inpainting + Nano Banana Pro deprecated
