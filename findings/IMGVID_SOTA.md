@@ -1,3 +1,66 @@
+<!-- last_updated: 2026-03-14T04:30:19+01:00 run_111 -->
+## 🏁 Run #111 Delta — 2026-03-14 04:30 Prague
+
+### 🖼️ Image Gen — FLUX.2 Kontext Mar 13 I2I breakthrough + Any-Pose Portrait ComfyUI workflow + Seedream 5.0 on Replicate + GenEditEvalKit
+- **FLUX.2 Kontext confirmed** (Black Forest Labs, active March 2026): FLUX 2 Pro with dedicated "Kontext" editing mode — the most-discussed AI photo editing capability right now. Instruction-following image-to-image at 32B params. Available on Replicate and fal.ai. Key upgrade from FLUX.1 Kontext: better subject preservation, precise spatial edits, multi-reference consistency.
+- **Any-Pose Portrait Editing ComfyUI workflow published** (myaiforce.com, March 2026): Full workflow — 3D character pose → transfer via Qwen Edit → face fix → 4K upscale via Flux.2 Klein. Confirms production-ready pose-to-portrait pipeline. Direct Digital-Stud use case for character pose composition.
+- **Seedream 5.0 on Replicate** (Feb 24, 2026, confirmed active): Multi-step reasoning, example-based editing, deep domain knowledge, superior Chinese text rendering. Accessible via Replicate API. Better than Nano Banana 2 for design/commercial text-heavy compositions. Free-tier accessible.
+- **GenEditEvalKit** (OpenGVLab, Mar 6 2026): Unified evaluation benchmark for multimodal image generation and editing. Enables systematic comparison of edit quality across models. Useful for Digital-Stud quality benchmarking pipeline.
+- **STOIQO NewReality Mar 3 2026** (PromptHero): Multi-model support FLUX, SD, XL, Lightning variants. All in one CivitAI checkpoint. Solid all-rounder for style variety testing.
+- **Z-Image-Turbo ControlNet updated** (Alibaba PAI, Mar 2026): Now includes Inpaint capability. "New version of ControlNet for ZIT" — adds inpainting to the Z-Image ControlNet ecosystem. Relevant for Digital-Stud scene inpaint editing.
+- **Best inpainting Mar 2026 community consensus** (r/StableDiffusion): Z-Image Turbo ControlNet inpaint + Qwen Image Inpainting ControlNet (HuggingFace Spaces trending). Two confirmed strong inpaint options for March 2026.
+- **Open Higgsfield AI** (MIT self-hosted): Confirmed again — 200+ models, cinema controls, 14-ref multi-image studio. Strongest free self-hosted multi-model platform as of March 2026.
+
+### 🎬 Video Gen — ComfyUI v0.17.0 Topaz API nodes + WildActor identity-preserving video + Helios-Distilled + DreamActor V2 multi-character
+- **ComfyUI v0.17.0 Mar 13 Topaz API Nodes** (docs.comfy.org): Official Topaz video enhancement integrated directly into ComfyUI. Enables video upscaling/enhancement as a native workflow node — no external Topaz app needed. Key upgrade for Digital-Stud output quality pipeline.
+- **WildActor (arXiv 2603.00586)**: Identity-preserving video generation for unconstrained scenarios. Uses DWPose for pose filtering "golden videos" selection. Addresses key challenge: maintaining character identity across diverse motion. Highly relevant for consistent character video generation.
+- **ByteDance DreamActor V2** (WaveSpeedAI confirmed API Mar 2026): Motion transfer from driving video to character image. Multi-character support. Non-human character support. Best-in-class motion retargeting API for Digital-Stud scene animation.
+- **Helios-Distilled 3-step on consumer GPU** (HuggingFace, confirmed): 14B real-time long video at 19.5FPS on H100. Distilled 3-step variant on consumer GPU. Day-0 Diffusers support. Training code open. Best open-source efficiency for long video generation.
+- **LTX-2.3 skin/texture artifact fix** (r/StableDiffusion "How I fixed skin compression"): Community-confirmed fix for muddy textures in LTX-2.3 ComfyUI. Important for Digital-Stud character video quality. Reference thread saved.
+- **Wan 2.2 audio-driven I2V** (docs.comfy.org confirmed): Image + audio → synchronized video. GGUF Q6 quantized model confirmed for reduced generation time. Standard for audio-driven scene video.
+- **Controllable Complex Human Motion video (arXiv 2603.08028)**: Pose-conditioned video generation — 2D skeleton, depth, optical flow as structural signals. New T2V framework for complex motion beyond simple pose conditioning. Potentially useful for Digital-Stud choreographed scenes.
+
+### 🛠️ ComfyUI — v0.17.0 full changelog Mar 13 + Reve Image API + Flux2 KV Cache node + V3 schema migration
+- **ComfyUI v0.17.0 Mar 13 2026 changelog** (docs.comfy.org): 
+  - Painter Node added for enhanced image editing
+  - **Reve Image API Nodes** — expanded image processing
+  - **Topaz API Nodes** — video upscaling/enhancement
+  - **FluxKVCache node** — Flux.2 Klein KV cache model support (speeds up inference)
+  - Modular asset architecture with async two-phase scanner
+  - Enhanced dynamic VRAM handling + better error management
+  - KV cache memory optimization improvements
+- **ComfyUI v0.16.4 Mar 7 2026**:
+  - Math Expression Node (simpleeval)
+  - TencentSmartTopology API Node
+  - Gemini 3.1 Flash-Lite added to LLM nodes
+  - Fixed fp16 audio encoder, Text Encoder CPU + dynamic VRAM issues
+- **V3 schema migration** (core nodes): Minimax API, Cosmos, conditioning, CFG, Canny nodes all migrated to V3 schema. Potential breaking change for older custom workflows.
+- **ComfyUI-Manager v4.1b2**: New Manager UI exclusively installs from Comfy Node Registry. Third-party channel support via PR (private registry). Known broken nodes: ComfyUI-TeaCache, ComfyUI-MagCache (Jan 2026 breakage).
+- **ComfyUI App Mode shareable URLs**: Apps package full workflow + interface in URL. Non-technical users run via browser on Comfy Cloud. Free tier includes RTX Pro 6000 GPUs. ComfyHub marketplace live.
+- **Any-Pose workflow** (myaiforce.com): 3D char → DWPose → Qwen Edit → face fix → Flux 2 Klein 4K. Complete pose-to-portrait production chain. Direct integration reference for Digital-Stud pose pipeline.
+
+### 🕺 Pose Estimation — HTP diffusion 3D HPE 81% speedup + WildActor DWPose filtering + Any-Pose ComfyUI chain + Ani3DHuman SMPL-X
+- **HTP (Hierarchical Temporal Pruning) — arXiv 2508.21363v3, updated Mar 7 2026**: 
+  - Diffusion-based 3D HPE with 38.5% MACs reduction, 56.8% inference MACs reduction, **81.1% faster inference**
+  - SOTA on Human3.6M and MPI-INF-3DHP
+  - Three innovations: TCEP (temporal correlation pruning), SFT MHSA (sparse-focused attention), MGPTP (mask-guided token pruner)
+  - First paper to combine diffusion-based quality with real-time efficiency. Key reference for Digital-Stud 3D pose pipeline upgrade.
+- **WildActor DWPose "Golden Video" filtering** (arXiv 2603.00586): Runs DWPose on all raw videos → filters by head and body orientation angles → selects "golden" training videos with optimal pose visibility. Systematic pose quality filtering methodology — applicable to Digital-Stud training data curation.
+- **Any-Pose ComfyUI chain confirmed** (myaiforce.com Mar 2026): 3D character → DWPose extraction → Qwen Edit pose transfer → face refinement → Flux.2 Klein 4K upscale. End-to-end production workflow documented. No new custom node required.
+- **Ani3DHuman (arXiv 2602.19089, Feb 2026)**: Photorealistic 3D human animation via layered motion (SMPL-X mesh + Hexplane residual field) + self-guided stochastic sampling. Solves identity loss in diffusion-based animation. Code publicly available. SMPL-X integration with non-rigid dynamics (clothing, hair) superior to skeleton-only approaches.
+- **DWPose continued standard**: EchoMimicV2, WildActor, Any-Pose all use DWPose for skeleton extraction. OpenPose deprecated in all March 2026 workflows. DWPose + RTMPose combination remains optimal.
+- **OA-NBV (arXiv 2603.11072, Mar 10 2026)**: Occlusion-Aware Next-Best-View planning uses RTMPose for keypoint visibility scoring. Confirms RTMPose as go-to for keypoint visibility quality checks.
+- **3D Foot Motion fix (arXiv 2603.09681)**: Foot reconstruction improvement in monocular video — references RTMPose. Relevant for Digital-Stud full-body character shot quality.
+
+### 🎓 LoRA Training — Direct Reward Fine-Tuning for 3D poses + Z-Image LoRA ai-toolkit confirmed + Wan video LoRA at scale + Multi-char ComfyUI
+- **Direct Reward Fine-Tuning for Single Image → 3D Human (arXiv 2603.02619)**: Uses motion data to augment pose coverage and fine-tune multi-view diffusion models. "Reward" signal = pose coverage quality. Novel training paradigm for pose-aware character generation. Suggests future LoRA training could incorporate pose reward signals for better character coverage.
+- **Z-Image LoRA ai-toolkit confirmed best path** (sololo.xyz recap, confirmed again run 111): ai-toolkit with ZIT for style + virtual character LoRAs. musubi-tuner best for Flux.2 character likeness. Toolkit selection remains model-dependent.
+- **Wan 2.1 video LoRA serverless RunPod** (medium.com thesiusai42, reconfirmed): Full train → test in ComfyUI → serverless deploy pipeline. Confirmed production path for scaling Digital-Stud batch generation.
+- **Multi-character LoRA in ComfyUI** (r/comfyui reconfirmed): Individual character LoRAs + composition workflow. Supports SDXL, Flux.1, Flux.2. No dedicated multi-char Wan video LoRA yet.
+- **Flux.2 Klein 9B LoRA checkpoint selection** (reconfirmed run 111): Steps 800–1200 optimal. 30+ checkpoints per run — pick best, not last.
+- **Replicate FLUX.1 fine-tuning** (replicate.com blog): LoRA support for FLUX.1 image generation — "one line of code" API training. Serverless LoRA training + deployment on Replicate. Useful for Digital-Stud rapid prototype training without local GPU.
+- **Prodigy_adv optimizer + 15–30 image dataset** (r/aiwars, reconfirmed): Standard character consistency training parameters confirmed across community.
+
 <!-- last_updated: 2026-03-14T04:00:49+01:00 run_110 -->
 ## 🏁 Run #110 Delta — 2026-03-14 04:00 Prague
 
