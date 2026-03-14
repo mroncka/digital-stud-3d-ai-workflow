@@ -1,3 +1,47 @@
+<!-- last_updated: 2026-03-14T07:01:15+01:00 run_116 -->
+## 🏁 Run #116 Delta — 2026-03-14 07:01 Prague
+
+### 🖼️ Image Gen — Nano Banana 2 = Gemini 3.1 Flash Image confirmed (1280 Elo, $0.045/img) + Qwen Image 2.0 native 2K + LoRA relevance debate: models vs fine-tune
+- **Nano Banana 2 identity confirmed**: = Gemini 3.1 Flash Image (launched Feb 26 2026). Full hierarchy: Nano Banana Pro = Gemini 3 Pro Image (Nov 2025), Nano Banana 2 = Gemini 3.1 Flash Image (Feb 2026). Elo 1280, $0.045/image standard, $0.0225 batch. Free: 20 images/day Gemini app (verified March 13). Key spec: 5 chars consistent, 14 objects in scene.
+- **GPT Image 1.5**: 1264 Elo. Best text rendering (~95%). $0.04–0.13/image. Available free in ChatGPT. Top pick for promotional + text-overlay work.
+- **Qwen Image 2.0** (Alibaba, Feb 10 2026): Professional 2K native image gen + editing in single model. Available in Qwen App. Separate from Qwen-Image 2512 Turbo (ComfyUI fast T2I via Turbo LoRA).
+- **Recraft V4**: Launched ~March 7 2026. Design taste + generation unified. Style system with full brand-consistent output. Niche for structured graphic design workflows over photorealism.
+- **LoRA vs. frontier model debate** (YouTube: "Lora Character Dataset from ONE Image", Reddit threads): With Seedream, Qwen Edit, and Nano Banana 2, the question "are LoRAs worth it?" is circulating. Consensus: frontier models still can't match single-identity LoRA consistency for 50+ image character persistence. LoRAs remain essential for Digital-Stud dedicated character pipelines. Frontier models useful for rapid prototyping only.
+- **Magic Hour**: 10 images/day no-account, 80+20/day with signup. Commercial-safe free testing tier.
+- **Stable Diffusion 3.5 free self-hosted**: $0.006/image API or free with own GPU. ~200 Elo below top proprietary. Best for volume generation with full control.
+
+### 🎬 Video Gen — Wan 2.7 full feature list confirmed (first+last frame, 9-grid I2V, subject/voice ref, V2V, instruction edit) + Sora into ChatGPT confirmed + Seedance 2.0 (ByteDance) Feb 10 + fal.ai LTX-2 trainer live
+- **🚨 Wan 2.7 FULL feature list now confirmed** (Reddit r/StableDiffusion, X, Atlas Cloud): Modes: T2V, I2V, V2V, I2I, T2I. New capabilities: first-frame AND last-frame guided generation, 9-grid image-to-video, subject reference, voice reference, instruction-based video editing, video recreation. Atlas Cloud committed day-1 support. Wan 2.7 is a full multi-modal video platform upgrade, not just a quality bump. **LoRA fine-tune support still unconfirmed — highest priority watch item.**
+- **Sora into ChatGPT confirmed** (Reuters, Engadget, The Information, March 11 2026): OpenAI integrating Sora 2 into ChatGPT (900M weekly users). Standalone Sora app saw 45% drop in installs. API pricing unchanged: $0.10/s 720p, $0.50/s Sora 2 Pro. Increases Sora accessibility for non-technical users but no new open-source path.
+- **Seedance 2.0** (ByteDance, Feb 10 2026): ByteDance's most capable video gen model. Multimodal (T2V + I2V + reference-aware). Marketed as "leading video API for AI-driven commerce." Positioned above Seedream for video. Available on Vidofy.ai and Atlas Cloud.
+- **fal.ai LTX-2 Video Trainer** (fal.ai/learn): Full guide published for LTX-2 fine-tune via API in ~30 min. Parameter optimization + error handling + production deployment documented. Confirms LTX-2 LoRA training fully productionized on fal.ai.
+- **HF Open-Source Video Leaderboard live** (Hugging Face Spaces): Public benchmark comparing HunyuanVideo, CogVideoX, Open-Sora, Show-1, Luma, Kling. First public normalized comparison for open-source video models. URL: huggingface.co/spaces (search "video generation leaderboard").
+- **Wan 2.6 current open-source leader** (Reddit r/generativeAI consensus, March 2026): "The open-source darling." Wan 2.7 expected to continue this position.
+- **SeaDance 2.0 Techmeme mention**: Referenced as "arguable current leading video generation model" in Techmeme roundup (March 14 2026). May be referring to Seedance 2.0 (ByteDance). Needs clarification — possible rebranding.
+
+### 🛠️ ComfyUI — LTX Desktop open-source app (fal.ai image toggle) + Qwen-Image 2512 Turbo workflow on comfy.org + PyTorch/CUDA best practice documented + DGX Spark Docker container
+- **LTX Desktop open-source app** (Lightricks/LTX-Desktop GitHub): Desktop GUI for LTX model video generation. Optional fal.ai image gen toggle when enabled. One-click runs without full ComfyUI setup. Good for non-technical Digital-Stud collaborators.
+- **Qwen-Image 2512 Turbo ComfyUI workflow** on comfy.org/workflows: Fast T2I with Turbo LoRA. Template available via ComfyHub. 2-step generation. Useful for rapid concept iteration.
+- **PyTorch + CUDA 2026 stable pairing**: Best practice documented in Civitai article. Current CUDA version recommended for ComfyUI stability. CUDA 13.1 still in community testing (not production-ready).
+- **DGX Spark Docker container for ComfyUI** (NVIDIA Developer Forums): Enterprise-scale ComfyUI deployment. Relevant if Digital-Stud moves to cloud production.
+- **NVIDIA Nemotron 3 Super released** (March 11 2026): Open-weights reasoning model (not image/video). On OCI Generative AI + Oracle Blogs. Not directly relevant to Digital-Stud pipeline but signals NVIDIA aggressive open-weights push.
+- **ComfyUI App Mode correction confirmed** (run 115 entry): Actual launch date March 10 2026 (not March 13). comfy.org/workflows marketplace with 350+ templates.
+
+### 🕺 Pose — No new major releases this cycle; OA-NBV / RTMPose stable; egocentric AR/VR reconfirmed
+- No new pose estimation releases or papers surfaced in this sweep beyond confirmed run 114–115 content.
+- **DINO-ALF (arXiv 2603.08028v1)** remains the most relevant recent paper for Digital-Stud: text → skeleton → video. Still not in ComfyUI nodes as of this run.
+- **See4D (arXiv 2510.26796v2)** from run 115 stands as latest pose-free 4D technique.
+- Stable recommendations carry forward: RTMPose for real-time body, DWPose for ComfyUI ControlNet.
+
+### 🎓 LoRA — LoRA Gym (alvdansen) confirmed production pipeline (18 Wan templates) + musubi-tuner Python package migration + fal.ai LTX-2 Trainer API live + LTX-2 camera LoRAs from Lightricks official
+- **🚨 LoRA Gym (alvdansen/lora-gym)** confirmed production-ready open-source pipeline: Built on musubi-tuner. 18 training templates across Wan 2.1 and 2.2. Covers character identity, motion, aesthetic, style LoRAs. Triple-platform: Modal, RunPod, local GPU. Dual-expert MoE strategy for Wan 2.2 validated. Optional --merge for speed LoRAs (Lightning, CausVid). Full dataset captioning via Gemini (free) or Replicate. **Recommended over building custom musubi-tuner config for Digital-Stud — use LoRA Gym as the standard pipeline wrapper.**
+- **musubi-tuner Python package migration** (Discussion #345): Repository restructured as Python package using pyproject.toml. Existing users must migrate. Recent additions: LoHa/LoKr training (PR #900, LyCORIS algorithms), --block_swap_optimizer_patch_params for Z-Image fine-tuning. Supports: HunyuanVideo, Wan 2.1/2.2, FramePack, FLUX.1 Kontext, FLUX.2, Qwen-Image, Z-Image. Latest release: v0.2.15 (Dec 26 2025). **Action: update musubi-tuner install using pyproject.toml before next training run.**
+- **fal.ai LTX-2 Video Trainer API**: Full production guide live. 30-min fine-tune via API. Parameter optimization + error handling documented. Eliminates local 24GB VRAM requirement for LTX-2 training. Best cloud path for Digital-Stud LTX-2 character LoRA.
+- **LTX-2 official camera LoRAs** (Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Out, HuggingFace): Official camera control LoRAs from Lightricks. Dolly-out confirmed. Suggests more camera LoRA releases pending. Useful for Digital-Stud cinematography control layer on top of character LoRA.
+- **LoRA hyperparameter validated consensus** (RunPod guide, Reddit): LR 1e-5 to 8e-5 for video (lower is better than image LoRA LR). Rank 4–8 for subtle identity, 64–128 for strong character lock. Low rank: 10–30 images sufficient. Batch size 1–4 for 24GB VRAM. Cosine decay + warmup.
+- **One-image dataset expansion technique** (YouTube): Use Qwen Edit / Flux.2 / Nano Banana 2 to generate multi-angle turnarounds and expression variants from a single face portrait before LoRA training. Multiplies dataset from 1 → 20–30 images while maintaining consistent identity. Compatible with Z-Image-Turbo 15–30 image best practice.
+- **Wan 2.7 LoRA trainability still unconfirmed.** All sources reference features/quality upgrades only. No musubi-tuner PR for Wan 2.7 support detected yet.
+
 <!-- last_updated: 2026-03-14T06:30:00+01:00 run_115 -->
 ## 🏁 Run #115 Delta — 2026-03-14 06:30 Prague
 
