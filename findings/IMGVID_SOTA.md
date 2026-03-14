@@ -1,4 +1,179 @@
-<!-- last_updated: 2026-03-14T22:30:01+01:00 run_148 -->
+<!-- last_updated: 2026-03-14T23:01:47+01:00 run_149 -->
+## 🏁 Run #149 Delta — 2026-03-14 23:01 Prague
+
+### 🖼️ Image Gen — Run 149 — InternVL-U 4B open-source + HY-WU on-the-fly LoRA + Helios 14B real-time video + Qwen Image best inpainting + Nano Banana Pro deprecated
+
+- **🆕 InternVL-U 4B — Unified multimodal T2I + editing model open-sourced** (Shanghai AI Lab, arXiv:2603.09877, GitHub OpenGVLab/InternVL-U, March 6 2026):
+  - 4B-parameter model unifying: multimodal understanding + reasoning + image generation + image editing in single framework
+  - Native text+image input for generation AND editing tasks — beyond current FLUX Fill capabilities
+  - Integrates reasoning-guided generation: model plans generation via textual CoT reasoning before visual execution
+  - Outperforms 14B open-source baselines on standard generation benchmarks at 4B scale
+  - **GenEditEvalKit released** (Mar 6): unified evaluation toolkit for multimodal image generation + editing
+  - **TextEdit Benchmark released** (Mar 6): high-quality benchmark for text editing in image generation
+  - Training pipeline: 512px foundation → multi-scale joint T2I + editing data mix
+  - Open weights + inference code publicly available on GitHub
+  - **Immediate relevance for Digital-Stud pipeline: InternVL-U = single model for both face/character image generation AND text-guided editing in one inference call. Test as FLUX Fill replacement for in-context editing tasks. Add to api_test_fal.py or local inference path.**
+
+- **🆕 HY-WU — Tencent Hunyuan on-the-fly conditional LoRA generation** (Tencent Hunyuan, GitHub Tencent-Hunyuan/HY-WU, March 6 2026):
+  - Functional neural memory framework for image editing and personalization
+  - Generates LoRA weights on-the-fly (no stored LoRA files) — predicts LoRA updates from reference image at inference time
+  - Supports instance-level personalization WITHOUT test-time optimization (no slow per-image training needed)
+  - Scales to large models up to 80B parameters
+  - Open-source: inference code + model weights publicly available
+  - **Architectural breakthrough: HY-WU = dynamic LoRA generation from reference. Test as alternative to static IP-Adapter FaceID for real-time face lock in generation pipeline. Could replace multi-step LoRA training pipeline for one-shot character work.**
+
+- **🔴 Nano Banana Pro DEPRECATED** (Google, March 2026):
+  - Google has quietly killed Nano Banana Pro — no longer officially accessible
+  - Access workaround: buried in Google AI Pro/Ultra subscriber settings
+  - Replacement path: Nano Banana 2 delivers "95% of Pro quality" at lower cost ($0.045–$0.151/image by resolution)
+  - Nano Banana 2 full pricing: $0.045 (512px), ~$0.09 (1080p), $0.151 (4K) — 50% discount available via proxy APIs
+  - Nano Banana 2 supports 512px to full 4K, all aspect ratios, character consistency up to 5 individuals
+  - **Pipeline impact: Remove Nano Banana Pro from any reference path. Use Nano Banana 2 for Google-ecosystem character consistency work.**
+
+- **Qwen Image best inpaint ControlNet confirmed** (Reddit r/StableDiffusion community consensus, March 2026):
+  - Community verdict: "Qwen Image still has the best inpaint ControlNet available" for classic mask inpainting (March 2026)
+  - Method: crop & stitch approach for high-quality masked region generation
+  - Hugging Face Space active: Qwen Image Inpainting ControlNet (InstantX)
+  - **Workflow addition: Use Qwen Image inpaint ControlNet as primary inpainting node in face_refinement.json workflow, replacing SDXL inpaint. Crop & stitch method = better boundary blending.**
+
+- **InternVL-U dual benchmark releases** (OpenGVLab, March 6):
+  - GenEditEvalKit: standardized evaluation for generation + editing models
+  - TextEdit Benchmark: specifically evaluates text rendering accuracy in generated images
+  - **Apply TextEdit benchmark to evaluate FLUX.2 Klein vs FLUX.2 Dev for text-in-image accuracy in Digital-Stud product mockup workflows**
+
+- **FLUX.2 Pro API speed note** (AwesomeAgents.ai March 2026 benchmark):
+  - FLUX.2 Pro confirmed: under 1 second generation, $0.025/image, currently leading Chatbot Arena image leaderboard (1280 Elo)
+  - SD 3.5 confirmed: $0.006/image via API, free self-hosted, community license free under $1M revenue
+  - **Pricing ladder (March 2026): SD 3.5 ($0.006) → FLUX.2 Klein 9B ($0.008 est.) → Nano Banana 2 ($0.045–$0.151) → FLUX.2 Pro ($0.025) → GPT Image 1.5 (higher)**
+
+### 🎬 Video Gen — Run 149 — Helios 14B real-time + Kling Motion Control 3.0 Element Binding + ComfyUI NVFP4 FLUX.2 Klein 4B + HunyuanVideo I2V update
+
+- **🆕 Helios 14B — Real-time video generation model from ByteDance** (arXiv:2603.04379, March 2026, GitHub compku-yuangroup/Helios):
+  - First 14B video generation model achieving **19.5 FPS on single NVIDIA H100 GPU** — true real-time inference
+  - **128x faster** than comparable video generation models
+  - Supports minute-scale (1440-frame) video generation without KV-cache, sparse attention, or quantization
+  - Autoregressive diffusion transformer with Guidance Attention blocks that compress historical + noisy context efficiently
+  - Natively supports: T2V (text-to-video), I2V (image-to-video), V2V (video-to-video)
+  - Plans to release: code + base model + distilled model (community open-source)
+  - **Guidance Attention block** — efficient compression replacing KV-cache overhead — also inspired FLUX.2 Klein Consistency LoRA (run 148)
+  - HeliosBench dataset weights: ModelScope BestWishYSH/HeliosBench-Weights
+  - **Critical path for Digital-Stud pipeline: When Helios open-source drops, replace Wan 2.2 for local inference. 19.5 FPS on H100 = viable real-time character animation. Watch GitHub compku-yuangroup/Helios for release. Add to wan22_img2vid.json notes.**
+
+- **🆕 Kling Motion Control 3.0 + Element Binding — now in ComfyUI** (Kuaishou, ComfyUI Blog March 7 2026, X @ComfyUI):
+  - Official ComfyUI integration launched
+  - **Element Binding**: new facial consistency system — maintains character appearance across angles, expressions, AND partial occlusions (hats, hands, sunglasses covering face)
+  - Builds on Kling 2.6 motion control capabilities
+  - Enables consistent multi-character scenes with improved facial recognition through partial occlusion
+  - **Directly relevant to Digital-Stud virtual influencer pipeline: Kling 3.0 Element Binding in ComfyUI = native face consistency for generated characters without IP-Adapter. Test as IPAdapter replacement for video character lock.**
+
+- **🆕 Tencent HunyuanVideo + Maxon Cinema 4D integration at GDC 2026** (Instagram Mar 11, Tencent Cloud GDC 2026):
+  - Tencent Cloud + Maxon partnership: HY 3D Advanced Features now available in ComfyUI (Mar 11)
+  - HY 3D → Cinema 4D workflow: photo/image → 3D reconstruction → C4D-ready asset
+  - "Trained on vast library of games, helps jumpstart ideas while retaining artist control"
+  - Tencent Cloud also announced AI-powered gaming solutions suite at GDC 2026
+  - **3D pipeline for Digital-Stud: HY 3D (ComfyUI) → Maxon C4D = image-to-3D-to-animation workflow without expensive 3D tools. Low friction path for virtual influencer body rig.**
+
+- **Helios Guidance Attention blocks technical detail** (arXiv:2603.04379, alphaXiv):
+  - Architecture: autoregressive diffusion model + Guidance Attention blocks
+  - Guidance Attention = compresses historical frames + noisy context into compact representation
+  - Enables long sequences without quadratic KV-cache growth
+  - Batch fitting: up to four 14B model instances per GPU cluster
+  - **Architectural note: Guidance Attention pattern appears in both Helios (video) and FLUX.2 Klein Consistency LoRA (image) — likely becoming standard architecture pattern for Mar 2026 models.**
+
+### 🔧 ComfyUI — Run 149 — 🚨 App Mode + App Builder + ComfyHub platform launch + NVIDIA RTX VSR node + NVFP4 models + Kling 3.0 Element Binding
+
+- **🚨 MAJOR: ComfyUI App Mode + App Builder + ComfyHub launched** (GlobeNewswire official press release, March 10 2026):
+  - **App Mode**: converts any ComfyUI workflow into purpose-built app UI — node graph hidden from end users
+  - **App Builder**: configuration layer — select which inputs/outputs to expose (sliders, dropdowns, text fields)
+  - **Shareable App URLs**: distributable links that encode full workflow configuration
+  - **ComfyHub**: public registry for discovering + sharing community workflows and finished applications
+  - Beginner-friendly **App View**: presents workflows without node graph, shows only inputs/outputs relevant to user
+  - Non-technical users can run complex workflows without seeing ComfyUI node graph at all
+  - Also confirmed at GDC 2026 (ComfyUI at GDC Mar 19)
+  - Instagram @nvidiastudioeurope Mar 12: "Concepting & storyboarding in @ComfyUI just got easier. Meet the beginner-friendly App View"
+  - **Critical for Digital-Stud: ComfyUI App Mode = package entire Digital-Stud workflow as no-install web app for clients. Create sharable URL with just the inputs they need (subject photo upload + style selector). No node graph exposure. Major UX upgrade for client delivery.**
+
+- **🆕 NVIDIA RTX Video Super Resolution ComfyUI node** (NVIDIA Blog, WccFTech Mar 10 2026, GDC):
+  - New dedicated ComfyUI node for RTX Video Super Resolution
+  - **30x faster** than alternative local upscalers
+  - Fraction of VRAM cost vs conventional upscaling methods
+  - Available as: standalone ComfyUI node + Python PyPI package for developers
+  - Real-time 4K upscaling of generated AI videos directly within ComfyUI workflow
+  - Works with RTX GPU (RTX 50 Series optimal, earlier RTX supported)
+  - **Immediate workflow addition: Add RTX VSR node as final upscale step after Wan 2.2 video generation. Zero additional VRAM cost. 30x speed. Replace offline Real-ESRGAN video upscale step.**
+
+- **🆕 NVFP4 quantized model support in ComfyUI** (NVIDIA Blog Mar 10 2026):
+  - **FLUX.2 Klein 4B NVFP4**: 2.5x faster, 60% lower VRAM vs full-precision on RTX 50 Series
+  - **FLUX.2 Klein 9B NVFP4**: same optimization applied to 9B variant
+  - **LTX-2.3 FP8**: 1.7x faster, 40% VRAM reduction (NVFP4 coming soon)
+  - ComfyUI now natively supports loading NVFP4 + FP8 quantized checkpoint formats
+  - **Hardware note: RTX 50 Series = 2.5x faster with NVFP4. RTX 40 Series and older = still benefits from FP8 (1.7x faster, 40% less VRAM). Optimize pipeline for NVFP4 when upgrading GPU.**
+
+- **🆕 Kling Motion Control 3.0 + Element Binding officially in ComfyUI** (ComfyUI Blog March 7 2026, official X @ComfyUI):
+  - Confirmed as official ComfyUI node (not third-party custom node)
+  - Element Binding system: locks specific character elements (face, clothing, accessories) across video frames
+  - Handles occlusion recovery: face behind hat, hand, glasses → restored correctly on next visible frame
+  - **Workflow integration: Add Kling 3.0 Element Binding node to wan22_img2vid.json as conditional face-lock option. Compare with IPAdapter for temporal face consistency.**
+
+- **HunyuanVideo 3D Advanced Features in ComfyUI** (X @ComfyUI Mar 11, Instagram @ComfyUI):
+  - HY 3D Advanced Features officially available in latest ComfyUI update
+  - Access: Update ComfyUI → Workflow → Browse Templates → 3D → Choose HY 3D workflow
+  - Multiple input modes: text, image, sketch → 3D model output
+  - **Digital-Stud 3D path: ComfyUI template already available. Zero additional setup. Enable HY 3D for character → 3D → animation pipeline.**
+
+- **Optical Realism Post-Processing Node mentioned in community** (4chan /ldg/):
+  - "ComfyUI Optical Realism Post-Processing Node" referenced in local diffusion community
+  - GitHub link in thread (GitHub URL referenced but not fully captured)
+  - Z-Image Turbo confirmed active as face detailer in ComfyUI (NextDiffusion tutorial Mar 2026)
+  - **Watch: Find ComfyUI Optical Realism node on GitHub for post-processing authenticity improvement in character renders.**
+
+### 🏗️ 3D Gen — Run 149 — HY 3D × Maxon C4D at GDC + Hitem3D 2.0 production-ready 3D AI + Tencent 3D gaming suite
+
+- **🆕 Hitem3D 2.0 — Production-ready AI for 3D assets** (MarketersMEDIA/Barchart Mar 2026):
+  - "First production-ready AI for 3D assets" — specifically designed for multi-color maker workflow
+  - Workflow: convert 3D model → high-precision rendered views → interactive lasso guide → AI generates + refines textures/materials
+  - Intelligent 3D segmentation for isolating mesh components
+  - Targeted at: prototyping, product visualization, 3D printing preparation
+  - **Relevance: Hitem3D 2.0 = AI-assisted texture and material generation for Digital-Stud character 3D assets. Test for costume/clothing texture generation on character models.**
+
+- **Tencent × Maxon HY 3D + Cinema 4D at GDC 2026** (Instagram @maxon Mar 11, Tencent Cloud GDC press):
+  - Full pipeline: Image/text/sketch → HY 3D model (Tencent) → Cinema 4D rig + animate (Maxon)
+  - Trained on vast game asset library — strong for character + environment 3D
+  - Part of Tencent Cloud AI-powered gaming solutions suite announced GDC 2026
+  - **Digital-Stud 3D character pipeline: HY 3D (ComfyUI template) → C4D (Maxon) → animation export. Fastest 2D-to-animated-3D-character path available in March 2026.**
+
+- **TripoAI confirmed as leading text/image-to-3D API** (Lorphic pricing analysis Mar 2026):
+  - TripoAI still primary commercial T2-3D/I2-3D API as of March 2026
+  - Supports: text-to-3D, image-to-3D (multiple views)
+  - Competitive pricing tier for commercial use
+  - **API test path: Add TripoAI to api_test_fal.py or create dedicated scripts/api_test_tripo.py for 3D generation pipeline testing.**
+
+### 🎓 LoRA / Character Consistency — Run 149 — HY-WU dynamic LoRA + Kling Element Binding vs IPAdapter + Z-Image Turbo face detailer + InternVL-U unified editing
+
+- **HY-WU as dynamic LoRA replacement for face personalization** (Tencent Hunyuan, GitHub):
+  - Predicts per-reference LoRA weights at inference time (no stored .safetensors file needed)
+  - On-the-fly = generates LoRA from reference image in ~seconds vs hours of standard LoRA training
+  - Supports large backbone models (up to 80B) — scales beyond FLUX.1 and FLUX.2
+  - Open-source inference code + weights available
+  - **Test priority: HY-WU for one-shot character identity lock. Compare inference quality vs 50-step FLUX.2 Dev LoRA trained on Kohya. Expected advantage: speed (seconds not hours). Expected tradeoff: may need more reference images for complex characters.**
+
+- **Kling 3.0 Element Binding as video character consistency** (ComfyUI official):
+  - Face consistency through: angle changes, expression changes, partial occlusion (hat, hand, glasses)
+  - Test: Kling 3.0 Element Binding in ComfyUI vs IPAdapter FaceID for temporal face consistency
+  - **Workflow note: Element Binding works at Kling API level (cloud), IPAdapter works at local inference level. Different cost/quality tradeoff. Element Binding = cloud cost but zero VRAM. IPAdapter = local, free, lower quality.**
+
+- **Z-Image Turbo confirmed as active face detailer** (NextDiffusion tutorial, Mar 2026):
+  - Z-Image Turbo works as face detailer within ComfyUI (detect face → build mask → enhance detail)
+  - 8-step workflow: detect → mask → crop → enhance → composite
+  - Compatible with FLUX.2 workflows
+  - **Add Z-Image Turbo face detailer as post-processing step in face_refinement.json for FLUX.2-generated characters**
+
+- **InternVL-U for character editing without LoRA** (arXiv:2603.09877):
+  - Native image editing via text instruction (describe change → model executes)
+  - "Change hair color to blonde", "add sunglasses", "change outfit to red jacket" — all without LoRA
+  - Reasoning-guided: model plans edit steps before executing
+  - **Test for Digital-Stud: InternVL-U as zero-training character editor (outfit swaps, accessory changes, background changes without ComfyUI inpaint setup).**
+
 ## 🏁 Run #148 Delta — 2026-03-14 22:30 Prague
 
 ### 🖼️ Image Gen — Run 148 — FLUX.2 Klein 9B open-source + Higgsfield Cinema Studio 2.0 + DSH-Bench + Manifold-Optimal Guidance CFG successor
