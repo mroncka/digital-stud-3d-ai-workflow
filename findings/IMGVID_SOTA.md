@@ -1,3 +1,50 @@
+<!-- last_updated: 2026-03-14T05:01:43+01:00 run_112 -->
+## 🏁 Run #112 Delta — 2026-03-14 05:01 Prague
+
+### 🖼️ Image Gen — Leaderboard consolidation: top-6 in 100 Elo range + SD 3.5 first anime ckpt + OneTrainer+FLUX ZIT confirmed + FLUX Image-to-Video Mar 2026
+- **Top image model Elo rankings confirmed stable (Mar 2026)**: Nano Banana 2 (Gemini 3.1 Flash Image) 1280 Elo → FLUX.2 Pro 1265 → GPT Image 1.5 1264. Quality convergence: top-6 now within 100 Elo of each other (vs 300+ point spread in 2024).
+- **Price-per-image benchmark**: FLUX.2 Pro $0.025–$0.07 (best API value) | Nano Banana 2 $0.045 | GPT Image 1.5 $0.04–$0.13 | SD 3.5 $0.006–$0.035 or free local | Seedream 5.0 Lite (Replicate) cost-effective for text-heavy/commercial.
+- **SD 3.5 first anime checkpoint released** (CivitAI, r/StableDiffusion March 2026): First community fine-tune of SD 3.5 for anime. MMDiT architecture advantages over SDXL confirmed for anime styling. Potentially useful for Digital-Stud stylized renders.
+- **FLUX Image-to-Video confirmed on Media-AI master list** (GitHub jayeshmepani, March 6 2026 update): FLUX I2V now listed as active March 2026 — transform photos into videos. Competitive pricing. New avenue for Digital-Stud portrait → animation pipeline.
+- **FireRed-Image-Edit-1.0** (FireRedTeam HuggingFace Feb 14 2026, on Replicate via prunaai): High-fidelity general-purpose image editing. Replicate accessible. Alternative to FLUX.2 Kontext for precision editing with different inductive bias.
+- **HuggingFace Playground Service** (March 2026): Side-by-side comparison interface for latest open-source models. Useful for Digital-Stud quick model benchmarking without local setup.
+- **Nano Banana 2 free tier clarification** (blog.laozhang.ai): Most generous free image gen in 2026 but limits split across THREE separate access channels. Budget planning note: consolidate access paths before pipeline integration.
+- **iris.c** (antirez/iris.c GitHub): FLUX.2 inference in pure C — no Python deps. Niche but relevant for embedded/edge character preview generation without full Python stack.
+
+### 🎬 Video Gen — Kling 3.0 lowest API price + Seedance 2.0 12-ref multi-input + LTX-2.3 Desktop + MLPerf T2V v6.0 benchmark with Wan 2.2 + MotionStream real-time I2V
+- **Kling 3.0 Pro confirmed lowest API price** ($0.029/sec, Feb 2026): 2-minute single generation (longest of any model), 1080p, native audio, motion brushes. Free tier 66 daily credits. Best value for long-form character video shots.
+- **Seedance 2.0 (ByteDance) multi-reference** (SitePoint dev comparison): Accepts up to 12 simultaneous reference files (images + video + audio). Native beat-sync mode (music → video rhythm). Scene consistency across multi-shot sequences. Critical for Digital-Stud multi-asset character scene assembly.
+- **LTX-2.3 + LTX Desktop launched** (ltx.io blog, confirmed): Free open-source video editor on desktop, built on LTX-2.3. 5M+ downloads since January open-source. Native vertical video support (1080×1920 for Reels/TikTok). Rebuilt VAE for hair/edge/texture sharpness. I2V overhaul reduces "Ken Burns" freeze. New audio vocoder. ComfyUI integration maintained.
+- **MLPerf Inference v6.0 Text-to-Video benchmark** (MLCommons, March 10 2026): First standardized T2V benchmark. Uses Wan 2.2 14B as reference model. VBench++ 16-dimension scoring. SingleStream measurement (replaced Server scenario due to multi-minute latencies). Industry-standard reference for pipeline perf benchmarking.
+- **MotionStream real-time I2V** (arXiv 2511.01266v5, confirmed Wan 2.2 5B base): Interactive motion control for image-to-video. Builds on Wan 2.1 1.3B and Wan 2.2 5B variants. Real-time interactive generation — relevant for live Digital-Stud character pose → animation preview.
+- **SkyReels V4 vs V2 detailed diff** (WaveSpeedAI blog): V2 = infinite-length generation. V4 = joint audio-video generation. Architecture pivot confirmed. V4 via WaveSpeedAI API.
+- **WanGP-Portable confirmed multi-model** (GitHub axiomgraph): Supports Wan 2.1/2.2 + Qwen Image + HunyuanVideo + LTX Video + Flux. Single portable app. Ideal for Digital-Stud local multi-model testing.
+- **Video generation API price hierarchy (Mar 2026)**: Kling 3.0 $0.029/sec < HunyuanVideo free (self-hosted) < LTX-2.3 free (self-hosted) < Sora 2 $0.10–0.50/sec < Veo 3.1 $0.15/sec.
+
+### 🛠️ ComfyUI — Realtime LoRA Trainer node (Wan 2.2 + FLUX + ZIT in-ComfyUI) + AMD ROCm RX 9000 support + Wan 2.2 T2V pipeline in docs + Identity-Driven ICLoRA node
+- **ComfyUI Realtime LoRA Trainer node confirmed** (comfy.icu/node/MusubiWanLoraTrainer): Train + Block Edit + Save LoRAs directly inside ComfyUI. Supports SDXL (sd-scripts), FLUX, Z-Image Turbo, and Wan 2.2 (musubi-tuner + AI-Toolkit). Train-in-place during session. Major workflow simplification for Digital-Stud rapid LoRA iteration.
+- **AMD ROCm RX 9000 series ComfyUI support confirmed** (ROCm blogs AMD): ComfyUI tested and working on Radeon RX 9000 GPUs. Wan 2.2 T2V workflow documented as working example. Viable hardware path for Digital-Stud local non-NVIDIA pipeline.
+- **ComfyUI Wan 2.2 T2V workflow in official AMD/ROCm docs**: Wan 2.2 T2V pipeline shown as Figure 4 in ROCm getting-started guide. Confirms Wan 2.2 as default ComfyUI video model reference for March 2026.
+- **Identity-Driven Audio-Video Personalization In-Context LoRA** (arXiv 2603.10256v1): Uses Wan series as base. In-context LoRA for audio+video personalization. Identity-preserving cross-modal generation. Potential ComfyUI node incoming — monitor for implementation.
+- **WanGP Wan2GP interface fork** (r/StableDiffusion confirmed): Modified to accept local vision LLM for prompt generation. "Send Prompt" button copies LLM output to main prompt field. Frame context boxes feed LLM for context-aware prompting. Useful Digital-Stud automation for character description → video prompt.
+- **ComfyUI templates: HunyuanVideo** (comfy.org/templates): 3 official free workflow templates. Standard reference for HunyuanVideo integration.
+
+### 🕺 Pose — Identity-Driven ICLoRA In-Context pose video + Controllable Complex Human Motion T2V + OA-NBV RTMPose keypoint visibility + Strix Halo musubi-tuner tutorial
+- **Identity-Driven In-Context LoRA (arXiv 2603.10256v1)**: T2V + audio + identity via in-context LoRA on Wan. Preserves pose-conditioned identity across audio-driven video. Critical overlap with WildActor DWPose golden-video methodology confirmed.
+- **Controllable Complex Human Motion Video** (arXiv 2603.08028v1, reconfirmed): Two-stage autoregressive T2Skeleton → skeleton-conditioned video. 2D pose sequences from text. Depth + optical flow as structural signals. Standard for complex choreography Digital-Stud scenes.
+- **OA-NBV RTMPose keypoint visibility confirmed active March 2026** (arXiv 2603.11072): Occlusion-aware next-best-view using RTMPose keypoint scores. Confirms RTMPose as the keypoint visibility quality metric standard.
+- **Strix Halo musubi-tuner tutorial + wrapper script** (r/StableDiffusion 2026-03-14): Community tutorial for running musubi-tuner on Strix Halo (AMD APU). Notes and wrapper script shared. Confirms musubi-tuner portability beyond NVIDIA. Relevant for Digital-Stud local AMD training path.
+- **DWPose + RTMPose combination unchanged as standard** (reconfirmed run 112): All March 2026 I2V/T2V workflows continue using DWPose for skeleton extraction, RTMPose for keypoint quality checks. No new challenger emerged.
+
+### 🎓 LoRA Training — OneTrainer 2x speed + anti-overfitting vs AI-Toolkit confirmed community consensus + Identity-Driven In-Context LoRA (arXiv) + Wan 2.2 musubi-tuner Strix Halo
+- **OneTrainer vs AI-Toolkit community consensus confirmed** (r/StableDiffusion, March 2026): OneTrainer 2x faster (5060 Ti benchmark). Better generalization via train/validation/test split. Reduced LoRA bleed. AI-Toolkit prone to overfitting confirmed by multiple threads. New SOTA recommendation: **OneTrainer for T2I (FLUX/SDXL/ZIT), musubi-tuner for T2V (Wan 2.2/HunyuanVideo)**.
+- **Identity-Driven Audio-Video In-Context LoRA** (arXiv 2603.10256v1): In-context LoRA personalization for T2V. Uses Wan series as backbone. Achieves audio+video identity preservation in single LoRA pass. Potential training-free or low-step fine-tune — monitor for code release.
+- **Wan 2.2 musubi-tuner SOTA hyperparameters confirmed stable** (GitHub discussions #455, reconfirmed run 112): Rank 32 (alpha 16) baseline, LR 2e-4, FP8 + block-swapping for 16GB, timestep shift/sigmoid modes for identity, discrete flow shift 2–3. Early stopping required.
+- **musubi-tuner LoRA format conversion warning** (sololo.xyz recap, reconfirmed): LoRAs trained with musubi-tuner must be converted before ComfyUI use — otherwise backend errors. Z-Image LoRAs: use ai-toolkit format for direct ComfyUI loading. FLUX character likeness: musubi-tuner then convert.
+- **QLoRA FLUX.1-dev**: 4-bit base + BF16 LoRA = ~9GB VRAM at 512×768. 41-min RTX 4090. LyCORIS DoRA recommended for expressiveness at lower parameter count.
+- **ComfyUI Realtime LoRA Trainer** (reconfirmed): Supports in-session SDXL + FLUX + ZIT + Wan 2.2 training. No separate training run needed for rapid iteration prototyping.
+- **FLUX.2 Klein character swap workflow confirmed** (YouTube TCziUdUE4Os, 2026): Flux.2 Klein + LoRA detailing + Seed VR2 4K upscale. Clean character swap end-to-end. Reference workflow for Digital-Stud scene character replacement.
+
 <!-- last_updated: 2026-03-14T04:30:19+01:00 run_111 -->
 ## 🏁 Run #111 Delta — 2026-03-14 04:30 Prague
 
