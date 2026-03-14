@@ -1,3 +1,46 @@
+<!-- last_updated: 2026-03-14T08:01:24+01:00 run_118 -->
+## 🏁 Run #118 Delta — 2026-03-14 08:01 Prague
+
+### 🖼️ Image Gen — Midjourney V8 "launchable as soon as next week" + SD4 Ultra open weights + Luma Uni-1 tops GPT-Image-1.5 + DALL-E 3 retired March 12 → gpt-image-1 default + Seedream 5 Lite detailed-prompt handling
+- **🚨 Midjourney V8 imminent**: Office Hours March 4 2026 — V8 described as "launchable as soon as next week." Team debating whether to ship early with rough edges or polish further. V7 already live (early March 2026): Hyper-Realism Mode, Style Reference 2.0 (sref), Character Consistency (cref) across images, ~30s/gen (25% faster than V6), 94% text rendering accuracy. V8 expected to be another major leap. Watch Midjourney announcements closely this coming week.
+- **Stable Diffusion 4 Ultra**: Stability AI launched SD4 Ultra with upgraded diffusion transformer architecture. Open weights maintained — community deployable. New photorealism benchmark for the SD family. Builds on Stable Diffusion 3.5 architecture improvements.
+- **Luma Uni-1** (launched March 8 2026): First Luma model combining image understanding + generation in a single architecture. Tops GPT-Image-1.5 and Nano Banana 2 on logic-based benchmarks. Positioned directly against OpenAI's image flagship. API available via Luma AI platform.
+- **DALL-E 3 retirement confirmed**: Disabled March 12 2026. Direct successor: `gpt-image-1-mini` and `gpt-image-1`. Azure OpenAI/Foundry users migrating now. Note: gpt-image-1 regression reports on high-fidelity edits post March 12 — community tracking.
+- **Midjourney V7 character consistency (cref)**: Now live. Same-character-across-multiple-images is now a first-class V7 feature. Directly relevant to Digital-Stud character pipeline — test as an alternative to LoRA-based consistency for rapid ideation.
+- **Flux 2 Klein (9B)**: Consumer GPU deployable (RTX 3090/4070, 13GB VRAM). 4MP in <0.5s. Native inpainting. Multi-reference blending (up to 6 source images). Perfect typography. Confirmed good for inpainting tasks (r/StableDiffusion). Running on multi-GPU rigs (4-bit quant, ~12s/image confirmed on Instagram post).
+- **Seedream 5 Lite**: Handles detailed/long prompts well (tested via media.io). ComfyUI integration available. Better complex instruction following than previous Seedream versions.
+- **Scenario 2.4** (March 2026): New training capabilities, Tripo 3.1 integration, P-Video support, workflow improvements. Flux Kontext LoRAs introduced (v1.100): train custom AI editing models from before/after image pairs — lighting, pose, style control. Multi-LoRA composition with ControlNet also live (v1.69-1.70).
+
+### 🎬 Video Gen — Sora 1 sunset March 13 → Sora 2 default + Kling 3.0 Motion Control March 4 + SkyReels V4 confirmed #2 globally + ByteDance Seedance viral + Wan 2.7 still March, no date
+- **Sora 1 officially retired March 13 2026** (US): Sora 2 is now the default experience on OpenAI's platform. OpenAI also integrating Sora video generation directly into ChatGPT (Reuters). Sora 2 API pricing still limited to ChatGPT Plus/Pro users.
+- **Kling 3.0 Motion Control launched March 4 2026**: Professional motion capture with upgraded facial consistency and kinetic control. Earlier: Kling 3.0 full launch Feb 5 2026 — multilingual audio (EN/ZH/JP/KR/ES + dialects), 15s video, multi-shot storyboarding, 4K Image 3.0 Omni. Confirmed: 60M+ creators worldwide, 600M+ videos generated.
+- **SkyReels V4 confirmed #2 globally** (Artificial Analysis): First user reviews: superior audio-visual sync is the standout. GSB comparisons consistently "Good." 1080p / 32fps / 15s / pixel-level editing. API live. ComfyUI nodes available. Action: set up SkyReels V4 API test as next artifact candidate.
+- **ByteDance Seedance** (formerly MagicVideo, Feb 12 2026): Went viral in China, impressed Elon Musk (Reuters). Key focus: character consistency across shots + emotion fidelity. Not yet fully open-source but API via ByteDance international developer platform. Watch for Wan-level open release.
+- **LTX-2.3 Day-0 ComfyUI support** (comfy.org blog): Day-0 official nodes. Sharper latent space + updated VAE, cleaner audio vocoder, stronger I2V (less freezing), native portrait 9:16 up to 1080×1920, 4× larger text connector. Two flows: Fast Flow (rapid iteration) + Pro Flow (max detail). Available open-source + managed API + commercial license.
+- **HunyuanVideo**: No v3 video release. Latest is HunyuanVideo-1.5 (Nov 21 2025). **HunyuanImage-3.0-Instruct** launched Jan 26 2026 — reasoning + I2I for image tasks. **Hunyuan 3D 3.0** platform launched (3D model generation, confirmed global launch with 1B-param real-time motion model, UE/Unity/Blender support, 1080P camera). Strong 3D track — evaluate for Digital-Stud 3D workflow integration.
+- **Wan 2.7**: Still no official date. Multiple unofficial sites (wan2-7.app, wan27ai.com) appeared this week as SEO fronts confirming "planned for March 2026" with cinematic multi-shot + audio sync + 4K. No Alibaba official post. #1 watch item remains.
+
+### 🛠️ ComfyUI — LTX-2.3 Day-0 blog post confirmed + NVIDIA RTX CES 2026 acceleration blog + Hunyuan 3D 3.0 Motion Model 1B for UE/Unity/Blender
+- **LTX-2.3 Day-0 ComfyUI** (blog.comfy.org): Official blog post confirms Day-0 nodes for LTX-2.3 including Enhanced Quality for Audio + Portrait. Available now via ComfyUI Manager.
+- **NVIDIA RTX CES 2026 blog** (blogs.nvidia.com): RTX acceleration confirmed for ComfyUI, LTX-2, Llama.cpp, Ollama, Hyperlink and more — unlocking 4K AI video generation on PC. RTX-optimized Wan and LTX inference paths available via ComfyUI. Directly relevant for local Digital-Stud GPU workflow.
+- **Hunyuan 3D 3.0 Motion Model**: 1B-param real-time motion model. Connects to 1080P camera or uploaded video. Native UE, Unity, Blender support. Confirmed global launch. Evaluate for Digital-Stud 3D rigging pipeline — could replace or supplement current HY 3D Advanced workflow.
+- No new major independent node packs confirmed March 14 specifically. SkyReels V4 and LTX-2.3 are the active new integrations.
+
+### 🕺 Pose — No new releases March 14; Hunyuan 3D 3.0 real-time motion model is most significant 3D-adjacent signal
+- **Hunyuan 3D 3.0 motion model** (1B params, real-time, 1080P, UE/Unity/Blender) is the biggest new 3D/pose signal. Not a pure 2D pose estimator but fills the "animated rig from video" use case that overlaps with ControlNet pose workflows.
+- RTMPose / DWPose remain stable SOTA for ComfyUI ControlNet pose. No new competing releases confirmed this sweep.
+- DINO-ALF dataset (arXiv 2603.08028) still the most recent academic pose-to-video breakthrough.
+
+### 🎓 LoRA — musubi-tuner LoHa/LoKr (Feb 15) + FLUX.2 support (Jan 24) + Qwen-Image-Layered LoRA (Jan 11) + Scenario 2.4 new training capabilities + Lora Pilot v2.0 AI-Toolkit integrated
+- **musubi-tuner LoHa/LoKr support** (Feb 15 2026): LyCORIS-based algorithms now supported. LoHa (Hadamard product) and LoKr (Kronecker product) — more expressive than standard LoRA for complex style/identity tasks. Enable where standard LoRA struggles with fine identity detail.
+- **musubi-tuner FLUX.2 support** (Jan 24 2026): LoRA training for FLUX.2 [dev] and [klein] models. fp8 optimization included. Enables end-to-end Digital-Stud workflow: train character LoRA on Flux 2 Klein → fast inference (<0.5s/image).
+- **musubi-tuner Qwen-Image-Layered LoRA** (Jan 11 2026): New architecture support. First-class LoRA for Qwen-Image-Layered models.
+- **AI-Toolkit update**: WAN 2.2 5B + 14B series, HiDream E1 (low VRAM mode), OmniGen2, FLUX.1-Kontext-dev all now supported. MimicPC provides cloud access without local GPU requirement.
+- **Lora Pilot v2.0**: AI-Toolkit fully integrated as first-class built-in trainer (UI on port 8675, managed by Supervisor). Complete redesign. Simplifies local LoRA training setup significantly.
+- **FLUX.2 LoRA character training guide** (kgabeci.medium.com, March 2026): Serverless infrastructure perspective. Character LoRA: 20–50 images recommended (consistent with Z-Image 15–30 threshold). Multi-LoRA composition for style + identity stacking confirmed working.
+- **Flux Kontext LoRAs** (Scenario v1.100): Train AI editing models from before/after image pairs. Lighting, pose, style control. Directly applicable to post-processing step in Digital-Stud pipeline.
+- **Wan 2.7 LoRA**: Still zero confirmed support in any trainer. Will track for musubi-tuner PR on launch day.
+
 <!-- last_updated: 2026-03-14T07:30:14+01:00 run_117 -->
 ## 🏁 Run #117 Delta — 2026-03-14 07:30 Prague
 
