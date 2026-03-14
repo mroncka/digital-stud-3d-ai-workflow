@@ -1,4 +1,56 @@
-<!-- last_updated: 2026-03-14T13:01:33+01:00 run_129 -->
+<!-- last_updated: 2026-03-14T13:30:13+01:00 run_130 -->
+## 🏁 Run #130 Delta — 2026-03-14 13:30 Prague
+
+### 🖼️ Image Gen — ComfyUI App Mode + ComfyHub confirmed live (v0.17.0); LTX-2-19b IC-LoRA-Pose-Control official checkpoint; no new standalone image model released afternoon; Wan 2.7 still unreleased
+- **ComfyUI App Mode + ComfyHub** (Comfy-Org, March 12 2026 / v0.17.0): First fully confirmed in this sweep. Major product launch — App Mode converts any node workflow into a simplified UI showing only essential inputs. App Builder: configure which node inputs appear. ComfyHub: new community platform for sharing apps + workflows via shareable URL. No local install needed for end-users of shared apps. Equivalent to low-code studio on top of ComfyUI. Direct: Digital-Stud character animation workflows can now be packaged as shareable Apps. Huge reach multiplier for Digital-Stud content pipeline.
+- **LTX-2-19b-IC-LoRA-Pose-Control** (Lightricks, HuggingFace, March 2026): Official Lightricks checkpoint. Description: "Pose control IC-LoRA trained on top of LTX-2-19b, enabling precise character motion and body-structure control in video generation." Key: 19B parameter base (larger than 13B distilled). Official pose control support = stable, not just community WIP. Combine with LTX-2 audio for: reference image + pose sequence → 19B model → audio-driven animated character. Best-in-class open-source character animation path.
+- **NVIDIA FastGen** (NVIDIA Research, March 2026): New open-source library unifying SOTA video diffusion distillation techniques. Plug-and-play accelerator. Key: enables faster inference on existing Wan 2.x / LTX-2 / SkyReels models without quality loss. Watch for ComfyUI-WanVideoWrapper integration.
+- **No new standalone image model afternoon March 14**: Flux 2 Klein / Nano Banana 2 / Reve Image 1.5 remain current leaderboard as of 13:30 Prague. Wan 2.7 still no release (confirmed by atlascloud.ai collection page — "expected within March 2026" still future).
+
+### 🎬 Video Gen — DreamVideo-Omni arXiv (multi-subject motion + Latent Identity RL); ShotVerse cinematic camera control; HunyuanVideo 1.5 I2V AMD/ROCm training guide live; Video2LoRA confirmed ICLR 2026
+- **DreamVideo-Omni** (arXiv 2603.12257, March 2026): Omni-Motion Controlled Multi-Subject Video Customization with Latent Identity Reinforcement Learning. Key innovations:
+  - Multi-subject: separate identity tracks per person in the same video. First model to handle this reliably.
+  - Latent Identity RL: reinforcement learning on top of LoRA identity representations → stable identity across frames.
+  - Uses Wan-Move dense point trajectories for motion control.
+  - Zero-shot multi-person identity preservation without per-subject fine-tuning.
+  Direct: strongest technique yet for multi-character scenes in Digital-Stud. Monitor for code release.
+- **ShotVerse** (arXiv March 2026): Text-driven multi-shot video creation with precise cinematic camera control. Framework enables: shot composition (close-up, wide, POV) + camera movement (pan, dolly, orbit) from text descriptions. Key for Digital-Stud: automate shot direction for character showcase reels without manual camera keyframing.
+- **Video2LoRA** (ICLR 2026 accepted, arXiv 2603.08210): Confirmed accepted at ICLR 2026. Per-reference-video LoRA via HyperNetwork. Final weights <150MB. Zero-shot generalization across semantic conditions. Peer-reviewed SOTA — not just preprint. Production-ready technique signal.
+- **HunyuanVideo 1.5 I2V LoRA on AMD GPUs / ROCm** (GitHub AlphafromZion/hunyuan-video-lora-amd, March 2026): Battle-tested guide for training HunyuanVideo 1.5 I2V LoRAs on AMD RX 9700 XT via ROCm. First AMD-native LoRA training path confirmed for HY1.5 I2V. Relevant for users without NVIDIA. Also confirmed: HunyuanVideo 1.5 I2V GGUF quantized versions (jayn7/HunyuanVideo-1.5_I2V_720p-GGUF) available on HuggingFace — local inference on 720P I2V without full VRAM.
+- **rCM / NVLabs** (ICLR 2026 accepted, GitHub NVlabs/rcm): "First to scale continuous-time consistency distillation to 10B+ parameter video diffusion models." 2-5 step video generation at 10B+ scale. Not yet a ComfyUI workflow but once integrated = near-instant high-quality video. Watch NVLabs/rcm for code.
+
+### 🛠️ ComfyUI — v0.17.0 changelog fully parsed: Painter node + Reve Image API node + FluxKVCache + pyproject.toml; App Mode + ComfyHub launch; LTX-2 Pose-to-Video official template on comfy.org; Desktop Windows bug confirmed active (March 14)
+- **ComfyUI v0.17.0 changelog fully parsed** (docs.comfy.org March 13):
+  - Modular asset architecture: async two-phase scanner + background seeder → faster loading on model-heavy installs
+  - FluxKVCache node: KV cache for Flux 2 Klein → faster successive generations from same seed
+  - Painter node: in-canvas image editing (mask-based paint/inpaint without leaving ComfyUI)
+  - Reve Image API node: direct Reve Image 1.5 generation inside ComfyUI (API-key gated but no model download needed)
+  - pyproject.toml support for custom nodes: better Python dependency management
+  - Frontend 1.41.18: gradient stop formatting, workflow template v0.9.21
+  - Text encoder LoRA loading fix for wrapped models (critical for Wan 2.2 LoRA + WanVideoWrapper)
+- **LTX-2 Pose-to-Video official template** (comfy.org/templates/video_ltx2_pose_to_video/): Official template live on comfy.org. "Precise pose control, expressive motion, synchronized audio-video output." One-click workflow for character pose → video with audio. Best entry point for Digital-Stud character animation pipeline.
+- **ComfyUI at GDC 2026** (r/comfyui, March 2026): ComfyUI confirmed exhibitor at GDC 2026 (March 14-18, San Francisco). "Game devs pushing limits of visual AI." Tencent MagicDawn also at GDC. Signals: ComfyUI targeting real-time game asset generation pipeline.
+- **ComfyUI Desktop Windows launch bug**: Active as of March 14 2:16am Prague (forum.comfy.org thread). Likely fixed in v0.17.1 (no confirmed patch notes yet). Workaround: CLI launch.
+
+### 🕺 Pose — OCpose metric confirmed (83.3% user preference, COCO+CrowdPose validated); DreamVideo-Omni uses Wan-Move trajectories; YOLO26 improved pose + non-human keypoints; ShotVerse camera-aware pose control; Egocentric Occlusion-Aware paper
+- **OCpose** (arXiv 2603.10398, March 2026): Optimal Correction Cost for multi-person pose evaluation. Replaces standard mAP. Uses optimal transportation to penalize false positives equally regardless of confidence. 83.3% user preference over confidence-threshold methods. Validated: COCO + CrowdPose. Key: when evaluating DWPose/RTMPose pipeline quality, OCpose is now the correct metric to target.
+- **YOLO26 pose improvements** (Ultralytics, March 9 2026): Better non-human keypoint support, faster convergence on pose tasks, improved occlusion handling. YOLO26 is current best real-time pose detector as of March 2026.
+- **Controllable Egocentric Video with Occlusion-Aware Pose** (arXiv 2603.11755, March 2026): Superior accuracy in egocentric motion control under heavy occlusion + cross-embodiment generalization. Relevant: first-person character shots with self-occlusion (common in character animation demos).
+- **Controllable Complex Human Motion via Text-to-Skeleton** (arXiv 2603.08028, March 2026): Autoregressive text-to-skeleton model generates 2D pose sequences from natural language. Each joint conditioned on previously generated joints. Direct: type "character walks forward then crouches" → get skeleton sequence → feed to ComfyUI pose control. No manual pose keyframing needed.
+- **ROBUST-MIPS dataset** (Nature Scientific Data, published March 14 2026): Skeletal pose + instance segmentation annotations for laparoscopic surgical video. Adjacent: shows pose annotation expanding into medical/professional domains. Fine-grained hand/tool pose datasets incoming.
+
+### 🎓 LoRA — ID-LoRA: face+voice identity in-context LoRA beats Kling 2.6 Pro (arXiv March 2026); LoRA Gym: Wan 2.1/2.2 pipeline with 16 templates; Kohya 0.10.1 adds Anima Preview LoRA; HunyuanVideo 1.5 I2V AMD LoRA confirmed
+- **ID-LoRA** (arXiv March 2026): In-Context LoRA for unified audio-video identity preservation. Architecture:
+  - Combines IC-LoRA reference-frame conditioning with identity guidance signals
+  - "Negative temporal positions" in RoPE positional encoding to separate reference tokens from target tokens
+  - Trains with ~3K pairs on a single GPU
+  - Result: 59.9% speaker similarity on test sets, outperforms Kling 2.6 Pro
+  Direct: face LoRA + voice cloning in one model. Perfect for Digital-Stud character identity preservation. Monitor GitHub for code release.
+- **LoRA Gym** (GitHub, March 2026): Open-source Wan 2.1/2.2 training pipeline built on musubi-tuner. 16 pre-built training templates (motion LoRA, style LoRA, character LoRA, object LoRA). Active community. Easier than raw musubi-tuner. Best current entry point for Wan 2.2 character LoRA training.
+- **Kohya-ss v0.10.1** (released February 13 2026): Added Anima Preview model LoRA training support. Ongoing GitHub development — no March 14 release found. Stable.
+- **HunyuanVideo 1.5 I2V LoRA AMD/ROCm** (GitHub AlphafromZion, March 2026): Confirmed. RX 9700 XT battle-tested. First AMD-native HY1.5 I2V LoRA training path. Opens character LoRA training to non-NVIDIA hardware.
+- **LTX-2 IC-LoRA Pose Control** (Official Lightricks checkpoint, HuggingFace): Official model released for pose-controlled generation with LTX-2-19b base. Fine-tune path opens: train character LoRA on top of 19B pose-control base = character-specific pose animation.
+
 ## 🏁 Run #129 Delta — 2026-03-14 13:01 Prague
 
 ### 🖼️ Image Gen — Grok multi-image-to-video live (March 13); Google explains Nano Banana model tiers (2 vs 3 vs Pro); Adobe CEO departure affects Firefly roadmap; LTX-2 ArtCompute GPU microgrants; no new image model release found afternoon
