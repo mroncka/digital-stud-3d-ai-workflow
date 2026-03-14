@@ -1,4 +1,152 @@
-<!-- last_updated: 2026-03-14T22:01:01+01:00 run_147 -->
+<!-- last_updated: 2026-03-14T22:30:01+01:00 run_148 -->
+## 🏁 Run #148 Delta — 2026-03-14 22:30 Prague
+
+### 🖼️ Image Gen — Run 148 — FLUX.2 Klein 9B open-source + Higgsfield Cinema Studio 2.0 + DSH-Bench + Manifold-Optimal Guidance CFG successor
+
+- **🆕 FLUX.2 [Klein] — New open-source 9B model from Black Forest Labs** (Instagram @modelslab.ai Mar 11 2026):
+  - "Klein" (German for "small") = 9B parameter FLUX family model targeting ultra-fast, cost-effective generation
+  - Both text-to-image AND image-to-image capabilities
+  - Open-source release — available on ModelsLab API and locally
+  - API endpoint live: ModelsLab FLUX.2 Klein 9B (both T2I and I2I modes)
+  - Positioned for: "maximum speed with minimal cost without sacrificing quality" vs FLUX.2 Pro/Dev
+  - Instagram @modelslab.ai Mar 11: "Flux Klein 9B is now live on Modelslab!"
+  - **Impact: Fast iteration path for Digital-Stud pipeline. Add FLUX.2 Klein as speed-first alternative to FLUX.2 Dev for drafts/iterations. Update api_test_fal.py with Klein endpoint.**
+
+- **🆕 FLUX.2 Klein Consistency LoRA** (Reddit r/StableDiffusion 2026-03-14, arXiv inspiration):
+  - New method addressing color shift and pixel offset in image editing using FLUX.2 Klein base
+  - Inspired by Helios "Guidance Attention blocks" for consistent video — ported concept to still image LoRA
+  - Mitigates color drift and train-test inconsistency
+  - **Relevant: Add consistency LoRA path to face_refinement.json workflow notes for Klein-based editing**
+
+- **🆕 Higgsfield Cinema Studio 2.0 — Consistent AI Actors without fine-tuning** (X @higgsfield Mar 5 2026, Facebook viral Mar 10-13 2026):
+  - Create fully customizable, photorealistic AI actors consistent across all generations
+  - "No auditions. No scouting. Just describe the actor you need and Higgsfield generates them instantly. Any face. Any age. Any look. Built from scratch in minutes."
+  - Consistent across multiple scenes WITHOUT requiring LoRA or IP-Adapter fine-tuning
+  - Works as a model aggregator hub: Sora 2, Kling 2.6/3.0, Veo 3.1, Wan 2.6, Seedance, Hailuo 02 — all in one Higgsfield interface
+  - Direct competitor to Nano Banana 2 multi-character approach for training-free consistency
+  - **Critical for Digital-Stud pipeline: Higgsfield Cinema Studio 2.0 = complete actor-creation-to-video platform. Evaluate as primary "virtual influencer" workflow hub (actor creation + video gen in one place).**
+
+- **🆕 DSH-Bench: Subject-Driven T2I Generation Benchmark** (arXiv:2603.08090, Tencent, March 2026):
+  - 459 subject images across 58 categories (vs 6-30 in prior benchmarks)
+  - Three difficulty levels: easy / medium / hard subject preservation
+  - Six prompt scenario categories: background change, viewpoint, entity interaction, attribute change, style transfer, imagination
+  - New metric: SICS (Subject Identity Consistency Score) — 9.4% higher human evaluation correlation than GPT-4o-based evaluation
+  - **Relevance: Use DSH-Bench as evaluation framework for character consistency in Digital-Stud pipeline. SICS metric can benchmark different face-lock approaches (IPAdapter vs Nano Banana 2 vs Higgsfield vs LoRA).**
+
+- **🆕 Manifold-Optimal Guidance: Unified Riemannian CFG successor** (arXiv:2603.11509, Mar 2026):
+  - Addresses core CFG problem: high guidance scales introduce artifacts and out-of-distribution samples
+  - Novel Riemannian geometry approach for guidance that stays on the manifold of valid images
+  - Unified framework showing most existing guidance methods (CFG, PAG, SEG, etc.) are special cases
+  - Better quality/guidance tradeoff curve: higher guidance without artifacts
+  - **Architectural relevance: Future FLUX.3 or SD5 models may use this instead of standard CFG. Watch for ComfyUI node implementing MOG (Manifold-Optimal Guidance).**
+
+- **🆕 Calibrated Photorealism Benchmark** (arXiv:2603.10990, "Too Vivid to Be Real?", March 2026):
+  - Benchmarks how "visually authentic to real-world scenes" generated images appear
+  - New calibration approach to reduce the "too vivid" hyper-realistic AI look
+  - Important for Digital-Stud pipeline: authentic-looking character images vs obviously AI-generated
+
+- **Adobe Firefly March 2026 updates** (Adobe Help Center, last updated Mar 13 2026):
+  - Dynamic Graphics Render API (DGR) — connects motion graphics rendering to Firefly generation pipeline
+  - Generative upscale tool enhanced in Edit tab
+  - Custom Firefly models now integrable with third-party image generation (Journey Optimizer, March 3)
+  - Credit promo: Firefly Pro/Premium getting bonus credits Jan 23 – Mar 18 2026
+  - **API path: Adobe Firefly custom models + third-party integration now available. Low priority for Digital-Stud vs FLUX/Nano Banana 2, but note for enterprise/brand use cases.**
+
+### 🎬 Video Gen — Run 148 — Seedance 2.0 copyright suspension + Grok vs Veo price war + Video2LoRA + LTX Desktop free editor + Higgsfield multi-model hub
+
+- **🚨 Seedance 2.0 global launch SUSPENDED** (Reuters Mar 14 2026):
+  - ByteDance suspended the global launch of Seedance 2.0 after copyright disputes
+  - Disney sent cease-and-desist: alleges Seedance trained on pirated Star Wars + Marvel characters
+  - Mid-March 2026 global launch cancelled — adding safeguards before relaunch
+  - Pricing reference (pre-suspension): ~$0.05/minute ($0.003/second) — cheapest commercial API tier
+  - **Impact: Remove Seedance 2.0 from immediate API testing path (api_test_seedance.py). Mark as BLOCKED pending relaunch. Update state notes accordingly. Primary fallback: Grok Imagine $0.05/s or LTX 2.3 local.**
+
+- **🆕 Google vs xAI price war confirmed** (Instagram @gptproto.official Mar 13 2026, Elo benchmark):
+  - Benchmark scores (ELO-style): Veo 3.1 ~1400, Grok Imagine 720p ~1400 (score parity!)
+  - Price: Veo 3.1 = ~$0.25/sec, Grok Imagine 720p = $0.10/sec (60% cheaper), Grok 480p = $0.05/sec (80% cheaper)
+  - "Google and xAI are engaged in a textbook-quality price war" (Instagram Mar 13)
+  - Grok API launched Jan 28 2026: text-to-video, image-to-video, video editing at $0.05/second (480p)
+  - xAI's strategy: undercut Veo 3.1 pricing at near-identical quality (40% of price, 99% of score)
+  - **Best value free API path for Digital-Stud: Grok 480p at $0.05/s for drafts, Grok 720p at $0.10/s for finals. Both cheaper than Veo 3.1. Update api_test_replicate.py or create api_test_grok_video.py.**
+
+- **🆕 Video2LoRA: Per-Reference-Video LoRA for semantic-controlled video generation** (arXiv:2603.08210, Mar 9-10 2026):
+  - Lightweight hypernetwork that predicts personalized LoRA weights for each reference video
+  - Unified multi-modal video generation with semantic alignment (style, motion, appearance)
+  - Generalizable: works across T2V, I2V, V2V tasks
+  - Scalable: no paired training data needed beyond reference videos
+  - **Highly relevant: Add video LoRA fine-tuning path to wan22_img2vid.json notes. Video2LoRA = train video consistency from reference clip, not just image reference.**
+
+- **🆕 LTX 2.3 Desktop — Free open-source video editor with built-in NLE** (LTX.io Mar 8 2026):
+  - LTX Desktop: Apache 2.0 licensed, free desktop video editor built on LTX 2.3 engine
+  - Built-in non-linear video editor (NLE) — no external editing software needed
+  - Audio-video synchronized generation within single model
+  - Runs locally on consumer GPUs
+  - Reddit r/comfyui: "LTX Desktop is better than ComfyUI for video — what are we doing wrong?"
+  - Community debate: LTX Desktop GUI vs ComfyUI nodes — Desktop wins for video editing ease
+  - **Add LTX Desktop as local video production alternative path in pipeline notes. Zero-cost, Apache 2.0 = commercial-safe.**
+
+- **🆕 Higgsfield AI as multi-model aggregator hub** (ResearchHub review, Mar 2026):
+  - Single Higgsfield interface aggregates: Sora 2, Kling 2.6/3.0, Veo 3.1, Wan 2.6, Seedance (when available), Hailuo 02
+  - Plus native Higgsfield video generation + Cinema Studio 2.0 actor creation
+  - "Currently considered one of the top 3 AI video platforms in 2026"
+  - Positioned as: Studio platform for professional AI video with consistent actors + best-of-breed model selection
+  - **Evaluate Higgsfield as Digital-Stud primary workflow platform: actor creation (Cinema Studio 2.0) → model selection → video output. Potential to replace multi-API juggling.**
+
+- **🆕 Wan2GP multi-GPU self-hosted runner** (GitHub deepbeepmeep/Wan2GP):
+  - Generates video on consumer GPUs, spans **4 GPUs** via GPU ring topology
+  - Supports: Wan 2.1/2.2, Qwen Image, HunyuanVideo, LTX Video, and FLUX
+  - Active community: "I got flux.2-dev working on my GPU rig spanning 4 GPUs" (Instagram @modelslab Mar 11)
+  - **Local pipeline: Wan2GP multi-GPU for high-throughput local video generation. No cloud cost. Add to wan22_img2vid.json notes.**
+
+- **LTX-2.3 with Wan 2.2 via ComfyUI confirmed community pipeline** (Instagram popular Mar 14):
+  - Workflow: Cinematic Motion: Wan 2.2 via ComfyUI → Creative Control: Qwen Camera Controls + Nano Banana Pro → Polish: Photoshop
+  - Community-validated pipeline for final commercial output
+  - Confirms: Wan 2.2 (cinematic motion) + Qwen camera controls (director control) + Nano Banana (character consistency) = strongest March 2026 DIY video pipeline
+
+### 🔧 ComfyUI — Run 148 — LTX Desktop vs ComfyUI debate + Wan2GP multi-GPU + Higgsfield aggregation path
+
+- **LTX Desktop vs ComfyUI community debate** (Reddit r/comfyui 2026):
+  - Core insight: LTX Desktop's integrated NLE GUI is better for video production workflows than ComfyUI nodes
+  - ComfyUI advantage: still superior for node-based custom workflows, mixing multiple models, chaining
+  - LTX Desktop advantage: editing timeline, simpler output, audio sync
+  - **Recommendation: Use ComfyUI for generation pipeline (Wan 2.2, pose control, face refinement); Use LTX Desktop for final video assembly and audio-sync editing**
+
+- **Wan2GP as ComfyUI alternative for local Wan 2.2 inference** (GitHub deepbeepmeep/Wan2GP):
+  - 4-GPU ring for WAN 2.2 generation without needing cloud
+  - Compatible with existing Wan 2.2 ComfyUI workflows as backend
+  - **Add Wan2GP as local compute backend note to wan22_img2vid.json**
+
+- **Veo 3.1 + ComfyUI via Gemini API free tier** (community usage, Mar 2026):
+  - Confirmed path: Gemini API free tier → Veo 3.1 calls → integrate output into ComfyUI pipeline
+  - No official Veo 3.1 ComfyUI node released yet — API call wrapper approach used by community
+  - **Watch: Official Veo 3.1 ComfyUI node likely within 2–4 weeks given free tier activation**
+
+### 🏗️ 3D Gen — Run 148 — RunPod 2026 State of AI report highlights modular video pipelines
+
+- **RunPod 2026 State of AI Report** (PRNewswire Mar 2026):
+  - Massive shift: **Qwen has overtaken Meta Llama as most widely deployed open-source model**
+  - Key trend: shift toward **modular video pipelines** (not monolithic single-model video gen)
+  - Blackwell GPU adoption surging for inference (RTX 50 series becoming primary inference tier)
+  - **Implication: Digital-Stud pipeline architecture is on-trend — modular (FLUX image → Wan 2.2 video → LTX editing → RTX VSR upscale) matches industry direction.**
+
+### 🎓 LoRA / Character Consistency — Run 148 — Video2LoRA + DSH-Bench SICS metric + FLUX.2 Klein Consistency LoRA
+
+- **Video2LoRA practical application for character video consistency** (arXiv:2603.08210):
+  - Key capability: per-reference-video LoRA = train temporal identity consistency from video clip (not just single image)
+  - Generates semantically-aligned video from reference: preserves character appearance, motion style, scene attributes
+  - **Highest priority addition to Digital-Stud pipeline: Video2LoRA = bridge between image character LoRA and video-consistent character animation. Test on fal.ai when community wrapper released.**
+
+- **DSH-Bench SICS as LoRA quality metric** (arXiv:2603.08090, Tencent):
+  - Subject Identity Consistency Score (SICS): quantifiable measure of how well LoRA/IPAdapter preserves subject identity across varied scenes
+  - 9.4% better correlation with human evaluation than GPT-4o scoring
+  - **Practical: Use SICS concept to evaluate Digital-Stud character LoRA quality (before/after: face identity retention across background change, viewpoint variation, style transfer)**
+
+- **FLUX.2 Klein as budget LoRA training base** (community, Mar 2026):
+  - Klein 9B = faster LoRA training than FLUX.2 Dev (fewer parameters, same architecture family)
+  - Speed-quality tradeoff: Klein LoRA for iterations/tests, Dev LoRA for final production character
+  - Community validating: "Klein + LoRA for concept testing, Dev + LoRA for release quality"
+  - **Update kohya_config_example.toml notes: Add Klein 9B as fast-iteration LoRA base alternative**
+
 ## 🏁 Run #147 Delta — 2026-03-14 22:01 Prague
 
 ### 🖼️ Image Gen — Run 147 — Midjourney V8 imminent + Veo 3.1 free tier + EvoTok unified tokenizer + Meta AI delay
