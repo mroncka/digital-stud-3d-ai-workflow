@@ -1,3 +1,52 @@
+<!-- last_updated: 2026-03-14T04:00:49+01:00 run_110 -->
+## 🏁 Run #110 Delta — 2026-03-14 04:00 Prague
+
+### 🖼️ Image Gen — Nano Banana 2 official release + RedCraft ZiB Distilled + Open Higgsfield + FaceCam portrait video
+- **Nano Banana 2 officially released March 11-12, 2026** (Google): Pro-level image gen at lightning-fast speed. Multi-reference image support up to 14 images for edit models. Unique panoramic ratios (1:8, 8:1). Multiple quality tiers. Free tier via Google services. Confirmed #1 on ELO at ~1360. Reddit note: some paid users unhappy about Google pushing Nano Banana 2 and hiding Pro button under 3-dot menu (r/GeminiAI "enshittification" post). This doesn't affect Digital-Stud pipeline (we don't use commercial closed APIs for generation).
+- **RedCraft (ZiB Distilled) Mar 8 2026** (CivitAI): "Red Tide" — Z-Image DPO AGILE distilled checkpoint. FP16/FP8/NF4 variants. 5–10 step inference. Strong LoRA compatibility in ZIB ecosystem. Highest-quality new CivitAI checkpoint as of this week.
+- **Open Higgsfield AI** (github.com/Anil-matcha/Open-Higgsfield-AI, MIT): Free self-hosted alternative to Higgsfield AI. 200+ SOTA models including Flux, Nano Banana 2, SDXL, Midjourney (via API), Ideogram. Multi-image studio (14 ref images), video studio (T2V+I2V), lip sync (9 models), cinema studio with pro camera controls. Highly relevant as free self-hosted pipeline component.
+- **GlyphBanana (arXiv 2603.12155, Mar 11)**: Text rendering agentic workflow using Flux.2 Klein 9B for I2I generation + Qwen3-VL for planning/evaluation. Confirms Flux.2 Klein 9B as strong I2I backbone.
+- **FaceCam (arXiv 2603.05506)**: Portrait video camera control via scale-aware conditioning. Generates video under customizable camera trajectories from monocular human portrait video input. Direct use case: character camera control in Digital-Stud scenes.
+- **MVCustom (arXiv 2510.13702v2, updated Mar 11)**: Multi-view customized diffusion via geometric latent alignment. Multi-view consistent character generation.
+- **Flux.2 Klein 9B known issue** (r/StableDiffusion): "hemp or rope-like hair textures" — common complaint. Fix: use hair-specific LoRA or negative prompt "braided, rope-like, textured hair". Keep as known workflow issue.
+- **deAPI unified API** (community.n8n.io): n8n node for 200+ models including LTX-2 19B + LTX-Video 0.9, T2V/I2V with first/last frame control. Available on n8n Cloud + self-hosted.
+- **Grok Imagine major update Mar 12 2026** (Elon flagged): Now generating 1B+ videos/month. New features rolling out mid-March. Primarily commercial/closed.
+
+### 🎬 Video Gen — Wan 2.1 LoRA on RunPod + SkyReels V4 API confirmed + FaceCam + Helios distilled consumer GPU
+- **Wan 2.1 LoRA serverless deployment on RunPod** (Medium tutorial): Full pipeline: train LoRA → test in ComfyUI → serverless deploy on RunPod. Confirms production-ready path for Wan video LoRA deployment at scale. Relevant for Digital-Stud batch generation pipeline.
+- **SkyReels V4 Atlas Cloud API confirmed live** (atlascloud.ai): 1080p, 32FPS, 15s, synchronized audio, multi-shot cinema-level. Ranked #2 globally. Commercial but relevant as quality reference.
+- **Helios distilled (3-step)** now confirmed on consumer GPU (github.com/PKU-YuanGroup/Helios): Helios-Distilled variant handles 3-step sampling on consumer GPUs. Helios-Base (best quality, v-prediction), Helios-Mid (intermediate), Helios-Distilled (efficiency). Full training code open-sourced. Day-0 Diffusers support.
+- **Wan 2.2 audio-driven I2V confirmed in ComfyUI docs** (docs.comfy.org): Audio input synchronization for Wan 2.2 image+audio→video. Confirmed via official tutorial. Strongest open-source audio-driven video feature for Digital-Stud scenes.
+- **Seedance 2.0 guide published** (flux-ai.io/blog): Up to 2 minutes video, native audio, free trial available, API access confirmed. Best commercial audio-video at 2min length.
+- **LTX Desktop vs ComfyUI** (r/comfyui Mar 12): Community debate — LTX Desktop reportedly simpler UX, but ComfyUI offers more control. LTX 2.3 official ComfyUI workflows released March 5 2026. Keep ComfyUI as primary.
+- **ComfyUI video gen pipeline** (comfyui.org): Multi-functional workflow integrating T2V, I2V, video super-resolution, frame interpolation, depth control. Published March 2026 guide.
+
+### 🛠️ ComfyUI — App Mode detailed breakdown + GGUF v1.1.10 + AMD RX 9000 ROCm + LTX 2.3 workflows Mar 5
+- **ComfyUI App Mode full announcement Mar 10 2026** (GlobeNewswire): App Builder lets creators expose only needed parameters. Shareable URL = single link to run in browser without install via Comfy Cloud. ComfyHub: public marketplace for sharing/running apps (distinct from Node Registry). Rolling out creator access over subsequent weeks. Free tier on Comfy Cloud includes RTX Pro 6000 GPUs.
+- **ComfyUI App Mode Mar 12 2026 detail** (gigazine.net/gsc_news): Official simplified UI for non-technical users. Node graph hidden. All custom nodes remain functional. Auto-updates maintained.
+- **NVIDIA ComfyUI App View** (perplexity.ai, GDC 2026): Real-time observability and streaming. Replaces weeks of local environment setup. Confirms NVIDIA heavily backing ComfyUI as primary consumer AI workflow tool.
+- **ComfyUI-GGUF v1.1.10** (registry.comfy.org): Released Jan 12 2026. GGUF quantization support for native ComfyUI models. Stable, latest version in registry.
+- **AMD Radeon RX 9000 Series ROCm 7.1 ComfyUI guide** (rocm.blogs.amd.com): Official AMD setup guide now published. Addresses most common community issues. Expands non-NVIDIA hardware support significantly.
+- **LTX 2.3 official ComfyUI workflows Mar 5 2026** (ltx.io/model/model-blog/ltx-2-3-release#comfyui): Official workflows released. Confirms LTX Desktop ≠ replacement for ComfyUI workflow — ComfyUI has more control.
+- **Wan 2.2 I2V ComfyUI** (r/comfyui): GGUF Q6 quantized model, greatly reduced generation time, better video quality. WanGP GGUF abliterated confirmed as standard.
+- **ComfyUI OFM discussion** (r/LocalLLM Mar 2026): "Is ComfyUI still worth it for AI OFM workflows?" — community consensus: yes for power users needing control, no for purely commercial/simple pipelines. Validates Digital-Stud ComfyUI-first approach.
+
+### 🕺 Pose Estimation — FaceCam portrait camera control + RTMW3D confirmed 70.2 mAP + HyperMotion dataset
+- **FaceCam (arXiv 2603.05506)**: Camera trajectory control for portrait video from monocular input. Scale-aware conditioning. Generates video under customizable camera movement. Direct Digital-Stud use: cinematography control for character shots. No ComfyUI node yet — monitor HuggingFace.
+- **HyperMotion dataset (2025)**: Specialized dataset for complex motion sequences (stunts, acrobatics, non-standard poses). DWPose/OpenPose/RTMPose struggle with these — motivating new datasets. HyperMotion fills the gap for extreme pose extraction. Relevant for Digital-Stud dynamic scene generation.
+- **RTMW3D confirmed >70.2 mAP** on COCO-WholeBody (from prior runs, now doubly confirmed): RTMW-l. FPN + HEM architecture. Three model sizes: m/l/x. Monocular 3D whole-body estimation via coordinate classification (SimCC). Best open-source choice for whole-body 3D conditioning.
+- **DWPose for animation workflows**: Confirmed as standard external pose estimation for animation generation projects. Works for standard motion; limitation = complex/acrobatic poses (use HyperMotion-trained models for edge cases).
+- **MediaPipe Holistic**: 33-body + 21-hand + 468-face keypoints. Fast, cross-platform. Good for real-time preview and rough pose extraction. Not for final ControlNet conditioning.
+
+### 🎓 LoRA Training — Flux.2 Klein 9B community testing + Z-Image LoRA phase recap + OneTrainer validation loss + Wan 2.1 serverless
+- **Flux.2 Klein 9B LoRA community test** (r/StableDiffusion "I tried razortape's guide"): "Very mixed results" across 30+ checkpoints from training run. Key takeaway: Klein 9B LoRA quality is highly checkpoint-dependent during training — need to checkpoint more frequently and pick best result rather than last result. Use step 800–1200 range for character identity (earlier than expected for Klein).
+- **Z-Image LoRA phase recap** (sololo.xyz/article/22): AI-Toolkit with ZIT for style + virtual character LoRAs. Strict likeness not priority for style LoRAs. ai-toolkit ZIT workflow preferred over musubi-tuner for Z-Image. Results confirm: toolkit choice matters per base model — musubi-tuner best for Flux.2, ai-toolkit best for Z-Image.
+- **OneTrainer validation loss** (r/StableDiffusion "switching to OneTrainer"): Built-in validation prevents overfitting. Loss curves visible in real-time. Can see overfitting onset before it degrades quality. Critical for long runs (>3000 steps). Strongest differentiator vs Kohya/musubi-tuner.
+- **Multi-character LoRA in ComfyUI** (r/comfyui): Train individual character LoRAs → workflow predicts which character goes where in composition. Currently supports SDXL, Flux.1, Flux.2. No dedicated multi-character Wan video LoRA approach yet.
+- **SDXL LoRA via Kohya-ss** confirmed as standard (r/comfyui "SXDL LORA trainer"): Kohya-ss sd-scripts most stable and widely used for SDXL LoRA. Rank 32–64, LR 1e-4, 1000–2000 steps standard.
+- **Wan 2.1 LoRA serverless RunPod** (medium.com/thesiusai42): Full deployment pipeline. Confirms production path for Wan video LoRA beyond just local use. Relevant for scaling Digital-Stud batch character scene generation.
+- **Character consistency approach confirmed** (r/aiwars): 20-image dataset of same persona → extract core facial features → specific prompt set to lock protagonist (freckles, nose bridge, skin features). Confirms 15–30 image dataset as optimal. Prodigy_adv optimizer now standard across frameworks.
+
 <!-- last_updated: 2026-03-14T03:30:12+01:00 run_109 -->
 ## 🏁 Run #109 Delta — 2026-03-14 03:30 Prague
 
