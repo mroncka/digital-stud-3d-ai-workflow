@@ -1,4 +1,186 @@
-<!-- last_updated: 2026-03-15T00:01:07+01:00 run_151 -->
+<!-- last_updated: 2026-03-15T00:30:07+01:00 run_152 -->
+## 🏁 Run #152 Delta — 2026-03-15 00:30 Prague
+
+### 🖼️ Image Gen — Run 152 — FLUX.2 Klein NVFP4/FP8 GDC optimization (2.5× speed, 60% VRAM) + DiffSynth Qwen-Image-Layered-Control-V2 + UniCombine multi-conditional + LoRAShop NeurIPS Spotlight + Google Nano Banana 2
+
+- **🆕 FLUX.2 Klein NVFP4/FP8 optimization announced at GDC 2026 (NVIDIA, March 14 2026)** (NVIDIA blog, GDC 2026, March 14-15):
+  - NVIDIA announced NVFP4 and FP8 model precision formats for FLUX.2 Klein 9B at GDC 2026
+  - **2.5× performance gains** vs baseline FLUX.2 Klein on RTX 5090 / H100
+  - **60% lower memory consumption** — Klein 9B now fits comfortably on 8GB VRAM in FP8 mode
+  - Available via TensorRT plugin for ComfyUI (ComfyUI Manager → TensorRT → NVFP4 FLUX support)
+  - ModelLab March 11: Klein 9B live with 2× faster image editing when using multiple reference images, no price increase
+  - **Pipeline action: Install NVFP4/FP8 TensorRT plugin for FLUX.2 Klein. This + FluxKVCache node (run 151) = maximum speed/VRAM efficiency for Klein 9B. Target: sub-1-second generation on RTX 5090, 8GB VRAM on RTX 3080 10GB.**
+
+- **🆕 DiffSynth-Studio Qwen-Image-Layered-Control-V2 released March 3 2026** (GitHub modelscope/DiffSynth-Studio, March 3 2026):
+  - Updated version of Qwen-Image-Layered-Control with improved layered control capabilities
+  - Enables: layered image generation where foreground, midground, background controlled independently
+  - Multi-condition: combine depth + pose + edge + style in layered fashion — each layer gets separate conditioning
+  - Integration: DiffSynth-Studio Python library or ComfyUI via DiffSynth Studio nodes
+  - **Digital-Stud use: Qwen-Image-Layered-Control-V2 for complex multi-element fashion product shots. Control background (studio), midground (model), foreground (product overlay) independently. Test via DiffSynth-Studio CLI.**
+
+- **🆕 UniCombine — Unified multi-conditional image generation** (GitHub Xuan-World/UniCombine, March 2026):
+  - Handles any combination of input conditions simultaneously (depth + pose + edge + segmentation + style)
+  - Single model, no multi-model routing overhead
+  - "Remarkable alignment with all conditions" — quantitative benchmark in paper
+  - GitHub: github.com/Xuan-World/UniCombine
+  - **Use case: Replace parallel ControlNet stack (pose + depth + edge) with single UniCombine model. Lower VRAM, single inference pass. Test for character generation with pose + depth + edge simultaneously.**
+
+- **🆕 LoRAShop — Training-free multi-concept editing (NeurIPS Spotlight)** (NeurIPS 2024/2026, @yusuf_dalva X post):
+  - LoRAShop: training-free framework for **multi-concept image generation & editing** using rectified flow models
+  - No fine-tuning needed: inject multiple LoRA concepts at inference time via attention manipulation
+  - Rectified flow-based (applicable to FLUX.1 Dev, FLUX.2)
+  - NeurIPS Spotlight recognition = community-verified quality
+  - **Digital-Stud use: LoRAShop for multi-character scene generation — combine character-A LoRA + character-B LoRA + style LoRA in single FLUX.2 inference pass. Complement to CORAL (run 151).**
+
+- **🆕 Google Nano Banana 2 — Text rendering breakthrough (Feb 26 2026)** (Google DeepMind, blog, Feb 26):
+  - Google Nano Banana 2: state-of-the-art text rendering within generated images
+  - Surpasses FLUX.1 and DALL-E 3 on typographic accuracy benchmarks
+  - API access via Vertex AI and Google AI Studio
+  - **Use case: Poster/banner design, product label generation, typography-in-image workflows. Add as API node option for client campaigns with text requirements. More reliable than FLUX.1 Dev for multi-word text in scene.**
+
+- **LTX-2.3-GGUF released — consumer GPU path** (HackerNoon, Reddit r/StableDiffusion, March 2026):
+  - LTX-2.3 22B DiT quantized to GGUF format — runs on consumer hardware
+  - 4-bit quantization path: LTX-2.3 22B accessible on 8-12GB VRAM
+  - Reddit benchmark: 40s generation time for 10s video on RTX 5090 using custom runtime (LTX-2.3 distilled LoRA)
+  - HackerNoon: "LTX-2.3-GGUF Brings Audio-Video Generation to Consumer Hardware"
+  - **Digital-Stud: LTX-2.3-GGUF = accessible local A/V generation without 24GB VRAM. Add GGUF model path to ltx23_ic_lora.json and ltx23_flf2v.json workflows.**
+
+### 🎬 Video Gen — Run 152 — Helios weights LIVE (confirmed March 4+6) + Wan 2.7 confirmed + Kling 3.1 confirmed + InfinityStory unlimited world-consistent video + MAIVE music-driven video
+
+- **🆕 Helios 14B weights CONFIRMED LIVE as of March 4-6 2026** (GitHub PKU-YuanGroup/Helios, Facebook DeepNetGroup, YouTube Mar 14, Medium NLPlanet weekly newsletter Mar 9):
+  - **Code + weights fully released March 4 2026** (GitHub PKU-YuanGroup/Helios)
+  - **Gradio demo launched March 6 2026**
+  - Architecture: 14B autoregressive diffusion model, unified input representation (T2V, I2V, V2V)
+  - Performance: **19.5 FPS on single H100**, minute-scale video, 128× faster than Wan 2.2 claimed
+  - Partners: ByteDance + Peking University + Canva
+  - Capabilities: T2V, I2V, V2V natively — no anti-drifting workarounds needed for long video
+  - **This is the CONFIRMED open-source local long-video model. Action: Clone PKU-YuanGroup/Helios, test on available GPU hardware. Prioritize I2V (image-to-video) path for character animation. This supersedes Wan 2.2 for long-form video if H100-class GPU available; for consumer GPU, LTX-2.3 remains preferred.**
+
+- **🆕 Wan 2.7 confirmed for March 2026 release (community post March 13)** (Reddit r/comfyui March 13 2026, Korean SD community Facebook March 13):
+  - Features confirmed: first-frame + last-frame video generation (like Kling's first/last frame control)
+  - "Major all-around upgrade over 2.6" — visual quality, audio, motion
+  - Community concern: likely commercial-only (Wan 2.6 already commercial). Reddit comments: "if it's open source it would blow everything out of water" — implying it may NOT be open-source
+  - **Assessment: Wan 2.7 = significant quality upgrade but probably commercial API only. Keep Wan 2.2 Spicy as open-source local model. Watch for surprise open-source release. Update state note when Wan 2.7 officially drops.**
+
+- **🆕 Kling 3.1 confirmed live (March 10-11 2026)** (Instagram @itsaiandy March 11, Shorz AI, Shorz changelog March 8):
+  - Kling 3.1 integrated into Shorz AI video editor as of March 8 changelog
+  - Instagram creator: used Kling 3.1 + Grok for Indiana Jones-style video, with After Effects + AI SFX
+  - Kling 3.1 vs 3.0: improved face consistency, smoother motion, improved audio sync
+  - Still commercial API (piapi.ai, fal.ai)
+  - **Update api_test_fal.py: add Kling 3.1 model ID (likely `fal-ai/kling-video/v3.1/standard/image-to-video`). Test vs 3.0 for face consistency improvement.**
+
+- **🆕 InfinityStory — Unlimited world-consistent video with character-aware shot transitions** (ResearchGate, arXiv March 2026):
+  - Framework + dataset + model for unlimited video generation
+  - Addresses: background consistency across shots + seamless multi-character-aware shot transitions
+  - Not limited to single continuous clip — handles multi-shot narrative video
+  - **Digital-Stud use: InfinityStory for long-form narrative client campaigns. Multiple shots, consistent background world, same characters across cuts. Watch for weights/code release.**
+
+- **🆕 MAIVE — Music-driven AI video (March 8 2026)** (@micswap Instagram March 8, MAIVE app):
+  - MAIVE app: import audio → generate AI video that matches the music/audio
+  - Audio-reactive video generation with visual synchronization to beat/rhythm
+  - Available as app: @MAIVEapp
+  - **Digital-Stud use: Music-driven video for social content clients who have brand music/jingles. Feed audio → get synced visual content. Simpler pipeline than ElevenLabs TTS + manual sync.**
+
+- **OpenART — 20s cinematic AI video at 1080p** (OpenArt.ai, March 2026):
+  - "Generate cinematic AI videos with consistent characters, 20-second scenes, and 1080p quality" — OpenArt homepage
+  - Built-in character consistency across 20-second clips
+  - **Commercial API/platform path for consistent-character long clips. Test for client deliverables requiring 1080p without local GPU.**
+
+### 🔧 ComfyUI — Run 152 — NVIDIA RTX_Nodes (image+video upscale) + GDC 2026 FLUX.2 optimizations + UniCombine + DiffSynth Studio nodes + LTX-2.3-GGUF
+
+- **🆕 NVIDIA RTX_Nodes — new image and video upscale model in ComfyUI** (Threads @won.wizard, March 14-15 2026):
+  - New ComfyUI node: `nvidia_rtx_nodes` — image and video upscale model
+  - Source posted on X/Threads community March 14-15 2026 (one day ago)
+  - Part of NVIDIA's RTX-specific ComfyUI nodes (TensorRT ecosystem)
+  - Enables: upscale image + video in same node, RTX-accelerated
+  - **Action: Install `nvidia_rtx_nodes` via ComfyUI Manager. Replaces ESRGAN node for RTX GPU users — faster + GPU-native upscaling. Add to image_gen_flux.json as post-processing upscale step.**
+
+- **🆕 Qwen-Image-Layered-Control-V2 in DiffSynth-Studio** (GitHub modelscope/DiffSynth-Studio, March 3):
+  - Accessible via DiffSynth-Studio Python CLI or ComfyUI DiffSynth nodes
+  - Layered control: independent conditioning per spatial layer (foreground/midground/background)
+  - Multi-condition combination: depth + pose + style stacked in layered fashion
+  - **ComfyUI path: ComfyUI-DiffSynth nodes (search ComfyUI Manager). Once installed, add Qwen-Image-Layered-Control-V2 node to product photography workflows.**
+
+- **🆕 ComfyUI v0.17.1 performance on LTX-2.3-GGUF** (Reddit r/StableDiffusion March 2026):
+  - ComfyUI v0.17.1 + LTX-2.3 GGUF 4-bit: 40s for 10s video on RTX 5090 with distilled LoRA
+  - ComfyUI v0.17.1 + LTX-2.3 22B full precision: ~90s for 10s on RTX 5090
+  - Memory path: GGUF 4-bit = ~10GB VRAM for 22B model (fits 12GB GPU)
+  - **Install sequence: ComfyUI → v0.17.1 → install GGUF support node (ComfyUI-GGUF by city96) → download ltx-2.3-22b-q4_k_m.gguf → load in ltx23_flf2v.json workflow.**
+
+- **GDC 2026 AI announcements summary (March 14-15 2026)** (NVIDIA blog, GDC 2026 schedule):
+  - GDC 2026 AI highlights for Digital-Stud pipeline:
+    - FLUX.2 Klein NVFP4/FP8 (2.5× speed, 60% VRAM) — see Image section
+    - **NVIDIA ACE** (AI Character Engine) updates — real-time NPC face animation (not directly relevant but monitor)
+    - **RTX remix** — AI asset upscaling for 3D game assets (texture upscale, relevant for 3D workflow)
+    - **DLSS 4** (Multi Frame Generation) confirmed for AI content tools — possible future ComfyUI TRT integration
+
+### 🏗️ 3D + Pose — Run 152 — Helios I2V for character animation + GuideTWSI dataset + UniCombine pose control + LTX-2.3-GGUF I2V
+
+- **🆕 GuideTWSI — largest TWSI dataset (photorealistic synthetic + real)** (arXiv:2603.07060, March 2026):
+  - Tactile Walking Surface Indicator (TWSI) detection dataset
+  - Photorealistic synthetic + curated real data
+  - Relevant for **depth/pose estimation in complex floor/ground surface scenarios**
+  - Secondary relevance: methodology for combining synthetic photorealistic data + real data for pose/detection training
+  - **Note for Digital-Stud: Use GuideTWSI's synthetic data generation methodology as template for generating synthetic character pose training data at scale.**
+
+- **Pose-Free 4D Generation via Auto-Regressive Video Inpainting** (arXiv:2510.26796v2, updated March 2026):
+  - Spatial-temporal auto-regressive inference for long, temporally consistent 4D video
+  - Handles self-occlusion + depth ambiguity
+  - **Relevance: 4D (3D + time) consistent character video. Monitor for code release — combines well with DreamVideo-Omni and Helios for character animation pipeline.**
+
+- **Helios I2V — character animation from single image** (GitHub PKU-YuanGroup/Helios):
+  - Helios supports native I2V (image-to-video) — no separate model needed
+  - I2V path: single character image → animated video at 19.5 FPS equivalent
+  - For consumer GPU: LTX-2.3-GGUF provides same I2V capability at 12GB VRAM
+  - **Workflow: Character LoRA (AI-Toolkit v0.9.2) → generate character image (FLUX.2 Klein) → Helios I2V → 30-60s character animation video. Full pipeline from LoRA to animated character, no intermediate manual steps.**
+
+### 🎓 LoRA / Character Consistency — Run 152 — AI-Toolkit dep bug (Issue #504) + LoRAShop NeurIPS + Task-level merge collapse study + CharaConsist + Ktiseos Nyx Trainer Alpha + UniCombine
+
+- **⚠️ AI-Toolkit training speed degradation bug (GitHub Issue #504, March 6 2026)** (GitHub ostris/ai-toolkit/issues/504):
+  - Bug report: training speed degrades significantly with GPU power and memory after March 6 update
+  - Issue title: "Training speed degrades significantly with GPU power and..."
+  - Root cause: dependency mismatch in AI-Toolkit as of March 6 2026
+  - Workaround: pin to pre-March-6 commit or check issue thread for pinned version fix
+  - **CRITICAL ACTION: Before next LoRA training run, check GitHub issue #504 for resolved workaround. Use pinned commit from before March 6 if training speed regression observed. Monitor for v0.9.3 hotfix.**
+
+- **🆕 Task-level merging collapse study** (arXiv:2603.09463, empirical paper, March 2026):
+  - Empirical study: certain task combinations in LoRA merging consistently fail ("merging collapse")
+  - Identifies which task pairs are safe to merge vs destructive
+  - Provides heuristic for pre-checking LoRA merge compatibility before running expensive merge
+  - **Digital-Stud: Before merging character LoRA + style LoRA + workflow LoRA, check task compatibility using arXiv:2603.09463 heuristics. Prevents failed merged models.**
+
+- **🆕 CharaConsist — Fine-grained consistent character generation** (arXiv:2507.11533, NeurIPS):
+  - Fine-grained consistency for foreground + background, continuous shots
+  - Works for single character across multiple shots (not just one pose, multiple scenes)
+  - Supports: same character in different settings (indoor, outdoor, different lighting)
+  - NeurIPS recognition = high-quality method
+  - **Use case: CharaConsist for client campaigns requiring same character across multiple scene types. Add as intermediate consistency check layer to face_refinement.json workflow.**
+
+- **🆕 Ktiseos Nyx LoRA Trainer — Alpha March 2026** (GitHub Ktiseos-Nyx/Ktiseos-Nyx-Trainer):
+  - New LoRA training GUI: NextJS frontend + SD-Scripts backend + real-time training monitoring
+  - Features: standard auto-tagging, step calculator, real-time training monitoring dashboard
+  - Alpha stage as of March 2026 — active development
+  - Integrates: Kohya-ss SD-Scripts + Derrian-Distro's extensions
+  - **Monitor for stable release. Potential replacement for manual Kohya SS config editing. Real-time monitoring = see training loss curves without tensorboard setup.**
+
+- **LoRAShop NeurIPS Spotlight (training-free multi-concept)** (X @yusuf_dalva, NeurIPS):
+  - Confirmed NeurIPS Spotlight (run 151 awareness, now confirmed publication details)
+  - Training-free: no new fine-tuning needed for new concept combinations
+  - Rectified flow models only (FLUX.1/FLUX.2 compatible)
+  - GitHub: search "LoRAShop" for implementation
+  - **Immediate use: Combine up to 3 LoRA concepts in single FLUX.2 Dev inference pass (character + style + pose) without separate merge step. Test for multi-character + background style consistency.**
+
+- **Current character consistency stack March 15 2026 (synthesis runs 149-152):**
+  - **Training**: AI-Toolkit v0.9.2 (WATCH issue #504 speed bug — pin pre-March-6 commit if needed)
+  - **Dataset**: A Thousand Words (20+ VLMs, auto-caption, quality filter)
+  - **Multi-concept inference**: LoRAShop (training-free, FLUX.2) + CORAL (100ms switch, 40+ tasks)
+  - **Face identity image**: PuLID v1.2 > InstantID
+  - **Face identity video**: DreamVideo-Omni LIRL (pending) > Kling Element Binding
+  - **Multi-shot consistency**: CharaConsist (foreground + background, continuous shots)
+  - **Merge safety**: arXiv:2603.09463 task-level merge compatibility check
+  - **3D concept**: ForgeDreamer multi-expert LoRA
+  - **Layered scene control**: Qwen-Image-Layered-Control-V2 (DiffSynth-Studio)
+
 ## 🏁 Run #151 Delta — 2026-03-15 00:01 Prague
 
 ### 🖼️ Image Gen — Run 151 — ComfyUI v0.17.0+v0.17.1 (FLUX.2 Klein KVCache+Painter node) + Veo 3.1 & Imagen 4 ComfyUI node (GoogleCloudPlatform) + WaveSpeedAI FireRed v1.1 + UnSCAR universal restoration
