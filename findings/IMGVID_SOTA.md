@@ -1,3 +1,76 @@
+<!-- last_updated: 2026-03-14T03:01:42+01:00 run_108 -->
+## 🏁 Run #108 Delta — 2026-03-14 03:01 Prague
+
+### 🖼️ Image Gen — Flux.2 + Kontext + CivitAI Illustrious wave + NVFP4/FP8 speedups
+- **Flux.2 (BFL)** now established as primary open image generation model. Kontext variant adds **style transfer with reference image inputs** — distinct from pure text prompting. Available via BFL API and ComfyUI Partner Node. Community confirming `lora_strength ≥ 0.8` for Kontext style lock. Forum thread: r/StableDiffusion "Help finding Flux2 txt2img workflow for ComfyUI" (Mar 2026) shows demand but sparse workflow docs — opportunity for Digital-Stud workflow artifact.
+- **NVFP4/FP8 for Flux.2 Klein + LTX-2.3**: New model variants delivering **2.5× performance, 60% lower VRAM** on RTX 50 Series. NVIDIA Blog (GDC 2026): ComfyUI achieved 40% faster perf for RTX GPUs since Sept 2025. For Digital-Stud: FP8 LTX-2.3 safetensors (Lightricks/LTX-2.3-fp8) confirmed working on 16GB VRAM (r/sdforall Mar 2026).
+- **Illustrious community wave (CivitAI, Mar 2026)**:
+  - `AI styles dump (Anima/Illustrious/RouWei/Noob)` LoRA — Mar 13, 2026, 704K steps, multi-style combo
+  - `PerfectDeliberate v8` Illustrious — Feb 26, 2026, recommended 832×1216 → 1024×1536
+  - `Dvine v10.8` Illustrious anime — Mar 9, 2026. Tags: `masterpiece, best quality, absurdres, highres`
+  - `7urreal v1` Illustrious — updated Mar 13, 2026
+  - Community consensus (r/StableDiffusion): Chenkin/NoobAI finetunes top-rated for Illustrious; original Anima preferred over finetunes
+- **Flux API pricing guide 2026** (unifuncs.com): 302.ai offers simplified per-call enterprise pricing. Competitive with Replicate/fal.ai for production volume.
+- **SDXL research still active**: arXiv 2603.11509 (Riemannian Control for Diffusion Guidance) — unified CFG++ improvement reducing oversaturation at guidance scale 15. arXiv 2603.12245 (Elastic Latent Interfaces) — multi-budget DiT supporting SDXL 50/50 ratio training. Style bias toward synthetic data noted — relevant for finetuning strategies.
+- **deAPI (n8n community node)**: Unified open-source API for FLUX + LTX Video + Whisper on n8n. Free self-hosted. Good for automation pipeline integration.
+
+### 🎬 Video Gen — Kling 3.0 full spec + SkyReels V4 API + Seedance 2.0 + WanGP v10.9873
+- **Kling 3.0 / Kling O3** (Kuaishou, Feb 4 2026 launch):
+  - Native **4K @ 60fps**, up to 15-second clips, 6 camera cuts per storyboard generation
+  - AI Director mode: professional cinematography vocabulary (dolly, crane, orbit, tracking)
+  - Native multilingual dialogue: English, Chinese, Japanese, Korean, Spanish
+  - **Kling Video 3.0 Omni**: 3–5 reference images for character consistency + start/end-frame control
+  - Free tier: ~66 daily credits. API available. ComfyUI Partner Node (Kling Motion Control 3.0) confirmed Mar 5 2026.
+- **Seedance 2.0** (ByteDance): New contender listed as #1 in Mar 2026 rankings (genra.ai). Millisecond-level phoneme-to-viseme alignment, multilingual regional accents, dual-branch audio-video architecture. 4–12 sec, 1080p. Replaces Seedance 1.5 Pro in production pipelines.
+- **Veo 3.1** (Google via Flow): **Only true 4K native** in consumer market. Nano Banana integration for character-consistent I2V. 8-second cap. $19.99/mo Google AI Pro. Audio-native with accurate lip-sync.
+- **Sora 2 Pro** (OpenAI): Up to 25 seconds per generation (longest native duration). Physics simulation leader (fluid, fabric, light). $0.10/sec standard, $0.50/sec Pro.
+- **Runway Gen-4.5**: Best editing suite (inpainting, masking, motion brushes, style transfer). No native audio. $95/mo Unlimited.
+- **SkyReels V4**: Ranked #2 globally. Native audio-visual sync, pixel-level video editing, multimodal inputs. API on Atlas Cloud. V3 weights + inference code released Jan 29 2026.
+- **WanGP v10.9873** (Mar 13 2026): "Prompt Enhancer has just been Abliterated" — removes safety filter from WanGP prompt enhancement. Relevant for unconstrained character generation workflows. github.com/deepbeepmeep/Wan2GP
+- **Wan 2.7 detailed feature list** (Reddit/AtlasCloud): First-frame + last-frame video gen, 9-grid I2V, subject+voice reference inputs, instruction-based video editing, video recreation/replication. Full upgrade timeline: within March 2026.
+- **VBench-2.0 benchmark** now standard for comparing video generation models (pluralsight.com). VABench for audio-video generation. VGBE@CVPR 2026 workshop — first formal video gen evaluation workshop.
+
+### 🛠️ ComfyUI — App Mode + ComfyHub launch + NVIDIA GDC 2026 integration + HY3D advanced
+- **App Mode + App Builder + ComfyHub** (Mar 10 2026, GlobeNewswire):
+  - App Mode: node graph hidden, clean purpose-built UI. Toggle App ↔ Node with single click.
+  - App Builder: granular control over exposed parameters (simplify 50+ params to 3 inputs for end-users)
+  - Shareable App URLs: encode full workflow into single link, run in browser via Comfy Cloud — no install
+  - ComfyHub: public marketplace for workflows + apps. Separate from Comfy Node Registry (dev nodes). blog.comfy.org/p/from-workflow-to-app-introducing
+- **NVIDIA GDC 2026 + ComfyUI** (blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc/):
+  - RTX Video Super Resolution node: 4K upscaling 30× faster than local alternatives, lower VRAM
+  - NVFP4 + FP8 model support for Flux.2 Klein + LTX-2.3: 2.5× speed, 60% VRAM reduction on RTX 50 Series
+  - App View for simplified video generation (artists without node graph experience)
+- **Comfy Cloud GA** (out of beta): Free tier on RTX Pro 6000 GPUs. Workflow API deployment roadmap confirmed. blog.comfy.org/p/comfy-cloud-is-out-of-beta-and-its
+- **HY 3D Advanced Features in ComfyUI** (blog.comfy.org/p/hunyuan-3d-advanced-features-now):
+  - 3D Parts Decomposition: splits models into editable components
+  - UV Unwrapping: automatic UV layouts for texture prep
+  - Smart Topology: dense geometry → production-friendly mesh for game engines
+  - Access via Template Library → 3D → HY 3D workflows
+- **Hunyuan 3D 3.0 confirmed in ComfyUI** (r/comfyui Mar 2026). 20 workflow templates tagged 3D in comfy.org/workflows.
+- **ComfyUI Custom Node Skills for Claude Code** (github.com/jtydhr88/comfyui-custom-node-skills): Curated Claude Code skills for developing ComfyUI custom nodes — gives Claude full ComfyUI node system knowledge. Useful for generating/editing node JSON workflows in this pipeline.
+- **AMD Radeon RX 9000 Series support** (ROCm 7.1): Official ComfyUI setup guide published. Expands hardware compatibility beyond NVIDIA.
+- **ComfyUI Nodes 2.0 opt-out**: Settings UI → option to revert to legacy frontend confirmed (r/comfyui Mar 14 2026). Copy/paste issue is a new frontend bug — workaround: disable Nodes 2.0.
+- **OmniLottie ComfyUI integration** (CVPR 2026, github.com/OpenVGLab/OmniLottie): Multi-modal Lottie animation generation — ComfyUI community contribution added Mar 6 2026. Relevant for motion graphics workflows.
+- **Tencent VISVISE at GDC 2026** (Mar 14 2026): First deployable multimodal motion generation large model. Full-stack AI animation + modeling. Redefines game animation pipeline — watch for ComfyUI integration.
+- **Tencent MagicDawn at GDC 2026**: AI-driven global illumination + spatial audio for next-gen game experiences.
+
+### 🕺 Pose Estimation — SMPL+ControlNet+LTX2.3 validated + OmniPose3D + VISVISE motion gen
+- **SMPL + ControlNet + LTX-2.3 FLF2V** workflow validated (ComfyUI FB group + r/StableDiffusion Mar 2026): Use SMPL mesh → ControlNet OpenPose → LTX-2.3 First-Last-Frame video. No full LoRA needed for basic motion — strong baseline for low-VRAM Digital-Stud scenes.
+- **VISVISE multimodal motion generation** (Tencent, GDC 2026): Industry-first deployable motion generation large model. Outputs character animation directly for game engines. Could replace manual pose keyframing for complex sequences.
+- **Multi-person YOLO11-Pose + GroundingDINO** combo: Community-validated for robust multi-character pose detection in crowded/occluded scenes (r/comfyui Mar 2026). Complement to RTMW3D for scenes with 3+ characters.
+- **RTMW3D drop-in for DWPose**: Confirmed working in ComfyUI ControlNet workflows (OpenMMLab configs). Whole-body 3D >70.2 mAP — best open-source option for Digital-Stud character full-body pose capture.
+- **FMPose3D flow matching**: Confirmed as faster 3D lifting alternative — 4–6 ODE steps. Paper available, no ComfyUI node yet (check after Wan 2.7 release stabilizes community attention).
+- **DVD: Deterministic Video Depth** (arXiv 2603.12250, Mar 2026): First framework to deterministically adapt pre-trained video diffusion models into single-pass depth regressors. Useful for depth-conditioned pose + ControlNet pipelines.
+
+### 🎓 LoRA Training — Wan 2.7 LoRA impact + Flux Kontext style LoRA + AI-Toolkit abliteration + dataset tools
+- **Wan 2.7 LoRA compatibility**: Community anticipating training guides post-release. Current advice: use Wan 2.6 LoRAs as starting point, expect retraining needed. Rank 64–128 recommended baseline.
+- **Flux Kontext LoRA**: Style transfer with reference image input. Community setting `lora_strength ≥ 0.8` for lock. Training approach: same as Flux.1 LoRA but with style-reference dataset pairs.
+- **WanGP abliteration (v10.9873)**: Removes prompt safety filter. Enables unrestricted character/adult content generation without censorship bypass — directly useful for unconstrained Digital-Stud character workflows.
+- **AI-Toolkit confirmed as preferred trainer for Z-Image + Wan LoRAs** over maltrainer (multiple r/comfyui + r/StableDiffusion threads Mar 2026). Set `lora_unet_lr: 5e-5`, rank 64–128 for Wan; rank 128 for Z-Image-Turbo.
+- **WAN 2.2 dataset curation best practice** (WaveSpeedAI blog): 8–12 curated images, mixed lighting, tidy captions. Include side/3/4 views to prevent frontal-bias drift. `lora_rank: 64–128`, 1500–2000 steps.
+- **AI styles dump LoRA** (Anima/Illustrious/RouWei/Noob, Mar 13 2026): Multi-style LoRA in one checkpoint — useful for style blending tests without multiple LoRA stacks.
+- **ID-LoRA (run #107 finding)** now confirmed compatible with LTX-2.3 audio-video backbone (HF blog azhan77168). Training pipeline validated with 3K pairs. ComfyUI node expected post-community testing.
+- **Facial contamination fix (AI-Toolkit #166)**: Face isolation dataset step required for group shots. Face-crop + separate subject tagging prevents identity leakage.
 <!-- last_updated: 2026-03-14T02:30:00+01:00 run_107 -->
 ## 🏁 Run #107 Delta — 2026-03-14 02:30 Prague
 
