@@ -1,4 +1,62 @@
-<!-- last_updated: 2026-03-14T10:31:57+01:00 run_123 -->
+<!-- last_updated: 2026-03-14T11:02:57+01:00 run_124 -->
+## 🏁 Run #124 Delta — 2026-03-14 11:02 Prague
+
+### 🖼️ Image Gen — Nano Banana 2 confirmed #1 benchmark (March 12); Google AI Studio free 500-1000 imgs/day + $0.02/img paid; Adobe Firefly March 2026 expansion (25+ models, unlimited promo ends Mar 16); FLUX 2 Klein best inpainting; Canva AI allowance model Mar 16
+- **Nano Banana 2 benchmark confirmation** (aakashg.com, March 12): Now ranked #1 on text-to-image evaluation metrics, confirmed actionable for production. Detailed PM analysis published. Google AI Studio bundles Nano Banana 2 + Imagen 4 + Gemini Flash Image in single platform.
+- **Google AI Studio pricing confirmed** (blog.laozhang.ai, March 2026): Free tier: 500-1,000 images/day, no credit card. Paid: Imagen 4 Fast $0.02/img, Standard $0.04/img, Ultra $0.06/img. Batch API: 50% discount (Fast → $0.01/img, 24h processing). Gemini 2.5 Flash Image multi-turn editing $0.039/img. Current industry's lowest paid API pricing for top-tier quality. Recommended: Batch API for bulk Digital-Stud asset generation.
+- **Adobe Firefly March 2026 expansion** (blog.adobe.com, March 10): Firefly Image Editor now includes 25+ third-party AI models: Google Nano Banana 2, OpenAI Image Gen, Runway Gen-4.5, Black Forest Labs FLUX.2 Pro. AI Assistant for Photoshop entered public beta (web+mobile, voice commands on mobile). Unlimited generations promo for paid subscribers ENDS MARCH 16 (2026-03-16). Generative Fill, Remove, Expand, Upscale, background removal all GA.
+- **FLUX 2 Klein inpainting confirmed best** (Reddit r/StableDiffusion, March 2026): Community consensus: FLUX 2 Klein best for contextual inpaint (sub-second inference, strong context). Flux 1 Dev preferred for pure mask-based inpaint. New ComfyUI Enhancer node pack locks poses + controls detail during inpaint iterations. Direct Digital-Stud integration: iterative character refinement workflow.
+- **Z-Image-Edit rumoured** (r/ZImageAI, March 2026): If Z-Image-Edit releases, community projects it reaches SOTA. HunyuanVideo 3.0-Instruct named as current secondary SOTA challenger to Z-Image Turbo in image-only generation.
+- **AIMomentz open benchmark platform** (launch, March 14): Human preference voting with tamper-proof audit trail. Apache 2.0/OpenRAIL models only for dataset exports. New community benchmarking infrastructure.
+- **Canva AI allowance model** (Instagram, March 2026): Shifting from per-generation billing to single monthly allowance starting March 16 — less relevant for API-focused Digital-Stud pipeline.
+- **Meta Avocado delayed** (NYT, March 12): Meta's next major open-source model delayed due to performance concerns. Open-source landscape: Meta not a near-term competitor to Nan Banana 2 or SD4 Ultra yet.
+
+### 🎬 Video Gen — 🚨 March 2026 AI Video Avalanche: 12+ models in one week (Wan 3.0 4K, Seedance 2.1 native audio, Sora 3 preview, Kling 3.1 physics, HunyuanVideo 2.0, MANGO 2, Cosmos 2); Wan 2.7 planned; Kairos 3.0-4B open-source world model (72x faster than Cosmos 2.5); Seedance 2.0 copyright chaos
+- **🚨 March 2026 AI Video Avalanche** (bonega.ai): 12+ major AI video models in one week. Industry verdict: quality parity achieved — competitive advantage now shifts to creative direction. Key releases:
+  - Mar 1: ByteDance **Seedance 2.1** — native audio (updated from 2.0's March 12 launch with audio)
+  - Mar 2: Alibaba **Wan 3.0** — **4K native output** (major: first open-weights at 4K native)
+  - Mar 3: OpenAI **Sora 3 preview** — ChatGPT integration
+  - Mar 4: Google **Flow workspace GA** (Veo 3.1 powered)
+  - Mar 4: Meta **MANGO 2 open weights** — new open-source option
+  - Mar 5: Tencent **HunyuanVideo 2.0**
+  - Mar 5: Runway **Gen-4.5 Turbo mode**
+  - Mar 6: **Kling 3.1** — physics-aware motion (liquid flows, smoke, atmospheric effects); "All-in-One Reference 3.0" multi-image character+prop anchoring; native 60fps, ultra HD. $80/mo web; API $0.50-$1.20/render.
+  - Mar 7: MiniMax **Hailuo 03** — multi-shot capabilities
+  - Mar 8: NVIDIA **Cosmos 2** foundation model
+- **Wan 2.7 planned March 2026** (Reddit r/comfyui): Major all-around upgrade over 2.6: visual quality, audio, motion physics. Release within March. Also: Wan 2.6 still current best open-source per r/generativeAI community.
+- **Wan 2.2 "Spicy" & 2.6 notes**: Wan 2.2 Spicy confirmed as uncensored variant with 100% character consistency LoRA support. Wan 2.6 leads in native multimodal synthesis with physics-accurate audio (motion-vector-driven sound effects).
+- **🚨 Kairos 3.0-4B open-source** (ACE Robotics, Shanghai, March 13): Generative world model for robotics. Open-source on GitHub/HuggingFace. 4B parameters, 23.5GB VRAM. Generates 7-minute coherent interaction videos. 72x faster inference than NVIDIA Cosmos 2.5 (which needs 70.2GB). Real-time edge generation on NVIDIA Jetson Thor. Not video-gen focused, but architecture/long-horizon coherence directly relevant.
+- **Seedance 2.0 copyright crisis**: Launched March 12, immediate Hollywood lawsuit — "unauthorized use of US copyrighted works on a massive scale." ByteDance under legal scrutiny. API availability uncertain for non-China users. Avoid building primary pipeline dependency on Seedance until legal clarity.
+- **Best model tier consensus** (r/generativeAI, March 2026): Cinematic+Audio: Veo 3.1 | Raw Quality+4K: Kling 3 Pro | Control: Runway Gen-4.5 | Best Open Source: Wan 2.6 | Best All-in-One: LTX-2.3.
+- **Atlas Cloud "Render Burst"** (atlascloud.ai): Confirmed as top render tool for Wan 2.6/2.2 Spicy open-weight models.
+
+### 🛠️ ComfyUI — 🚨 App Mode + App Builder + ComfyHub launched March 10 (convert any workflow to shareable app); NVIDIA GDC 2026 partnership (RTX Video Super Resolution node, NVFP4 for LTX-2.3, FLUX 2 Klein); ElevenLabs Partner Node (TTS in graph); HY3D template in browser; 1000-Words image captioning 20+ model node
+- **🚨 ComfyUI App Mode + App Builder + ComfyHub** (blog.comfy.org, March 10): Major accessibility update. App Mode: hides node graph, shows only essential inputs/outputs. App Builder: convert any workflow to shareable app with custom UI. ComfyHub: public marketplace at comfy.org/workflows. Shareable app URLs (no install needed for end users). From NVIDIA GDC 2026 blog: RTX-accelerated App View integrated with NVIDIA optimizations. This is the biggest ComfyUI UX shift since launch.
+- **NVIDIA GDC 2026 × ComfyUI** (blogs.nvidia.com, March 10): RTX Video Super Resolution node for ComfyUI — 4K upscaling of generated videos. NVFP4 support: FLUX 2 Klein 4B/9B NVFP4 variants live; LTX-2.3 FP8 live, NVFP4 coming soon (up to 2.5x performance + 60% lower VRAM on RTX 50 Series). CUDA 13.2 dropped (Ampere + Ada support for CUDA Tile).
+- **ElevenLabs Partner Node for ComfyUI** (blog.comfy.org): World-class TTS directly in node graph via Partner Nodes system. Direct integration with LTX-2.3 audio-video pipeline.
+- **HY 3D advanced workflow template** (ComfyUI Threads, March 2026): Official ComfyUI Template Browser now includes HY 3D advanced workflow for 3D model generation. Accessible: Update ComfyUI → Workflow → Browse Templates → 3D.
+- **1000-Words image captioning node** (Reddit r/StableDiffusion): 20+ model support: WD14, JoyTag, JoyCaption, Florence2, Qwen 2.5/3.5, Moondream, Paligemma, Pixtral, smolVLM, ToriiGate. Direct Digital-Stud use: automated dataset captioning for LoRA training.
+- **LTX-2.3 official ComfyUI support confirmed** (ltx.io/model/ltx-2-3): Ships with updated ComfyUI custom nodes + reference implementations. First+Last frame conditioning + Middle frame. 4x larger text connector. LTX-2.3 I2V HD workflow live on RunningHub (also on MimicPC from run 123).
+- **Shima 2.0 relaunch confirmed** (YouTube, March 12): Creator returned after hiatus, re-architected system. Community install and review reports still sparse as of March 14. Monitor.
+- **WanGP Portable** (axiomgraph/WanGP-Portable GitHub): Portable WanGP build confirmed for Wan 2.1/2.2 low-VRAM usage. Qwen 3 TTS integration tutorial available.
+- **Wan2.1 LoRA serverless deployment on RunPod** (Medium tutorial): ComfyUI workflow-api.json based serverless pod pattern. Relevant for Digital-Stud cloud rendering scaling.
+
+### 🕺 Pose — YOLO26 benchmarks: 43% faster CPU (MuSGD optimizer, ProgLoss, STAL); HVG Stability AI researchers 4D multi-view human video (24-frame temporal windows, single image); rtmlib lightweight RTMPose deployment; skeleton+video generation workflows consolidating
+- **YOLO26 detailed benchmarks confirmed** (ultralytics.com + datature.io, March 2026): 43% faster CPU inference vs previous YOLO versions. MuSGD optimizer (SGD+Muon) — fewer training epochs. ProgLoss (Progressive Loss Balancing) + STAL (Small-Target-Aware Label Assignment) for occlusion. NMS-free end-to-end inference. Non-human keypoint support removes human-specific architecture assumptions (machinery, sports field markers, custom skeletons). Note: community reports pretrained YOLO26n-pose validation mAP lower than published — some model maturity issues for pose specifically. YOLO11-pose may still be preferred for production pose in ComfyUI until YOLO26-pose community validation resolves.
+- **HVG (Human Video Generation in 4D)** (Stability AI researchers, arXiv): Multi-view spatiotemporally coherent human videos from single image with 3D pose + view control. Articulated Pose Modulation: dual-dimensional bone maps using 3D joints connected with ellipsoids, projected to 2D. 24-frame temporal windows, 6-view windows. Progressive Spatio-Temporal Sampling for long multi-view animations. Direct Digital-Stud application: single character photo → multi-angle video sequence.
+- **rtmlib** (OpenMMLab): Lightweight RTMPose+ViTPose library. No mmcv or heavy dependency. Edge/resource-constrained deployment. RTMPose v1.3.0: 17-kp + 26-kp body + 21-kp hand models, ExLPose + H3WB datasets.
+- **DWPose status**: Still standard 2D skeleton extraction method cited in all new video generation papers (Text-to-Skeleton Cascades, HVG, WildActor). No v2 announcement yet. Remains the reliable ControlNet pose backbone.
+- **Skeleton-guided video workflow consolidating**: Emerging standard: RTMPose/DWPose extraction → dual-dimension bone maps (HVG approach) OR 2D joint sequences (Text-to-Skeleton Cascades) → diffusion conditioning with identity reference. Multi-modal: combine pose+identity+camera+optional audio.
+
+### 🎓 LoRA — Sub-10GB VRAM FLUX LoRA: "a few weeks away" per March 2026 community thread; Wan 2.1 LoRA serverless RunPod deployment tutorial; Wan 2.6 LoRA character consistency confirmed; ComfyUI 1000-Words 20+ model captioning node directly enables LoRA dataset automation; CUDA 13.2 Ampere+Ada support
+- **Sub-10GB VRAM FLUX LoRA timeline** (Facebook community, March 2026): "A few weeks away" as of March 14. Kohya_SS VRAM reduction actively progressing. Consumer GPU FLUX LoRA (RTX 3080/4070) imminent.
+- **Wan 2.1 LoRA RunPod serverless** (Medium tutorial, thesiusai42): Full workflow: ComfyUI workflow-api.json → Runpod serverless pod → API endpoint. Production-grade character-consistent video rendering at cloud scale. Directly enables Digital-Stud multi-shot character video pipeline scaling.
+- **Wan 2.6 LoRA character consistency**: Community confirms 100% character consistency across scenes with proper Wan 2.6 LoRA training (Atlas Cloud "Render Burst" for rendering). Combined with Wan 2.6 physics-accurate audio, strong end-to-end pipeline.
+- **1000-Words captioning node** (ComfyUI): 20+ model automated captioning — critical for LoRA dataset automation. Integrates directly into Digital-Stud ComfyUI workflow for character dataset prep.
+- **CUDA 13.2** (NVIDIA, March 14): Ampere + Ada GPU support for CUDA Tile. Direct benefit: faster LoRA training kernels on RTX 3090/4090 class GPUs.
+- **AI-Toolkit / Kohya status**: No new version tagged as of March 14. Ongoing sub-10GB VRAM reduction work in Kohya_SS active branch.
+- **Online creative communities + ComfyUI LoRA integration** (arXiv 2603.09055): Sociological study of how GenAI communities adopt LoRA+DreamBooth+ComfyUI. Confirms: advanced practitioners integrating fine-tuning, ComfyUI, and runtime troubleshooting as standard practice. Validates Digital-Stud pipeline positioning.
+
 ## 🏁 Run #123 Delta — 2026-03-14 10:31 Prague
 
 ### 🖼️ Image Gen — LTX-2.3 released (open-source DiT, audio-video joint, rebuilt VAE, 5M downloads); Z-Image Turbo (Alibaba #1 open-source); WaveSpeed Firered Image V1.1 Edit (face identity preservation); no FLUX.3 yet
