@@ -1,4 +1,170 @@
-<!-- last_updated: 2026-03-14T21:30:01+01:00 run_146 -->
+<!-- last_updated: 2026-03-14T22:01:01+01:00 run_147 -->
+## 🏁 Run #147 Delta — 2026-03-14 22:01 Prague
+
+### 🖼️ Image Gen — Run 147 — Midjourney V8 imminent + Veo 3.1 free tier + EvoTok unified tokenizer + Meta AI delay
+
+- **🚨 Midjourney V8 imminent — "days away"** (Midjourney Office Hours, Mar 11 2026, geekycuriosity.substack.com/p/creativity-ai-66-v8-could-drop-any):
+  - David Holz confirmed at Mar 11 office hours: "V8 is days away — genuinely close"
+  - Features: improved SREF (Style Reference), moodboards, personalization enhancements, chaos parameter, tile support, up to 10x better coherence handling for difficult prompts
+  - Community reaction: Many users actively cancelling MJ subscriptions (Threads Mar 11 viral post) citing better alternatives — V8 is a critical retention release for Midjourney
+  - **Impact: Expect V8 announcement/release by end of March 2026. Watch SREF improvements for style reference character consistency use case in Digital-Stud pipeline.**
+
+- **🆕 Imagen 4 update in beta** (Google AI Ultra, Mar 10 2026, facebook.com/manilashakerph):
+  - Better text generation (improved export formats)
+  - Improved people rendering and enhanced text control within images
+  - Multi-image capability now available in beta
+  - Imagen 4 Ultra API available on Atlas Cloud ($0.03–0.05/image range)
+  - API confirmed on basedlabs.ai
+
+- **🆕 EvoTok: Unified Image Tokenizer via Residual Latent Evolution** (arXiv:2603.12108, Mar 12 2026):
+  - Addresses fundamental granularity gap in unified multimodal models (MLLMs)
+  - Novel residual latent evolution approach for unifying understanding + generation tokenization
+  - Relevant as architectural baseline for next-generation unified generation models
+
+- **Meta AI model delayed 2+ months** (NY Post, Mar 13 2026):
+  - Meta is delaying release of next AI model by 2+ months after disappointing internal tests
+  - Mark Zuckerberg's team weighing licensing Google's Gemini instead
+  - **Impact: Meta Llama 4 launch pushed to late Q2 2026 at earliest. No image/video gen impact this month.**
+
+- **16-model image showdown confirmed** (Reddit r/Qwen_AI, Mar 2026):
+  - Community comparison: Midjourney v7 still outperforms many newer models artistically despite being ~1 year old
+  - Confirms: Nano Banana 2 (Gemini 3.1 Flash Image), GPT Image 1.5, FLUX.2 Pro, Recraft V4 as top commercial tier
+  - Best free text rendering: GPT Image 1.5 (via ChatGPT free tier)
+
+- **Best inpainting model March 2026** (Reddit r/StableDiffusion, current thread):
+  - Community consensus: FLUX.1 Dev still best for pure inpainting
+  - Emerging: New ControlNet for ZIT (ZImage-based inpainting) gaining traction
+  - IPAdapter Plus in ComfyUI confirmed still relevant for face/style/character consistency (YouTube tutorial Mar 10)
+
+### 🎬 Video Gen — Run 147 — Helios 14B real-time + Veo 3.1 free tier + Sora→ChatGPT + Grok Multi-Image + Vidu Q3-Pro + V2M-Zero
+
+- **🚨 Helios: Real-Time Long Video Generation** (arXiv:2603.09906, ByteDance/Peking University/Canva, Mar 2026):
+  - 14B parameter autoregressive diffusion transformer
+  - **Near real-time synthesis at 19.5 FPS on single GPU**
+  - Minute-scale high-quality video generation (60+ seconds)
+  - 70x longer than competing approaches at launch
+  - Photo-realistic quality at real-time speeds
+  - **This is the most significant video gen paper of March 2026. Open-source path TBD.**
+  - Instagram confirmation: "Helios (Peking University / ByteDance / Canva) tem 14 bilhões de parâmetros — rodando na sua placa de video" (Mar 14)
+
+- **🆕 Veo 3.1 free + unlimited tier** (Instagram DVoABJ-DFqS, AIToolLand, Mar 2026):
+  - Veo 3.1 transitioned to **free tier with unlimited access** via Google AI Studio / Gemini API free tier
+  - Major community excitement — "went fully FREE and UNLIMITED and nobody is talking about it yet"
+  - "Ingredients to Video" feature added: more controllable video generation with better consistency
+  - First-and-last-frame generation confirmed (generate smooth transitions between two key frames)
+  - Scene extension (chain clips into 1+ minute videos by extending previous clips)
+  - Reference image guidance for character/style consistency
+  - LinkedIn (Gen AI News Mar 14): "Veo 3.1 Ingredients to Video — fresh update aimed at more controllable video generation"
+  - **API path: Gemini API free tier + Google AI Studio. Add to api_test_fal.py or new api_test_veo31.py**
+
+- **🆕 Sora 2 → ChatGPT integration** (Reuters Mar 11, Mashable, Engadget, PCMag Mar 13 2026):
+  - OpenAI plans to integrate Sora 2 directly into ChatGPT (The Information insider report)
+  - No standalone app needed — video gen accessible inside ChatGPT interface
+  - Current API pricing: $0.10/second at 720p (unchanged)
+  - OpenAI spending estimate: $225B on AI model infrastructure operations
+  - **Implication: Sora 2 accessibility spike incoming when ChatGPT integration ships. Watch for API pricing adjustment.**
+
+- **🆕 Grok Imagine Multi-Image Video** (Basenor.com, xAI Mar 2026):
+  - New feature: Build videos from up to 7 images simultaneously
+  - Foreground character from one image, background from another, props from a third
+  - Combine with "Extend from Frame" (Mar 2) for 30s+ seamless video chains
+  - Elon Musk signaled further update on Mar 12
+  - Each extension adds up to 10-15 seconds per chained clip
+  - **Free via Grok Premium — zero-cost video gen path for multi-image character assembly**
+
+- **🆕 Vidu Q3-Pro Image-to-Video confirmed** (AtlasCloud.ai):
+  - Vidu Q3-Pro: Advanced AI video generation bringing static images to life, 8–10 seconds base (extendable via Scene Extension)
+  - Positioned as mid-tier alternative between Kling 3.0 and Veo 3.1
+  - Available on flux-ai.io hub alongside VEO 3.1, VEO 3.1 Fast, Hailuo 02, Hailuo 2.3, Seedance 1.0
+
+- **🆕 V2M-Zero: Video-to-Music Generation** (arXiv:2603.11042, Mar 2026):
+  - Zero-pair time-aligned video-to-music generation using event curves
+  - No paired training data required
+  - 5–21% better music quality than paired-data baselines
+  - 21–52% improved temporal synchronization
+  - 28% better beat alignment on dance videos
+  - **Relevance: Digital-Stud video content pipeline — auto-generate sync'd background music from character video clips**
+
+- **AI-generated Tilly Norwood music video** (PetaPixel, Mar 12 2026):
+  - Fully AI-generated actress "Tilly Norwood" released a music video
+  - First notable public release of a full AI virtual influencer music video
+  - **Competitive context: Real-world validation of the Digital-Stud virtual influencer pipeline concept**
+
+- **WAN 2.2 NVFP4 ComfyUI converter** (CivArchive, ComfyUI_Kitchen_nvfp4_Converter):
+  - Direct convert: WAN 2.2 FP16 base checkpoint → NVFP4 format
+  - Tool: github.com/tritant/ComfyUI_Kitchen_nvfp4_Converter
+  - Enables WAN 2.2 on RTX 50-series at 2.5x speed / 60% lower VRAM
+  - **Directly extends current wan22_img2vid.json workflow — add NVFP4 variant path**
+
+### 🔧 ComfyUI — Run 147 — NVFP4 WAN 2.2 converter + RTX VSR ComfyUI node + IPAdapter Plus confirmed active
+
+- **WAN 2.2 NVFP4 ComfyUI_Kitchen converter** (CivArchive/tritant, Mar 2026):
+  - Converts WAN 2.2 FP16 → NVFP4 for RTX 50 series
+  - Available on CivitAI model page (model ID 2443393, version 2747264)
+  - **Actionable: Update wan22_img2vid.json workflow notes with NVFP4 quantization path for RTX 50 GPU owners**
+
+- **NVIDIA RTX Video Super Resolution as ComfyUI node** (NVIDIA Blog GDC 2026):
+  - RTX VSR now available as ComfyUI node AND Python package
+  - 30x faster 4K upscaling vs other local upscalers
+  - Part of official NVIDIA RTX AI Garage ComfyUI toolkit
+  - **Integrate as post-processing step in wan22_img2vid.json and ltx23_ic_lora.json workflows**
+
+- **IPAdapter Plus** — confirmed still active and relevant (YouTube tutorial Mar 10 2026, 12 IPAdapter Plus in ComfyUI Explained):
+  - "One Image LoRA for Style, Faces and Character Consistency"
+  - No new version this week — but confirmed as still the primary face lock tool in ComfyUI for FLUX
+
+- **FLUX.2 Klein 9B now on ModelsLab** (Instagram DVwHSaXDbnh, Mar 2026):
+  - FLUX.2 Klein 9B text-to-image + image-to-image endpoint live on ModelsLab
+  - Qwen Image 2.0 Pro integration on same platform: superior text rendering + ultra-realistic textures
+  - **ComfyUI API node path: ModelsLab FLUX.2 Klein 9B endpoint for fast iteration**
+
+### 🏗️ 3D Gen — Run 147 — TRELLIS.2 Microsoft open-source + Hoi3DGen + SEGA 3D head avatars
+
+- **🆕 TRELLIS.2: Microsoft Open-Source 3D Generative Model** (Threads @githubprojects, Mar 13 2026):
+  - Large 3D generative model generating 3D models from 2D images (B-scale parameters)
+  - Open-source, exports to Blender, Unreal & Unity
+  - "This AI turns ONE image into a full 3D model with textures in seconds" (Instagram confirmation Mar 14)
+  - Successor to original TRELLIS — significantly improved quality
+  - **Directly relevant: Single-image-to-3D for Digital-Stud character asset pipeline. Add to 3D workflow evaluation list.**
+
+- **🆕 Hoi3DGen: Text-to-3D Human-Object Interaction** (arXiv:2603.12126, Mar 12 2026):
+  - Generates high-quality human-object interactions in 3D from text
+  - Compared vs TRELLIS (general text-to-3D) and InterFusion (text-to-3D interaction model)
+  - **Relevant: Character-in-environment 3D pose generation for Digital-Stud storyboarding**
+
+- **🆕 SEGA: Drivable 3D Gaussian Head Avatar from Single Image** (arXiv:2504.14373):
+  - Photorealistic 3D head avatars from single image input
+  - Drivable — can animate/drive expression from a single photo
+  - Relevant for Digital-Stud character rig pipeline (single reference photo → animatable head)
+
+- **LTX-2.3 + 4K on consumer GPU** (Instagram DV2eYZiDMJY, Mar 14):
+  - Community confirming: "LTX 2.3 (Lightricks) generates 4K video at 50 FPS with audio — running on your GPU"
+  - Combined with NVFP4 quantization: LTX-2.3 runs with 40% lower VRAM on FP8 format
+  - **Local pipeline path: LTX-2.3 (4K/50FPS) → RTX VSR → final output. No cloud needed for 4K.**
+
+### 🎓 LoRA / Character Consistency — Run 147 — Training-free consistency techniques + Nano Banana 2 multi-char
+
+- **Nano Banana 2 native multi-character consistency** (aimlapi.com blog, Instagram, Feb 2026 / gaining traction Mar 14):
+  - Supports consistent rendering of **up to 5 characters and 14 objects across multiple frames**
+  - No LoRA needed — native character locking via reference image conditioning
+  - Real-time knowledge grounding (knows current events, cultural context)
+  - 4K resolution support
+  - Flash architecture = fast inference
+  - Community use case: "With Nano Banana 2, creating consistent AI characters as a couple is easy — no more face changes, proportion shifts" (Instagram Mar 10)
+  - **Critical for Digital-Stud pipeline: Training-free consistent character generation for 1–5 characters. Add to face_refinement.json workflow notes as Nano Banana 2 path.**
+
+- **Veo 3.1 Reference Image Guidance** (Google Developer Blog Mar 10):
+  - Character/style consistency maintained via reference image in video generation
+  - Combined with Nano Banana 2 still-frame consistency = full pipeline:
+    1. Nano Banana 2 → generate consistent multi-character stills
+    2. Veo 3.1 → animate with reference image guidance maintaining identity
+  - **This is the strongest training-free consistent character pipeline as of March 2026**
+
+- **Best inpainting for character touchup** (Reddit r/StableDiffusion community, Mar 2026):
+  - FLUX.1 Dev: Still best for inpainting where identity must be preserved
+  - New ControlNet for ZIT/ZImage: Emerging as face-specific inpaint alternative
+  - **Add ZIT ControlNet to pose_controlnet.json evaluation notes when community releases ComfyUI node**
+
 ## 🏁 Run #146 Delta — 2026-03-14 21:30 Prague
 
 ### 🖼️ Image Gen — Run 146 — SD4 Ultra launch + Adobe Firefly multi-model + GlyphBanana text rendering
