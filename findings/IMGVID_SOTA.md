@@ -1,3 +1,39 @@
+<!-- last_updated: 2026-03-14T09:03:06+01:00 run_120 -->
+## 🏁 Run #120 Delta — 2026-03-14 09:03 Prague
+
+### 🖼️ Image Gen — Luma Uni-1 tops NB2 + GPT-Image-1.5 on RISEBench; GLM-Image open source; Reallusion Headshot 3 pre-launch; Meta Avocado delayed to May; MJ V8 still not launched
+- **Luma AI Uni-1** (The-Decoder, March 2026): First model from Luma to unify image understanding + generation. Tops RISEBench logic-based benchmark at 0.51, narrowly beating Nano Banana 2 and GPT Image 1.5. Not open-weight but accessible via Luma API. Significant for complex prompt reasoning tasks. Current leaderboard: Uni-1 > Nano Banana 2 > GPT Image 1.5 > FLUX.2 Pro v1.1 (Elo 1265) > GPT Image 1.5 (Elo 1264).
+- **GLM-Image** (Tsinghua/Zhipu, open source): >0.9 Word Accuracy on CVTG-2K text-rendering leaderboard. Best open-source text-in-image model available. Self-hostable.
+- **Reallusion Headshot 3** (pre-launch live March 13 2026): Integrated AI image generation to produce neutral-expression facial images for 3D head model construction. Relevant for Digital-Stud: direct 2D face photo → Headshot 3 → DAZ/Blender 3D head pipeline shortcut.
+- **Meta Avocado delayed to May 2026**: Internal tests showed performance gap with competitors. No impact on current workflow.
+- **No new open-source image model releases** as of 09:03 Prague, March 14. Midjourney V8 confirmed launch-ready since March 4 office hours but still not released (last confirmed: not released as of March 12).
+
+### 🎬 Video Gen — Kling 3.0 Motion Control Element Binding live; Seedance 2.0 API delayed (weights leaked unverified); ConfCtrl camera control video diffusion arXiv
+- **Kling 3.0 Motion Control — Element Binding** (klingai.com, confirmed live): New capability: upload multiple reference images/videos after character image submission → consistent facial identity across generated motion, any angle, complex emotions, occluded faces. Also: smoother full-body movement, accurate hand gestures. Win-rate vs Wan 2.2 Animate: 404%. vs Runway Act-Two: 1667%. Directly relevant for Digital-Stud character animation — test for face-consistent video from 3D renders.
+- **Seedance 2.0 API delayed indefinitely** (SitePoint March 2026): Copyright disputes + Hollywood legal pressure. Weights reportedly leaked (Vietnamese AI FB community, unverified). Seedance 1.0 API still live at seed.bytedance.com for T2V/I2V multi-shot. Seedance 2.0 officially launched Feb 10 but API geo-restricted to mainland China.
+- **ConfCtrl** (arXiv 2603.09819): Precise camera control in video diffusion via confidence-based guidance. Geometric priors + pose-conditioned generation that transfers to unseen scenarios zero-shot. Useful for controlled camera path generation in Digital-Stud cinematic sequences.
+- **Wan 2.7**: Still no official release as of 09:03 Prague. Target window: March 2026. Community buzz sustained.
+
+### 🛠️ ComfyUI — FXTD Studios Radiance nodes (HDR/EXR VFX); GVHMR 3D mocap node (SMPL export); LTX-2.3 FLF2V now in core templates; NVIDIAa RTX nodes official repo; r/comfyui face mask training
+- **FXTD Studios Radiance nodes** (r/comfyui, March 13): Hidden gem — custom node set for film/VFX pipelines with HDR/EXR image support. Enables 32-bit HDR compositing inside ComfyUI. Relevant for Digital-Stud post-processing and advanced lighting work.
+- **GVHMR ComfyUI node** (r/StableDiffusion): 3D human motion capture from video inside ComfyUI. Extracts SMPL parameters and exports rigged motion data. 271 upvotes. Game-changer for pose-to-video pipeline: video → SMPL → re-target → AI video. Add `comfyui/workflows/gvhmr_mocap.json` as next artifact.
+- **NVIDIA RTX Nodes official repo** (github.com/Comfy-Org/Nvidia_RTX_Nodes_ComfyUI): Official NVIDIA-maintained ComfyUI extension repo now live. Includes RTX Video Super Resolution node (30x faster than local alternatives for 4K upscale). NVFP4 support for FLUX.2 Klein + LTX-2.3 (coming).
+- **Custom face mask models** (r/comfyui, March 13): Community-trained YOLO detection + segmentation for face masks in ComfyUI covering anime/realism/NSFW/extreme poses/occlusion. Available on HuggingFace. Better than stock ADetailer for challenging pose-face scenarios.
+- **ComfyUI template spotlight** — Nano Banana Pro product photography template now trending on comfy.org/templates. Demonstrates NB2 capabilities for commercial-grade product shots inside ComfyUI.
+
+### 🕺 Pose — ConfCtrl camera control (2603.09819); S2D Sparse-to-Dense 3D reconstruction (2603.10893); PDCFMO probabilistic dense body correspondence; Foot motion 3D reconstruction (2603.09681)
+- **ConfCtrl** (arXiv 2603.09819): Camera control via confidence guidance for video diffusion. Geometric priors transfer zero-shot. Complements pose-guided generation — can constrain both camera and body pose simultaneously.
+- **S2D: Sparse-to-Dense Lifting** (arXiv 2603.10893, SJTU): Bridges sparse 2D keypoints and dense 3D Gaussian reconstruction. Minimal input: sparse keypoints → dense 3DGS. Potential application: DWPose/RTMPose sparse skeleton → dense 3D character for Digital-Stud 3D stage.
+- **PDCFMO** (Neural Networks, March 11 2026): Probabilistic Dense Correspondence of Human Body via Feature Map Optimization. Handles severe occlusions and complex poses. Better than DensePose for ambiguous geometry scenarios.
+- **3D Foot Motion Reconstruction** (arXiv 2603.09681): Improves markerless monocular foot/ankle reconstruction by incorporating knee + initial ankle rotations. Residual ankle prediction resolves ambiguity. Directly useful for full-body walking/dancing sequences.
+- **Panoramic Human Pose Estimation benchmark** (SSRN preprint March 2026): New benchmark specifically for 360° camera setups. RTMPose + DWPose referenced as baselines. New training-free framework for panoramic content.
+
+### 🎓 LoRA — OneTrainer v0.9.8 released; S2D potential for LoRA dataset construction; EvolveLoRA HuggingFace model live; AI-Toolkit LTX-2 officially stable
+- **OneTrainer v0.9.8** (GitHub, March 2026): New release with expanded model support and UI improvements. Specifically: character face LoRA workflow improvements, better captioning integration. Remains the recommended GUI option for non-Kohya users doing FLUX.1/FLUX.2 character training.
+- **EvolveLoRA model live on HuggingFace** (confirmed): Progressive curriculum FLUX.2 fine-tuned model now downloadable. Can be used as starting checkpoint for further Digital-Stud character fine-tuning, inheriting staged initialization stability.
+- **AI-Toolkit LTX-2 LoRA training — stable** (ostris/ai-toolkit): LTX-2.3 LoRA training now marked stable in AI-Toolkit. Enables direct video LoRA fine-tuning without musubi-tuner. PyTorch 2.7.0 compatible.
+- **musubi-tuner**: Wan 2.7 support expected on or shortly after Wan 2.7 launch. Flimmer (Wan 2.1/2.2 video LoRA) field results: community confirming best settings: rank 16-32, lr 5e-5, 500-800 steps, with regularization dataset to avoid plastic skin.
+
 <!-- last_updated: 2026-03-14T08:30:08+01:00 run_119 -->
 ## 🏁 Run #119 Delta — 2026-03-14 08:30 Prague
 
