@@ -1,4 +1,56 @@
-<!-- last_updated: 2026-03-14T15:30:03+01:00 run_134 -->
+<!-- last_updated: 2026-03-14T16:30:12+01:00 run_136 -->
+## 🏁 Run #136 Delta — 2026-03-14 16:30 Prague
+
+### 🖼️ Image Gen — March 2026 Key Updates
+- **Nano Banana 2** (Google, Gemini 3.1 Flash Image): #1 on Chatbot Arena at 1280 Elo. $0.045/img or batch 50% off. Free via Google AI Studio. Best photorealism + multi-subject. Artistic styles still lag Midjourney.
+- **FLUX.2 family (BFL)**: Dev default. FLUX.2 Pro v1.1 at 1265 Elo, $0.025–0.07/img (Replicate/fal). FLUX.2 Dev open-weight for self-hosting. LoRA fine-tuning on FLUX.1 now on Replicate (one-line API).
+- **FLUX Image-to-Video**: New workflow capability March 2026 — transforms photos into video via FLUX models (GitHub: jayeshmepani/Media-AI confirms March 2026 rollout).
+- **GLM-Image** (Zhipu AI, Jan 14 2026): 16B hybrid (9B AR + 7B diffusion decoder). Best-in-class text rendering: 0.9116 CVTG-2k (beats Nano Banana Pro). $0.015/img. Apache 2.0 open-source.
+- **MiniMax Image-01** (Feb 2026): $0.01/img (100x cheaper). Cinematic from Hailuo lineage. Via MiniMax API + WaveSpeedAI.
+- **GenEditEvalKit** (OpenGVLab, Mar 6 2026): Unified eval toolkit for multimodal image generation/editing — helps benchmark model quality.
+- **Cloudflare Workers AI**: FLUX.2 on free tier, 10k neurons/day.
+- **Delta-K** (arxiv 2603.10210): Cross-attention approach for multi-instance generation — new academic technique for placing multiple subjects.
+
+### 🎬 Video Gen — March 2026 Key Updates
+- **SkyReels V4** (Feb 25 / March 2026): ★★★ MAJOR. First unified video+audio generation (MMDiT). 1080p @ 32FPS, up to 15s. Joint video+audio from single prompt, inpainting, editing with text/image/video/mask/audio ref. Free tier with daily limits as of Mar 2 (limited preview). V3 weights on HuggingFace open. API expected mid-March.
+- **LTX-2.3** (Lightricks): 4K @ 20s, native audio, new VAE. T2V, I2V, A2V, extend, retake. API on fal.ai $0.06–0.24/s. LoRA supported. Apache 2.0. Full ComfyUI integration day-0 with official I2V+T2V templates. Up to 2.5x faster on RTX 50 with NVFP4.
+- **WanGP v10.9873** (Mar 13 2026): 15% speed gain via GGUF CUDA kernels. Prompt Enhancer updated. Active local runner for Wan models.
+- **Wan 2.7**: Reddit thread confirms scheduled for March 2026 release. Features: start/end frame video, 3x3 grid input, subject+voice control. BUT community sentiment: may shift to closed-source post-2.6, limiting local use.
+- **HunyuanVideo 1.5** (Tencent, Nov 2025 — current SOTA open): 13B params. Beats Runway Gen-3, Luma 1.6. 60GB GPU min. FP8 quant, multi-GPU via xDiT. Full Diffusers + ComfyUI integration.
+- **Wan 2.2** (Apache 2.0): MoE A14B T2V + I2V. VBench 86.22%. Cinematic Aesthetic Control. $0.29/video on SiliconFlow.
+- **FLUX.2 Klein** NVFP4/FP8 variants: 4B + 9B, 60% lower memory, up to 2.5x faster on RTX 50. Native ComfyUI template support.
+- **OSCBench** (arxiv 2603.11698): New benchmark for object state change in T2V — useful for evaluating physics consistency.
+
+### 🔧 ComfyUI — March 2026 Key Updates
+- **App Mode + App Builder + ComfyHub** (Mar 10 2026): ★★ MAJOR platform update. Convert any workflow to a shareable no-code app. ComfyHub marketplace for community workflows. Single URL distribution, runs on Comfy Cloud instantly.
+- **NVIDIA RTX Video Super Resolution node** (GDC 2026): 4K upscaling 30x faster than local alternatives. Pkg: `Nvidia_RTX_Nodes_ComfyUI`. VRAM reduction.
+- **LTX-2.3 native integration**: Day-0 ComfyUI I2V + T2V templates. NVFP4 2.5x speedup + FP8 1.7x speedup.
+- **Kling 3.0 Partner Node** (Mar 6 2026): Element Binding — facial consistency across angles/emotions. Multi-face reference. Available via Manager: search "Kling Motion Control".
+- **ElevenLabs Partner Node** (Mar 7 2026): TTS, STS, STT, Voice Isolation, Cloning, SFX, multi-speaker dialog. Full audio AI in node graph. Enables image→video→voiceover pipelines.
+- **Hunyuan 3D 3.0** Partner Nodes: Advanced 3D asset gen now available in ComfyUI.
+- **ComfyUI-Inpaint-CropAndStitch** (Mar 8 2026): 990 production instances. Advanced inpainting.
+- **Dynamic VRAM** optimization: Enabled by default — massively reduced RAM usage, Windows+Linux speed gains.
+- **comfyui-zld** (Reddit Mar 2026): New inferencing improvement nodes for LTX-2.3: S3/S4 Guider, EMASyncGuider HYBRID, EMAGGuider, CFGGuider (cfg=1).
+- **Sage Attention KJ**: ComfyUI-KJ-Nodes — Patch Sage Attention node for controllable attention. Mar 5 2026.
+- **ComfyUI DGX Spark Docker**: Community container for running ComfyUI on NVIDIA DGX Spark (GB10). bf16 LoRA pattern confirmed.
+
+### 🧍 Pose Estimation — March 2026 Key Updates
+- **Kling 3.0 Element Binding**: Facial consistency system in ComfyUI Partner Node — keeps face stable across angles, emotions, occlusions. Directly useful for character consistency in video.
+- **ROBUST-MIPS dataset** (Nature Sci Data, Mar 14 2026): Pose+segmentation dataset — useful for training pose models.
+- **RuView WiFi DensePose**: No-camera pose estimation via WiFi signals — novel approach, not yet ComfyUI-integrated.
+- **IPAdapter+ControlNet OpenPose 3-combo**: Confirmed working Digital-Stud recipe for character animation: IPAdapter for style lock + OpenPose ControlNet for skeleton + face_refinement for face. Validated in prior runs.
+- **YOLO-Pose / RTMPose**: Still the go-to for DWPose preprocessing in ComfyUI pipelines. No major new releases this run.
+
+### 🎓 LoRA Training — March 2026 Key Updates
+- **Replicate FLUX.1 LoRA fine-tuning**: One-line API for training on custom images. Production-ready.
+- **LLaMA-Factory 68K stars**: LoRA UI for VLM caption generation. Confirmed useful for dataset prep (auto-captioning images for LoRA training).
+- **AI-Toolkit (ostris)**: Still primary tool for Flux LoRA training. No major new release this run.
+- **bf16 LoRA on DGX Spark GB10**: Pattern confirmed — bf16 training on NVIDIA DGX Spark (GB10 SoC) is the efficient path for local LoRA.
+- **CogVideoX-1.5 LoRA**: 5B model supports LoRA fine-tuning for character/style consistency in video. 12–16GB VRAM.
+- **LTX-2.3 LoRA**: Fine-tuning supported across all endpoints on fal.ai + ComfyUI.
+- **OneTrainer**: Still relevant for SDXL/SD1.5 LoRA. No major update this run.
+- **async-RL training landscape** (HuggingFace blog, Mar 2026): Three LoRA implementation families documented — peft, unsloth, trl. Relevant for VLM/caption model training.
+
 ## 🏁 Run #134 Delta — 2026-03-14 15:30 Prague
 
 ### 🖼️ Image Gen — No new major model released in last 30min; 3DSynBrush single-view → 3D via sparse-view diffusion (Nature, March 14); ThermVision FLUX thermal dataset; no NVIDIA GTC pre-announcements yet (conference starts March 16)
