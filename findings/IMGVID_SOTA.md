@@ -1,3 +1,57 @@
+<!-- last_updated: 2026-03-14T02:30:00+01:00 run_107 -->
+## 🏁 Run #107 Delta — 2026-03-14 02:30 Prague
+
+### 🖼️ Image Gen — ComfyUI v0.17.1 template v0.9.21 + Nano Banana 2 ComfyUI guide + I2I upscale 2026 recap
+- **ComfyUI v0.17.1** (Mar 13): workflow_templates → **v0.9.21** (bump from v0.9.18 in 24h). Lower KV cache pressure fix included. Full changelog: github.com/Comfy-Org/ComfyUI/releases
+- **Nano Banana 2 ComfyUI full guide** (numonic.ai, early Mar 2026): Setup tutorial, optimal companion nodes, grid workflows. H100 inference latency: ~2s per generation. ComfyUI Partner Node available.
+- **Community I2I upscale consensus (r/comfyui Mar 2026)**: Top voted method = **Tile ControlNet + SDXL refiner + 4x_Ultrasharp** (or 4x-AnimeSharp for stylized). Flux.1-Ultra upscale LoRA now second-most cited. Supir still used for photorealistic enhancement but high VRAM requirement remains.
+- **Auto Installer V82** (Patreon, Mar 5 2026): ComfyUI + Torch 2.9 + CUDA 13 + FaceID + IP-Adapter packaged. More stable than Desktop installer for custom node-heavy setups.
+- **xAI / Grok Image Edit** now available as ComfyUI Partner Node (Mar 2026 via Releasebot). Expands partner node roster alongside DALL-E 3 and Flux.
+- **ComfyUI-Manager officially moved** into Comfy-Org GitHub org. Security fix: data moved to protected system folder. Legacy UI still available. New features: pre-install preview, batch install, conflict detection, malicious node scanning.
+- **Z-Image-Turbo ComfyUI workflow** (reddit): All LoRAs require strength ≥2.0. AI-Toolkit outperforms maltrainer for Z-Image LoRAs — confirm when testing LoRA compatibility.
+
+### 🎬 Video Gen — Helios 14B real-time + Sequential-Parallel 3D PE + RealWonder + DiT4DiT
+- **Helios** (ByteDance, arXiv 2603.09906, Mar 2026): **14B autoregressive diffusion model, 19.5 FPS on single H100, minute-scale video generation**. First truly real-time long video model. Unified T2V/I2V/V2V input representation. Open-weight released. Key for Digital-Stud: minute-long character animation without frame-by-frame rendering. github.com/pku-yuangroup/Helios-Page
+- **Sequential-Parallel 3D Positional Encoding** (arXiv 2603.06664, Mar 10 2026): Addresses DiT bottlenecks in long video synthesis with global time indexing. 2–3× speedup on long-form generation. Composable with HunyuanVideo, Wan, LTX backends.
+- **RealWonder** (arXiv 2603.05449, Mar 2026): Real-time physical action-conditioned video generation. Text-defined actions → physically plausible motion. Useful for choreography/movement generation without manual pose keyframing.
+- **DiT4DiT** (arXiv 2603.10448, Mar 2026): Jointly models video dynamics AND action prediction in single inference pass. Enables action-guided video editing within generation loop.
+- **FramePack confirmed production-viable** (community, Mar 2026): 1-min/60s at 30fps on 6GB GPU RAM using 13B model. Constant workload regardless of video length. Desktop software released. github.com/lllyasviel/FramePack
+- **Wan 2.6 fal.ai integration confirmed**: HD T2V + I2V + audio, up to 15s, REST API. Pricing comparable to prior runs ($0.40–$1.80 per clip). Character consistency via "Starring" multi-reference feature.
+- **HunyuanVideo ecosystem additions** (Tencent GitHub, Mar 2026): HunyuanVideo-Avatar (audio-driven human animation), TeaCache, EasyCache (2.3× speedup), Sparse-VideoGen, DCM (Dual-Expert Consistency Model), Jenga (dynamic token carving), RIFLEx (video length extrapolation). All composable with base HunyuanVideo checkpoint.
+- **Meta Avocado delayed** (reportedly Mar 2026) — failed internal benchmarks. Not expected before Q2 2026.
+
+### 🛠️ ComfyUI — Manager redesign deep-dive + Partner Nodes full roster + node version metadata RFC
+- **New ComfyUI-Manager deep-dive** (blog.comfy.org/meet-the-new-comfyui-manager):
+  - Netflix-style grid discovery UI
+  - Pre-install node preview (individual node cards before install)
+  - Conflict detection with visual indicators
+  - Security scanning + malicious node blacklist
+  - Full localization (international language support)
+  - Access: C menu → Manage Extensions (not old toolbar button)
+- **Partner Nodes full current roster** (docs.comfy.org/tutorials/partner-nodes/overview):
+  - Image: BFL Flux 1.1[pro] + controls, DALL-E 3, Nano Banana Pro, Grok Image Edit, Qwen Image Edit
+  - Video: Kling 3.0, Veo 2, Veo 3.0, Pika 2.2, Runway Gen-4, Luma Photon, MiniMax
+  - LLM: OpenAI o1/o3/gpt-4o/gpt-5, Gemini 3.1
+  - 3D: HunyuanVideo-3D, Tripo v2.5, Rodin
+  - Auth: Comfy account + prepaid credits required. Disable: `--disable-api-nodes`
+- **Node version metadata RFC** (r/comfyui, Mar 11 2026): Community actively requesting version pinning in node manager ("install used node versions" feature). Not yet implemented — important for workflow reproducibility.
+- **ComfyUI Python stack** (Auto Installer V82, Mar 5 2026): Torch 2.9 + CUDA 13 + FaceID + IP-Adapter bundled. More stable for complex custom node setups than Desktop installer.
+- **Template Library v0.9.21** additions: Kling 3.0 multi-shot video, LTX-2.3 FLF2V (first-last-frame), Nano Banana Pro product photography subgraph tutorial, Z-Image-Turbo T2I.
+
+### 🕺 Pose Estimation — RTMW3D whole-body 3D + FMPose3D flow matching + OA-NBV recap
+- **RTMW / RTMW3D** (OpenMMLab): First open-source whole-body model to exceed **70.2 mAP on COCO-Wholebody**. PAFPN + HEM for high-res features on hands/feet/face. 3D variant (RTMW3D) uses SimCC coordinate classification on 17 combined 2D+3D datasets. Drop-in replacement for DWPose in ComfyUI ControlNet workflows: github.com/open-mmlab/mmpose (RTMW configs)
+- **FMPose3D: Monocular 3D Pose via Flow Matching** (2026): Replaces diffusion-based 3D lifting with ODE-based conditional transport. Only 4–6 ODE steps vs 10–15 for diffusion. RPEA module fuses multi-hypothesis 3D predictions using 2D reprojection error as likelihood. SOTA on Human3.6M + MPI-INF-3DHP + Animal3D. Key for fast 3D skeleton extraction in ComfyUI pose-to-video pipeline.
+- **Occlusion-aware methods**: OA-NBV (run #106) + new multi-person YOLO11-Pose + GroundingDINO combo for robust multi-character pose detection in crowded scenes. Community workflow documented on r/comfyui (Mar 2026).
+- **SMPL + ControlNet workflow confirmation** (ComfyUI Facebook group, Mar 2026): LTX-2.3 FLF2V + SMPL mesh → ControlNet OpenPose → character animation without full LoRA — good baseline for Digital-Stud low-VRAM scenes.
+
+### 🎓 LoRA Training — ID-LoRA audio-video + Act-LoRA activation-guided layer selection + Z-Image guidance
+- **ID-LoRA** (arXiv 2603.10256, Mar 10 2026): **First method to jointly preserve visual appearance AND voice** using single LTX-2 audio-video diffusion backbone. In-context LoRA with negative temporal positions (disjoint RoPE regions). 73% preferred over Kling 2.6 Pro for voice similarity. Only ~3K training pairs required. Huge for Digital-Stud talking-head / character video workflows: github.com/identity-driven-av
+- **Act-LoRA** (MDPI Information 17(3), 2026): Activation-guided layer selection — identifies which attention layers to apply LoRA based on activation magnitude rather than uniform application. Reduces trainable parameters by ~30% at same quality. Layer selection transferable across fine-tuning targets on same base model.
+- **ConsistencyLoRA-Wan2.2-I2V** (r/StableDiffusion): Open-sourced video dataset curation toolkit for LoRA training — handles all preprocessing before training loop: face clustering, consistency verification via dense point tracking, CLIP similarity filtering.
+- **Z-Image-Turbo LoRA guidance**: All LoRAs require strength ≥2.0. AI-Toolkit outperforms maltrainer. Train configs should set `lora_unet_lr: 5e-5` + rank 64–128 (not lower — Z-Image underfits at r32).
+- **LoRA+ID** (IEEE Xplore 2026): Integrates face embeddings from face recognition networks directly into LoRA training loop — complementary to standard DreamBooth-style training. Improves identity lock without additional inference overhead.
+- **WAN 2.2 LoRA training recipe** (WaveSpeedAI blog): 8–12 curated images, mixed lighting, tidy captions → strongest identity consistency. `lora_rank: 64–128`, `lr: 5e-5`, 1500–2000 steps. Viewpoint diversity critical: include side/3/4 views to prevent frontal-bias drift.
+- **Facial contamination fix**: AI-Toolkit issue #166 documented — face isolation dataset step (face-crop + separate subject tagging) prevents leakage into other characters in group shots.
 <!-- last_updated: 2026-03-14T02:02:50+01:00 run_106 -->
 ## 🏁 Run #106 Delta — 2026-03-14 02:02 Prague
 
