@@ -1,3 +1,49 @@
+<!-- last_updated: 2026-03-14T01:30:00+01:00 run_105 -->
+## 🏁 Run #105 Delta — 2026-03-14 01:30 Prague
+
+### 🖼️ Image Gen — Tripo P1.0 3D Diffusion + Adobe Firefly AI Assistant
+- **Tripo P1.0** (GDC 2026, Mar 9): Production-grade native 3D diffusion architecture debuted. Generates engine-ready assets — "AI 3D 2.0" milestone. Directly relevant to Digital-Stud 3D pipeline; trial at tripo.ai.
+- **Adobe Firefly AI Assistant** (Mar 10): Conversational image editing and AI Markup (direct on-image prompting) added. Firefly now routes to 25+ models including Nano Banana 2, FLUX.2 Pro, Runway Gen-4.5. Unlimited generations for subscribers.
+- **Open-Source Tier Comparison** (community consensus Mar 2026):
+  - FLUX.2 [dev] 32B → best open photorealism, multi-reference (≤10 images), commercial license required
+  - GLM-Image 16B → best text rendering (0.91 CVTG-2k), bilingual, Apache 2.0
+  - Z-Image-Turbo 6B → fastest, 16GB VRAM, best for face detailer pass
+  - Qwen-Image 20B+ → best editing + multilingual text, Apache 2.0
+  - HunyuanImage-3.0 80B MoE (13B active) → handles 1000-word prompts, high VRAM
+- **AIMomentz**: New open AI image evaluation platform launched with human preference benchmark + provenance tracking (Mar 13). Cross-model evaluation harness.
+- **Rectified Flow confirmation**: All SOTA models (FLUX.2, SD3, Sora) confirmed using Rectified Flow vs. legacy DDIM/DDPM — important for sampler selection in ComfyUI workflows.
+- **Google Antigravity pricing change** (Mar 12): Shifted from flat-rate to on-demand credits or $250/month Ultra plan. Agentic AI tool users impacted; image-gen free tiers (Gemini/AI Studio) unchanged.
+- **Free tier update**: Gemini Flash Image → 10 RPM, 250 RPD (no card). Imagen 4 Fast → $0.02/image (no free tier). GitHub Models → 50–150 req/day for GPT-4o, o3, Grok-3.
+
+### 🎬 Video Gen — Wan 2.6 Video-Extend + Open-Sora 2.0 + Seedance 2.0
+- **Wan 2.6 Video-Extend** (WaveSpeedAI, Mar 2026): Extends short clips into longer videos with preserved/generated synchronized audio. REST inference, no cold starts. $0.50–$2.25/gen depending on duration+resolution (5/10/15s, 720p/1080p). Key for extending Wan 2.6 outputs.
+- **LTX-2.3 Video-Extend** (WaveSpeedAI, Mar 9): Flexible 1–20s extension at $0.10/sec. DiT temporal consistency. Local via LTX Desktop (free after setup) or cloud.
+- **Open-Sora 2.0** (arXiv 2503.09642v3, Mar 2026): Commercial-level video generation model, fully open. Training approach published. Quality rival to closed-source at reduced compute.
+- **Seedance 2.0** (ByteDance, Mar 2026): Multi-reference system — up to 12 files simultaneously (images, videos, audio, text). Beat-sync mode: rhythm-matched video from music. Native 1080p, 8+ language audio. $0.30/clip via APIs; free tier available. 15–20s max.
+- **Kling Motion Control 3.0** (confirmed in ComfyUI Partner Nodes): Best facial ID consistency yet. Motion capture transfer from driving video → reference image. Challenge week ending ~Mar 18. Available via Higgsfield Cinema Studio.
+- **Veo 3.1 / Google Flow**: Only true 4K native consumer output. $7.99–$249.99/month. API $0.15/sec.
+- **Community ranking** (Reddit r/generativeAI Mar 11): Runway Gen-4.5 = best creative control; Wan 2.6 / LTX 2 = open-source kings for self-hosting; Sora 2 Pro = multi-shot + long duration.
+- **Pricing floor**: Kling 3.0 cheapest API at $0.015–$0.029/sec. Sora 2 Pro ceiling at $0.50/sec. Wan 2.6 via WaveSpeedAI ~$0.07/sec.
+
+### 🛠️ ComfyUI — Kling MC3 Partner Nodes + CVPR 2026 Spectrum
+- **Kling Motion Control 3.0 Partner Nodes** (blog.comfy.org): Official announcement. Native ComfyUI integration via Kling API. Builds on 2.6 MC. Facial ID consistency improved.
+- **CVPR 2026 — Spectrum** (github.com/hanjq17/Spectrum): Training-free spectral diffusion feature forecaster. Global, long-range feature reuse with tightly controlled error. Speeds up diffusion sampling without retraining.
+- **Wan 2.2 I2V template** confirmed stable in community workflows (Feb–Mar 2026). Recommended resolution: 832×480 for best motion coherence on 24GB.
+- **LTX Desktop debate** (r/comfyui Mar 2026): Desktop beats ComfyUI out-of-box in quality — root cause identified as default sampler settings. Fix: use euler_ancestral + 25 steps + CFG 3.5 in ComfyUI to match.
+- **ComfyUI 6.0 Desktop install issues** (Mar 12): Torch version conflicts. Workaround: use portable or git install, not Desktop installer, until patched.
+
+### 🕺 Pose Estimation — WildActor AIPA + Identity-Aware 3D RoPE
+- **WildActor** (arXiv, Mar 2026): Full-body identity-preserving video generation with Asymmetric Identity-Preserving Attention (AIPA). Uses Identity-Aware 3D RoPE — distinct positional encodings for reference tokens (face Δf=4, body Δb=128) vs. video tokens. Actor-18M dataset (1.6M identity-consistent videos, 18M ref images). Built on 5B DiT + rank-128 LoRA on QKV. Directly applicable to character pose-driven video.
+- **AIM-SLAM** (calibration-free, Mar 2026): Keyframe-based pose estimation + 3D reconstruction. SOTA on real-world datasets without camera calibration. Useful for in-the-wild 3D pose capture.
+- **ControlNet Union + DWPose**: Still recommended best practice. Resolution 1024px confirmed optimal for pose fidelity. TensorRT acceleration still fastest on NVIDIA.
+- **Occlusion-Aware 3D Control** (CVPR 2026 accepted): 3D pose estimation for diffusion control. Watch for arXiv pre-print release.
+
+### 🎓 LoRA Training — ID-LoRA Audio-Visual + WildActor LoRA Recipe
+- **ID-LoRA** (Mar 2026): Extends IC-LoRA to unified audio-visual generation on LTX-2 backbone. Rank-128 LoRA. ~99% speaker similarity, 24% better than Kling 2.6 Pro. Only ~3K training pairs needed on single GPU. Negative Temporal Positions technique for RoPE. Directly applicable to voice+face identity LoRAs.
+- **WildActor LoRA recipe**: Rank-128 on QKV + output projections of 5B DiT. Multi-view reference strategy with 200+ environments, 8+ expressions for viewpoint generalization. Viewpoint-Adaptive Monte Carlo sampling during training. Two-stage resolution training (256p → 480p).
+- **Mixture of LoRA (MoLORA)** (Cohere AI, Mar 2026): LoRA + mixture-of-experts for multi-task identity scenarios. Combines LoRA adapters with routing mechanism. Relevant for multi-character workflows.
+- **Community confirmed rank guidance**: Rank 128 for full identity/viewpoint tasks; Rank 32–64 for style/concept LoRAs. Rank-128 now SOTA alignment for character video LoRAs.
+- **OneTrainer + Prodigy** still top recommendation for character image LoRAs. AI-Toolkit recommended for video/custom ControlNet. Kohya SS for advanced SDXL workflows needing fine-grained control.
 <!-- last_updated: 2026-03-14T01:02:45+01:00 run_104 -->
 ## 🏁 Run #104 Delta — 2026-03-14 01:02 Prague
 
