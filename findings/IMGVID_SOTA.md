@@ -1,4 +1,145 @@
-<!-- last_updated: 2026-03-14T21:01:16+01:00 run_145 -->
+<!-- last_updated: 2026-03-14T21:30:01+01:00 run_146 -->
+## 🏁 Run #146 Delta — 2026-03-14 21:30 Prague
+
+### 🖼️ Image Gen — Run 146 — SD4 Ultra launch + Adobe Firefly multi-model + GlyphBanana text rendering
+
+- **🆕 Stable Diffusion 4 Ultra launched** (Stability AI, early March 2026, udit.co/blog/stability-ai-stable-diffusion-4-ultra-photorealism):
+  - Significantly improved text rendering within images
+  - Correct anatomy and hand generation (major improvement over SD3.5)
+  - Cinema-grade lighting simulation
+  - Sets new photorealism benchmark in the open-weights space
+  - Upgraded diffusion transformer architecture
+  - Maintains open-weights / local deployment path
+  - **STATUS: Major open-source milestone. Add SD4 Ultra to local pipeline evaluation list.**
+
+- **🆕 Adobe Firefly multi-model integration** (Adobe blog, Mar 10 2026, blog.adobe.com/en/publish/2026/03/10/image-editing-just-got-smarter-with-ai-photoshop-firefly):
+  - Photoshop AI Assistant in public beta (web + mobile, voice command support)
+  - Firefly Image Editor: Generative Fill, Generative Remove, Generative Expand, Generative Upscale, Remove Background
+  - Partner models integrated: FLUX.2 Pro (Black Forest Labs), Nano Banana 2 (Google), GPT Image 1.5 (OpenAI), Runway Gen-4.5
+  - Unlimited generations through April 9 2026 for paid subscribers
+  - Adobe Firefly now acts as a **multi-model routing hub** — noteworthy as enterprise deployment pattern
+
+- **🆕 GlyphBanana: Precise Text Rendering via Agentic Workflows** (arXiv:2603.12155, Mar 14 2026):
+  - Training-free agentic multi-stage refinement for text-in-image generation
+  - +19.6% OCR accuracy on Z-Image, +6.91% on Qwen-Image
+  - First comprehensive benchmark: GlyphBanana-Bench (rare chars, complex Chinese, scientific formulas)
+  - Compatible with multiple base models (QwenImage-2512, ZImage-turbo)
+  - **Relevance: Text overlay / title card generation in Digital-Stud pipeline → no additional fine-tuning needed**
+
+- **🆕 InternVL-U 4B Unified Multimodal Model** (arXiv:2603.09877, OpenGVLab/InternVL-U):
+  - 4B parameter model unifying: multimodal understanding, reasoning, image generation, image editing — single model
+  - Compared to FLUX.2-klein-4B and Qwen-Image-Edit-2509 in editing benchmarks (A²-Edit paper arXiv:2603.10685)
+  - Open-source. Relevant as compact unified model for understanding + generation pipelines.
+
+- **A²-Edit: Reference-Based Local Editing** (arXiv:2603.10685, Mar 2026):
+  - Multi-precision mask fine-tuning for high-quality fine-grained image editing
+  - Compared vs FLUX.2-klein-4B and Qwen-Image-Edit-2509
+  - Relevant for character face/outfit editing in post-production pipeline
+
+- **FIRM Benchmark for Image Gen/Edit Reward Modeling** (arXiv:2603.12247, Mar 12 2026):
+  - FIRM-Bench: 807 human-annotated samples for image editing + generation quality
+  - FIRM-Edit-8B, FIRM-Gen-8B reward models outperforming general MLLMs
+  - FIRM-Edit-370K and FIRM-Gen-293K training datasets
+  - FIRM-Qwen-Edit and FIRM-SD3.5 finetuned models with substantial performance improvements
+  - Relevance: Reward model framework applicable for automated quality filtering in batch generation pipelines
+
+- **InSpatio-WorldFM: Open-Source Real-Time Generative Frame Model** (arXiv:2603.11911):
+  - Real-time generative frame model for spatial intelligence
+  - Unlike sequential video-based world models — open-source frame-level spatial generation
+  - Tangential for pipeline but notable as spatial intelligence direction
+
+- **Current Image Gen Leaderboard (awesomeagents.ai, Mar 2026)**:
+  1. Nano Banana 2 (Gemini 3.1 Flash Image) — top Elo
+  2. GPT Image 1.5 — 1264 Elo, best text rendering among multimodal models
+  3. FLUX.2 Pro — competitive benchmark scores
+  4. SD4 Ultra — new open-weights entrant
+  5. Recraft V4 (Feb 18 2026) — design/vector focused, still strong
+  6. Midjourney v7 — artistic output
+  Note: a16z Top 100 Gen AI Apps March 2026 confirms Leonardo, Ideogram, CivitAI remain top creative community platforms
+
+### 🎬 Video Gen — Run 146 — Seedance 2.0 suspended + Kling Motion Control + Runway Gen-4.5 + ShotVerse
+
+- **🚨 ByteDance Seedance 2.0 global launch SUSPENDED** (Reuters, Yahoo Finance, Mar 14 2026):
+  - TikTok parent ByteDance suspended global rollout of Seedance 2.0 after **copyright disputes with Hollywood studios including Disney**
+  - Concerns about generating copyrighted characters without authorization
+  - Company adding safeguards and IPR protections before relaunch
+  - Seedance 2.0 specs remain impressive (20-second clips, realistic physics, unified multimodal audio-visual sync, cinematic direction)
+  - **API was available on piapi.ai and flux-ai.io — check current availability before adding to api_test suite**
+  - SitePoint/AtlasCloud coverage confirms Seedance 2.0 was launched Feb 10 2026 then suspended globally Mar 14
+
+- **🆕 Kling 3.0 Motion Control in ComfyUI** (LinkedIn Dream Machine newsletter, Mar 2026):
+  - Kling 3.0 Motion Control is now **available as a ComfyUI node** (confirmed in LinkedIn newsletter)
+  - Also live on Freepik (Reddit r/Freepik_AI post confirmed, unlimited generations 720p until Mar 16 for Premium+/Pro)
+  - Motion reference: upload any real video → motion transfer to AI characters, 30 seconds continuous, preserves facial expressions and gestures
+  - **API cost strategy**: Standard Mode for prototyping → Professional Mode for final renders = up to 60% cost reduction
+  - Kling 3.0 API: native multi-shot sequences (up to 6 shots), audio-video synchronized (Video 3.0 Omni), 15-second native duration, 1080p
+
+- **🆕 Kling Motion Control in LTX Studio** (ltx.studio/blog/motion-control-by-kling-ltx-studio, Mar 11 2026):
+  - Kling Motion Control integrated into LTX Studio Gen Space
+  - Camera motion presets live: dolly, crane, and custom movements — zero text prompts needed
+  - Combines LTX-2.3 video quality with Kling's motion transfer
+
+- **🆕 Runway Gen-4.5 released** (runwayml.com, Instagram DVvnptbDjGD, Mar 2026):
+  - Most powerful Runway video generator to date ("feels like actual filmmaking")
+  - Integrated into Adobe Firefly as partner model
+  - Current ranking: "Best for Control" in community polls (Veo 3.1 = Cinematic/Audio, Kling 3 Pro = Raw Quality/4K, Runway Gen-4.5 = Control)
+
+- **🆕 Runway Characters API** (runwayml.com/news/introducing-runway-characters):
+  - Real-time video agent API for building fully custom conversational characters
+  - Characters can have persistent identity, real-time video interaction
+  - **Relevance: Digital-Stud virtual influencer pipeline — real-time character interaction capability**
+
+- **🆕 ShotVerse: Cinematic Camera Control for Multi-Shot Video Gen** (arXiv:2603.11421):
+  - Text-driven video generation with cinematic camera control for **multi-shot scenarios**
+  - Addresses major gap: camera control in complex multi-shot sequences
+  - Directly relevant for character action sequences in Digital-Stud pipeline
+
+- **fal.ai unified multi-model routing confirmed** (Reddit r/generativeAI, Mar 2026):
+  - fal.ai provides access to Veo 3.1, Sora 2, Kling 3.0 via **single unified API, pay-per-use**
+  - Cliprise.ai: Unifies 47+ models, routes shots based on need — alternative routing option
+  - **For api_test suite: fal.ai is the cleanest single-API path to test Veo 3.1 + Kling + Sora 2 without separate integrations**
+
+- **Runway Labs incubator announced** (runwayml.com/news/introducing-runway-labs):
+  - Internal R&D incubator for next-generation generative video applications
+  - Signals continued Runway investment in video generation beyond Gen-4.5
+
+### 🔧 ComfyUI — Run 146 — Kling Motion Control node + NVIDIA GDC session confirmed + IPAdapter updates
+
+- **🆕 Kling 3.0 Motion Control ComfyUI node live** (LinkedIn Dream Machine newsletter, Mar 2026):
+  - Official Kling Motion Control node available in ComfyUI
+  - Companion to Freepik integration — same motion transfer capability locally
+  - **Add to wan22_img2vid.json workflow as alternative motion control backbone**
+
+- **NVIDIA GDC 2026 ComfyUI session confirmed** (NVIDIA Blog: blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc/):
+  - "AI-powered video generation with ComfyUI's App View, NVIDIA RTX Video Super Resolution and new NVFP4 models"
+  - GDC 2026 session featuring ComfyUI App View (desktop mode), RTX VSR, and NVFP4 quantized models
+  - NVFP4 = next-gen NVIDIA quantization format (post-FP8) — faster inference on RTX 50 series
+  - **Confirms RTX VSR + ComfyUI App View as officially supported stack by NVIDIA**
+
+- **ComfyUI App View (App Mode)** now NVIDIA-endorsed: ComfyUI App View mentioned alongside RTX VSR and NVFP4 as key GDC showcase items. Stable desktop path confirmed.
+
+### 🧍 Pose / 3D — Run 146 — ShotVerse multi-shot camera + Dense Dynamic Scene Reconstruction overlap
+
+- **ShotVerse** (arXiv:2603.11421): Multi-shot camera control for text-driven video — camera control in cinematic multi-shot scenarios. Cross-reference with run 145 Controllable Complex Human Motion paper (arXiv:2603.08028) for combined pose+camera pipeline.
+
+- **Dense Dynamic Scene Reconstruction from Multi-View Videos** (arXiv:2603.12064, noted run 145): Multi-camera dynamic scene — relevant for multi-angle character capture. Now confirmed alongside ShotVerse as complementary stack.
+
+### 🎓 LoRA Training — Run 146 — AI-Toolkit GDC path + Higgsfield 20-30 image confirmation + fal.ai fine-tuning
+
+- **fal.ai fine-tuning endpoint confirmed** (Reddit discussion, r/generativeAI Mar 2026):
+  - fal.ai provides fine-tuning (LoRA training) as a service alongside inference
+  - Cloud LoRA training path without local GPU setup
+  - **Relevant: Add fal.ai fine-tuning to api_test suite alongside Replicate fine-tuning**
+
+- **AI influencer 20–30 image sweet spot reconfirmed** (aireviewcore.com/best-ai-influencer-tools-2026):
+  - "Go to Character Tab, upload 20-30 reference images" — Higgsfield workflow
+  - Consistent with Flux.1-dev LoRA guidance (already in SOTA)
+  - **Dataset size sweet spot: 20–30 images confirmed across multiple platforms/frameworks**
+
+- **Image generation history survey paper** (arXiv:2603.07455):
+  - Comprehensive survey of breakthrough image generation models: VAEs, GANs, diffusion transformers
+  - Useful as academic reference baseline for pipeline documentation
+
 ## 🏁 Run #145 Delta — 2026-03-14 21:01 Prague
 
 ### 🎬 Video Gen — March 14 2026 (21:01 sweep) — Veo 3.1 pricing + Sora ChatGPT integration
