@@ -1,3 +1,50 @@
+<!-- last_updated: 2026-03-14T01:02:45+01:00 run_104 -->
+## 🏁 Run #104 Delta — 2026-03-14 01:02 Prague
+
+### 🖼️ Image Gen — Grok Image Edit & Z-Image-Turbo in Official Templates
+- **Grok Image Edit** (xAI): Now an official ComfyUI template workflow. Text-instruction-based image editing via Grok API; no ControlNet conditioning needed. Complement to Nano Banana 2 and Qwen Edit.
+- **Z-Image-Turbo as Face Detailer**: Practical ComfyUI technique emerging — use Z-Image-Turbo (denoise ~0.1) as a lightweight face detail pass after generation. Preserves identity, adds skin texture without drift.
+- **LongCat-Image**: Native implementation landed in ComfyUI v0.16.0. High-resolution image processing for panoramic/wide-angle generations.
+- **Seedream 5.0 vs Nano Banana 2 verdict** (community Mar 2026): Nano Banana 2 wins on photorealism and text; Seedream 5.0 wins on artistic/anime styles and structural reasoning. Use case split confirmed.
+- **HunyuanImage 3.0 HY-WU edit model**: New image editing variant from Tencent (r/StableDiffusion Mar 2026). Competitive with ChatGPT image on instruction-following; weaker on aesthetics but fully open.
+- **Free tier landscape**: Gemini image API 500/day remains most generous. Nano Banana 2 free via Gemini app but capped at 3 video gen/day for video. ImageRouter.io active as dev-friendly free image API.
+
+### 🎬 Video Gen — LTX-2.3 Release Details + Kling MotionControl
+- **LTX-2.3 (Lightricks, Mar 2026)**: Full release details confirmed. Sharper visual detail engine, stronger motion coherence, cleaner audio generation, native 9:16 vertical format (mobile-first). 47GB model. Open-source. ComfyUI-LTXVideo node pack is dedicated upstream.
+- **Kling MotionControl** (arXiv 2603.03160): Technical paper published. Character animation via motion dynamics transfer from driving video to reference image. Enables lifelike video from a single photo + motion source.
+- **Wan 2.6 cinematic** (Artlist, Mar 2026): Confirmed as best open-source for controlled cinematic motion — slow-motion, fashion shots, precise light/atmosphere. 15s, 1080p, physics-accurate. Self-hostable on RTX 4090.
+- **Wan 2.6 with speech**: Synchronized speech variant operational via fal.ai ($0.07–0.18/sec) and WaveSpeed API. 5-second voice reference for voice cloning baked in.
+- **Grok video generation**: Official ComfyUI template added (Grok: Video Generation). $0.05/sec API launched Jan 28, extended to 20s Feb 3. Lower barrier than Sora 2.0 for basic video.
+- **Seedance 1.5 Pro**: Official ComfyUI template added (Seedance 1.5 Pro: Image to Video). ByteDance's video offering for commerce/product applications.
+- **MicroWorldBench** (arXiv 2603.00585): New benchmark exposing physics reasoning failures in all current SOTA video models — none pass microscale simulation tests. Important limitation for scientific/technical use.
+
+### 🛠️ ComfyUI — v0.17.1 + GDC NVIDIA Announcements
+- **v0.17.1 (Mar 13, 2026 late)**: Released same day as v0.17.0. Immutable release, minor patch. Build: b3f5f7e.
+- **NVIDIA GDC 2026 RTX acceleration**: RTX Video Super Resolution as ComfyUI node — real-time 4K upscaler, 30x faster than local upscaling alternatives. Fraction of VRAM vs competitors. Available as PyPI package.
+- **NVFP4 support**: 2.5x faster inference + 60% lower VRAM on RTX 50 Series. Supported now for FLUX.2 Klein 4B/9B and LTX-2.3. NVFP4 for LTX-2.3 coming soon.
+- **FP8 gains**: 1.7x faster, 40% VRAM reduction, broadly supported.
+- **ComfyUI 6.0 Desktop**: New major desktop version flagged in community (Mar 12). Installation issues reported with some torch versions.
+- **Official workflow templates added** (comfy.org): Z-Image-Turbo T2I, Wan 2.2 14B I2V, Grok Image Edit + Video, Nano Banana Pro, Nano Banana 2 Image Edit, Qwen Image Edit 2509/2511/2512, LTX-2.3 I2V + T2V, Seedream 5.0 Lite + 4.0, Seedance 1.5 Pro I2V, Kling 3.0 Video. Total: ~20+ new official templates in March window.
+- **Yedp Action Director node**: New ComfyUI node bridging the gap between action control and generation (Mar 2026, LinkedIn). Pose + action-conditioned generation.
+- **NLF_pose rig for Wan SCAIL-pose in Blender**: Workflow documented (alexvillabon.substack.com). Enables Blender-driven pose control directly into Wan SCAIL video generation — key for Digital-Stud 3D pipeline.
+- **ControlNet Union + Qwen Rapid AIO**: Documented Feb–Mar 2026 for precise pose modifications. Combines Qwen image editing with ControlNet Union for pose-conditioned generation without separate preprocessors.
+
+### 🕺 Pose Estimation — PoseRWGCN & CVPR 2026 Previews
+- **PoseRWGCN** (published Mar 9, 2026, Springer): Attention-free dual-stream RWKV–GCN architecture for real-time 3D HPE. Eliminates transformer attention overhead. Open access. Relevant for low-latency pose driving.
+- **CVPR 2026 accepted**: "Occlusion Aware 3D Control in Text-to-Image Generation" — direct application of 3D pose estimation to diffusion control. Published LinkedIn preview (arXiv incoming).
+- **AIM-SLAM** (calibration-free, Mar 2026): Uses "Information Quality" keyframe selection for improved pose estimation + 3D reconstruction without camera calibration. SOTA on real-world datasets.
+- **DICArt** (arXiv 2602.19565): Category-level articulated object 6D pose estimation. Formulates articulation as pose estimation sub-problem. Useful for object-level pose in 3D scenes.
+- **DWPose TorchScript + ONNX** speedup still active best practice. ComfyUI-Dwpose-Tensorrt remains recommended for Windows/NVIDIA. Resolution tip confirmed: 1024px for ControlNet precision.
+- **Qwen DWPose integration gap**: GitHub issue #8 (ComfyUI-Qwen-Image-Integrated-KSampler) requesting DWPose support in ControlNet loader — OpenPose flagged as outdated. Watch for update.
+
+### 🎓 LoRA Training — Meta-LoRA Breakthrough + OneTrainer Consensus
+- **Meta-LoRA** (arXiv 2503.22352v2, Mar 2026): Meta-learning framework for identity personalization. Three-layer: LoRA Meta-Down (identity-agnostic shared priors) + LoRA Mid+Up (identity-specific). Pre-trains shared components across identities, fine-tunes only ID-specific layers at test time. Introduces Meta-PHD benchmark dataset. **Significant: reduces per-identity adaptation cost while improving face fidelity.**
+- **OneTrainer community consensus** (Mar 2026): Now considered the best tool for character LoRA creation, surpassing Kohya SS in community preference. Recommended optimizer: Prodigy, lr=1.0. Better convergence and identity stability.
+- **Advanced dataset workflow** (community late 2025 / active 2026): SDXL+PuLID+Hyper-LoRA → Flux 1-dev+InfiniteYou → Qwen Edit+Relighting LoRA → Z-Image-Turbo (denoise 0.1). Multi-step cascade for clean 40–60 image datasets. Preserves identity + maximizes texture quality.
+- **Kohya params confirmed** (Mar 2026): lr=0.0001–0.0004 (recommend 0.0004), rank 32–64 for general/64–128 for complex, alpha=50% of rank, 40 steps/image min, 2000–3000 total steps, bf16 mixed precision.
+- **ControlNet LoRA training** (AI-Toolkit, 2026): Tutorial documented for training custom ControlNet models in AI-Toolkit. Enables specialized pose / depth / structure conditioning from custom data.
+- **Wan 2.2 Spicy variant**: Uncensored, high-motion variant supporting advanced LoRA training for character consistency. Only commercial-friendly option with LoRA support in open-source video space.
+- **Flux 2 LoRA + 360° Panoramas**: Specific LoRA application documented (alexvillabon.substack.com). Flux.2 Klein LoRA for panoramic scene generation.
 <!-- last_updated: 2026-03-14T00:30:13+01:00 run_103 -->
 ## 🏁 Run #103 Delta — 2026-03-14 00:30 Prague
 
