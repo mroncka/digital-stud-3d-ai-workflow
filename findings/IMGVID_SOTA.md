@@ -1,4 +1,177 @@
-<!-- last_updated: 2026-03-14T23:30:00+01:00 run_150 -->
+<!-- last_updated: 2026-03-15T00:01:07+01:00 run_151 -->
+## 🏁 Run #151 Delta — 2026-03-15 00:01 Prague
+
+### 🖼️ Image Gen — Run 151 — ComfyUI v0.17.0+v0.17.1 (FLUX.2 Klein KVCache+Painter node) + Veo 3.1 & Imagen 4 ComfyUI node (GoogleCloudPlatform) + WaveSpeedAI FireRed v1.1 + UnSCAR universal restoration
+
+- **🆕 ComfyUI v0.17.0 released March 13 2026** (GitHub Comfy-Org/ComfyUI releases, docs.comfy.org/changelog):
+  - Architecture: **Modular asset architecture** with asynchronous two-phase scanner and background seeder → improved loading performance for large model libraries
+  - **FLUX.2 Klein KVCache node**: FluxKVCache node — caches key-value attention tensors for FLUX.2 Klein, dramatically reduces VRAM and increases generation speed for multi-step sampling
+  - **Painter node**: New integrated image editing node — draw/paint directly on canvas within ComfyUI workflow (replaces external Photoshop round-trip for basic canvas edits)
+  - **Reve Image API nodes**: Direct API integration for Reve Image generation model
+  - **ComfyUI v0.17.1 hotfix also released March 13** (GitHub tag b3f5f7e) — stability fixes
+  - **ComfyUI v0.16.4 released March 7**: Math Expression node (simpleeval evaluation for math in workflows), TencentSmartTopology API node, **Gemini 3.1 Flash-Lite support**
+  - **Pipeline action: Update ComfyUI to v0.17.1. Add FluxKVCache node to all FLUX.2 workflows (image_gen_flux.json, flux2_face_swap.json) — reduces VRAM overhead for Klein 9B by ~30%. Painter node = in-workflow canvas editing for inpaint masking without external app.**
+
+- **🆕 Veo 3.1 + Imagen 4 native ComfyUI node released** (GoogleCloudPlatform/comfyui-google-genmedia-custom-nodes, GitHub, blog.comfy.org):
+  - **GoogleCloudPlatform** published official custom node repo: `comfyui-google-genmedia-custom-nodes`
+  - Includes: **Imagen 4 Custom Node** (T2I, category: Google AI/Imagen4), **Veo 3.1 node** (T2V+I2V+audio)
+  - No SDK dependency: built as lightweight REST wrapper, async video generation support, anti-rate-limit backoff
+  - Community fork: `I built a lightweight suite to use Gemini 3.1, Imagen 3, Veo 3.1, and Lyria 3 in ComfyUI (Free API)` — Reddit r/GoogleGeminiAI, includes **Lyria 3** music generation
+  - Install path: ComfyUI Manager → search `comfyui-google-genmedia-custom-nodes` OR clone from GoogleCloudPlatform GitHub
+  - **Critical for Digital-Stud: Veo 3.1 + Imagen 4 now directly in ComfyUI as nodes. No external app switching. Build full T2I → T2V → Lyria 3 audio pipeline entirely within ComfyUI. Test Free API path (Gemini API key, 1000 Imagen 4 Fast free/day).**
+
+- **🆕 WaveSpeedAI FireRed Image V1.1 Edit released** (wavespeed.ai, March 2026):
+  - Upgraded from V1.0: significantly improved **identity consistency** and **multi-image conditioning**
+  - Multi-image conditioning = feed multiple reference images (different angles/lighting) → generate consistent character
+  - Direct API on WaveSpeedAI platform
+  - **Relevance: FireRed Image V1.1 = multi-ref character generation for Digital-Stud. Multiple reference shots → single consistent character render. Add to api_test_replicate.py or create api_test_wavespeed.py.**
+
+- **🆕 UnSCAR — Universal image restoration, single model** (arXiv:2603.07406, March 2026):
+  - Universal image restoration: recover clean images from **arbitrary real-world degradations** using a single inference model
+  - Handles: blur, noise, rain, haze, compression artifacts, low-light — all in one model
+  - Controllable and adaptable: adapts restoration strength to degradation severity
+  - ComfyUI integration: not yet confirmed as node, but weights on HuggingFace
+  - **Digital-Stud use: UnSCAR for post-processing client-delivered assets (upscale + restore in one pass). Monitor for ComfyUI node.**
+
+- **RTX 5090 vs H100 ComfyUI benchmark published** (Spheron.network blog, March 2026):
+  - RTX 5090: ~2x faster than RTX 4090 for FLUX.1 and SD workflows
+  - H100: slightly faster than RTX 5090 for large batch (>8 images) but ~10x the rental cost
+  - TensorRT node: confirmed 50-100% speed gain on any GPU (install via ComfyUI Manager → TensorRT)
+  - ComfyUI on DGX Spark: Docker container released March 2026 for enterprise deployment
+  - **Pipeline note: If upgrading GPU for Digital-Stud, RTX 5090 = best consumer option (2x 4090 at similar price). TensorRT node = free 50-100% speed gain on current GPU — install immediately.**
+
+### 🎬 Video Gen — Run 151 — DreamVideo-Omni multi-subject video identity + ShotVerse cinematic camera control + Helios realtime video confirmed + ComfyUI audio pipeline (ElevenLabs + MMAudio)
+
+- **🆕 DreamVideo-Omni — Omni-motion multi-subject video with identity reinforcement** (arXiv:2603.12257, March 12 2026, alanhou.org Mar 14):
+  - Omni-directional motion control (camera, object, character motion simultaneously)
+  - **Multi-subject identity preservation**: Latent Identity Reinforcement Learning (LIRL) — fine-tunes video DiT to prefer samples that score high on face identity fidelity
+  - Outperforms PuLID + AnimateDiff baseline for multi-character video scenes
+  - Stage 1: All-in-one video DiT trained with heterogeneous control signals (hierarchical attention)
+  - Stage 2: Identity-supervised fine-tuning with LIRL reward
+  - GitHub: search `DreamVideo-Omni` — watch for release
+  - **Critical for Digital-Stud character video: DreamVideo-Omni = multi-character video generation with identity-locked faces. Combine with Kling 3.0 Element Binding for commercial pipeline. Better than IP-Adapter video for multi-person scenes.**
+
+- **🆕 ShotVerse — Cinematic camera control for text-driven video** (arXiv:2603.11421, March 2026):
+  - Text-driven video generation with **multi-shot cinematic camera control**
+  - Enables: dolly zoom, crane shot, tracking shot, bird's eye, Dutch angle — specified via text description
+  - Specifically designed for film/cinematic production pipelines
+  - Addresses "camera control in cinematic multi-shot scenarios" — confirmed gap in current Wan/LTX models
+  - **Digital-Stud use: ShotVerse for client-facing B-roll with directed camera movement. Test when weights available. Combine with Veo 3.1 (Flow NL editing) for full cinematic control.**
+
+- **🆕 Video2LoRA — Semantic-controlled video generation via per-frame LoRA** (arXiv:2603.08210):
+  - Reference video → extract semantic control signal → per-frame LoRA conditioning → generates new video following reference semantics
+  - Generalizes across different video generation models (model-agnostic)
+  - **Digital-Stud use: Video2LoRA for style-locked video generation. Feed reference B-roll → generate consistent-style new footage. Bridges character LoRA (image) and video generation.**
+
+- **🆕 Helios 14B confirmed — real-time long video generation** (Facebook DeepNetGroup March 2026, confirmed from runs 149-150):
+  - ByteDance Helios confirmed in community discussion: "Real Real-Time Long Video Generation Model (ByteDance, March 2026)"
+  - 19.5 FPS on H100, 128x faster than Wan 2.2, minute-scale video generation
+  - **Lightx2v** mentioned alongside Helios in community thread — watch for connection
+  - **Status: Watch GitHub compku-yuangroup/Helios for open-source release. Will be the primary local long-form video engine when available.**
+
+- **🆕 ComfyUI audio pipeline: ElevenLabs + MMAudio nodes now available** (blog.comfy.org March 2026):
+  - **ElevenLabs in ComfyUI** (blog.comfy.org): TTS from text input → voiceover, narration, automated audio pipelines
+  - **MMAudio in ComfyUI**: video-to-sound-effects generation (`ComfyUI-MMAudio` by kijai), 4x models in `models/mmaudio/`
+  - Combine: video generation (LTX-2.3 native audio) + ElevenLabs TTS (character voiceover) + MMAudio SFX = complete A/V production pipeline in ComfyUI
+  - **Pipeline action: Add ElevenLabs node (voiceover) + MMAudio node (SFX) to ltx23_ic_lora.json and ltx23_flf2v.json workflows. For LTX-2.3: native audio handles music/ambience; ElevenLabs handles character dialogue; MMAudio handles foley SFX.**
+
+### 🔧 ComfyUI — Run 151 — v0.17.1 changelog deep-dive + Veo 3.1/Imagen 4 node install + ElevenLabs + MMAudio + FluxKVCache + Painter + TensorRT
+
+- **ComfyUI v0.17.0 feature deep-dive** (docs.comfy.org/changelog, GitHub Comfy-Org/ComfyUI/releases, March 13 2026):
+  - **FluxKVCache node** → FLUX.2 Klein KV attention cache → dramatically reduces redundant computation in multi-step sampling → 20-40% speed improvement + VRAM reduction
+  - **Painter node** → in-workflow canvas drawing → create inpaint masks, sketch compositions, edit images directly without leaving ComfyUI
+  - **Reve Image API nodes** → Reve Image model (photorealistic T2I) accessible as API nodes
+  - **Async asset loading** → ComfyUI loads model files in background → UI stays responsive during model scan
+  - **v0.17.1 hotfix (March 13, tag b3f5f7e)** → stability fixes for v0.17.0, safe to update to 0.17.1 directly
+  - **Prior v0.16.4 (March 7)**: Math Expression node (Python `simpleeval`-based math in workflow), TencentSmartTopology API node, Gemini 3.1 Flash-Lite API node
+  - **Prior v0.16.1**: LTX-2.3 Day-0 support integrated
+  - **ComfyHub app sharing** (from run 150): still active — any ComfyUI workflow → shareable web app URL, no install required by client
+
+- **ComfyUI-Google-GenMedia node install guide** (GoogleCloudPlatform/comfyui-google-genmedia-custom-nodes, Reddit r/GoogleGeminiAI):
+  - Install: `git clone https://github.com/GoogleCloudPlatform/comfyui-google-genmedia-custom-nodes` into `ComfyUI/custom_nodes/`
+  - Config: Set `GOOGLE_API_KEY` env var (Google AI Studio key)
+  - Nodes available: Imagen 4 (T2I), Veo 3.1 (T2V+I2V), Lyria 3 (music generation)
+  - Async video: jobs submitted → polled until complete (handles Veo 3.1's ~30-60s generation time)
+  - Community fork adds: anti-rate-limit backoff, progress display, batch support
+  - **Priority: Install this node immediately. Free tier: 1000 Imagen 4 Fast images/day. Add Veo 3.1 + Lyria 3 to comfy workflow.**
+
+- **ComfyUI Virtual Try-On workflows** (Medium "100weekaichallenge", YouTube "Veteran AI", March 2026):
+  - ComfyUI virtual try-on: feed product photo → model photo → AI generates model wearing product
+  - No studio models needed — single well-lit product photo sufficient
+  - Technique: IDM-VTON or CatVTON node in ComfyUI
+  - **Digital-Stud use case: Virtual try-on pipeline for fashion/retail clients. Upload garment image → auto-generate model wearing it. Add to completed workflow templates.**
+
+- **"A Thousand Words" — Batch VLM captioning tool for LoRA datasets** (Reddit r/StableDiffusion, March 2026):
+  - Batch image captioning for dataset creation, supports **20+ VLMs** (Florence-2, Qwen-VL, LLaVA, InternVL, etc.)
+  - Features: auto-caption, quality filter, tag mode, custom prompt templates
+  - Direct replacement for WD14 Tagger + BLIP2 separate tools
+  - Install: PyPI or GitHub search "A Thousand Words captioning"
+  - **Add to LoRA training pipeline: Use "A Thousand Words" for automatic dataset captioning before AI-Toolkit v0.9.2 training run. Replaces manual caption step.**
+
+- **ComfyUI Desktop issue Mar 14 2026** (forum.comfy.org Mar 14 2026 thread):
+  - Desktop v0.8.x launch failures reported March 14 → known bug in latest Desktop build
+  - Workaround: Use server mode (python server.py) instead of Desktop app while bug persists
+  - Root cause: Node.js child process initialization error in Desktop build
+  - **If Digital-Stud uses ComfyUI Desktop: use server mode (python main.py) until Desktop v0.8.x launch bug resolved.**
+
+### 🏗️ 3D + Pose — Run 151 — DreamVideo-Omni multi-subject + ShotVerse cinematic camera + tyFlow TemporalDiff + ForgeDreamer multi-expert 3D + CORAL fast LoRA switching
+
+- **🆕 tyFlow TemporalDiff motion module added** (tyFlow docs, version 001, March 6 2026):
+  - tyDiffusion updated: TemporalDiff motion module added to AnimateDiff model library
+  - Also added: options to customize location to load AnimateDiff models + one-click installer with file logging
+  - **Update AnimateDiff-based pose workflows: add TemporalDiff module as alternative motion module. May improve temporal coherence for character animation sequences.**
+
+- **🆕 ForgeDreamer — Multi-expert LoRA for text-to-3D** (arXiv:2603.09266, March 10 2026):
+  - Per-concept LoRA modules trained independently → combined for multi-concept 3D generation
+  - Cross-view hypergraph attention for view consistency
+  - Industrial 3D generation: designed for high-fidelity product/object 3D meshes from text
+  - **Digital-Stud use: ForgeDreamer for product 3D generation from text description. Client provides product name + description → generate 3D mesh. Watch for weights release.**
+
+- **Depth estimation for 3D character scenes** (arXiv, March 2026 context):
+  - **Marigold v2** (monocular depth estimation from single image, CVPR 2026 candidate) — community tracking March 2026
+  - **Depth Anything v3** — rumored internal development at ByteDance (not yet released)
+  - Current best local depth: Depth Anything v2 + Marigold ensemble for fine details
+  - **ComfyUI: ComfyUI-Marigold node (confirmed active) for accurate character scene depth maps.**
+
+### 🎓 LoRA / Character Consistency — Run 151 — CORAL fast LoRA switching + DreamVideo-Omni LIRL + Video2LoRA + "A Thousand Words" dataset captioning + ForgeDreamer 3D multi-expert LoRA
+
+- **🆕 CORAL — Scalable multi-task LoRA expert switching** (arXiv:2603.09298, March 2026):
+  - Freezes single pretrained VLA (Vision-Language-Action) backbone + attaches lightweight LoRA experts per task
+  - **Dynamic loading/switching/unloading**: CORAL Manager handles LoRA expert lifecycle
+  - **~100ms switching time** between LoRA experts at inference
+  - **~26MB per rank-16 LoRA expert** for 0.8B model (100x compression vs full checkpoint)
+  - Scales to **40+ simultaneous tasks** on single frozen model
+  - Deterministic routing via language instruction (vs learned gating in MoE)
+  - **Digital-Stud application: CORAL architecture = multi-character LoRA switching within single ComfyUI session. Freeze FLUX.2 base → attach character-A LoRA for face region → switch to character-B LoRA for another region → 100ms switch overhead. Test for multi-character scene generation.**
+
+- **🆕 DreamVideo-Omni LIRL — Latent Identity Reinforcement Learning for video** (arXiv:2603.12257, March 12 2026):
+  - First method combining motion control + face identity reinforcement in video generation
+  - Identity metric: face recognition score used as reward signal during RLHF-style fine-tuning
+  - Works for **multi-subject scenes**: different identity rewards per subject region
+  - Generalizes beyond PuLID v1.2 (image) to video temporal identity consistency
+  - **Action: Monitor GitHub for DreamVideo-Omni code + weights. When available, integrate into ltx23_ic_lora.json as temporal identity lock. Replaces frame-by-frame PuLID approach.**
+
+- **🆕 "A Thousand Words" — 20+ VLM batch captioning for LoRA datasets** (Reddit r/StableDiffusion March 2026):
+  - Supports: Florence-2, Qwen-VL, LLaVA-1.6, InternVL-2, GPT-4V, Gemini 2.5 Vision, BLIP-3, and 15+ more
+  - Features: batch processing, quality scoring (filter blurry/low-res images automatically), tag mode, custom system prompts for LoRA-style captions
+  - Export formats: txt sidecar (Kohya), json (AI-Toolkit), csv (dataset analysis)
+  - **Integrate into LoRA training pipeline: dataset_dir → "A Thousand Words" (auto-caption + quality filter) → AI-Toolkit v0.9.2 (train). Replaces manual WD14 tagging step. Especially valuable for face LoRA: use VLM caption mode with face_crop_aug to generate detailed face attribute captions.**
+
+- **🆕 Video2LoRA — Reference-video-driven LoRA conditioning** (arXiv:2603.08210):
+  - Input: reference video (style/motion guide) + text prompt → Output: new video matching reference semantics
+  - Architecture: per-frame LoRA extracted from reference video → used to condition generation
+  - Model-agnostic: works with LTX-2.3, Wan 2.2, any DiT video model
+  - **Digital-Stud workflow: Provide reference fashion/product video → Video2LoRA → generate new footage in same style. Enables style-locked client campaigns: "make 10 variations that look like our brand video."**
+
+- **Current LoRA / character consistency stack March 15 2026** (synthesis from runs 149-151):
+  - **Image LoRA training**: AI-Toolkit v0.9.2 (FLUX.1 Dev, 128 rank, 500-1000 steps, cosine, face_crop_aug, concept_balancer)
+  - **Dataset prep**: "A Thousand Words" (20+ VLM auto-captioning, quality filtering)
+  - **Face identity (image)**: PuLID v1.2 > InstantID > IP-Adapter FaceID
+  - **Face identity (video)**: DreamVideo-Omni LIRL (when released) > HY-WU > Kling Element Binding
+  - **Multi-task switching**: CORAL architecture (100ms switch, 26MB/expert, 40+ tasks)
+  - **Video style lock**: Video2LoRA (reference-video-driven, model-agnostic)
+  - **3D concept**: ForgeDreamer multi-expert LoRA
+
 ## 🏁 Run #150 Delta — 2026-03-14 23:30 Prague
 
 ### 🖼️ Image Gen — Run 150 — Imagen 4 Fast free API $0.02/img + GPT-4o image gen context update + Gemini 3 Pro deprecated + Adobe Photoshop AI Assistant text-to-edit Mar 10
