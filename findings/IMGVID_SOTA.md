@@ -1,3 +1,42 @@
+<!-- last_updated: 2026-03-14T09:30:13+01:00 run_121 -->
+## 🏁 Run #121 Delta — 2026-03-14 09:30 Prague
+
+### 🖼️ Image Gen — No new releases since run 120; Midjourney V8 still unreleased; Luma Uni-1 API access confirmed; WaveSpeed API adds Klein 9B NVFP4 endpoint
+- **Luma Uni-1 API confirmed accessible**: Luma AI's unified understanding+generation model accessible via https://lumalabs.ai/api. RISEBench logic score 0.51 (run 120). Recommended for complex compositional prompts where Nano Banana 2 or FLUX.2 Pro under-delivers.
+- **WaveSpeed AI** (wavespeed.ai/models): New NVFP4 endpoint for FLUX.2 Klein (4B and 9B). Up to 2.5x faster than BF16, 60% VRAM reduction on RTX 50-Series. Cost-effective budget API option for Klein 9B inference.
+- **Midjourney V8**: Still not released as of 09:30 Prague March 14. Last confirmed intent: "launch-ready" per March 4 office hours. No further update.
+- **ComfyUI Z-Image Power Nodes** (github.com/martin-rizzo/ComfyUI-ZImagePowerNodes): Community node pack for Z-Image model — hundreds of example images + prompts + complete generation workflows. Z-Image ControlNet matrix-shape mismatch fix documented in community notes.
+
+### 🎬 Video Gen — Wan 2.7 confirmed API-only (not open source) — key shift; ByteDance Helios real-time long video + ComfyUI nodes; Kling O3 spotted (post-3.0 variant); LTX Desktop free editor launched; Wan 2.7 feature details confirmed
+- **⚠️ WAN 2.7 API-ONLY — not open source**: Community discussions confirm Wan 2.7 will be API-only, not released as open weights. Positions it as premium commercial service vs Wan 2.1/2.2 (open source). For Digital-Stud local GPU pipeline: Wan 2.2 remains the local open-source option; Wan 2.7 accessible only via wan.video API. This is a significant shift — update pipeline docs.
+- **Wan 2.7 full feature list** (wan.video, atlascloud.ai): Start+End frame video generation; 9-Grid I2V (multi-angle grid); Subject+Voice Reference (unified AV); Instruction-based video editing; Video cloning; Up to 5 reference inputs; Flexible 2-15s duration (vs fixed 5/10/15s in 2.6); Native 1080p. API release: within March 2026.
+- **ByteDance Helios** (Facebook DeepNetGroup, March 2026): Real-time long video generation. Custom ComfyUI nodes included for seamless node-graph integration. Joins Seedance 1.0 as ByteDance's available video pipeline — Helios targets real-time length, Seedance targets multi-shot narrative.
+- **LTX Desktop** (ltx.io/model/model-blog/ltx-2-3-release): Free, open-source professional video editor built on LTX-2.3 engine. Local or API-based. Significant for Digital-Stud: zero-cost LTX-2.3 UI without ComfyUI workflow overhead for quick iteration.
+- **Kling O3** (mindstudio.ai): Post-Kling 3.0 variant spotted in MindStudio docs. Described as "newest and most advanced in the Kling family." Feature details sparse — likely targets instruction-following and reasoning-augmented generation.
+- **LTX-2.3 native portrait** (1080×1920 natively trained, not cropped): Confirmed in ltx.io release notes. Directly applicable to Digital-Stud vertical format character outputs.
+
+### 🛠️ ComfyUI — App Mode + App Builder + ComfyHub launched March 10 (MAJOR); ComfyUI v1.41.15 instability warning; NVIDIA GDC 2026: RTX VSR node + NVFP4 FLUX.2/LTX; ElevenLabs Partner Nodes (TTS/STS/SFX); HunyuanVideo-I2V + HY3D templates in browser; Helios ComfyUI nodes
+- **🚨 ComfyUI App Mode + App Builder + ComfyHub** (blog.comfy.org, March 10): Major platform launch. App Mode: node graph → clean UI with one click. App Builder: expose selected params to end-users. ComfyHub (comfy.org/workflows): shareable no-install apps marketplace. This changes how Digital-Stud workflows can be shared/deployed — user-facing app without requiring node-graph knowledge.
+- **⚠️ ComfyUI v1.41.15 instability** (r/comfyui): Reports of ComfyUI-Manager disappearing and workflow loading issues after updating to 1.41.15. Recommend holding at previous stable version until fix lands. Check releases at github.com/Comfy-Org/ComfyUI/releases.
+- **NVIDIA GDC 2026 ComfyUI integration** (blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc): RTX Video Super Resolution node (30x faster 4K upscale), NVFP4 model variants for FLUX.2 Klein (4B/9B) and LTX-2.3 (2.5x perf / 60% VRAM reduction on RTX 50), App View mode. Requires RTX 50-Series for full NVFP4 gains.
+- **ElevenLabs Partner Nodes** (blog.comfy.org, March 7): TTS, Speech-to-Speech, Speech-to-Text, Voice Isolation, Multi-speaker dialogue, SFX generation — all inside ComfyUI node graph. Enables end-to-end: 3D render → image gen → video gen → voiceover in one workflow.
+- **HunyuanVideo-I2V templates** now live in ComfyUI Browse Templates. HY3D advanced workflows also available (March 9). Tencent 13B I2V model for still-to-motion conversion.
+- **Helios ComfyUI nodes** (ByteDance, March 2026): Real-time long video generation directly integrated. Install via ComfyUI Manager.
+- **ArtCompute Microgrants** (r/StableDiffusion): 5-50 GPU hour auto-approved grants for open-source video model capabilities. MachineDelusions Fill (I2V adapter) cited as example. Potential funding path for Digital-Stud community contributions.
+
+### 🕺 Pose — Text-to-Skeleton cascades for complex motion (arXiv 2603.08028, DINO-ALF); MultiAnimate DiT multi-character pose animation (arXiv 2602.21581); YOLO26 Pose Edition is new real-time standard; LiftAvatar kinematic-space avatar completion (arXiv 2603.02129); Hoi3DGen 3D human-object interaction (arXiv 2603.12126)
+- **Text-to-Skeleton Cascades** (arXiv 2603.08028): Controllable complex human motion video generation. Autoregressive text-to-skeleton models generate 2D pose sequences from natural language — captures long-range temporal dependencies. DINO-ALF (Adaptive Layer Fusion): DINOv3 patch descriptors for appearance conditioning under large pose deformations and self-occlusions. Handles acrobatic/stunt motions, flips, cartwheels. Key for Digital-Stud: text-prompt → full-body pose sequence → AI video, no manual keyframing.
+- **MultiAnimate** (arXiv 2602.21581, Feb 2026): DiT-based multi-character pose-guided animation. Identifier Assigner + Identifier Adapter solve identity confusion/occlusion. Trained on 2-character datasets, generalizes to multi-character via mask-driven scheme. SOTA on multi-person animation.
+- **YOLO26 Pose Edition** (ultralytics.com, arXiv 2602.14582): New real-time pose standard. NMS-free detection, edge AI optimized, better non-human keypoints, faster convergence, improved occlusion. X-AnyLabeling March 10 update added YOLO26-Pose support. Replaces YOLOv8-Pose as recommended detector.
+- **LiftAvatar** (arXiv 2603.02129): Kinematic-space avatar completion from sparse monocular facial + head pose observations. Synthesizes missing body pose to generate full-body animation from face-only input. Potential Digital-Stud application: face reference video → full-body character video.
+- **Hoi3DGen** (arXiv 2603.12126): Text-to-3D human-object interaction generation. Generates 3D human+object interaction scenes from text for AR/XR/gaming. Relevant for Digital-Stud scene staging with props/furniture.
+
+### 🎓 LoRA — No new major releases since run 120; musubi-tuner Wan 2.7 support pending launch; community Flimmer best settings consolidating; AI-Toolkit LTX-2 LoRA stable confirmed in production use; OneTrainer v0.9.8 adopted
+- **musubi-tuner Wan 2.7**: Explicitly waiting on Wan 2.7 weights release (API-only = no local LoRA training possible unless weights leaked/released separately). Community notes: if Wan 2.7 stays API-only, musubi-tuner LoRA training will target Wan 2.1/2.2 only.
+- **Flimmer community best settings** (consolidating): rank 16-32, lr 5e-5, 500-800 steps, regularization dataset mandatory to avoid plastic skin artifacts. Captioning: JoyCaption 2 for descriptive video captions outperforms WD-Tagger for motion-rich datasets.
+- **AI-Toolkit LTX-2 LoRA** — confirmed production-stable (ltx.io release notes, blog.comfy.org community). Training on LTX-2.3 checkpoints. Recommended: use LTX Desktop for quick test inference after training.
+- **OneTrainer v0.9.8** (run 120 finding): Adoption confirmed across community tutorials. Character face LoRA workflow cleanest non-Kohya GUI path for FLUX.1/FLUX.2.
+
 <!-- last_updated: 2026-03-14T09:03:06+01:00 run_120 -->
 ## 🏁 Run #120 Delta — 2026-03-14 09:03 Prague
 
