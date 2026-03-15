@@ -1,4 +1,133 @@
-<!-- last_updated: 2026-03-15T07:01:30+01:00 run_165 -->
+<!-- last_updated: 2026-03-15T07:30:00+01:00 run_166 -->
+## 🔭 Run #166 Delta — 2026-03-15 07:30 Prague (GTC -12.5h to keynote; T-1 day)
+
+### 🚨 CRITICAL: Cloudflare Acquires Replicate (March 11, 2026) — MASSIVE API CONSOLIDATION
+
+- **Source**: Cloudflare blog + TechCrunch, March 11, 2026
+- **Deal**: Cloudflare acquires Replicate — 50,000+ models coming to Cloudflare Workers AI
+- **Immediate impact**:
+  - All Replicate models accessible via Cloudflare Workers AI (same Cog/prediction API)
+  - Fine-tuning capabilities added to Workers AI
+  - Unified API: call same model via `replicate.run()` OR `cf.ai.run()` — same interface
+  - Custom model bring-your-own (BYOM) via Cog packaging on Workers AI
+  - No model pruning announced — full catalog preserved
+- **For existing Replicate customers**: Replicate platform continues to operate. No migration required.
+- **For Digital-Stud**: Replicate API scripts (`api_test_replicate.py`) now give dual access: Replicate CDN + Cloudflare edge inference. **Update api_test_replicate.py to note CF Workers AI path for low-latency edge deployment.**
+- **Pricing impact**: Cloudflare Workers AI free tier (10,000 neurons/day) now potentially covers Replicate models. Verify which models qualify.
+
+---
+
+### 🆕 Video Gen — Run 166 Net-New
+
+#### Grok Video Extension — "Extend from Frame" (early March 2026)
+- **Source**: Facebook AI groups + Grok subreddit, March 2026
+- **Feature**: Grok (xAI) added "Video Extension / Extend from Frame" — AI video storytelling from single frames
+- **Specs**: 720p via Grok Imagine 1.0. Supports T2V and I2V.
+- **Access**: Grok subscribers only (image gen restricted to paid subscribers as of Jan 9, 2026 after deepfake backlash)
+- **Digital-Stud relevance**: Low priority — no API, subscriber-gated, 720p ceiling. Monitor for API opening.
+
+#### Helios 14B (ByteDance/PKU-YuanGroup) — Real-Time Long Video — NOW WITH CODE RELEASE PLANNED
+- **arXiv**: 2603.09906 — "Helios: Real Real-Time Long Video Generation Model"
+- **Specs**: 14B params, 19.5 FPS synthesis on single H100, native T2V/I2V/V2V
+- **Status note**: PKU-YuanGroup Facebook post confirms: "We plan to release the code, base model, and distilled..." → **Code release imminent**
+- **Update from run 165**: arXiv 2603.09906 is confirmed to be Helios paper (not the LLM paper — was mismatch in run 165 notes). github.com/PKU-YuanGroup/Helios exists.
+- **Digital-Stud**: 19.5 FPS on H100 = real-time review loop for product animation. Monitor for code/weights release.
+
+#### New arXiv Papers (window 05:30–06:30 UTC March 15, confirmed submissions)
+- **Video2LoRA** (arXiv:2603.08210): Unified Semantic-Controlled Video Generation via per-semantic LoRA weights. Hypernetwork predicts LoRA weights for each semantic input. **Directly relevant: per-product LoRA for video.**
+- **Streaming Autoregressive Video Gen via Diagonal Distillation** (arXiv:2603.09488v2): Flow-aware diagonal distillation for AR video. Streaming output.
+- **Physical Simulator In-the-Loop Video Generation** (arXiv:2603.06408): Physics-aware diffusion video — still struggles with basic physics laws. Useful context for product physics accuracy.
+
+#### Veo 3.1 — Additional Detail (Kjae.online guide, March 2026)
+- **Release clarification**: Veo 3.1 was originally released October 2025 and "significantly updated" January 13, 2026. (Run 165 stated "January 2026" = accurate, update was Jan 13.)
+- **KJAE guide**: kjae.online/google-veo-3-1-the-complete-guide/ — comprehensive prompting guide for Veo 3.1
+- **Comparison content**: genra.ai/blog "Compare Sora 2, Veo 3.1, Runway Gen-4.5, Kling 3.0, and Genra with real examples, pricing, and use case recommendations. Updated March 2026."
+
+#### Wan2.2 — Still on HuggingFace Spaces as "Preview"
+- **HuggingFace Spaces** (scraped March 15): "Wan2.2 14B Preview — generate a video from an image with a text prompt"
+- **Status**: Still in preview/beta. No formal Wan 2.7 release detected. Wan2.2 remains latest stable.
+
+---
+
+### 🆕 Image Gen — Run 166 Net-New
+
+#### GPT-Image-1 / ChatGPT Images — March 15 Rollout TRACKING
+- **LLM Stats llm-stats.com/ai-news** — Sunday March 15 section visible: "LLM News Today... Sunday, March 15" — site confirms it's tracking March 15 events
+- **No explicit GPT-Image-1 mass rollout announcement found in 06:01–06:30 UTC window**
+- **Status**: Still tracking — help center update from run 165 is the last confirmed signal. Carry forward to run 167.
+
+#### AI Upscaling Market Report (pixeldojo.ai, March 13, 2026)
+- **Title**: "The Future of AI Image Upscaling: Market Growth and Technological Advancements"
+- **Notable**: Article has Veo 3.1 Prompting Guide + Kling 3 Prompting Guide + Seedance in sidebar → confirms these models are all in active use March 2026
+- **Digital-Stud**: Upscaling pipeline for product shots — AI upscaling (Real-ESRGAN / TileUpscale in ComfyUI) + Veo 3.1 = 1080p final output path.
+
+#### Nano Banana 2 = Gemini 3.1 Flash Image — CONFIRMED
+- **Instagram (@nano_banana_2, March 14 2026)**: "Nano Banana 2 (officially Gemini 3.1 Flash Image) is here" — confirms Nano Banana 2 is Google Gemini 3.1 Flash's image generation capability, not a separate model
+- **Significance**: Nano Banana 2 = free via Google AI Studio (Gemini 3.1 Flash free tier). This confirms a zero-cost image gen path.
+
+---
+
+### 🆕 LoRA / Training / APIs — Run 166 Net-New
+
+#### Cloudflare × Replicate (already in headline above)
+- **Kohya-ss v0.10.1** (Feb 13, 2026) latest release: adds Anima Preview model LoRA support; supports FLUX.1, SD3/SD3.5, LUMINA, HunyuanImage-2.1. No commit in run 166 window.
+- **AI-Toolkit (ostris)**: Last documented commit = March 3, 2026. No new commit in run 166 window.
+
+#### FLUX.2 Kontext LoRA Production Guide — Kevin Gabeci (March 4, 2026)
+- **Title**: "FLUX.2 LoRA Training: The Complete 2026 Guide"
+- **Author**: Apatero infrastructure lead (built production serverless LoRA training infra)
+- **Content**: Hundreds of production training jobs. Focus on inference speed, cost, deployment — not single-machine tutorial
+- **Key insight**: Production LoRA training = serverless (fal.ai / Modal / Replicate-on-CF) not local RTX. This aligns with Digital-Stud cloud-first approach.
+- **URL**: Confirmed indexed, search via "Kevin Gabeci FLUX.2 LoRA Training Complete 2026 Guide"
+
+#### Video2LoRA (arXiv:2603.08210) — Product-Specific LoRA for Video
+- Full detail in Video Gen section above.
+- **Digital-Stud priority**: HIGH. Per-product semantic LoRA for video = run a single inference model that takes product image + text → LoRA weights → personalized video. Potential replacement for full kohya pipeline for video identity.
+
+#### ID-Booth (arXiv, March 2026) — Identity-Consistent Face Generation
+- **Title**: "ID-Booth: Identity-Consistent Face Generation with Diffusion Models"
+- **Method**: High-quality synthetic facial images with identity consistency across multiple frames
+- **Digital-Stud**: Face consistency for brand spokesperson across video frames.
+
+#### IdentityStory (arXiv, March 2026) — Character Identity Across Story Frames
+- **Title**: "Taming Your Identity-Preserving Generator for Human-Centric Story Generation"
+- **Focus**: Consistent character identity across multiple story frames
+- **Digital-Stud**: Story/brand video consistency.
+
+#### fal.ai March 17 Event — No Agenda Yet
+- **Status**: "Full agenda coming soon." No speaker list or model announcements. Event = "Realtime World Models, Real Conversations" — invite-only evening event.
+- **Interpretation**: "Realtime World Models" language suggests a real-time inference product or world model announcement. Monitor.
+
+---
+
+### 🆕 GTC 2026 Pre-Keynote — Run 166 (T-12.5h)
+
+- **Window 06:01–06:30 UTC**: CONFIRMED DRY — no new NVIDIA blog posts, no executive tweets.
+- **Techmeme** (scraped March 15): "A preview of Nvidia's 2026 GTC, which kicks off on March 16, where the company is expected to unveil new agentic-optimized CPUs, a CPU-..." → **CPUs confirmed in keynote scope** — not just GPUs. "Agentic-optimized CPUs" = new product line for AI agent inference.
+- **Sebastianbarros.substack.com "28 Signals to Watch at GTC 2026"**: Mentions **Alpamayo** = NVIDIA's new open-source "System 2" reasoning model for autonomous vehicles. First confirmed new NVIDIA model name.
+- **Turing Post (threads.com/@ksenia_turingpost)**: "Robotics and inference builder day, March 15 9AM–10PM... get hands-on before GTC." Pre-GTC builder day happening TODAY March 15.
+- **fal.ai event page** links to "AI Conference | Mar 16-19, 2026 San Jose | NVIDIA GTC" — confirms fal.ai March 17 event is GTC satellite event.
+- **Digital-Stud watch**: If NVIDIA announces GB300 / Rubin GPU or new inference chip, local ComfyUI VRAM ceiling may shift. "Agentic-optimized CPUs" + Cloudflare/Replicate acquisition = edge inference stack solidifying.
+
+---
+
+### 🆕 ComfyUI — Run 166 Net-New
+- **Window 06:01–06:30 UTC**: CONFIRMED DRY — no new commit, no v0.17.2 release.
+- **HuggingFace Spaces (March 15)**: LTX 2.3 Distilled confirmed active "Generate cinematic videos with audio from text prompts." Wan2.2 14B Preview confirmed active.
+- **No new FLUX.2 Kontext ControlNet detected** in window.
+
+---
+
+### 📍 Pose / Depth / 3D — Run 166 Net-New
+
+#### Best Open-Source 3D Product → Photorealistic Background Integration (2026 SOTA)
+- **Top workflow confirmed**: Blender Render → Cryptomatte/Alpha → IC-Light (relighting) → ComfyUI FLUX.2 inpaint/outpaint → final composite
+  - Tools: IC-Light (lllyasviel, unchanged since run 165), ControlNet Depth (FLUX.2 compatible: xinsir/controlnet-depth-sdxl-1.0 adapted), Real-ESRGAN upscale
+  - Alternative: Use FLUX.2 Kontext fill/inpaint with product mask → background generation in style
+  - **Recommended 2026 stack**: Blender (render + cryptomatte mask) → FLUX.2 Kontext inpaint (background gen) → IC-Light (HDRI match) → upscale
+- **No new depth/normal model released in window**. Current SOTA: Depth Pro (Apple, weights open), Marigold v2, UniDepth v2.
+- **Gaussian Splatting for product**: No new paper in window. Current SOTA: 3DGS + Gaussian Grouping for object extraction.
+
 ## 🔭 Run #165 Delta — 2026-03-15 07:01 Prague (GTC eve, ~13h to keynote)
 
 ### 🚨 MAJOR CONFIRMED FINDS: Picsart version strings ALL resolved — 4 previously unknown models now confirmed
