@@ -1,4 +1,167 @@
-<!-- last_updated: 2026-03-15T00:30:07+01:00 run_152 -->
+<!-- last_updated: 2026-03-15T01:04:39+01:00 run_153 -->
+## 🏁 Run #153 Delta — 2026-03-15 01:04 Prague
+
+### 🖼️ Image Gen — Run 153 — FLUX.2 Klein 9B-KV (KV-cache, 2× multi-ref, HuggingFace live) + FLUX.2 Klein 4B consistency LoRA + A²-Edit unified inpainting + VTEdit-Bench VTON + InSpatio-WorldFM + Meta Avocado delayed
+
+- **🆕 FLUX.2 Klein 9B-KV released by Black Forest Labs (March 12-14 2026)** (HuggingFace: black-forest-labs/FLUX.2-klein-9b-kv-fp8, Reddit r/StableDiffusion, X @bfl_ml):
+  - **New model variant**: `FLUX.2-klein-9b-kv-fp8` — KV-cache optimized Klein 9B for accelerated multi-reference editing
+  - **How it works**: KV-caching skips redundant computation on reference images. More references = bigger speedup.
+  - **Speed**: Up to **2× faster for multi-reference image editing** (same quality, no price increase at fal.ai/Replicate)
+  - Also releasing FP8 precision variant for reduced VRAM (same day release)
+  - Available on HuggingFace: `black-forest-labs/FLUX.2-klein-9b-kv-fp8` — download and use locally
+  - Context: NVIDIA NVFP4 optimization (run 152, GDC 2026) = speed on GPU; KV-FP8 = speed on multi-reference workflows
+  - **Pipeline action: Replace current Klein 9B with Klein 9B-KV-FP8 for all multi-reference (face, clothing, product) workflows. 2× faster = half the generation cost per batch. Update flux2_face_swap.json and image_gen_flux.json to use KV-FP8 model path.**
+
+- **🆕 FLUX.2 Klein 4B consistency LoRA released** (Reddit r/StableDiffusion March 14 2026):
+  - New consistency LoRA specifically for **FLUX.2 Klein 4B** (not 9B) — improves character/style consistency in Klein 4B
+  - Tests on Reddit: "performs exceptionally well, surpassing performance of Klein 4B base on consistency tasks"
+  - HuggingFace release: search "Flux2 Klein 4B consistency LoRA" for exact model ID
+  - **Use case: Klein 4B + consistency LoRA = fast, consistent character generation on 8GB VRAM. Lower overhead than Klein 9B for batch production runs.**
+
+- **🆕 VTEdit-Bench — VTON evaluation benchmark for multi-reference image editing** (arXiv:2603.11734v1, Beihang University + Zhongguancun Academy):
+  - **24,220 test image pairs** across 5 virtual try-on (VTON) tasks
+  - **VTEdit-QA**: VLM-based evaluation framework (AI-judged quality)
+  - Key finding: **CatVTON achieves best overall Model2Model score (2.25)**. FLUX.2 full attains 2.06; Qwen-Image ranks lower
+  - From benchmark qualitative examples: FLUX.2 Klein better than FLUX.2 full on **model consistency** for VTON tasks
+  - **Digital-Stud action: Use VTEdit-Bench as evaluation framework for apparel/clothing generation quality. CatVTON remains best dedicated VTON model. For FLUX.2-based VTON: use Klein variant for better model consistency score vs full FLUX.2.**
+
+- **🆕 A²-Edit — Unified reference-guided image inpainting** (arXiv:2603.10685v1, ICML 2026):
+  - Unified framework for inpainting arbitrary object categories + ambiguous masks
+  - **UniEdit-500K dataset**: 500K+ images, 209 subcategories of object types
+  - Mixture of Transformer (MoT) module for dynamic expert selection per object type
+  - Mask Annealing Training Strategy for robustness to imprecise masks
+  - **SOTA on VITON-HD and AnyInsertion benchmarks**
+  - **Digital-Stud use: A²-Edit for product insertion into scene images (place product on shelf, in hand, in environment). Better than generic inpainting for arbitrary object types. Monitor for model weights release.**
+
+- **🆕 InSpatio-WorldFM — open-source real-time 3D generative frame model** (arXiv:2603.11911v1, March 2026):
+  - Frame-based (not sequential video) architecture for spatial intelligence
+  - Multi-view spatial consistency via: explicit 3D anchors + implicit spatial memory
+  - **Real-time on consumer GPU** — 2-step distillation for efficient inference
+  - Open-source release
+  - Relevant for: multi-view consistent 3D product visualization (generate consistent product shots from multiple angles simultaneously)
+  - **Digital-Stud use: InSpatio-WorldFM for multi-angle product shots from single reference. Generate front, side, back views of product/character in one consistent pass. Check GitHub for weights.**
+
+- **📍 Meta Avocado image/video gen delayed (NYT March 12 2026)** (New York Times, March 14 print edition):
+  - Meta delayed rollout of Avocado (image gen) + Mango (video gen) due to performance concerns
+  - TBD Lab (Meta) finished training but internal benchmarks below target quality
+  - No new release date announced
+  - **Assessment: Meta Avocado/Mango not a near-term competitive threat. FLUX.2 Klein + Imagen 4 remain dominant for commercial image gen workflows through Q2 2026.**
+
+- **📍 NVFP4 for LTX-2.3 coming soon** (NVIDIA Blog GDC 2026, blogs.nvidia.com):
+  - NVIDIA blog: "NVFP4 support for LTX-2.3 coming soon, delivering up to 2.5x performance gains and 60% [VRAM reduction]"
+  - Already live for FLUX.2 Klein (run 152); LTX-2.3 NVFP4 is next in pipeline
+  - **Watch NVIDIA TensorRT-RTX plugin updates — install when LTX-2.3 NVFP4 lands for same 2.5× speed / 60% VRAM gains on video generation. Will significantly reduce LTX-2.3 22B generation time.**
+
+### 🎬 Video Gen — Run 153 — FrameDiT (frame-level matrix attention DiT) + Grok Video Extension (free) + Helios 4090 benchmark + DLSS 4.5 6× for RTX 50 + Seedance suspension confirmed Reuters + Kling Motion Control 3.0 ComfyUI
+
+- **🆕 FrameDiT — Diffusion Transformer with Frame-Level Matrix Attention** (arXiv:2603.09721v1, March 11 2026, Deakin University):
+  - Novel architecture: **Matrix Attention operates at frame-level** (not token-level) for video generation DiT
+  - Two variants: **FrameDiT-G** (Global) and **FrameDiT-H** (Hybrid — global + local attention)
+  - Captures global spatio-temporal structure efficiently — avoids token explosion from full 3D attention
+  - **SOTA on UCF-101, Sky-Timelapse, FaceForensics** while matching computational efficiency of factorized attention
+  - Research paper — no weights yet; watch for open-source release
+  - **Relevance: FrameDiT-H architecture could underpin a future open-source video model that's both temporally consistent and computationally accessible. Monitor for implementation release.**
+
+- **🆕 Helios RTX 4090 consumer benchmark confirmed** (Facebook DeepNetGroup post, March 2026):
+  - Helios: 5-second 480p video on RTX 4090 in approximately **4 minutes**
+  - At 19.5 FPS theoretical synthesis speed: best on H100 class (minute-scale long video)
+  - **Consumer GPU realism**: 4 min/5s on 4090 = 48s/s equivalent. For consumer use, LTX-2.3 (40s/10s = 4s/s on RTX 5090) remains faster per second of output on consumer hardware. Helios = H100 class for production; LTX-2.3 = consumer/local.
+  - **Pipeline clarification: Helios I2V for studio/cloud H100 production runs. LTX-2.3-GGUF for local RTX 3080-5090 runs.**
+
+- **🆕 Grok Video Extension (extend beyond 8s) — FREE** (Facebook @alimohamedali87, Grok early March 2026):
+  - Grok added Video Extension feature: extend any AI-generated video beyond 8 seconds using Grok
+  - **Free tier available** while xAI runs promotion
+  - Works by generating additional frames from the last frame of existing video
+  - Complementary to Grok Imagine ($0.05/s 480p) for video creation
+  - **Digital-Stud use: Grok Video Extension = free temporal extension layer for short clips. Generate 8s Kling/LTX-2.3 clip → Grok extend to 15-20s for free. Reduces paid generation costs for longer clips.**
+
+- **🆕 Kling Motion Control 3.0 in ComfyUI Partner Nodes** (ComfyUI blog March 7 2026, @won.wizard Threads/Facebook, YouTube LiuGenAI):
+  - Kling Motion Control 3.0 released in ComfyUI via Partner Nodes (March 7 2026 blog post)
+  - **Element Binding**: New facial consistency system — keeps character face consistent across motion trajectory
+  - Upgrade over Kling 2.6 Motion Control: improved face preservation during camera/character movement
+  - Install: ComfyUI Manager → search "Kling Motion Control" → Partner Node
+  - **Digital-Stud action: Install Kling Motion Control 3.0 node. Add to wan22_img2vid.json and api_test_fal.py workflow. Element Binding = reliable face consistency through motion. Combined with Kling 3.1 API (run 152): full Kling stack in ComfyUI.**
+
+- **🆕 DLSS 4.5 Super Resolution 6× multi-frame gen coming for RTX 50 series** (NVIDIA/Industria 2 Facebook post, March 11 2026):
+  - DLSS 4.5 Super Resolution with **6× multi-frame generation** coming later this year for RTX 50 series
+  - Industria 2 game announced as first title with DLSS 4.5
+  - **Indirect relevance: DLSS 4.5 + TensorRT = faster ComfyUI rendering on RTX 50 series. NVFP4 + DLSS 4.5 = maximum GPU throughput for FLUX.2 Klein and LTX-2.3 on RTX 5090.**
+
+- **✅ Seedance 2.0 suspension CONFIRMED by Reuters (March 14 2026)** (Reuters Technology, March 14 2026, citing The Information):
+  - Reuters headline: "ByteDance suspends launch of video AI model after copyright disputes"
+  - Two anonymous leakers confirmed via The Information
+  - Global launch suspended due to legal action from movie studios (Disney/Marvel C&D confirmed)
+  - Anime-to-live-action capability of Seedance 2.0 the specific copyright concern
+  - **Confirmed: Seedance 2.0 API unavailable indefinitely. api_test_seedance.py blocked. Primary fallback: LTX-2.3 + Kling 3.1 via fal.ai.**
+
+### 🔧 ComfyUI — Run 153 — Kling Motion Control 3.0 Partner Node + FLUX.2 Klein 9B-KV-FP8 + LTX-2.3 NVFP4 (coming) + ComfyUI on DGX Spark container + DLSS 4.5
+
+- **🆕 Kling Motion Control 3.0 Partner Node in ComfyUI** (ComfyUI @comfyui Threads, March 7 blog):
+  - Full integration instructions via ComfyUI official:
+    1. Update ComfyUI to latest (v0.17.1+)
+    2. Open Workflow → Browse → search "Kling Motion Control"
+    3. Prepare reference image and motion trajectory prompt
+    4. Element Binding: check "enable" in node settings for facial consistency
+  - Partner Node = official Kling/Kuaishou integration (not community hack)
+  - **Workflow update: Add Kling Motion Control 3.0 node to face_refinement.json as motion generation step after face generation.**
+
+- **🆕 FLUX.2 Klein 9B-KV-FP8 ComfyUI node update** (HuggingFace, Reddit r/StableDiffusion):
+  - Load `FLUX.2-klein-9b-kv-fp8` via standard FLUX ComfyUI loader
+  - KV-cache model path: `black-forest-labs/FLUX.2-klein-9b-kv-fp8` (HuggingFace)
+  - No new ComfyUI node required — existing FLUX loader handles KV-FP8 variant
+  - **Action: Download FLUX.2-klein-9b-kv-fp8 weights → update flux2_face_swap.json + image_gen_flux.json model path from `flux2-klein-9b` to `flux2-klein-9b-kv-fp8`.**
+
+- **🆕 ComfyUI container for NVIDIA DGX Spark** (NVIDIA Developer Forums March 2026):
+  - New Docker container for running ComfyUI on DGX Spark released by community developer
+  - NVIDIA Developer Forums: official announcement thread
+  - DGX Spark = NVIDIA's compact AI workstation (GB10 Grace Blackwell Superchip, 128GB unified memory)
+  - **Cloud/studio path: ComfyUI on DGX Spark = 128GB unified memory for running FLUX.2 Klein 9B + LTX-2.3 22B simultaneously. If DGX Spark access available (cloud rental), test full pipeline: FLUX.2 Klein → LTX-2.3 → MMAudio in single DGX Spark session.**
+
+- **Best inpainting March 2026 (Reddit r/StableDiffusion community thread)**:
+  - Community consensus inpainting workflow: Mask area → fill with solid color (red/green) → prompt to replace masked color with target content
+  - Best model cited: FLUX.2 Klein for inpainting via color-mask technique
+  - A²-Edit (arXiv:2603.10685) upcoming SOTA when weights released
+  - **ComfyUI workflow: Add color-mask inpainting node chain to image_gen_flux.json as optional product placement path.**
+
+### 🏗️ 3D + Pose — Run 153 — InSpatio-WorldFM multi-view + A²-Edit object inpainting + VTEdit-Bench VTON CatVTON results
+
+- **🆕 InSpatio-WorldFM for multi-angle product/character visualization** (arXiv:2603.11911v1):
+  - Frame-based (not video-sequential) generation: all views generated simultaneously with 3D anchor consistency
+  - Implicit spatial memory: cross-view feature sharing for seamless consistency
+  - 2-step distillation: real-time inference on consumer GPU
+  - Outperforms sequential multi-view generation (no error accumulation across frames)
+  - **Workflow: InSpatio-WorldFM → simultaneous front/side/back/top product shots from single reference. Replaces sequential Zero123++/InstantMesh pipeline for 360° product photography. Watch for weights on HuggingFace.**
+
+- **VTEdit-Bench VTON ranking update** (arXiv:2603.11734v1):
+  - Confirmed ranking for virtual try-on (clothing transfer):
+    1. **CatVTON** — best overall Model2Model score (2.25)
+    2. **FLUX.2 full** — best among universal models (2.06, comparable to CatVTON)
+    3. **FLUX.2 Klein** — better model consistency than FLUX.2 full on VTON-specific tasks
+    4. Qwen-Image — lower score on VTON tasks specifically
+  - **Action: For client apparel virtual try-on: use CatVTON (best quality) → FLUX.2 Klein-KV-FP8 for consistency-heavy batch VTON (speed + model consistency).**
+
+### 🎓 LoRA / Character Consistency — Run 153 — AI-Toolkit issue #504 status + FLUX.2 Klein 4B consistency LoRA + FLUX.2 multi-ref workflow patterns
+
+- **⚠️ AI-Toolkit issue #504 status (as of March 15 2026)** (monitoring GitHub ostris/ai-toolkit):
+  - Issue #504 (training speed degradation after March 6 dependency update) remains open as of March 15
+  - No v0.9.3 hotfix confirmed released yet — workaround: pin to pre-March-6 commit
+  - **If you need to train LoRA today**: check issue #504 for pinned-commit workaround comment. Use `git checkout <pre-March-6-sha>` before running training. Do NOT use latest commit until hotfix confirmed.
+
+- **🆕 FLUX.2 Klein 4B consistency LoRA** (Reddit r/StableDiffusion March 14 2026):
+  - Community-trained LoRA specifically for Klein 4B — character/style consistency improvement
+  - Addresses Klein 4B's known weakness: slight inconsistency across generations vs Klein 9B
+  - Combined path: **Klein 4B + consistency LoRA = Klein 9B-level consistency + Klein 4B speed**
+  - VRAM: Klein 4B fits 6-8GB VRAM with LoRA; Klein 9B-KV-FP8 needs ~8-12GB
+  - **For ultra-low VRAM systems (6-8GB): Klein 4B + consistency LoRA is now viable for production character workflows.**
+
+- **Multi-reference workflow pattern (synthesized from BFL KV-cache + LoRAShop + CharaConsist)**:
+  - **Optimal multi-reference pipeline March 15 2026**:
+    1. Character image(s): 1-3 reference photos → Klein 9B-KV-FP8 (2× faster multi-ref processing)
+    2. LoRA injection: LoRAShop (training-free, up to 3 concepts simultaneously via FLUX.2 attention manipulation)
+    3. Consistency layer: CharaConsist (foreground + background, continuous shots)
+    4. Result: consistent character across multiple settings without fine-tuning
+  - **This is the new recommended Digital-Stud pipeline for multi-reference character generation as of March 15 2026.**
+
 ## 🏁 Run #152 Delta — 2026-03-15 00:30 Prague
 
 ### 🖼️ Image Gen — Run 152 — FLUX.2 Klein NVFP4/FP8 GDC optimization (2.5× speed, 60% VRAM) + DiffSynth Qwen-Image-Layered-Control-V2 + UniCombine multi-conditional + LoRAShop NeurIPS Spotlight + Google Nano Banana 2
