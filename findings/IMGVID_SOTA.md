@@ -1,3 +1,179 @@
+<!-- IMGVID-SOTA last-updated: 2026-03-15T09:30:01+01:00 run #170 -->
+<!-- SOTA-DELTA run=170 ts=2026-03-15T09:30:01+01:00 -->
+## Delta — Run 170 | 2026-03-15 09:30 CET
+
+### A. IMAGE GENERATION
+
+**GPT-Image-1 status (March 15 2026):**
+- ChatGPT Help Center updated March 15 confirming GPT-Image-1 availability
+- GPT-5.1 retired March 11; current image standard = GPT Image 1.5 (`gpt-image-1.5`)
+- API pricing: $0.020–$0.040/image standard, $0.080+ HD
+- No separate mass-rollout announcement found — model is live in API
+
+**FLUX.2 family (March 2026):**
+- FLUX.2 Klein 4B Consistency LoRA released ~March 14 (Reddit r/StableDiffusion) — addresses color shift + pixel offset in image editing
+- ComfyUI v0.17.0 adds FluxKVCache node (Flux 2 Klein KV cache model support)
+- FLUX.2 Pro API nodes now in ComfyUI v0.17.0 (March 13)
+- Full FLUX.2 lineup: Schnell (2cr) / Dev / flex (15cr) / Klein (5cr) / pro (20cr) / max (25cr) / Kontext (20cr) / Kontext Max (25cr)
+- API: bfl.ai, WaveSpeedAI, Together AI, Melies
+
+**Nano Banana 2 / Gemini 3.1 Flash Image (CONFIRMED FULL ROLLOUT):**
+- Model: `gemini-3.1-flash-image-preview`
+- Free tier: 1,500 requests/day via Gemini Flash API
+- Available: AI Studio, Vertex AI, Google Flow, Gemini app, Google Ads
+- SynthID watermark on all outputs
+- Google DeepMind page live: deepmind.google/models/gemini-image/flash/
+- 5-character subject consistency, 512px–4K output
+
+**Qwen-Image-2.0 (Alibaba, Feb 10 2026):**
+- 7B parameters, native 2K resolution
+- Apache 2.0 license — free self-hosting
+- HuggingFace: Qwen/Qwen-Image, ModelScope
+- Strong text rendering (Chinese), infographic generation, less restrictive than Flux 2
+
+**Higgsfield Soul Cinema (March 8-13 2026):**
+- CLARIFICATION: IMAGE model (not video) — cinematic-grade film-aesthetic stills
+- API available via Higgsfield platform
+- Not a video model — update classification
+
+**Free API summary (March 2026):**
+| Provider | Free Tier | Daily Limit | Model |
+|---|---|---|---|
+| Google Gemini API | Yes | 1,500/day | gemini-3.1-flash-image-preview |
+| OpenAI | $5 trial credits | ~125 standard | gpt-image-1.5 |
+| Stability AI | 25 free credits | Limited | SD 3.5 |
+| HuggingFace Spaces | Yes | Rate-limited | SD 3.5 / FLUX.1-dev |
+
+---
+
+### B. VIDEO GENERATION
+
+**Helios 14B — WEIGHTS DROPPED (March 11 2026) ✅ HIGH PRIORITY:**
+- arXiv:2603.04379 — PKU-YuanGroup + ByteDance
+- GitHub: github.com/PKU-YuanGroup/Helios — code + weights + distilled model ALL released
+- 3 variants: Helios-Base (50 steps), Helios-Mid (2× speedup), Helios-Distilled (3 steps, 19.5 FPS)
+- 60+ second videos, 128× faster than base Wan 2.1
+- Native Diffusers/vLLM/SGLang support
+- ComfyUI custom nodes included
+- Min VRAM: 6GB (Distilled), ~24GB (Base)
+- T2V, I2V, V2V all supported
+- Long video score: 6.94 (beats Reward Forcing 6.88)
+- 70–92.5% win rate vs competitors on long videos
+
+**Wan 2.7 — NOT YET RELEASED (March 15 2026):**
+- Planned for March 2026 per Reddit r/comfyui (March 13 post)
+- Described as "major all-around upgrade over 2.6"
+- Atlas Cloud listing: atlascloud.ai/collections/wan — "Launching this March"
+- Visual fidelity, audio improvements, extended duration expected
+- API-only anticipated (no local weights confirmed)
+- Wan 2.2 remains current best open-source (July 2025); WanGP v10.981 = March 7
+
+**Kling 3.0 API — FULLY AVAILABLE:**
+- klingai.com dev API confirmed fully live
+- 15s max (6 scenes × 2.5s each = 90s total with shot control)
+- Native audio-visual sync (Video 3.0 Omni), 1080p/2K
+- Element Binding: facial consistency across angles + emotions
+- PiAPI wrapper available: piapi.ai/kling-3-0
+- ComfyUI Partner Nodes: Kling Motion Control 3.0 (March 5, v0.16.1)
+- Atlas Cloud developer guide available
+
+**Luma Ray 3.14 (Jan 26 2026, confirmed active March 2026):**
+- Native 1080p, 4× faster (30s avg), 3× cheaper ($0.02/min)
+- Modify Video extended to 18s, batch mode (10 parallel)
+- Available: Dream Machine + Luma AI API
+- Luma Agents (March 5 TechCrunch): Ray3.14 + Veo3 + Nano Banana Pro + Seedream + ElevenLabs
+- Developer API for Luma Agents under investigation
+
+**HunyuanVideo 1.5 (Nov 2025, maintained):**
+- 8.3B params, SOTA visual quality on consumer HW
+- Deep Cache support, open weights
+- Tencent Hunyuan 3D Engine global launch confirmed
+
+**Seedance 2.0 — STILL BLOCKED:**
+- Disney/Marvel C&D maintained — global launch suspended
+- WaveSpeed.ai comparison: Seedance 2.0 vs Kling 3.0 vs Sora 2 vs Veo 3.1 published
+
+---
+
+### C. COMFYUI
+
+**ComfyUI v0.17.0 (March 13 2026) — KEY CHANGES:**
+- Modular asset architecture + async two-phase scanner
+- FluxKVCache node (Flux 2 Klein KV cache)
+- Painter node (image editing)
+- Reve Image API nodes
+- Flux 2 Pro API nodes added
+- Topaz API Nodes (March 13) — video enhancement in-workflow
+- LTX 2.3 First+Last Frame (FLF2V) native support
+- Frontend v1.41.18 (v0.17.2 fixes copy/paste image bug from v0.17.0)
+- WARNING: subgraph copy/paste broken in v0.17.0; fixed in v0.17.2
+
+**v0.16.x highlights (early March):**
+- Math Expression node (simpleeval)
+- Kling 3.0 Motion Control (March 5, v0.16.1)
+- ResolutionSelector node with aspect ratio presets
+- Dynamic VRAM now default
+
+**ComfyHub / App Mode / App Builder (March 10 2026):**
+- Already tracked. Live at comfy.org/workflows
+- ComfyHub = community marketplace (parallel to Node Registry)
+- 90% of local custom nodes now available on Comfy Cloud
+
+**WAN 2.2 ComfyUI:**
+- Official native workflow examples at docs.comfy.org/tutorials/video/wan/wan2_2
+- S2V (Sound-to-Video) workflow with audio sync documented
+- ComfyUI-LongLook FreeLong extension for longer Wan 2.2 outputs
+
+**Helios ComfyUI nodes:**
+- Official custom nodes for ComfyUI included in Helios release
+- Seamless integration per Facebook DeepNetGroup post
+
+**Flux.2 Klein Consistency LoRA:**
+- Released ~March 14, addresses color shift + pixel offset in editing workflows
+
+---
+
+### D. POSE ESTIMATION
+
+**YOLO26 (Ultralytics, arXiv:2602.14582):**
+- Already tracked. Unified 5-task: detection+segmentation+pose+tracking+classification
+- No new updates found this run beyond prior tracking
+
+**HTP — Hierarchical Temporal Pruning (arXiv:2508.21363v3):**
+- Already tracked. -38.5% train MACs, -56.8% infer MACs, +81.1% speed
+- No new updates this run
+
+**ComfyUI pose updates:**
+- ComfyUI v0.17.0 includes Qwen-Image ControlNet enhancements (Diffsynth ControlNet)
+- Z-Image-Fun ControlNet Union 2.1 still current best multi-control for pose+depth+canny
+- No new dedicated pose estimation nodes found this run
+
+**DWPose / RTMPose:**
+- No new major releases found in March 2026
+- Still primary choices for ComfyUI OpenPose-style pose conditioning
+
+---
+
+### E. LORA TRAINING
+
+**Video2LoRA (arXiv:2603.08210) — HIGH PRIORITY:**
+- Already tracked. Per-semantic LoRA weights via hypernetwork for video gen
+- No new implementation/release found this run beyond paper
+
+**AI-Toolkit / Kohya / OneTrainer — March 2026 status:**
+- No major new releases found in this sweep (March 15)
+- FLUX.2 Klein LoRA (March 14) released as Consistency LoRA — focuses on editing coherence rather than identity training; different use case from character LoRA
+
+**FLUX LoRA training:**
+- Gemini 3.1 Flash Image ComfyUI integration available (blog.laozhang.ai) — custom node for gemini-3.1-flash-image-preview in ComfyUI
+- No new Kohya/AI-Toolkit updates specific to character/face identity found this run
+
+**GTC 2026 LoRA/training watch:**
+- Robin Rombach (BFL CEO) at GTC pregame March 16, 8am PT + Open Models panel March 18
+- Potential FLUX.3 / training tool announcements expected post-GTC
+- CVPR arXiv wave March 16 ~18:00 UTC = priority window for LoRA papers
+
+---
 <!-- SOTA-TIMESTAMP -->
 _Last updated: 2026-03-15T08:30:00+01:00 (run 168)_
 
