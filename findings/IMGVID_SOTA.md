@@ -1,4 +1,121 @@
-<!-- last_updated: 2026-03-15T04:00:34+01:00 run_159 -->
+<!-- last_updated: 2026-03-15T04:30:13+01:00 run_160 -->
+## 🏁 Run #160 Delta — 2026-03-15 04:30 Prague (GTC Eve — Keynote in ~18.5h)
+
+### 🔴 GTC 2026 FINAL PRE-KEYNOTE INTELLIGENCE (confirmed March 14-15 2026)
+
+- **🆕 NVIDIA Feynman Architecture — 1.6nm — Confirmed Tease at GTC Keynote**
+  - Feynman = NVIDIA GPU after Rubin Ultra. Timeline: Rubin (2026 H1) → Rubin CPX (2026 H2) → Rubin Ultra (2027) → Feynman (2028)
+  - Sources: Forbes March 14, Benzinga March 14, TechShots, 28 Signals Substack (sebastianbarros.substack.com)
+  - **Digital-Stud context: No impact until 2028. Current priority order: RTX 5090 Blackwell (now) → RTX Pro 6000 Blackwell Q2 2026 → RTX 6xxx (Rubin consumer, H1 2027).**
+
+- **🆕 NVIDIA Nemotron-3 Super — LAUNCHED March 11, 2026 (not just expected)**
+  - 744B total parameters, 40-44B active MoE (mixture of experts)
+  - "Rivals Opus 4.5" (per Maxime Labonne, March 2026 evaluation)
+  - Open weights, available HuggingFace. NVIDIA $26B commitment to open-weight AI over 5 years
+  - Sources: Facebook post citing Maxime Labonne, arXiv:2503.11486 (technical paper)
+  - **Digital-Stud: Nemotron-3 Super 744B MoE with 44B active = better reasoning quality than GPT-4o-mini for prompt generation and workflow orchestration. 44B active parameters = fits in RTX 5090 24GB VRAM with quantization (Q4 = ~22GB). Drop-in reasoning upgrade for ComfyUI prompt auto-expansion pipelines. Test immediately.**
+
+- **🆕 Microsoft Azure — First Cloud to Validate NVIDIA Vera Rubin NVL72**
+  - Satya Nadella confirmed: Azure is first cloud provider validating Vera Rubin NVL72 system
+  - NVL72: rack-scale system, 72 Vera Rubin GPUs, 288GB HBM4 per GPU × 72
+  - **Digital-Stud: Azure + Vera Rubin NVL72 = enterprise-grade inference platform for LTX-2.3 22B NVFP4 and FLUX.2 Klein 9B at industrial scale. When Azure NVL72 is generally available (H2 2026 estimate), commercial API calls will benefit from Rubin's 2.5× perf vs. H100.**
+
+- **🆕 Intel at GTC 2026 — NVIDIA-Intel AI Infrastructure Partnership**
+  - Intel confirmed participation at GTC 2026 (week of March 16)
+  - Strategic collaboration: Intel + NVIDIA for AI infrastructure and personal computing
+  - **Digital-Stud: Intel Gaudi 3 + NVIDIA GPU mix for inference = potential cost reduction on cloud APIs for product photography batch jobs. Not for local workflow, but relevant for cloud pricing trajectory.**
+
+- **🆕 NVIDIA Alpamayo — Self-Driving System Demonstrated by Jensen Huang**
+  - Jensen Huang drove a car equipped with Alpamayo self-driving tech in San Francisco before GTC
+  - Alpamayo: NVIDIA's next-generation autonomous driving AI (successor to DRIVE Orin)
+  - **Digital-Stud: Not directly relevant to image/video gen. Signal: Jensen is pushing Physical AI as overarching narrative. All GTC sessions will tie back to "Physical AI" framing.**
+
+- **🆕 NVIDIA Commits $26 Billion to Open-Weight AI Models (5-year plan)**
+  - Announced pre-GTC: $26B investment in developing open-weight AI models
+  - Implies: more Nemotron releases, open image/video generation models, open LoRA-trainable vision models
+  - **Digital-Stud: Open-weight push = Nemotron-3 Super (reasoning), expect open vision generation model from NVIDIA in H2 2026. Monitor for NVIDIA open image/video generation model announcement at keynote or during GTC week.**
+
+### 🖼️ Image Gen — Run 160 — Wan2.2+Time-To-Move+SAM3+AI-Toolkit ComfyUI pipeline, EmoStory multi-shot, Pyler scene-aware
+
+- **🆕 Wan2.2 + Time-To-Move + SAM3 + AI-Toolkit ComfyUI Integration (pixelsham.com, March 2026)**
+  - Workflow: Wan2.2 image-to-video + Time-To-Move motion control + SAM3 (Segment Anything 3) masking + Qwen prompt generation + AI-Toolkit LoRA — all chained in single ComfyUI graph
+  - Source: pixelsham.com article "Combining Time-To-Move with Wan2.2, Qwen, AIToolkit and SAM3 into ComfyUI – Controlling your AI movie generation with place holder inputs"
+  - **Digital-Stud: CRITICAL WORKFLOW INTEGRATION. This is exactly the production pipeline needed: select product region with SAM3 → control motion with Time-To-Move → generate product demo video with Wan2.2 → all in one ComfyUI graph. Placeholder inputs = scriptable batch product video generation. IMPLEMENT THIS. Add to wan22_img2vid.json as extended pipeline.**
+
+- **🆕 EmoStory: Emotion-Aware Story Generation with Subject Consistency (arXiv:2603.10349v1)**
+  - Generates image sequences that are subject-consistent AND emotionally coherent across the story arc
+  - Combines subject identity lock + scene emotion control
+  - **Digital-Stud: Subject-consistent image sequences = product lifestyle story generation ("product unboxing journey", "product in use across 5 scenes"). Monitor for ComfyUI integration. Complement to Delta-K (run 159) for multi-shot narratives.**
+
+- **🆕 Doki: Text-Native Interface for Generative Video Authoring (arXiv:2603.09072v1)**
+  - Document-based authoring: define characters, scenes, and shots as text parameters → system generates consistent multi-shot video
+  - Cross-shot asset propagation: same character face/clothing/product preserved across all shots
+  - **Digital-Stud: Doki = text-native video production brief. For product campaigns: write product brief as Doki document → generate all lifestyle video shots with consistent product and model. Architecture to watch for ComfyUI implementation.**
+
+- **🆕 Pyler "Scene-Aware" GTC 2026 Poster Session (March 15 2026)**
+  - Pyler Research Lab presenting at GTC March 15: "Scene-Aware Video Timestamps and Brand Suitability"
+  - Focus: AI detection of brand-safe vs. brand-unsafe contexts in video (for ad placement)
+  - **Digital-Stud: Indirect relevance — brand suitability detection = can verify generated product videos don't contain brand-unsafe elements before delivery to clients. Watch for Pyler API or open model post-GTC.**
+
+- **🆕 Contrastive Perception Representation Learning for Image Inpainting (ScienceDirect, March 2026)**
+  - New inpainting method using contrastive learning — better understanding of context for fill region
+  - **Digital-Stud: Better inpainting = more reliable product background replacement. Monitor for FLUX.2-based inpainting integration.**
+
+### 🎬 Video Gen — Run 160 — Helios 6GB VRAM confirmed, Doki narrative consistency, Bumblebee animation motion, real-time long video
+
+- **📍 Helios 13B — 30fps Real-Time, 6GB VRAM Minimum (CONFIRMED)**
+  - Community post confirms: Helios 13B can generate 1-minute video at 30fps with minimum 6GB VRAM
+  - "Laptop GPUs are okay" — GitHub: github.com/PKU-YuanGroup/Helios
+  - **Digital-Stud: REVISION — Helios is MORE accessible than previously noted. 6GB VRAM = any RTX 3060 or better. This means: Helios 13B is viable for on-device product demo video generation on mid-range hardware, not just RTX 5090. For Digital-Stud studio clients with budget hardware: Helios 13B for long product demo videos (>10s) is now the primary recommendation. Update action plan.**
+
+- **🆕 Bumblebee (Korean Startup) — Long-Sequence 3D Character Motion Generation (March 10 2026)**
+  - Long-sequence 3D character motion from text prompts, targeting animation production
+  - Specifically for multi-minute sequences (beyond typical 3-8s video gen clips)
+  - **Digital-Stud: Long-sequence motion generation = product character animation (model demonstrating product over 30-60 seconds). Complements Helios for long video. Monitor for API access and ComfyUI integration.**
+
+- **🆕 AutoGaze: Efficient Long-Form 4K Video Understanding (arXiv:2603.12254v1)**
+  - 4K-resolution, up to 5-minute long video comprehension (HLVid benchmark)
+  - Not video generation, but video QA/analysis
+  - **Digital-Stud: AutoGaze = quality control tool. After generating product video with Helios/LTX-2.3/Wan2.2, use AutoGaze-based system to QA: "Does the product appear correctly in all frames?", "Is the background consistent?", "Does the model maintain same appearance?". Watch for open model release.**
+
+- **🆕 Kling 3.0 vs Seedance 2.0 Side-by-Side Comparison (deepnewsai, March 14 2026)**
+  - Public comparison posted March 14: Kling 3.0 vs Seedance 2.0 quality
+  - Timing: Seedance BLOCKED (Disney/Marvel C&D) — Kling 3.1 now the clear fallback
+  - **Digital-Stud: Kling 3.1 (fal.ai) = primary commercial video gen API for product demos. Confirmed by community benchmark vs. Seedance 2.0. LTX-2.3 = local open source alternative.**
+
+- **🆕 Character Consistency / "Identity Lock" in AI Video (community, March 2026)**
+  - Growing community focus: "character consistency" (same face + clothes across shots) as key workflow challenge
+  - Instagram Envato post March 11: "the technique every serious AI video creator uses for character consistency"
+  - OpenArt AI character consistency guide published March 2026
+  - **Digital-Stud: Character consistency = #1 unsolved problem for product + model video campaigns. Delta-K (arXiv:2603.10210v1, run 159) + Doki + EmoStory all address parts of this. Composite solution: Delta-K for multi-instance → Doki for multi-shot brief → Wan2.2 IC-LoRA for style lock → SAM3 for mask-based editing.**
+
+### 🔧 ComfyUI / Infrastructure — Run 160 — Wan2.2+Time-To-Move+SAM3+AI-Toolkit workflow, GTC Workshops March 15, Rubin NVL72 Azure
+
+- **🆕 GTC 2026 Workshops — March 15 (TODAY) before keynote**
+  - GTC session catalog confirms: workshops are running March 15 (day before keynote)
+  - Session: "AI Conference & Expo March 16–19 | Keynote March 16 | Workshops March 15"
+  - **Digital-Stud: GTC workshops often include hands-on ComfyUI + NVFP4 + NIM sessions. Check session catalog for any ComfyUI workshop recordings that may become available post-event.**
+
+- **🔴 MUST-MONITOR RUN 161-164: GTC Keynote March 16 11am PT**
+  - Priority queries for post-keynote runs:
+    1. "NVIDIA GTC 2026 keynote announcements image video generation AI new model"
+    2. "NVIDIA GTC 2026 FLUX.2 BFL Robin Rombach announcement new model"
+    3. "NVIDIA NIM new image generation video generation endpoint GTC 2026"
+    4. "NVIDIA Edify image generation GTC 2026 announcement"
+    5. "Cosmos World Foundation Model update GTC 2026 video generation"
+  - Live updates: https://blogs.nvidia.com/blog/gtc-2026-news/
+
+### 🎓 LoRA / Training — Run 160 — Nemotron-3 Super open weights, $26B open AI commitment, Wan2.2+AI-Toolkit ComfyUI chain
+
+- **🔗 Nemotron-3 Super Open Weights (see GTC section) — LoRA training implications**
+  - 744B MoE (44B active) open weights = largest open reasoning model for AI-assisted LoRA training pipeline design
+  - Can replace GPT-4o-mini as the reasoning backbone for: auto-generating LoRA training captions, auto-suggesting LoRA training hyperparameters, auto-evaluating LoRA quality
+  - **Digital-Stud: Run Nemotron-3 Super Q4 (~22GB) on RTX 5090 alongside AI-Toolkit training. Use Nemotron to auto-generate diverse training captions for product LoRA (avoids caption repetition bias). This is now feasible locally.**
+
+- **🔗 Wan2.2 + AI-Toolkit LoRA in Single ComfyUI Graph (pixelsham.com)**
+  - Confirmed: AI-Toolkit LoRA training is already integrated into Wan2.2 ComfyUI workflow
+  - **Digital-Stud: LoRA + video generation + SAM3 masking in one graph = product LoRA training loop entirely within ComfyUI. Removes need for external Kohya/AI-Toolkit CLI. Test immediately.**
+
 ## 🏁 Run #159 Delta — 2026-03-15 04:00 Prague
 
 ### 🔴 GTC 2026 IMMINENT — Monday March 16, **11:00am PT** (correcting run 158 note of 8am PT)
