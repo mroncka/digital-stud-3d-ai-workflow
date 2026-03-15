@@ -1,4 +1,141 @@
-<!-- last_updated: 2026-03-15T02:04:04+01:00 run_155 -->
+<!-- last_updated: 2026-03-15T02:30:12+01:00 run_156 -->
+## 🏁 Run #156 Delta — 2026-03-15 02:30 Prague
+
+### 🖼️ Image Gen — Run 156 — MOG (Riemannian CFG replacement), MV-SAM3D multi-view, FLUX.2-klein-4B confirmed, UltraGen auto-rank LoRA
+
+- **🆕 MOG — Manifold-Optimal Guidance: Unified Riemannian CFG Replacement** (arXiv:2603.11509v1, March 2026):
+  - **Unified Riemannian control framework** — reformulates CFG as local optimal transport with anisotropic Riemannian cost
+  - Corrects off-manifold drift (root cause of oversaturation and texture collapse at high CFG scales)
+  - Geometry-aware natural gradient updates replace standard CFG scale scalar
+  - **Auto-MOG**: dynamic energy-balancing schedule — adapts guidance strength automatically per denoising step
+  - Training-free — compatible with standard samplers including FLUX.2, SDXL, SD3.5
+  - SOTA on guidance quality at high-scale settings; eliminates the need to tune CFG scale manually
+  - **Digital-Stud action: Replace static CFG scale in all workflows with Auto-MOG. Expect: cleaner high-detail portraits without oversaturation at CFG>7, better texture fidelity. Prioritize integration into image_gen_flux.json and face_refinement.json.**
+
+- **🆕 MV-SAM3D — Training-Free Multi-View Consistent Layout-Aware 3D Scene Generation** (arXiv:2603.11633v1, Peking University + JD Explore Academy, March 2026):
+  - Training-free framework — extends any layout-aware 3D generation model to multi-view consistency
+  - **Attention-entropy weighting** + geometric visibility weighting for confidence-aware multi-view fusion in 3D latent space
+  - Inter-object physics constraints — ensures plausible spatial object arrangement across views
+  - Directly addresses: generate a room/scene from multiple camera angles with consistent object placement
+  - **Digital-Stud use: MV-SAM3D for multi-angle product lifestyle scene generation (place product in a consistent room scene rendered from 3 camera angles simultaneously). Training-free = deployable on top of existing FLUX.2 or HunyuanImage 3.0 pipeline. Monitor for ComfyUI node.**
+
+- **🆕 FLUX.2-klein-4B — Smaller Klein Variant Confirmed** (vLLM-Omni supported models, March 2026):
+  - vLLM-Omni supported models list confirms `black-forest-labs/FLUX.2-klein-4B` as a separate variant alongside 9B
+  - 4B parameter version = significantly more VRAM-friendly than Klein 9B (runs on 8-10GB VRAM estimated)
+  - HuggingFace path: `black-forest-labs/FLUX.2-klein-4B`
+  - **Digital-Stud action: Benchmark FLUX.2-klein-4B on RTX 4090 for inference speed vs quality. May be the optimal "fast iteration" model alongside FLUX.2-Klein-9B-KV-FP8 for final quality output. Update api_test_fal.py with klein-4B endpoint.**
+
+- **🆕 UltraGen — Efficient Ultra-High-Resolution Image Generation + Auto-Rank LoRA** (arXiv:2510.16325v2, March 2026 trending):
+  - Hierarchical local attention with low-resolution global guidance — efficient ultra-high-resolution (4K+) image generation
+  - Parameter-efficient fine-tuning via **auto-rank LoRA** (rank and alpha auto-set via PEFT library, not hardcoded)
+  - Eliminates manual LoRA rank guessing — PEFT dynamic rank selection per layer
+  - Works with Diffusers library for implementation
+  - **Digital-Stud use: UltraGen's auto-rank LoRA approach — apply to FLUX.2 LoRA training via OneTrainer. Let PEFT choose optimal rank per attention layer instead of global r=16. Expected: better identity fidelity with fewer parameters. Test in next kohya/OneTrainer run.**
+
+- **📍 WearView AI Ghost Mannequin — Best-in-Class Apparel E-Commerce Tool** (wearview.co, March 2026 comparison):
+  - Ranked #1 in ghost mannequin photography for fashion e-commerce (March 2026 AI fashion tools roundup)
+  - Features: one-click mannequin removal, front+back image support, full AI fashion model replacement suite
+  - **Digital-Stud context: For product photography pipeline — WearView as primary ghost mannequin tool. Replaces manual Photoshop ghost mannequin workflow. Integrates with AI-generated product images.**
+
+### 🎬 Video Gen — Run 156 — Helios ComfyUI nodes confirmed, Mango-GS dynamic 4DGS, SceneAssistant VLM-feedback 3D scene gen
+
+- **🆕 Helios (ByteDance) — Real-Time Video Gen, ComfyUI Custom Nodes Live** (Facebook DeepNetGroup, March 2026):
+  - **19.5 FPS synthesis on GPU** — autoregressive video diffusion transformer with Guidance Attention blocks
+  - Compresses historical and noisy context to reduce overhead — long-form video generation
+  - **ComfyUI custom nodes LIVE** — immediately available via ComfyUI Manager
+  - Architecture: Guidance Attention blocks (not standard cross-attention) — unique efficiency mechanism
+  - **Digital-Stud action: Install Helios ComfyUI nodes via ComfyUI Manager. Test for long-form product video (30+ seconds without quality degradation). If 19.5fps hold on consumer hardware, this is the primary long-form video node.**
+
+- **🆕 Mango-GS — Spatio-Temporal Consistent Dynamic 3D Gaussian Splatting** (arXiv:2603.11543v1, March 2026):
+  - Reconstructs dynamic 3D scenes from monocular or multi-view video with temporally coherent motion
+  - High-fidelity appearance + temporally coherent motion simultaneously (prior methods sacrifice one for the other)
+  - Dynamic scene reconstruction — handles moving objects, deforming surfaces
+  - **Digital-Stud use: Mango-GS for product-in-motion 3D reconstruction (e.g., fabric draping dynamics, liquid pour, hand interaction with product in video → 3D Gaussian representation for AR/XR product visualization). Monitor for weights + Python API.**
+
+- **📍 ElevenLabs Node in ComfyUI — Voice Cloning + TTS + SFX** (ComfyUI Blog 26.3.8, March 8 2026):
+  - **LIVE in ComfyUI as of March 8, 2026** — official ElevenLabs partner node
+  - World-class voice cloning, text-to-speech, and sound effects generation directly in ComfyUI
+  - Audio-visual pipeline completion: generate image/video + generate matching voice/audio in same workflow
+  - **Digital-Stud use: ElevenLabs node for product spokesperson avatar pipeline (TempoSyncDiff for talking head + ElevenLabs for voice cloning = full audio-visual avatar workflow inside ComfyUI). Critical missing link now filled.**
+
+### 🔧 ComfyUI — Run 156 — v0.17.1 release, App Mode + ComfyHub + Comfy Cloud launch, NeuroStream 95% VRAM reduction, Cinema 4D AI rendering
+
+- **🆕 ComfyUI v0.17.1 — Official Core Release** (GitHub Comfy-Org/ComfyUI, March 13, 2026):
+  - Official v0.17.1 release tagged March 13, 2026 (immutable release commit b3f5f7e)
+  - **Action: Upgrade all local ComfyUI installs to v0.17.1 immediately.** Note: v1.41.15 frontend package has a known 413 error with subgraph workflows — use v0.17.1 core build instead.
+  - Breaking note from community: comfyui-frontend-package==1.41.15 breaks subgraph-containing workflows (413 error). Use v0.17.1 core build.
+
+- **🆕 ComfyUI App Mode + App Builder + ComfyHub + Comfy Cloud** (ComfyUI official + GlobeNewswire, March 10, 2026):
+  - **App Mode**: Run any ComfyUI workflow as a no-node-graph UI (simplified interface for non-technical users)
+  - **App Builder**: Turn any workflow into a shareable, no-install app
+  - **ComfyHub**: Workflow/app sharing and discovery platform
+  - **Comfy Cloud**: GPU-accelerated pay-as-you-go ComfyUI cloud hosting (managed, no local setup required)
+  - NVIDIA RTX Video Super Resolution + NVFP4 model support bundled in App Mode
+  - **Digital-Stud use: ComfyHub for publishing Digital-Stud workflows publicly. Comfy Cloud for client demos without requiring client-side GPU setup. App Mode for delivering client-facing AI product photography tools.**
+
+- **🆕 Topaz NeuroStream — 95% VRAM Reduction for Large Diffusion Models** (Topaz Labs, GDC March 10, 2026):
+  - Proprietary VRAM optimization technology — runs FLUX.2 and similar large models on consumer GPUs
+  - **Up to 95% VRAM reduction** without performance degradation on NVIDIA RTX hardware
+  - Unveiled at GDC 2026 — RTX-optimized Tensor Core utilization
+  - Designed to enable FLUX.2 (previously requiring 16-24GB VRAM) on 8-10GB consumer RTX GPUs
+  - **Digital-Stud action: Test Topaz NeuroStream integration with ComfyUI. If 95% VRAM claim holds, FLUX.2 full model (not Klein) becomes accessible on RTX 4070/4070 Ti. Game-changing for local pipeline.**
+
+- **🆕 Cinema 4D AI-Powered Rendering Integration** (School of Motion Instagram, March 9, 2026):
+  - Cinema 4D (and Cinema 4D for iPad) receives AI-powered creative pipeline integration in March 2026
+  - Seamless Blender/C4D → AI rendering pipeline integration
+  - **Context: C4D AI rendering = direct bridge between 3D modeling and diffusion model output. Relevant for: 3D product render → AI upscale/style pipeline. Complements Blender + ComfyUI workflows.**
+
+- **📍 Cline ComfyUI MCP Integration** (Threads @cline.bot, March 15, 2026):
+  - Cline (AI coding assistant) now has ComfyUI MCP server — control ComfyUI from code editor
+  - Build generative AI workflows programmatically via Cline MCP interface
+  - **Use: Automate ComfyUI workflow generation and execution via Cline for scripted batch product photo generation.**
+
+### 🏗️ 3D / Pose / Avatar — Run 156 — CEI-3D (2D→3D editing), SceneAssistant VLM 3D gen, ProSplat wide-baseline 3DGS, ForgeDreamer industrial 3D, Mango-GS dynamic scene
+
+- **🆕 CEI-3D — Collaborative Explicit-Implicit 3D Reconstruction + Editing from 2D Images** (arXiv:2603.11810v1, March 2026):
+  - Framework combining explicit (mesh) + implicit (neural) 3D representations for reconstruction AND editing
+  - Input: 2D images → Output: editable 3D scene
+  - Key capability: **edit the 3D scene after reconstruction** (change textures, swap objects via text instruction)
+  - "Important applications in creative content generation, customization, and interactive design"
+  - **Digital-Stud use: CEI-3D for product 3D reconstruction + subsequent editing (photograph product → 3D mesh → edit color/material/texture via text instruction without reshooting). Monitor for weights.**
+
+- **🆕 SceneAssistant — VLM Visual Feedback Agent for Open-Vocabulary 3D Scene Generation** (arXiv:2603.12238v1, March 2026):
+  - Pure visual feedback architecture: VLM interprets rendered images to guide iterative 3D scene refinement
+  - Open-vocabulary scene generation — place any object in any described 3D context
+  - Self-correcting via visual feedback loop (renders scene, VLM judges quality, refines)
+  - **Digital-Stud use: SceneAssistant for automated product lifestyle scene creation (text description → iterative 3D scene → final product render). Reduces manual scene composition effort dramatically. Monitor for open-source weights.**
+
+- **🆕 ProSplat — Cross-View Consistent Feed-Forward 3DGS for Wide-Baseline NVS** (ScienceDirect Computer Vision and Image Understanding, March 2026):
+  - High-fidelity novel view synthesis under wide-baseline conditions (large camera angle changes)
+  - Cross-view consistent feed-forward Gaussian splatting — no per-scene optimization required
+  - Addresses main weakness of standard 3DGS: quality collapse under wide viewpoint changes
+  - **Digital-Stud use: ProSplat for 360° product visualization from just a few reference images. Wide-baseline = generate product views at 180° from just front + back photos. Fast inference (feed-forward, no optimization loop). Monitor for HuggingFace weights.**
+
+- **🆕 ForgeDreamer — Industrial Text-to-3D with Multi-Expert LoRA** (arXiv:2603.09266v1, March 2026):
+  - Systematic text-to-3D generation framework for **industrial objects** (machinery, equipment, manufactured products)
+  - Multi-Expert LoRA + Cross-domain knowledge transfer for precise industrial geometry
+  - Addresses gap: existing text-to-3D models (Shap-E, Point-E) trained on consumer objects fail on industrial/product items
+  - **Digital-Stud use: ForgeDreamer for 3D product mesh generation (generate accurate 3D model of manufactured product from text description + reference image). More accurate than general text-to-3D for technical/product objects. Monitor for weights + Blender integration.**
+
+- **🆕 CinemaWorld — Generative AR with LLM + 3D Objects** (arXiv:2603.08060v1, March 2026):
+  - Generates real-time augmented reality scenes: room textures, lighting, animated particles, 3D objects via generative AI
+  - Uses ChatGPT-4o image models for texture generation + lighting
+  - LLM-driven spatial reasoning for 3D object placement
+  - **Digital-Stud use: CinemaWorld for AR product visualization (place product in AR-enhanced room environment with AI-generated lighting/context). Relevant for: interactive product demos, AR try-before-buy experiences.**
+
+### 🎓 LoRA / Training — Run 156 — UltraGen auto-rank LoRA, ForgeDreamer Multi-Expert LoRA, FLUX.2-klein-4B DreamBooth potential, ComfyUI App Mode for LoRA demos
+
+- **🆕 Auto-Rank LoRA via PEFT — UltraGen Implementation** (arXiv:2510.16325v2, trending March 2026):
+  - Dynamic rank and alpha selection per attention layer via PEFT library — no manual tuning
+  - Applied in UltraGen for parameter-efficient high-resolution fine-tuning
+  - Compatible with Diffusers-based training pipelines (OneTrainer uses Diffusers backend)
+  - **Action: Add PEFT dynamic rank to OneTrainer LoRA config. Expected: lower parameter count with same or better identity fidelity. Test on character portrait LoRA first.**
+
+- **🆕 ForgeDreamer Multi-Expert LoRA — Domain-Specific 3D Knowledge** (arXiv:2603.09266v1):
+  - Multi-Expert LoRA architecture: separate LoRA experts for different domain aspects (geometry, texture, material)
+  - Cross-domain knowledge transfer — industrial domain knowledge + general object LoRA combined
+  - **Concept: Apply Multi-Expert LoRA architecture to character LoRA training. Separate LoRA experts for: face identity, body proportions, style/clothing aesthetic. Better than single-rank LoRA for complex multi-attribute character identity.**
+
 ## 🏁 Run #155 Delta — 2026-03-15 02:04 Prague
 
 ### 🖼️ Image Gen — Run 155 — HunyuanImage 3.0 (80B MoE open-source), WildActor ID-preservation, FireRed-Image-Edit, InternVL-U unified model, Nano Banana 2 speed king
