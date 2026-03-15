@@ -1,4 +1,73 @@
-<!-- last_updated: 2026-03-15T06:00:53+01:00 run_163 -->
+<!-- last_updated: 2026-03-15T06:30:00+01:00 run_164 -->
+## 🔭 Run #164 Delta — 2026-03-15 06:30 Prague (GTC eve, ~13.5h to keynote)
+
+### 📡 GTC Pre-Keynote — Still Sealed (run 164 confirms zero leaks)
+- NVIDIA live blog: last post = Friday March 13. Zero posts in 30-min window 05:00–05:30 UTC.
+- No new GTC session listings naming image/video AI models.
+- Jensen Huang, Bryan Catanzaro, Bill Dally: zero posts in window.
+- NVIDIA+Groq hybrid chip: TipRanks echoes The Information rumour — "new inference processors tied to $17B Groq acquisition." Still unconfirmed.
+- **📍 Google DeepMind**: No Veo3 or Imagen4 announcement on March 15. Last Google AI news = Maps AI update + Gemini 3.1 Pro (both March 12). Pomelli expanded (see below).
+- **📍 OpenAI**: No Sora feature/API update in window. Sora-in-ChatGPT integration still listed as "soon" (predates window).
+- **📍 Midjourney**: No V8 announcement. V7 rolling out (March 1–14). V8 window = March 16–20.
+- **📍 Stability AI**: No new model March 15.
+- **📍 NEXT MONITORING WINDOW**: Run 165 (07:00 CET) — still pre-keynote.
+
+### 🖼️ Image Gen — Run 164 — Picsart AI Playground, Google Pomelli, Artlist AI, Higgsfield Soul 2.0 version confirmed
+
+- **📍 30-minute window (05:00–05:30 UTC)**: CONFIRMED DRY — zero new arXiv papers, zero new HuggingFace model cards, zero new Replicate models, zero Midjourney announcements, zero new FLUX.2 fine-tunes, zero multi-character papers. Consistent with Sunday pre-dawn.
+- **🆕 Picsart AI Playground — Live, 90+ models unified interface (March 2026)**
+  - Unified prompt interface for: Google VEO 3.1, OpenAI Sora 2, Kling 3.0, Runway Gen4.5, Luma Ray (video); image models including FLUX.2 + Ideogram 3.0 variants
+  - Source: Picsart Press Release (Rutland Herald), March 2026
+  - URL: picsart.com/ai-playground (inferred from PR)
+  - **Digital-Stud: Picsart Playground = potential unified testing environment for comparing model outputs side-by-side without building individual API calls. Investigate for product photography A/B testing. Note: Veo 3.1 listing is NEW — Veo 3.1 not previously tracked. Investigate whether Veo 3.1 is distinct from Veo 3 or a labelling difference.**
+- **🆕 Google Pomelli — AI Marketing Tool, Expanded to 170 Countries (March 2026)**
+  - Google Labs product: brand kit generation from website URL, marketing asset creation
+  - 170 countries as of March 2026
+  - **Digital-Stud: Pomelli = potential tool for auto-generating Digital-Stud.cz brand kit (logo, colours, typography) from website. Not a diffusion model — a brand AI tool. Monitor for API access.**
+- **🆕 Artlist AI Video Generator — Launch (March 2026)**
+  - "First generative AI video tool built specifically for video creators"
+  - Curated models and styles for editorial/professional video
+  - Source: artlist.io/blog/ai-image-and-video-launch-announcement/
+  - Not self-hosted. Web platform. Unknown API status.
+  - **Digital-Stud: Artlist = video licensing platform entering AI gen. Relevant if they provide editorial footage generation (brand videos, cutdowns). Monitor for API/embedding.**
+- **🆕 Higgsfield Soul 2.0 — Version Confirmed (March 7 2026)**
+  - "Higgsfield Soul 2.0" confirmed active in use since March 7 (Instagram reference: ainightfallgallery)
+  - Clarification: The product previously noted as "Higgsfield AI" (PRN March 13) = Higgsfield, and the active product is Higgsfield Soul 2.0
+  - Still no public API documented. Web platform only.
+  - **Digital-Stud: Update Higgsfield note — product is Soul 2.0. Monitor for API. If Soul 2.0 = high-quality artistic/cinematic video, could complement Creatify Aurora for brand video production.**
+- **📍 VEO 3.1 sighting** (Picsart Playground listing): First sighting of "VEO 3.1" version string. Not confirmed as new model vs labelling variant. **Track — investigate in next run whether Veo 3.1 = distinct model release or internal Picsart naming.**
+- **📍 Runway Gen4.5** (Picsart Playground listing): First sighting of "Gen4.5" — track whether this is a distinct release from known Runway Gen4. Runway $315M round still the most recent confirmed news.
+- **📍 Luma Ray** (Picsart Playground listing): Luma Dream Machine appears as "Luma Ray" in the Picsart listing. Possible rebrand or new product line (Luma had "Ray" and "Ray2" variants). Track.
+- **📍 Sora 2 listing** (Picsart Playground): "Sora 2" listed in Picsart AI Playground. Not separately confirmed as released — could be Picsart's internal labelling for Sora's latest version. Track.
+
+### 🎬 Video Gen — Run 164 — VEO 3.1 / Runway Gen4.5 / Luma Ray sightings via Picsart, window dry
+
+- **📍 30-minute window (05:00–05:30 UTC)**: CONFIRMED DRY — zero new cs.CV video gen papers, zero new HuggingFace video models, no FramePack commit, no Wan2.2/2.7 announcement, no CogVideoX update, no Pika Labs, no Luma, no Sora announcement.
+- **🆕 VEO 3.1 (via Picsart AI Playground listing)**: "Google VEO 3.1" listed as active model in Picsart Playground. Requires investigation:
+  - Is VEO 3.1 a new Google DeepMind release (distinct from Veo 3)?
+  - Or internal Picsart versioning/labelling?
+  - No dedicated Google announcement found for Veo 3.1 separately.
+  - **Digital-Stud: PRIORITY — investigate Veo 3.1 in next SOTA run. If confirmed = new Google video gen model, this is a significant find.**
+- **🆕 Runway Gen4.5 (via Picsart AI Playground listing)**: "Runway Gen4.5" listed. Runway's last confirmed news = $315M Series E, GWM-1 world model. No Gen4.5 release announcement found separately.
+  - **Digital-Stud: Investigate Runway Gen4.5 in next run. Gen4.5 = potentially significant video generation upgrade.**
+- **📍 FramePack**: No new GitHub commit in window. P1 still in dev.
+- **📍 Wan 2.7**: Still no official release as of 06:30 CET.
+
+### 🔧 ComfyUI / Nodes — Run 164 — Window dry, no v0.17.2
+
+- **📍 30-minute window (05:00–05:30 UTC)**: CONFIRMED DRY — no ComfyUI master commits, no ComfyUI Registry nodes, no ComfyUI Manager updates.
+- **📍 ComfyUI v0.17.2**: Still not released as of run 164.
+- **📍 GPT-Image-1 ComfyUI node**: Still none found.
+- **📍 DWPose/RTMPose**: No updates.
+- **📍 SAM3**: No new release.
+- **Atlas Cloud image gen API guide (March 2026)**: Atlas Cloud documenting Flux 2 Pro, Imagen 4, and Ideogram v3 API usage with code examples (atlascloud.ai). Useful reference for production API integration docs. **Digital-Stud: Atlas Cloud = potentially another inference provider alongside fal.ai/replicate. Investigate for free tier or competitive pricing.**
+
+### 🎓 LoRA / Training / APIs — Run 164 — Window dry, all repos stable
+
+- **📍 30-minute window (05:00–05:30 UTC)**: CONFIRMED DRY — no AI-Toolkit commit, no Kohya commit, no new free tier from fal/replicate/together, no new Apache 2.0 model, no Modal/Lambda additions, no new arXiv few-shot LoRA paper.
+- **📍 GitHub Copilot for Students update (March 12 2026)**: New "GitHub Copilot Student plan" — relevant for students using Copilot in ComfyUI/Python development. Not a model release.
+- **📍 WeryAI platform**: Kling, Veo, Sora unified in one platform (creati.ai) — another unified API aggregator. Previously unknown. **Digital-Stud: WeryAI/Creati.ai = third multi-model aggregator platform (after Picsart Playground and similar). Consider for single-API-key product video testing.**
+
 ## 🔭 Run #163 Delta — 2026-03-15 06:00 Prague (GTC eve, ~14h to keynote)
 
 ### 📡 GTC Pre-Keynote — Still Sealed (run 163 confirms zero leaks)
