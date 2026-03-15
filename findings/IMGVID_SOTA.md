@@ -1,4 +1,116 @@
-<!-- last_updated: 2026-03-15T04:30:13+01:00 run_160 -->
+<!-- last_updated: 2026-03-15T05:01:39+01:00 run_161 -->
+## 🔭 Run #161 Delta — 2026-03-15 05:01 Prague (GTC pre-keynote, ~15h to go)
+
+### 📡 GTC Pre-Keynote — Still Quiet (no new leaks or embargo lifts since run 160)
+- NVIDIA live blog last updated March 13 8:30am PT. No new X/LinkedIn posts from Rombach, Esser, or BFL since run 160.
+- Robin Rombach confirmed: pregame show March 16 8am PT + Open Models panel March 18 12:30pm PDT.
+- No arXiv preprints with NVIDIA + image/video generation submitted March 15 after 03:30 UTC.
+- **Isaac GR00T N1.6** is reportedly confirmed for keynote announcement (sebastianbarros.substack.com: "GTC 2026 is expected to be the coronation of Isaac GR00T N1.6") — first open foundation model for generalized humanoid reasoning. Not directly image/video, but signals NVIDIA's open-model ambition.
+- **Second-generation co-packaged optic switch** confirmed expected at keynote (GuruFocus/Bank of America). High-bandwidth chip interconnect, infrastructure-level.
+- **Groq LPU integration hinted** (Jensen's earnings call). Speculation: NVIDIA + Groq inference chip partnership for ultra-low latency token generation.
+- **NEXT MONITORING WINDOW**: Run 162 (05:31 CET) — still pre-keynote. Runs 161–168 all pre-keynote. Run 169 (09:31 CET): first post-morning-news window. Keynote fires 20:00 CET.
+
+### 🖼️ Image Gen — Run 161 — Seedream 4.5, PureCC, LogoDiffuser, MoDM, Order-Is-Not-Layout bias
+
+- **🆕 ByteDance Seedream 4.5 — March 2026 Image Generation Model**
+  - 2048×2048 native resolution, 8-15 second generation time
+  - **Typography champion**: accurate spelling for complex words, multiple text elements in single image — best-in-class for text-in-image
+  - Available on WaveSpeedAI as API (wavespeed.ai)
+  - **NOTE: This is Seedream (image) NOT Seedance (video, which is BLOCKED). Completely separate product.**
+  - **Digital-Stud: Seedream 4.5 = #1 option for product photography with integrated text overlays (price tags, promotion callouts, brand text in-image). Better than FLUX.2 for text rendering. Test via WaveSpeedAI API. Add to api_test_fal.py / api_test_replicate.py.**
+
+- **🆕 PureCC: Pure Learning for Text-to-Image Concept Customization (arXiv:2603.07561, CVPR 2026 accepted)**
+  - Reformulates learning objective to purely learn personalized concepts without corrupting base model behavior
+  - High-fidelity multi-concept customization + preserves original model generation diversity
+  - Decoupled learning + adaptive guidance scaling
+  - GitHub: github.com/lzc-sg/PureCC
+  - **Digital-Stud: PureCC = more faithful product LoRA that doesn't degrade FLUX.2's photo realism. Use for product + model concurrent customization. CVPR 2026 paper = peer reviewed, high confidence. Monitor for AI-Toolkit integration.**
+
+- **🆕 MoDM: Mixture-of-Diffusion Models for Efficient Image Generation Serving (ASPLOS 2026)**
+  - Efficient serving framework for image generation using Mixture-of-Diffusion architecture
+  - Presented at ASPLOS 2026 (University of Michigan: Yuchen Xia, Divyam Sharma)
+  - Targets GPU serving throughput optimization for multi-user image generation
+  - **Digital-Stud: MoDM = if you run a multi-client product photography service (multiple brands, each with their own LoRA), MoDM-style serving reduces per-request GPU overhead. Infrastructure-level insight for scaling Digital-Stud studio beyond single-user.**
+
+- **🆕 LogoDiffuser: Training-Free Multilingual Logo Generation (arXiv:2603.09759v1)**
+  - Training-free method for multilingual logo and text-in-image generation
+  - Character-as-image input preserves letter geometry while applying creative styling
+  - Letter-aware attention control — maintains legibility across 20+ scripts
+  - **Digital-Stud: LogoDiffuser = generate product logos and brand text in multiple languages directly into product images. No fine-tuning. Combine with FLUX.2 background scene generation for international product photography campaigns (e.g., same product, localized text overlay in Czech, German, French).**
+
+- **🆕 Order Is Not Layout: Order-to-Space Bias in T2I (arXiv:2603.03714v1)**
+  - Systematic bias: the ORDER of entity mentions in prompts spuriously determines their SPATIAL position in generated images
+  - E.g., "model holding product" vs "product held by model" → different spatial arrangement
+  - **Digital-Stud: CRITICAL PROMPT ENGINEERING FINDING. For product placement prompts: always put product LAST in entity list for foreground prominence. Test: "person in park holding backpack" vs "backpack held by person in park" — the backpack position will differ. Document in ComfyUI workflow prompt templates.**
+
+- **🆕 UniLongGen: Long-Horizon Interleaved Multimodal Generation (arXiv:2603.07540v1)**
+  - Addresses visual quality collapse in unified models during long interleaved sequences (text → image → text → image → ...)
+  - Context curation mechanism prevents quality degradation after >3 image generations in sequence
+  - **Digital-Stud: UniLongGen = multi-page product catalog generation (generate product header → description text → product lifestyle image → feature text → lifestyle image 2 → ... without quality collapse). Watch for open model.**
+
+- **🆕 ByteDance Seedream 4.5 Typography Benchmark**
+  - "The model generates images at 2048x2048 resolution with faster generation times (8-15 seconds)" — MindStudio.ai blog
+  - Best AI for text-in-image tasks (2026 comparison across Midjourney, DALL-E, FLUX.2, Ideogram)
+  - **Digital-Stud: For product overlay text (prices, CTAs, sale banners) embedded in product photos: Seedream 4.5 > Ideogram 3.0 > FLUX.2. New hierarchy for text-in-image tasks.**
+
+- **🆕 Tripo v3.0 Smart Mesh — March 2026 Update (YouTube, March 2026)**
+  - Smart Mesh Update March 2026: significant processing speed improvement, better mesh quality
+  - Tripo already supports: multi-view generation from single image (front/side/back), image-to-3D, spatial intelligence
+  - **Digital-Stud: Tripo v3.0 Smart Mesh + Multi-View → product photo → front/side/back views → 3D mesh → Blender turntable video. Full 3D product visualization pipeline: 1 product photo → professional 360° video. Faster than CEI-3D for non-PBR use cases.**
+
+- **🆕 One-Shot Portrait Stylization via Geometric Alignment (WACV 2026)**
+  - Single reference artistic portrait → full stylization, no fine-tuning
+  - Geometric alignment mechanism bridges domain gap between style reference and target portrait
+  - **Digital-Stud: One-shot portrait stylization = consistent brand visual identity. Reference: one branded lifestyle portrait → apply same visual style to all campaign images. No LoRA training needed for style transfer.**
+
+- **🆕 Canva March 2026 Pixel Drop / AI Features Update**
+  - Canva released new AI capabilities in March 2026 (expanded AI + smoother workflows)
+  - Google March 2026 Pixel Drop also included AI updates (Circle to Search, Magic Cue dining suggestions)
+  - **Digital-Stud: Canva AI March 2026 = potential new product mockup and background removal features. Test for quick client deliverables that don't need full ComfyUI pipeline. Not a replacement, but useful for rapid client iteration.**
+
+### 🎬 Video Gen — Run 161 — Creatify Aurora DiT, community video gen tools update, Tripo 3D pipeline
+
+- **🆕 Creatify Aurora — Proprietary Diffusion Transformer for Product Video (March 6 2026)**
+  - Creatify's Aurora: proprietary DiT model for AI video generation
+  - Best practice guide published March 6 2026 (creatify.ai)
+  - Focus: ultra-realistic video, solving "mouths that move, eyes that don't, bodies that stay frozen" problems
+  - **Digital-Stud: Creatify Aurora = commercial platform with Aurora DiT backend for product video ads. Targets exactly the use case: product demo videos with realistic human models. Test API. Compare vs. Kling 3.1 (fal.ai) for photorealism in lifestyle product video.**
+
+- **🆕 Face Swap in Video — March 2026 Community Update**
+  - New face swap services/models published on Replicate and Instagram (March 2026 community)
+  - VidMage AI: cloud-based, 4K support, multi-face swap for video
+  - Arting AI: major face swap upgrade "hyper-realistic visuals"
+  - **Digital-Stud: For product campaign videos requiring consistent model face: face swap on generated video (Kling 3.1 body + Arting AI face refinement) as alternative to full identity LoRA training. Fallback when full character LoRA is impractical for one-off client jobs.**
+
+- **📍 HuggingFace Daily Papers W11 2026 confirms Helios trending** (in papers/week/2026-W11)
+  - Helios listed as trending HuggingFace paper alongside Geometry-Guided RL for 3D Scene Editing, Penguin-VL
+  - **Geometry-Guided Reinforcement Learning for Multi-view Consistent 3D Scene Editing** — HuggingFace W11 trending
+  - Geometry-guided RL for editing a 3D scene across multiple views simultaneously
+  - **Digital-Stud: Geometry-guided 3D scene editing = edit product background or scene in 3D-consistent way (product in store, edit lighting in all views simultaneously). Watch for open model release.**
+
+### 🔧 ComfyUI / Nodes — Run 161 — No v0.17.2 patch yet, CVPR 2026 workshop deadlines today
+
+- **📅 Multiple CVPR 2026 Workshop submission deadlines = March 15 2026**
+  - CVPR 2026 "World Models" Workshop deadline March 15
+  - CV4CHL Workshop extended deadline March 15
+  - OVS: On Sensor Vision Workshop deadline March 13 (just passed)
+  - EVGENFM 2026 (Event-based Vision + Generative FM) deadline March 15 23:59 PT
+  - **Digital-Stud: CVPR 2026 workshop accepted papers (announced ~March 20) will include new ComfyUI-relevant vision+generation work. Monitor CVPR 2026 workshops for new nodes/methods to integrate.**
+
+- No ComfyUI v0.17.2 patch detected (frontend 1.41.15 subgraph breakage still unpatched as of run 161).
+
+### 🎓 LoRA / Training — Run 161 — PureCC for faithful concept customization, Seedream 4.5 text-in-image hierarchy
+
+- **🆕 FLUX.2 LoRA Complete 2026 Guide (Medium, Kevin Gabeci)**
+  - Comprehensive production LoRA training guide published March 2026
+  - Covers: FLUX.2 fine-tuning specifics, training settings, production pipeline
+  - **Digital-Stud: Read and update kohya_config_example.toml with 2026-optimal hyperparameters from this guide. Link: kgabeci.medium.com/flux-2-lora-training-the-complete-2026-guide-from-someone-who-built-the-training-platform-14d0bcb396eb**
+
+- **🆕 PureCC (CVPR 2026) — Faithful Concept Customization Without Base Model Degradation**
+  - (See Image Gen section above)
+  - Direct replacement consideration for standard DreamBooth/LoRA when base model behavior preservation matters
+  - **Digital-Stud: For client product LoRAs that will be used with many different scene descriptions: PureCC approach preserves FLUX.2's diversity better than standard LoRA training. Investigate AI-Toolkit integration or standalone training script.**
+
 ## 🏁 Run #160 Delta — 2026-03-15 04:30 Prague (GTC Eve — Keynote in ~18.5h)
 
 ### 🔴 GTC 2026 FINAL PRE-KEYNOTE INTELLIGENCE (confirmed March 14-15 2026)
