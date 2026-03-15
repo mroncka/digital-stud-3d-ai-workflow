@@ -1,4 +1,133 @@
-<!-- last_updated: 2026-03-15T06:30:00+01:00 run_164 -->
+<!-- last_updated: 2026-03-15T07:01:30+01:00 run_165 -->
+## 🔭 Run #165 Delta — 2026-03-15 07:01 Prague (GTC eve, ~13h to keynote)
+
+### 🚨 MAJOR CONFIRMED FINDS: Picsart version strings ALL resolved — 4 previously unknown models now confirmed
+
+> Run 164 flagged four Picsart AI Playground version strings (VEO 3.1, Sora 2, Runway Gen4.5, Luma Ray) as "investigate".
+> Run 165 resolved all four. All are real, distinct, officially released models — not labelling variants.
+> These were missing from the Digital-Stud SOTA tracker due to the version strings being ambiguous until now.
+
+---
+
+### 🎬 VIDEO GEN — MAJOR BACKFILL: 4 confirmed new video model releases
+
+#### 🆕🔴 CRITICAL — Google Veo 3.1 (January 2026) — CONFIRMED DISTINCT from Veo 3
+- **Status**: Official Google DeepMind release. Distinct from Veo 3.0.
+- **Release date**: January 2026 (multiple official Google blog posts)
+- **Official blog**: blog.google/innovation-and-ai/products/veo-updates-flow/ — "Veo 3.1 brings richer audio, more narrative control and enhanced realism"
+- **Capabilities**:
+  - Enhanced native audio (sync, sound effects, dialogue — more stable than Veo 3.0)
+  - Extended video length support
+  - New "Ingredients to Video" feature: generate from image components
+  - Vertical video output (portrait format for Shorts/Reels)
+  - Improved camera controls
+  - "Veo 3.1 Fast" variant available (speed/quality tradeoff)
+- **API access**: Gemini API (paid preview) + Google AI Studio + Vertex AI + Google Vids + YouTube Shorts
+- **API endpoint**: Via Gemini API — `veo-3.1` and `veo-3.1-fast` model IDs
+- **Google DeepMind page**: deepmind.google/models/veo/ — "Introducing Veo 3.1. Video, meet audio. Our latest video generation model."
+- **Luma AI comparison guide** (lumalabs.ai/learning-hub) explicitly compares Ray3.14 vs Veo 3/3.1 vs Sora 2 vs Kling 3.0.
+- **Digital-Stud priority**: 🔴 HIGH. Veo 3.1 = current SOTA for audio-synced video. Available via Gemini API. Investigate `veo-3.1-fast` for product video generation (speed). Vertical video support = critical for Instagram Reels/TikTok product placements. **Add to api_test_veo31.py artifact backlog.**
+
+#### 🆕🔴 CRITICAL — Runway Gen-4.5 (December 1, 2025) — CONFIRMED DISTINCT from Gen-4/Gen-4 Turbo
+- **Status**: Official Runway ML release. Announced Dec 1, 2025. Currently #1 on Artificial Analysis Text-to-Video benchmark.
+- **Official page**: runwayml.com/research/introducing-runway-gen-4.5
+- **YouTube**: "Introducing Gen-4.5 | Runway" — youtube.com/watch?v=ei2PsDpPbB4
+- **X announcement**: x.com/runwayml/status/1995493445243461846 — "Previously known as Whisper Thunder (aka David)"
+- **Benchmark**: 1,247 Elo points (Artificial Analysis) — surpasses all other models at time of release
+- **Quality**: "Unprecedented visual fidelity and creative control. Produces cinematic and state-of-the-art videos."
+- **Key distinction from Gen-4**: Gen-4.5 maintains Gen-4's generation speed while significantly improving quality. Not just a "turbo" variant.
+- **Integration**: Available on Runway platform + **Adobe Firefly** (adobe.com/products/firefly/partner-models/runway.html — "Create state-of-the-art videos with Runway Gen-4.5 in Firefly Generate Video")
+- **Cost guide** (Kevin Gabeci, Medium): "Sora 2 standard (not Pro) for unique aesthetic; Gen-4.5 is world's top-rated video model"
+- **Digital-Stud priority**: 🔴 HIGH. Gen-4.5 = current #1 benchmark video model. Available via Runway platform API + Adobe Firefly integration. **Add to api_test_runway_gen45.py artifact backlog.** For client product brand videos requiring cinematic quality.
+
+#### 🆕🟡 IMPORTANT — Luma Ray 3.14 (January 26, 2026) — Latest in Ray series (Ray → Ray 2 → Ray 3 → Ray 3.14)
+- **Status**: Official Luma AI release. Jan 26, 2026. Most recent Luma video model.
+- **Official release**: lumalabs.ai/press/luma-ai-launches-ray3.14 — "Ray3.14 sets a new bar for professional AI animation and video"
+- **Blog**: lumalabs.ai/blog/news/ray3_14 — "Native 1080p, 4x faster and 3x cheaper"
+- **Specs**:
+  - Native 1080p (1920x1080) — no upscaling required
+  - 4x faster than Ray 3.0
+  - 3x cheaper than Ray 3.0 (per-second pricing)
+  - Clip duration: 5s–10s, extendable to 18s
+  - Improved style consistency, stronger prompt adherence
+  - Audio support included
+- **Version lineage**: Ray (original) → Ray 2 (Dec 2024, Amazon Bedrock Jan 2025) → Ray 3 (Sep 2025) → Ray 3.14 (Jan 26, 2026)
+- **Nickname**: "Ray Pi" (community name for Ray 3.14)
+- **Amazon Bedrock**: Ray 2 available as `luma.ray-v2:0`. Ray 3.14 status on Bedrock: TBD.
+- **TechCrunch (March 5, 2026)**: "Luma Agents" powered by Ray 3.14 + Google Veo 3 + Nano Banana Pro + Seedream + ElevenLabs voice. Luma AI now a multi-model orchestration platform.
+- **Luma comparison guide**: lumalabs.ai/learning-hub/luma-video-models-guide-ray3.14-veo-sora-kling-compared
+- **Digital-Stud priority**: 🟡 IMPORTANT. Ray 3.14 = 1080p, fast, cheap. Good for rapid product video iteration. 3x cheaper than Ray 3.0 = cost advantage for volume production. **Benchmark against Kling 3.0 for lifestyle product video.**
+
+#### 🆕🔴 CRITICAL — OpenAI Sora 2 (September 30, 2025) — CONFIRMED DISTINCT from Sora 1
+- **Status**: Official OpenAI release. Sep 30, 2025.
+- **Official page**: openai.com/index/sora-2/ — "Today we're releasing Sora 2, our flagship video and audio generation model."
+- **YouTube**: "Introducing Sora 2" — youtube.com/watch?v=gzneGhpXwjU — presented by Bill Peebles, Rohan Sahai, Thomas Dimson
+- **Product variants**:
+  - `sora-2` — standard: speed & flexibility (openai.com/api/docs/models/sora-2)
+  - `sora-2-pro` — state-of-the-art: highest quality (openai.com/api/docs/models/sora-2-pro)
+- **Capabilities**:
+  - Synchronized dialogue with natural lip sync
+  - Sound effects generation
+  - Enhanced physical accuracy
+  - Visual precision improvements vs Sora 1
+  - Available on web, iOS, Android
+- **SAG-AFTRA**: NBC News (Sep 30, 2025) — OpenAI strengthened Sora 2 guardrails after SAG-AFTRA concerns / Bryan Cranston statement
+- **API**: openai.com/api/docs/guides/video-generation/ — "Second generation Sora model in two variants"
+- **Pricing note** (Kevin Gabeci guide): "Sora 2 standard (not Pro)" recommended for cost-efficient unique aesthetic.
+- **Digital-Stud priority**: 🔴 HIGH. Sora 2 API available. `sora-2` standard = cost-efficient. `sora-2-pro` = premium cinematic. **Add to api_test_sora2.py artifact backlog.** Synchronized dialogue = critical for brand spokesperson video. Test for product demo narration use case.
+
+---
+
+### 🆕 Luma Agents — Multi-Model Creative Agent Platform (March 5, 2026)
+- **Source**: TechCrunch exclusive March 5, 2026 — "Luma launches creative AI agents powered by its new 'Unified Intelligence' models"
+- **What it is**: Luma AI agents that handle end-to-end creative work, orchestrating multiple models:
+  - Ray 3.14 (video), Google Veo 3, Nano Banana Pro, ByteDance Seedream, ElevenLabs voice
+- **Architecture**: "Unified Intelligence" models — meta-model routing over Luma's model ecosystem
+- **Scope**: TechCrunch says "end-to-end creative work across video, image, audio"
+- **Digital-Stud**: Luma Agents = potential auto-pipeline for product video: image gen → video gen → voiceover in single agent call. **Investigate for Digital-Stud workflow automation use case.**
+
+---
+
+### 📡 GTC Pre-Keynote — Run 165 status
+- Window 05:30–06:01 UTC: CONFIRMED DRY
+- NVIDIA X/Twitter: Last confirmed post = "In just three days, our CEO Jensen Huang will take the stage... Tune in Monday, March 16 at 11 a.m. PDT"
+- No new NVIDIA blog posts, no new GTC sessions, no Jensen/Catanzaro/Dally posts.
+- NVIDIA "new approach to software that embraces AI agents similar to OpenClaw" — Wired Facebook repost (Wired article, undated exact). Suggests GTC keynote may emphasize AI agents / agentic workflows in addition to hardware.
+- **NEXT**: Run 166 (07:30 CET) still pre-keynote. Keynote = Monday March 16 11am PDT / 20:00 CET.
+
+---
+
+### 🖼️ Image Gen — Run 165 — Window dry, Atlas Cloud confirmed, Caimera B2B-only, Sora 2 image confirmed
+
+- **30-minute window 05:30–06:01 UTC**: CONFIRMED DRY — zero new arXiv papers, zero HuggingFace cards, zero Replicate/fal.ai models, no Stability AI, no Midjourney V8.
+- **📍 GPT-Image-1 / ChatGPT Images update (March 15, 2026)**: OpenAI help center release notes page updated March 15 — "a new and improved version of ChatGPT Images, powered by our best image generation model yet." This may reference GPT-Image-1 going live for all ChatGPT users. **TRACK: If GPT-Image-1 = ChatGPT Images model as of March 15, this confirms broad rollout.**
+- **📍 Atlas Cloud CONFIRMED**:
+  - **Free tier**: $5 credits for new users after verification
+  - **Paid**: Starter ($29/mo — original listed as $18, confirmed $29 from pricing page), Pro (volume discounts), Premium ($99/mo)
+  - **30% off first month** + 17% annual savings
+  - **Pricing per 1,000 images**: Flux 2 Pro ~$30–50, Imagen 4 Ultra ~$40–80, Ideogram v3 ~$30–50
+  - **Claim**: 30–50% cheaper than fal.ai for equivalent models
+  - **Atlas vs fal.ai**: slashdot.org/software/comparison/Atlas-Cloud-AI-vs-fal.ai/ comparison page exists
+  - **Digital-Stud**: Atlas Cloud = viable fal.ai alternative. $5 free tier for testing. Unified 300+ models. **Add atlascloud.ai to api_test script variants.**
+- **📍 Caimera.ai CONFIRMED B2B SaaS**:
+  - No public API, no developer waitlist
+  - B2B SaaS for fashion brands: Caimera Click (catalog/PDP/editorial), Browzwear integration (3D → photorealistic product shot)
+  - 650k+ images generated, 1000+ brands, 7x faster, 50% cost reduction vs traditional photoshoot
+  - LinkedIn (Kirti Poonia, March 2026): "Caimera in 2026 is a whole new person. Give it a shot."
+  - **Digital-Stud**: Caimera = B2B fashion tool only. No open API. Good benchmark for what product photography AI can achieve but not directly integratable. **Close API investigation for now.**
+
+---
+
+### 🎓 LoRA / Training — Run 165 — Higgsfield Soul Cinema confirmed, window dry
+- **30-minute window 05:30–06:01 UTC**: CONFIRMED DRY — no AI-Toolkit commit, no Kohya commit.
+- **📍 Higgsfield Soul Cinema CONFIRMED** (March 14, 2026 Instagram — imanoubou):
+  - "Comment Higgs to try the new SOUL CINEMA because this workflow/tool just BLEW my mind! I just directed and starred in my..."
+  - **Soul Cinema** = specific product within Higgsfield Soul 2.0 — a "directed & starred" video feature (put yourself in the video)
+  - Viral reach: Instagram engagement, "Comment Higgs to try" = active viral distribution
+  - Still web-only, no API. But **Soul Cinema = distinct feature** from general video gen (self-insertion, directed narrative)
+  - **Digital-Stud**: Soul Cinema = product ambassador video use case (brand spokesperson). Monitor if API opens.
+- **📍 fal.ai March 17 event**: Still confirmed. No new announcements as of run 165.
+
 ## 🔭 Run #164 Delta — 2026-03-15 06:30 Prague (GTC eve, ~13.5h to keynote)
 
 ### 📡 GTC Pre-Keynote — Still Sealed (run 164 confirms zero leaks)
