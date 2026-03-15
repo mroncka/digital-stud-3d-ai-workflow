@@ -1,4 +1,79 @@
-<!-- last_updated: 2026-03-15T05:30:09+01:00 run_162 -->
+<!-- last_updated: 2026-03-15T06:00:53+01:00 run_163 -->
+## 🔭 Run #163 Delta — 2026-03-15 06:00 Prague (GTC eve, ~14h to keynote)
+
+### 📡 GTC Pre-Keynote — Still Sealed (run 163 confirms zero leaks)
+- NVIDIA live blog: last post = Friday March 13 8:30am PT. No updates in past 30 min window.
+- No social activity from Rombach, Esser, BFL, Jensen, or any NVIDIA execs on GTC image/video content.
+- No new arXiv preprints from NVIDIA Research. No new press releases. No new session names added.
+- **🆕 NVIDIA/Groq Hybrid Chip rumoured for GTC (The Information, March 15)**
+  - Sources: The Information reports NVIDIA will "unveil its first-ever Groq hybrid chip at GTC 2026"
+  - Chip combines Groq LPU with NVIDIA GPU on single package. Targeting inference efficiency.
+  - Note: "Groq" here refers to the startup (LPU inference chips), not Google's Grok.
+  - **Digital-Stud: NVIDIA+Groq hybrid = potentially massive inference speed boost for image/video diffusion models at lower power. Watch for NIM endpoint changes post-GTC.**
+- **🆕 Midjourney V8 — Still No Announcement** (confirmed quiet through 06:00 CET March 15)
+  - V8 window = March 16-20. Most likely post-GTC or concurrent announcement.
+- **📍 NEXT MONITORING WINDOW**: Run 164 (06:30 CET) — still pre-keynote.
+
+### 🖼️ Image Gen — Run 163 — Adobe CEO exits, Caimera.ai product platform, EVATok AR tokenization
+
+- **📍 arXiv Sunday confirmed dry**: Latest cs.CV listing = Friday March 13 (151 entries, IDs up to 2603.12xxx). Next batch expected Monday morning (post-CVPR workshop deadline wave from March 15).
+- **🆕 Adobe CEO Shantanu Narayen departing (March 15 2026)**
+  - Adobe shares down 12.1% on announcement (SimplyWallSt, March 15)
+  - Context: CEO exit under "AI disruption" pressure — Adobe has struggled vs. Midjourney/FLUX in creative AI.
+  - Firefly strategy now under new leadership → uncertainty for Firefly roadmap.
+  - **Digital-Stud: Adobe Firefly roadmap now uncertain. Do NOT build long-term pipeline dependencies on Firefly API. Maintain FLUX.2 + Seedream 4.5 + GPT-Image-1 as primary stack. Firefly = optional/supplementary only.**
+- **🆕 Caimera.ai — Commercial Product Photography Platform (trending March 15)**
+  - Garment/product workflow: 3D Browzwear garment → Caimera AI → editorial product shot
+  - Instagram trending: "Editorial tool on Caimera AI is hands down my favourite to work with"
+  - Use case: import 3D product renders → generate photorealistic editorial images without a studio shoot
+  - Relevant for Digital-Stud: 3D → Caimera = alternative to ComfyUI FLUX.2 for product editorial. No API found yet — web UI only.
+  - **Digital-Stud: Monitor Caimera.ai for API access. If available, add to api_test_replicate.py or create api_test_caimera.py. 3D asset → Caimera editorial pipeline = direct competition to current Tripo3D → Blender → FLUX.2 pipeline.**
+- **🆕 Higgsfield AI — Image+Video Platform for Creators (PRN correction notice, March 13 2026)**
+  - Higgsfield = "AI-native video and image platform for professional creators" (PRN March 13 correction)
+  - Not previously tracked. Product: text/image/video generation with creator-focused UX.
+  - No API documented publicly. Web platform.
+  - **Digital-Stud: Monitor Higgsfield for API. Platform positioning = direct competitor to Creatify Aurora for product video ads. If API found, add to api_test roster.**
+- **📍 Google Gemini UI update (March 15)**: Inline element editing on generator screens (highlight + prompt to update). Not a new model — UX improvement to existing Gemini image gen. No new model weights.
+- **📍 HuggingFace trending Sunday**: No new image gen models in top trending. Existing: FireRed-Image-Edit-1.1, FLUX.2 Klein derivatives. All previously tracked.
+
+### 🎬 Video Gen — Run 163 — EVATok AR tokenization, FramePack no new commit, quiet Sunday
+
+- **🆕 EVATok: Adaptive Length Video Tokenization for Efficient Visual AR Generation (arXiv:2603.12267, March 13 2026)**
+  - Autoregressive (AR) video generation: adaptive token length per frame based on content complexity
+  - Reduces redundant tokens for static/low-motion regions, preserves detail for high-motion regions
+  - Efficiency improvement: fewer tokens → faster AR generation → less memory per sequence
+  - arXiv: arxiv.org/abs/2603.12267
+  - **Digital-Stud: EVATok = foundational technique for next-gen efficient video AR models. Not a standalone deployable model yet — a tokenization method paper. Relevance: if adopted by future Wan3.x or HunyuanVideo-2.x, could halve VRAM requirements for long product videos. Track for integration into future model releases.**
+- **📍 FramePack GitHub**: No new March 15 commits detected (last commits = earlier this week confirming P1 roadmap). P1 still in development.
+- **📍 HunyuanVideo-1.5**: No new fine-tunes or variants on HuggingFace March 15.
+- **📍 Wan 2.7**: No official release as of 06:00 CET March 15. Still "planned."
+- **📍 Pika Labs**: No new model version or feature announced March 15.
+- **📍 Stability AI video**: No new release March 15.
+
+### 🔧 ComfyUI / Nodes — Run 163 — No v0.17.2, no GPT-Image-1 node, 30min window dry
+
+- **📍 ComfyUI v0.17.2**: Still not released. Frontend 1.41.15 subgraph bug unpatched.
+- **📍 ComfyUI master commits**: No new commits detected in the 30-minute window (04:30–05:00 UTC).
+- **📍 GPT-Image-1 ComfyUI node**: Still none found. Community working on it — expected soon.
+- **📍 ComfyUI Registry**: No new nodes in the 30-minute window.
+- **🆕 CVPR 2026 Workshop Deadlines PASSED (March 15 2026 end of day)**
+  - Multiple CVPR 2026 workshop deadlines = today (March 15). Submitted papers include: World Models Workshop, EVGENFM 2026 (event-based vision + generative FM), CV4CHL, ABAW 10th.
+  - arXiv wave from these submissions expected: Monday March 16 morning (post-announcement = likely ~18:00 UTC March 16).
+  - **Digital-Stud: HIGH-PRIORITY MONITORING WINDOW = Monday March 16 18:00–23:00 UTC (post-keynote AND post-CVPR workshop arXiv wave). Runs 166-168 = highest information density this cycle. Reserve extra attention.**
+- **📍 Cloudflare Workers AI**: NVIDIA Nemotron-3 Super added March 11. No new additions March 15.
+
+### 🎓 LoRA / Training / APIs — Run 163 — Quiet, all repos stable Sunday
+
+- **📍 AI-Toolkit**: Last commit March 10. No March 15 activity detected.
+- **📍 Kohya sd-scripts**: No March 15 commits detected.
+- **📍 Free API tier**: No new free credits from fal.ai, replicate.com, or together.ai on March 15.
+- **📍 Fireworks AI**: No new image/video model additions March 15.
+- **📍 Together.ai**: No new image models added March 15.
+- **🆕 Meta Avocado LLM Delayed (March 15 2026)**
+  - Meta's new foundational AI model "Avocado" reportedly underperforming Google and OpenAI models.
+  - Delay confirmed. This affects Meta's multimodal roadmap including image understanding.
+  - **Digital-Stud: Meta delay = reduced near-term threat from MetaAI to current product photography stack. Llama 3.3 Vision remains Meta's best image-understanding model. Watch for Avocado rescheduled release for potential captioning/analysis capabilities.**
+
 ## 🔭 Run #162 Delta — 2026-03-15 05:30 Prague (GTC pre-keynote, ~14.5h to go)
 
 ### 📡 GTC Pre-Keynote — Still Quiet (run 162 confirms no leaks)
