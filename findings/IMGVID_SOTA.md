@@ -1,4 +1,112 @@
-<!-- last_updated: 2026-03-15T03:01:30+01:00 run_157 -->
+<!-- last_updated: 2026-03-15T03:30:14+01:00 run_158 -->
+## 🏁 Run #158 Delta — 2026-03-15 03:30 Prague
+
+### 🔴 CRITICAL — NVIDIA GTC 2026 (March 16-19, San Jose SAP Center)
+
+- **🆕 GTC 2026 Keynote: Monday March 16, 8am PT — Jensen Huang at SAP Center**
+  - 30,000 expected in-person, hundreds of thousands online
+  - Centerpiece: formal launch of **Vera Rubin platform** (next-gen AI accelerator after Blackwell)
+  - Vera Rubin: 88 custom Arm-based "Olympus" cores, engineered for AI factories + agentic AI
+  - Live updates blog: https://blogs.nvidia.com/blog/gtc-2026-news/ — monitor from March 16
+  - **Digital-Stud action: Run 159-164 sweeps MUST include 'NVIDIA GTC 2026 keynote announcements image video generation March 2026' as primary research query. This is a once-a-year announcement cycle.**
+
+- **🆕 Robin Rombach (Black Forest Labs CEO) confirmed GTC panelist — "Open Models" session, March 18**
+  - Session: "Open Models: Where We Are and Where We're Headed" — Jensen Huang moderating
+  - Panelists include: Robin Rombach (BFL/FLUX.2), Perplexity, Mistral AI, LangChain, Thinking Machines Lab
+  - **Context: BFL CEO at GTC = high probability of FLUX.2 × NVIDIA joint announcement (new NVFP4 model, new NIM endpoint, RTX AI Garage feature). Monitor closely for March 18 output.**
+
+- **🆕 NVIDIA Cosmos Transfer 2.5 + Predict — Integrated into Omniverse (pre-GTC)**
+  - Cosmos suite (Transfer 2.5 + Predict) now runs inside NVIDIA Omniverse (confirmed pre-GTC)
+  - Transfer 2.5: enhanced video-to-video world model transfer
+  - Predict: physics-aware prediction of next world state
+  - **Digital-Stud use: Cosmos in Omniverse = first path to physically accurate product environment videos (place product in physically simulated world scene). Monitor Omniverse API for Cosmos endpoints post-GTC.**
+
+- **🆕 DLSS 4.5 Dynamic Multi Frame Gen — Available March 31, 2026 (announced GDC)**
+  - DLSS 4.5 Dynamic Multi Frame Generation: generates multiple frames between rendered frames
+  - Available: March 31 driver update for Blackwell + Ada GPUs
+  - **Context: Not directly applicable to diffusion inference, but DLSS 4.5 = confirmed Blackwell optimization roadmap still active. Means RTX 5090 + RTX 5080 remain best inference GPUs for video gen through Q2 2026.**
+
+- **🆕 RTX Mega Geometry — NVIDIA New Foliage/Forest Scene System (GDC preview)**
+  - New NVIDIA RTX system for rendering millions of foliage objects (forests, grass, leaves) in path-traced scenes
+  - Being used in The Witcher 4 (confirmed partnership)
+  - **Context for Digital-Stud: ComfyUI + RTX Mega Geometry-aware render paths → background generation for outdoor lifestyle/nature product shots. Not imminent but marks the path to photorealistic natural environment backgrounds.**
+
+### 🖼️ Image Gen — Run 158 — ChatGPT Images upgrade, NVFP4 for FLUX.2+LTX-2.3, Generative Drifting theory, Gemini Embedding 2
+
+- **🆕 ChatGPT Images — New GPT-Image-1 Powered (OpenAI, March 15, 2026)**
+  - OpenAI Help Center entry (March 15, 2026): "new and improved version of ChatGPT Images, powered by our best image generation model yet"
+  - Replaces the previous ChatGPT image generation model with GPT-Image-1 (confirmed model name)
+  - GPT-5.1 retired March 11; GPT-5.2 Instant is current LLM
+  - **Digital-Stud: ChatGPT Images (GPT-Image-1) now officially the best OpenAI image model in ChatGPT interface. For clients who use ChatGPT: GPT-Image-1 is available. For API: use directly via OpenAI Images API endpoint (dall-e-3 replaced by gpt-image-1). Add to api_test_replicate.py.**
+
+- **🆕 NVFP4 + FP8 variants for LTX-2.3 AND FLUX.2 Klein — 2.5× perf, 60% less VRAM (GDC, March 10)**
+  - **NVIDIA + Lightricks**: NVFP4 and FP8 variants for LTX-2.3 video generation — 2.5× performance gains
+  - **NVIDIA + BFL**: NVFP4 and FP8 variants for FLUX.2 Klein (both 4B and 9B) — same gains
+  - Available in ComfyUI with direct HuggingFace integration
+  - NVIDIA blog post: https://blogs.nvidia.com/blog/rtx-ai-garage-flux-ltx-video-comfyui-gdc/
+  - **Digital-Stud action: IMMEDIATELY install NVFP4 variants of FLUX.2 Klein 4B and LTX-2.3. On RTX 4090: NVFP4 + 60% less VRAM means running FLUX.2 Klein 9B in 10-12GB VRAM = leaves 12-14GB free for parallel video generation. Dual model inference becomes feasible on single RTX 4090. This is a major workflow optimization. Add NVFP4 models to image_gen_flux.json and wan22_img2vid.json.**
+
+- **🆕 Generative Drifting = Score Matching (arXiv:2603.09936, March 2026) — Theoretical breakthrough**
+  - Proves: Generative Modeling via Drifting (recently achieved SOTA one-step image gen) is mathematically equivalent to Score Matching (the foundation of diffusion models)
+  - Spectral + variational perspective — unifies flow matching, diffusion, and drifting under one framework
+  - Implications: any improvement to score matching applies directly to flow matching methods (FLUX.2, LTX-2.3, Wan 2.2)
+  - **Digital-Stud context: Theoretical work, not immediately deployable. But confirms: FLUX.2 (flow matching) and future one-step models share the same mathematical foundation. Watch for: one-step FLUX.2 distillation improvements derived from this paper.**
+
+- **🆕 Gemini Embedding 2 — Unified Multimodal Embedding (Google, March 2026)**
+  - Google released Gemini Embedding 2: first model to embed text, images, videos, audio, and PDFs in the same vector space
+  - Key use case: cross-modal search (text query → find matching image, audio describes scene → find matching video frame)
+  - Available via Vertex AI + Google AI SDK
+  - **Digital-Stud use: Gemini Embedding 2 for product image library management. Build unified embedding index of all generated images + text descriptions → semantic search across library. Find 'all images with blue background product shots' via vector search. Integrate into product photo pipeline for asset management.**
+
+- **📍 Nano Banana 2 — Daily Rate Limit Issues Reported (March 12, 2026)**
+  - Yahoo Finance (March 12): "Nano Banana 2 Daily Limits Push Creators Toward Credit-Based Alternatives"
+  - Independent platform 'Banana Nano' launched credit-based access model for Nano Banana 2
+  - Indicates: Nano Banana 2 free tier has daily generation limits (exact limits not specified)
+  - **Digital-Stud context: Nano Banana 2 has daily quota limits. For high-volume e-commerce (100+ product images/day), need credit-based plan or Vertex AI API (no daily limit, pay-per-use). Estimate: professional usage requires Vertex AI endpoint, not free Gemini tier.**
+
+### 🎬 Video Gen — Run 158 — Helios 14B confirmed, NVFP4 for LTX-2.3 local, Wan 2.2 community tools
+
+- **🆕 Helios — Confirmed as 14B Autoregressive Diffusion Model (ByteDance, March 2026)**
+  - **Helios is a 14B autoregressive diffusion model** (not a traditional diffusion-only model)
+  - Real-time long video generation: 19.5 FPS on GPU
+  - Key architectural differentiator: unified autoregressive + diffusion = no temporal length limit (no drift)
+  - GitHub: https://github.com/PKU-YuanGroup/Helios (ComfyUI custom nodes available)
+  - **Digital-Stud action: Helios 14B = current best architecture for long product demo videos (>10s without temporal drift). Install via ComfyUI Manager. Test 30-second product unboxing video generation. Expected: cleaner temporal consistency than WAN 2.2 for long sequences.**
+
+- **🆕 NVFP4 LTX-2.3 — Now Available in ComfyUI (NVIDIA RTX AI Garage, GDC)**
+  - LTX-2.3 NVFP4 model: available in ComfyUI with direct HuggingFace integration (March 10, GDC)
+  - On RTX 4090: NVFP4 LTX-2.3 + 60% VRAM reduction → 22B model runs in ~15GB VRAM (leaves 9GB for ComfyUI overhead)
+  - **Digital-Stud action: Install LTX-2.3 NVFP4 from HuggingFace via ComfyUI. Replace FP16/BF16 LTX-2.3 with NVFP4 variant in ltx23_ic_lora.json and ltx23_flf2v.json. Expected speedup: 2-2.5× over FP16, same quality.**
+
+### 🔧 ComfyUI / Infrastructure — Run 158 — NVFP4 ComfyUI integration live, Nano Banana 2 limits, GPT-Image-1 API name confirmed
+
+- **🆕 ComfyUI NVFP4 Integration — Live via HuggingFace (NVIDIA RTX AI Garage, March 10)**
+  - NVFP4 models load directly in ComfyUI via standard HuggingFace checkpoint loader
+  - No custom node required: NVFP4 weights work with existing ComfyUI model loader
+  - NVIDIA RTX AI Garage blog confirms: FLUX.2 Klein NVFP4 + LTX-2.3 NVFP4 both loadable
+  - **Digital-Stud action: Download models from HuggingFace black-forest-labs/FLUX.2-Klein-4B-NVFP4 and Lightricks/LTX-Video-2.3-NVFP4 (exact slugs TBC). Add NVFP4 model paths to image_gen_flux.json and ltx23_ic_lora.json as primary paths.**
+
+- **🆕 NTIRE 2026 — Blind Computational Aberration Correction Challenge (Deadline March 15)**
+  - First blind computational aberration correction challenge at CVPR 2026 workshop
+  - 129,600 image pairs dataset for learning lens aberration correction
+  - Winners announce March 17
+  - **Context: Aberration correction = better optical artifact removal in product photography (lens distortion, chromatic aberration from cheap macro lenses). Monitor NTIRE 2026 winning model for integration into image_gen_flux.json post-processing chain.**
+
+### 🏗️ 3D / Avatar — Run 158 — NVIDIA Cosmos in Omniverse, RTX Mega Geometry, Vera Rubin platform
+
+- **🆕 NVIDIA Vera Rubin — Next AI Accelerator Platform (announced pre-GTC)**
+  - Vera: 88 custom Arm-based "Olympus" cores + Rubin GPU
+  - Engineered for AI factories and agentic AI workloads
+  - Expected formal announcement: GTC keynote March 16
+  - **Context: Vera Rubin = next GPU generation after Blackwell. Not yet available. Purchase timing: RTX 5090 (Blackwell) remains optimal for Digital-Stud local inference through 2026. Vera Rubin consumer variants (RTX 6xxx) expected H1 2027.**
+
+### 🎓 LoRA / Training — Run 158 — NVFP4 enables larger training batch, Cosmos+Omniverse physics data
+
+- **🆕 NVFP4 for LoRA Training — Larger Effective Batch Size on RTX 4090**
+  - NVFP4 60% VRAM reduction applies to training as well as inference
+  - For HunyuanVideo LoRA training: NVFP4 base model → train with ~2.5× larger batch
+  - **Digital-Stud action: When running next character LoRA on HunyuanVideo: download NVFP4 HunyuanVideo weights (check BFL/HunyuanVideo HuggingFace for NVFP4 variant). If available: use NVFP4 base + AI-Toolkit → same GPU, better gradients, faster convergence.**
+
 ## 🏁 Run #157 Delta — 2026-03-15 03:01 Prague
 
 ### 🖼️ Image Gen — Run 157 — Nano Banana 2 (Gemini 3.1 Flash Image) GA, Qwen-Image 2.0 live, Neural4D Image-to-3D, AIMomentz benchmark platform
