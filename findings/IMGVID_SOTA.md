@@ -1,4 +1,83 @@
+<!-- SOTA-TIMESTAMP -->
+_Last updated: 2026-03-15T08:30:00+01:00 (run 168)_
+
 <!-- last_updated: 2026-03-15T07:30:00+01:00 run_166 -->
+<!-- SOTA-DELTA run=168 ts=2026-03-15T08:30:00+01:00 -->
+## Delta — Run 168 | 2026-03-15T08:30:00+01:00
+
+### IMAGE GEN
+- **FLUX.2 [dev/klein]** (Black Forest Labs): 32B dev + 9B/4B klein distilled. Multi-reference up to 10 images. SOTA open-weight.
+- **Nano Banana 2 (Gemini 3.1 Flash Image)**: Pro quality at Flash speed/price ($30→$15/M tokens vs Pro). 5-char subject consistency, 14-object scenes, 512px–4K. Free in Google Flow + AI Studio preview. Confirmed = NB2.
+- **Z-Image-Turbo** (Tongyi-MAI): 6B distilled. Sub-second enterprise inference. Apache 2.0. ControlNet Union 2.1 support confirmed March 9 2026.
+- **Qwen-Image** (Alibaba): Full gen+edit suite. Variants: Edit-2509, Layered (RGBA), Lightning. Apache 2.0. ~24GB VRAM.
+- **HunyuanImage-3.0** (Tencent): 80B MoE (13B active). 5B image-text + 6T text tokens. Handles 1000-word prompts.
+- **GLM-Image** (Zhipu): Hybrid 9B AR + 7B diffusion + Glyph Encoder. Best-in-class bilingual text rendering.
+- **Grok Imagine** (xAI): Major update announced March 12 2026 by Musk. Enhanced video+image gen.
+- **GPT-Image-1**: Help center update March 15 2026 confirmed. Mass ChatGPT rollout tracking.
+- **Midjourney V8**: Window March 16–20, no announcement yet (run 168).
+- **SD 3.5**: Most mature ecosystem. SD 3.5 Medium/Large/Turbo. 4–24GB VRAM range.
+
+### VIDEO GEN
+- **Wan 2.2** (Alibaba, Apache 2.0): MoE architecture (2×14B experts). T2V-A14B, I2V-A14B, TI2V-5B (9min 720P consumer GPU), S2V-14B, Animate-14B. Full HF+ModelScope. ComfyUI native.
+- **Wan 2.7**: Planned March 2026. Major upgrade: FLF2V, motion control, multi-frame consistency, extended duration. Expected API-only (closed weights).
+- **Wan 2.2 14B Preview**: On HuggingFace Spaces March 15. No Wan 2.7 drop yet.
+- **HunyuanVideo** (Tencent, 13B): Spatial-temporal latent. Dual-stream transformer. FP8 weights. I2V capability confirmed.
+- **LTX-2.3** (Lightricks, open-source): 30fps 1216×704 faster than real-time. Native audio, portrait 9:16, 24/48 FPS, last-frame interpolation.
+- **Kling 3.0** (Kuaishou): 15s multi-shot native. Kling 3.0 Omni: intelligent shot_type storyboard. Audio-visual sync. API: fal-ai/kling-image/v3.
+- **Seedance 2.0** (ByteDance): BLOCKED — Disney/Marvel C&D, global launch suspended (Reuters/Engadget March 14 2026). Fallback: LTX-2.3 + Kling 3.0.
+- **Veo 3.1** (Google): Oct 2025, updated Jan 13 2026. veo-3.1 / veo-3.1-fast. $0.035/s standard, $0.012/s fast. ARTIFACT DONE: api_test_veo31.py.
+- **Runway Gen-4.5** (Dec 1 2025): #1 Artificial Analysis 1247 Elo. Adobe Firefly integration. Next artifact: api_test_runway_gen45.py.
+- **Sora 2** (OpenAI, Sep 30 2025): sora-2 + sora-2-pro API. Dialogue sync. Next artifact: api_test_sora2.py.
+- **Luma Ray 3.14** (Jan 26 2026): Native 1080p, 4x faster, 3x cheaper than Ray3. 5–18s clips. Amazon Bedrock: luma.ray-v2:0.
+- **Luma Agents** (March 5 2026): End-to-end creative agent. Ray3.14 + Veo3 + NB2 + Seedream + ElevenLabs. Developer API in investigation.
+- **Helios 14B** (ByteDance/PKU-YuanGroup): 19.5fps H100, 6GB VRAM min. T2V/I2V/V2V. Code+weights release IMMINENT. Monitor github.com/PKU-YuanGroup/Helios.
+- **Open-Sora 2.0**: Commercial-level open-source video gen. arXiv:2503.09642v3.
+- **Higgsfield Soul Cinema**: Self-insertion narrative video. Viral March 14. Web-only. Monitor for API.
+- **fal.ai March 17 event**: "Realtime World Models, Real Conversations." Invite-only. GTC satellite. Possible world model product.
+
+### COMFYUI
+- **v0.17.1** (March 13 2026): Painter Node, I2I API nodes, audio nodes, FluxKVCache (Flux 2 Klein KV), LTXAV 2.3 support, Z-image pixel space, SCAIL WanVideo, NVFP4 model support. WARNING: frontend 1.41.15 breaks subgraph.
+- **App Mode + App Builder + ComfyHub** (March 10 2026): One-click workflow → sharable app. No node graph needed for end users. Comfy Cloud: no-install runs.
+- **NVIDIA GDC 2026** (March 10): RTX Video Super Resolution node, NVFP4 matrix multiply, RTX-acceleration for AI video. ComfyUI App View unveiled.
+- **AMD ROCm 7.1.1**: 5.4x faster AI image gen on AMD. Windows installer.
+- **Gemini 3.1 Flash Image nodes**: 5+ community custom nodes as of March 2026.
+- **Z-Image-Fun ControlNet Union 2.1**: Canny+depth+pose unified. Multi-control weights. Blender→ComfyUI AI Renderer 2.0 workflow confirmed.
+- **ComfyUI Face Model Pipeline v1.0** (March 2026): ReActor-powered. 3-click face model gen.
+- **ComfyUI-Execute-Python**: Single node for arbitrary Python execution.
+- **375+ image gen workflows** on comfy.org.
+- **Wan 2.7 support**: Planned for v0.17.x release when weights drop.
+
+### POSE ESTIMATION
+- **YOLO26** (Ultralytics): Unified 5-task model (detection, segmentation, pose, tracking, classification). Single consistent API. End-to-end architecture. COCO pretrained. Real-time. arXiv:2602.14582.
+- **HTP Framework**: Hierarchical Temporal Pruning for 3D pose via diffusion. -38.5% train MACs, -56.8% inference MACs, +81.1% speed. SOTA on Human3.6M + MPI-INF-3DHP. arXiv:2508.21363v3.
+- **RTMPose + DWPose**: Still core production algorithms. Referenced in panoramic pose research 2026.
+- **Panoramic HPE**: Training-free framework. Wide FoV all-person scene pose.
+- **ControlNet Union 2.1** (ComfyUI): Unified canny+depth+pose. Multi-control weights. DWPose extraction → reference photo → instant gen.
+- **Qwen Rapid AIO + ControlNet Union**: Precise consistent character pose changes. ControlNet strength 1.8 strict.
+- **Z-Image-Fun ControlNet Union 2.1**: Blender→ComfyUI pipeline. Direct DWPose extraction.
+
+### LORA TRAINING
+- **Video2LoRA** (arXiv:2603.08210): Per-semantic LoRA weights via hypernetwork. T2V personalization without full Kohya pipeline. HIGH PRIORITY for product video personalization.
+- **ID-Booth** (arXiv March 2026): Identity-Consistent Face Generation with Diffusion Models.
+- **IdentityStory** (arXiv March 2026): Identity-preserving generator for human-centric story generation.
+- **FLUX.2 LoRA**: Flux 2 Klein KV cache via FluxKVCache node in ComfyUI v0.17.1. Multi-reference up to 10 images in FLUX.2 dev.
+- **AI-Toolkit / Kohya**: Active March 2026. Qwen-Image fine-tuning emerging. Apache 2.0.
+- **Face swap SOTA**: Flux2 face swap workflow (comfyui/workflows/flux2_face_swap.json completed). ReActor Face Model Pipeline v1.0 March 2026.
+- **PureCC** (arXiv:2603.07561, CVPR 2026): Consistent character gen. github.com/lzc-sg/PureCC.
+- **Delta-K** (arXiv:2603.10210v1): Multi-instance generation, FLUX.2 compatible.
+- **EVATok** (arXiv:2603.12267): Adaptive Length Video Tokenization for AR video generation.
+
+### KEY ALERTS
+- **GTC 2026 keynote**: Monday March 16, 20:00 CET. Alpamayo (NVIDIA open-source AV System 2 reasoning). Agentic-optimized CPUs. Robin Rombach (BFL) on pregame 17:00 CET + open models panel March 18.
+- **arXiv CVPR wave**: Expected Monday March 16 ~18:00 UTC (deadlines passed March 15). Runs 169-171 = highest density.
+- **Cloudflare×Replicate**: CF acquires Replicate. 50,000+ models → CF Workers AI. replicate.run() OR cf.ai.run(). Free tier 10k neurons/day.
+- **Adobe CEO Narayen**: Departing March 15 2026. Shares -12.1%. Firefly roadmap uncertain.
+- **Seedance 2.0 BLOCKED**: Disney/Marvel C&D. Fallback confirmed: LTX-2.3 + Kling 3.0.
+- **Picsart AI Playground**: 90+ models including VEO 3.1 ✅ Sora 2 ✅ Runway Gen4.5 ✅ Luma Ray 3.14 ✅ Kling 3.0 ✅.
+
+<!-- END-DELTA run=168 -->
+
+
 ## 🔭 Run #166 Delta — 2026-03-15 07:30 Prague (GTC -12.5h to keynote; T-1 day)
 
 ### 🚨 CRITICAL: Cloudflare Acquires Replicate (March 11, 2026) — MASSIVE API CONSOLIDATION
