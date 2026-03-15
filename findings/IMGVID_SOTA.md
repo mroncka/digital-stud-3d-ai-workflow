@@ -1,4 +1,136 @@
-<!-- last_updated: 2026-03-15T03:30:14+01:00 run_158 -->
+<!-- last_updated: 2026-03-15T04:00:34+01:00 run_159 -->
+## 🏁 Run #159 Delta — 2026-03-15 04:00 Prague
+
+### 🔴 GTC 2026 IMMINENT — Monday March 16, **11:00am PT** (correcting run 158 note of 8am PT)
+
+- **🔴 CORRECTION: GTC 2026 Keynote = Monday March 16, 11:00am PT** (Jensen Huang, SAP Center)
+  - YouTube teaser confirms: "Monday, March 16 | 11:00 a.m. PT"
+  - Live updates blog (already active): https://blogs.nvidia.com/blog/gtc-2026-news/
+  - Pre-keynote NVIDIA GTC Live Pregame Show = March 16, 8am PT (separate event, co-hosted by Alfred Lin / Sequoia)
+  - **Robin Rombach (BFL CEO) appears TWICE: (1) Pregame show March 16 8am PT, (2) Open Models panel March 18 12:30pm PDT**
+
+- **🆕 NVIDIA NemoClaw — Open-Source AI Agent Platform (pre-GTC, ~March 15)**
+  - NemoClaw: NVIDIA's open-source AI agent framework for enterprise safe deployment
+  - Built for companies that cannot use external APIs for agentic reasoning
+  - Nemotron 3 Super (~100B parameters) expected at GTC as the "stronger default" reasoning model for NemoClaw
+  - Key use case: AI agent that can access internal databases, trigger workflows, without data leaving enterprise
+  - **Context for Digital-Stud: NemoClaw = agent orchestration framework. Not directly for image gen, but Nemotron 3 Super as vision-language backbone could replace GPT-4o-mini as the reasoning model inside ComfyUI prompt generation pipelines. Monitor Nemotron 3 Super release for multi-image reasoning quality.**
+
+- **🆕 Rubin GPU Architecture Details Confirmed (pre-GTC)**
+  - Rubin GPU: 288GB HBM4 memory (confirmed by The Register and Sebastian Barros analysis)
+  - Available in: 8-way HGX platform OR NVL72 rack (72 Rubin GPUs in one rack)
+  - 5th layer of AI scaling: Jensen Huang expected to announce "Physical AI" as the 5th layer at keynote
+  - Inference chip (dedicated): possible reveal at GTC keynote (not yet public)
+  - **Digital-Stud context: Rubin = enterprise GPU. Consumer Rubin (RTX 6xxx equivalent) expected ~H1 2027. No impact on Digital-Stud local workflow until 2027. RTX 5090 (Blackwell) = optimal local inference card through 2026-early 2027.**
+
+- **🆕 SJSU Campus — Part of GTC 2026 Venue (March 16)**
+  - San Jose State University campus hosting GTC 2026 event activities March 16
+  - Signals: GTC 2026 physically distributed across SAP Center + SJSU + San Jose Convention Center
+  - 600+ sessions confirmed
+
+- **🆕 OpenClaw on NVIDIA Jetson — Edge AI Agent (GTC demo)**
+  - OpenClaw: runs on Jetson Orin Nano + Jetson Thor as private always-on AI assistant at the edge
+  - Zero API cost (fully local inference on Jetson)
+  - "Build-a-Claw" hands-on event at GTC Park (attendees build custom agents on DGX Spark or Jetson)
+  - GR00T N1.6, Nemotron, Cosmos all runnable on Jetson Thor
+  - **Digital-Stud: Jetson Thor = viable edge inference for small product image generation (on-device studio). Not today, but clear NVIDIA direction: push inference to edge. Watch for Jetson Thor ComfyUI port.**
+
+### 🖼️ Image Gen — Run 159 — Delta-K multi-instance, Trust Your Critic reward model, DSH-Bench, Adobe Photoshop conversational AI, Google Flow unified workspace, Shuttle 3.1 Aesthetic
+
+- **🆕 Delta-K: Multi-Instance Generation via Cross-Attention Augmentation (arXiv:2603.10210v1)**
+  - Problem: Diffusion models omit or conflate subjects when generating complex multi-instance scenes (two people, person + product)
+  - Delta-K solution: cross-attention augmentation that maintains separate attention maps per subject instance
+  - Tested on FLUX.2 — compatible with existing architecture, no retraining needed (training-free add-on)
+  - **Digital-Stud use: CRITICAL for product + model photography. Delta-K = reliable way to generate 'model holding product X' without product omission or conflation. Monitor for ComfyUI node implementation. If attention-map-based, likely available as ComfyUI custom node within weeks of paper publication.**
+
+- **🆕 Trust Your Critic: Reward Modeling for Faithful Image Editing (HuggingFace Daily Papers, W11 2026)**
+  - Combines reward modeling + RL for image editing that faithfully follows edit instructions
+  - Specifically targets: "edit instruction faithfulness" — the model does exactly what the edit prompt says
+  - Key improvement over InstructPix2Pix and similar: less hallucination, less unintended change to non-edited regions
+  - **Digital-Stud use: Faithful editing = more reliable product image editing workflow (change only background, change only product color, change only lighting). Watch for: integration into FLUX.2-klein image editing pipeline or standalone editing model release.**
+
+- **🆕 DSH-Bench: Difficulty- and Scenario-Aware Benchmark for Subject-Driven T2I (arXiv:2603.08090)**
+  - New evaluation benchmark specifically for subject-driven image generation (IP-Adapter, InstantID, etc.)
+  - Measures: difficulty (easy/medium/hard scenarios) + scenario-awareness (portrait vs. product vs. animal)
+  - **Digital-Stud use: DSH-Bench = standard to evaluate which subject-driven model works best for product photography. Run DSH-Bench on IP-Adapter vs. InstantID vs. FLUX.2 Klein multi-reference → pick best for product + model pipeline.**
+
+- **🆕 Adobe Photoshop Conversational AI Assistant (pre-Q1 2026 earnings, ~March 2026)**
+  - Adobe unveiled conversational AI assistant for Photoshop ahead of Q1 2026 earnings report
+  - Natural language interface: "remove the background", "add a professional studio light", "extend the canvas 20% left"
+  - Adobe Firefly consumption-based monetization: Generative Credits (e.g., $19.99/mo tier) confirmed as new business model
+  - **Digital-Stud: Photoshop conversational AI = faster product image post-processing for clients who use Adobe CC. Not applicable to local ComfyUI pipeline, but relevant for client deliverable editing. Note: credit-based Firefly = cost per generation, unlike ComfyUI local (zero marginal cost).**
+
+- **🆕 Google Flow — Unified ImageFX + Whisk + AI Video Editing Workspace (Google Labs, March 2026)**
+  - Google Flow: unified workspace combining Whisk (image-to-image via subjects/scene/style), ImageFX (text-to-image), and AI video editing
+  - Major update announced March 2026 (Google AI Scout)
+  - **Digital-Stud: Google Flow = first Google-native end-to-end image+video pipeline. Currently Google Labs (limited access). Monitor for: public launch + API access. If Imagen 3 powers ImageFX + Whisk inside Flow → potential Google alternative to local ComfyUI for clients who prefer cloud. Add Flow API to api_test_replicate.py when publicly available.**
+
+- **🆕 Shuttle 3.1 Aesthetic — FLUX-Based Text-to-Image Model (CivitAI/HuggingFace, March 2026)**
+  - Shuttle 3.1 Aesthetic: FLUX-based T2I model, "creates detailed, visually appealing images from text prompts in 4-6 NFEs"
+  - Distilled for speed (4-6 neural function evaluations = very fast, competitive with FLUX.2 Klein)
+  - Available on ModelsLab + CivitAI
+  - **Digital-Stud: Test Shuttle 3.1 Aesthetic for speed vs. FLUX.2 Klein 4B NVFP4. If comparable quality at same speed but different aesthetic style (more artistic vs. Klein's clean commercial look) → useful for lifestyle/editorial product shots. Add to image_gen_flux.json as alternative checkpoint.**
+
+- **🆕 FLUX.2 [Klein] Available on ModelsLab API (Commercial, March 2026)**
+  - ModelsLab confirmed FLUX.2 Klein 9B available for text-to-image and image-to-image via their API
+  - Commercial use supported
+  - **Digital-Stud: ModelsLab = additional API option alongside fal.ai and Replicate for FLUX.2 Klein. Compare pricing vs. fal.ai for product photography batch jobs. Add ModelsLab endpoint to api_test_replicate.py.**
+
+- **📍 Nano Banana 2 Free Tier = 20 generations/day max 1K resolution (confirmed)**
+  - Free users: 20 Nano Banana 2 generations/day at max 1K resolution (AccessNewsWire confirmation)
+  - Paid tiers: 35-100 generations/day depending on plan
+  - **Digital-Stud: 20 free gens/day at 1K = insufficient for commercial e-commerce (need 100+/day at 2K+). Use Vertex AI API for commercial volume. Free tier is only for R&D testing.**
+
+### 🎬 Video Gen — Run 159 — CEI-3D with lighting/material, RTX Pro 6000 Blackwell + LTX-2.3, Google Vids AI
+
+- **🆕 CEI-3D: Collaborative Explicit-Implicit 3D Reconstruction + PBR Lighting/Material (arXiv:2603.11810v1)**
+  - CEI-3D: reconstructs 3D from multi-view images with explicit-implicit hybrid representation
+  - Key: disentangles physical properties (lighting, roughness, metallic, normal maps)
+  - Enables fine-grained realism: change lighting or material properties of reconstructed 3D object
+  - **Digital-Stud use: CEI-3D = upgrade path for product 3D generation. Neural4D (run 157) gives geometry; CEI-3D adds PBR material decomposition. Together: generate 3D product model with accurate materials → render in any lighting (studio, outdoor, neon). Pipeline: product photo → Neural4D → CEI-3D PBR → render in Blender/Omniverse → video turntable. Highly actionable.**
+
+- **🆕 RTX Pro 6000 Blackwell — Mentioned in LTX-2.3 Context (community, March 2026)**
+  - Community user on 4chan /g/ /ldg/ mentions RTX Pro 6000 Blackwell for LTX-2.3 video generation
+  - RTX Pro 6000 Blackwell = NVIDIA workstation GPU, 96GB GDDR7 (confirmed by prior announcements)
+  - **Digital-Stud: RTX Pro 6000 Blackwell = premium workstation card. 96GB VRAM = run LTX-2.3 22B NVFP4 AND FLUX.2 Klein 9B simultaneously (both models fit, 40GB + 15GB = 55GB easily under 96GB). For Digital-Stud studio buildout: RTX Pro 6000 Blackwell > RTX 5090 for professional video gen workstation. Price: ~$2,500-3,000 estimated (professional tier). Availability: Q2 2026.**
+
+- **🆕 Google Vids — AI Video Creation and Storytelling (Google Labs, March 2026)**
+  - Google Vids: AI-powered video creation tool from Google Labs
+  - Integrates with Google Workspace (Slides, Docs, Drive)
+  - AI-assisted storytelling: auto-generate video from Google Docs outline or Slides presentation
+  - **Digital-Stud: Google Vids = workspace-native video generator. Not for photorealistic product video (uses illustrated/template style), but useful for: client pitch videos, product explainer videos built from Google Slides brief. Monitor for Imagen 3 / Veo 3 integration into Google Vids.**
+
+### 🔧 ComfyUI / Infrastructure — Run 159 — OpenClaw Jetson edge, CUDA kernel AI agent, HuggingFace Spaces FLUX.2 trending
+
+- **🆕 AI Agent Writes Faster CUDA Kernels Than Human-Optimized Compilers (March 2026)**
+  - AI agent demonstrated generating CUDA kernels that outperform human-optimized compilers
+  - Implications: AI-optimized CUDA kernels for diffusion model attention blocks → could improve ComfyUI performance beyond manually tuned Triton/Flash Attention
+  - **Digital-Stud: Not immediately actionable, but signals: within 1-2 quarters, expect AI-optimized CUDA attention kernels for FLUX.2 / LTX-2.3 that exceed current Flash Attention performance. Monitor for: NVIDIA cuOpt + AI kernel optimization integration into ComfyUI.**
+
+- **🆕 HuggingFace Spaces — FLUX.2 Klein 9B Trending (March 9 week)**
+  - FLUX.2 [Klein] 9B listed as trending HuggingFace Space (week of March 9 2026)
+  - Text-to-image and image-to-image in same Space
+  - **Digital-Stud: FLUX.2 Klein 9B = confirmed community adoption. Most popular open model for image gen. HF Space confirms: zero-friction access for clients who can't run locally.**
+
+- **🆕 Prototype-Guided Concept Erasure in Diffusion Models (arXiv:2603.08271)**
+  - Efficiently erases specific concepts from diffusion models via LoRA-like intervention
+  - Lower compute cost than full model retraining
+  - **Digital-Stud: Concept erasure = remove unwanted associations from product image model (e.g., remove brand-specific style associations from a fine-tuned model for competitor product use). Practical for: sanitizing LoRA before sharing with client.**
+
+### 🏗️ 3D / Avatar — Run 159 — CEI-3D PBR materials (see video section), NemoClaw Nemotron vision-language, RTX Pro 6000 workstation
+
+- **[Cross-reference CEI-3D from Video section above]** — Most actionable 3D update this run
+
+### 🎓 LoRA / Training — Run 159 — DSH-Bench for LoRA evaluation, AI-Toolkit no new release, concept erasure LoRA-like
+
+- **🆕 DSH-Bench for LoRA/IP-Adapter Evaluation (see Image section above)**
+  - DSH-Bench provides standardized evaluation → use to compare LoRA training quality objectively
+
+- **📍 AI-Toolkit GitHub Status (ostris/ai-toolkit) — No new release March 15-16**
+  - No new version or feature update indexed for March 15-16 2026
+  - Last known version: stable for FLUX.2 LoRA training
+  - **Status: current. No action needed.**
+
 ## 🏁 Run #158 Delta — 2026-03-15 03:30 Prague
 
 ### 🔴 CRITICAL — NVIDIA GTC 2026 (March 16-19, San Jose SAP Center)
