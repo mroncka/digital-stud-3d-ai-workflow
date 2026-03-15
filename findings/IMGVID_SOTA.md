@@ -1,4 +1,159 @@
-<!-- last_updated: 2026-03-15T01:04:39+01:00 run_153 -->
+<!-- last_updated: 2026-03-15T01:30:13+01:00 run_154 -->
+## 🏁 Run #154 Delta — 2026-03-15 01:30 Prague
+
+### 🖼️ Image Gen — Run 154 — GlyphBanana (FLUX.2 text rendering 85.9% OCR), Midjourney V8 imminent, RTX VSR ComfyUI Day 0, JIT SAG-ODE DiT speedup, PROMO VTON, DALL-E 4 social evidence
+
+- **🆕 GlyphBanana — Training-Free Precise Text Rendering in Diffusion Models** (arXiv:2603.12155v1, Shanghai Jiao Tong + NUS, March 13 2026):
+  - **Framework**: Training-free agentic workflow for high-accuracy text rendering in AI-generated images
+  - **4-stage pipeline**: (1) Extraction Stage — parse text content + style attributes; (2) Draft Preview Stage — initial generation; (3) Frequency Decomposition Stage — latent-space frequency decomposition; (4) Style-Refiner Stage — FLUX.2-Klein-9B I2I generation for final quality
+  - **Results**: **85.9% OCR accuracy on Z-Image (+19.6% over baseline)**, **75.8% on Qwen-Image (+6.91%)**
+  - Works for complex text, rare characters, mathematical formulas, multilingual rendering
+  - Uses FLUX.2-Klein-9B as the Style-Refiner — confirms Klein 9B as production I2I model
+  - Open-source release likely (arXiv paper, Shanghai Jiao Tong)
+  - **Digital-Stud use: GlyphBanana for any text-in-image need (product labels, packaging text, price tags, promotional copy). Especially relevant for: product photography with brand name/text overlay, lookbook pages with readable typography. Pair with FLUX.2-Klein-9B-KV-FP8 as Style-Refiner when weights release.**
+
+- **🆕 JIT (Just-in-Time) — Training-Free Spatial Acceleration for Diffusion Transformers** (arXiv:2603.10744v1, UESTC + CapU, March 2026):
+  - **SAG-ODE** (Spatially Approximated Generative ODE): efficient inference by reusing spatially stable cached computations
+  - Works training-free on any DiT (FLUX.2, SD3, etc.) — no fine-tuning required
+  - Two components: SAG-ODE (spatial approximation) + adaptive spatial token pruning
+  - Comparable quality at significantly reduced computation per step
+  - **Practical impact: FLUX.2 Klein inference speedup without additional training. Stackable with KV-cache (Klein 9B-KV-FP8). Monitor for ComfyUI node implementation.**
+
+- **🆕 PROMO — Promptable Outfitting for Efficient High-Fidelity Virtual Try-On** (arXiv:2603.11675v1, March 2026):
+  - FLUX + SD3 flow-matching based virtual try-on (VTON) framework
+  - **Promptable outfitting**: text prompts control clothing placement + style adjustment (beyond pure image-reference VTON)
+  - Efficient inference: flow-matching formulation enables fewer denoising steps than diffusion VTON
+  - Works with both Stable Diffusion 3 and FLUX transformer blocks
+  - **Digital-Stud use: PROMO for prompt-guided clothing try-on (specify "fitted, loose, tucked-in" via text alongside reference image). More flexible than CatVTON for editorial looks requiring style adjustments. Monitor arXiv for weights.**
+
+- **🆕 Midjourney V8 — Imminent** (Medium Creativity AI #66, March 11 2026 Office Hours):
+  - David Holz at March 11 Office Hours: V8 is "probably early next week" (after March 11 = March 16-20 window)
+  - **50-60 new website interface elements** at launch
+  - **Evolved personalization system** — requires "re-learning" from scratch (old personalization codes deprecated)
+  - Expected improvements: better prompt adherence, improved realism, new style controls
+  - GPT Image 1.5 benchmark (March 9 useapi.net): 16+ model comparison shows Midjourney V7 still competitive; V8 expected to leapfrog
+  - **Watch: Midjourney V8 may release March 16-20 2026. If released, evaluate V8 vs FLUX.2 Klein 9B-KV-FP8 for Digital-Stud portrait/lookbook workflows. V8 personalization reset = re-train style codes.**
+
+- **🆕 RTX Video Super Resolution — Available in ComfyUI Day 0** (NVIDIA GDC 2026, @comfyui Threads, March 10-12 2026):
+  - NVIDIA RTX Video Super Resolution (VSR) released at GDC 2026
+  - **Available in ComfyUI as a node on Day 0** (official @comfyui Threads post)
+  - Upscales 1K → 4K "in the blink of an eye"
+  - **Python Wheel** available for developers (direct integration)
+  - GPU-accelerated (RTX Tensor Cores) — much faster than CPU-based RealESRGAN
+  - **Digital-Stud action: Install RTX VSR ComfyUI node immediately. Replace RealESRGAN for all 1K→4K upscaling steps in image_gen_flux.json and face_refinement.json. RTX VSR = fastest upscaling path on any RTX GPU.**
+
+- **📍 Higgsfield Soul 2.0 — Glass-Skin Beauty Aesthetic** (@higgsfield.ai Instagram, March 10-12 2026):
+  - Higgsfield launched Soul 2.0 in March 2026 — high-fidelity beauty/portrait video generation
+  - Confirmed use: "ultra-close skincare aesthetics, glass-skin texture, soft pink packaging, beauty campaign"
+  - Better skin detail than standard Kling/LTX for close-up beauty shots
+  - **Niche use: Higgsfield Soul 2.0 for luxury beauty/skincare product campaigns requiring ultra-realistic skin texture. Complement to Kling 3.1 (general motion) + LTX-2.3 (local) workflow.**
+
+- **📍 DALL-E 4 Instagram evidence** (March 12 2026, @dalle_4):
+  - Instagram post March 12: "100% AI-generated. Powered by DALL·E 4." — no official announcement
+  - GPT-Image-1.5 officially surpassed DALL·E 3 on Azure (DALL·E 3 retirement confirmed)
+  - **Assessment: DALL-E 4 likely in internal testing. Not publicly available yet. Monitor OpenAI release notes. GPT-Image-1.5 = current best OpenAI option for API-based generation.**
+
+### 🎬 Video Gen — Run 154 — Wan 2.7 announced, Runway Gen-4.5, TempoSyncDiff talking head, Vmake AI 4K+, HunyuanVideo LoRA face notes, Pika 2.5
+
+- **🆕 Wan 2.7 announced for March 2026** (Reddit r/comfyui, confirmed multiple sources):
+  - **Major upgrade over Wan 2.6** — planned March 2026 release
+  - Wan 2.7 = "major all-around upgrade" per Reddit r/comfyui announcement post
+  - Key improvements expected: better motion quality, improved camera control, higher resolution support
+  - Note: Wan 2.2 (released mid-Feb 2026) already confirmed: trained on 66% more images + 83% more videos vs earlier versions. Wan 2.7 builds further.
+  - Low-VRAM note: Wan 2.2-TI2V-5B already runs at 720p@24fps on **8GB VRAM** via ComfyUI auto-offloading
+  - **Digital-Stud action: Watch for Wan 2.7 release this week. If released: benchmark Wan 2.7 I2V vs LTX-2.3 22B on local RTX hardware. Wan 2.7 5B may become best 8GB VRAM I2V option if quality improvements are significant.**
+
+- **🆕 Runway Gen-4.5** (runwayml.com, Runway $315M Series E @ $5.3B valuation Feb 10):
+  - Runway Gen-4 → Gen-4.5: Consistent character + location generation across scenes
+  - "Simply set your look and feel and the model generates consistent scenes"
+  - YouTube: "This is Why Everyone's Switching to Runway Gen 4.5" — widely cited as most powerful cloud video tool of 2026
+  - API available via Runway API (Gen-4.5 endpoint)
+  - **Pricing context: Runway Gen-4.5 cloud API. Best for: consistent multi-scene brand videos (same character across 10+ cuts). Not the budget choice — LTX-2.3 local still preferred for batch generation cost. Add to api_test_fal.py alternatives list.**
+
+- **🆕 TempoSyncDiff — Distilled Temporally-Consistent Audio-Driven Talking Head** (arXiv:2603.06057, Gargi Memorial Institute, March 2026):
+  - **Teacher-student diffusion distillation** for low-latency talking head generation
+  - Addresses: flicker, identity drift, audio-visual sync in talking head video
+  - **Low-latency**: distilled model significantly faster than standard diffusion talking head
+  - SOTA on audio-driven portrait animation (temporal consistency)
+  - **Digital-Stud use: TempoSyncDiff for talking head product spokesperson videos (AI avatar reads product description). Better than standard talking head models for identity consistency over full video. Monitor for weights release.**
+
+- **🆕 Vmake AI 4K+ Video Enhancer** (PR Newswire, March 10 2026, techintelpro.com):
+  - New "AI 4K+" mode: **generative scene reconstruction** for natural, lifelike textures
+  - High-ratio stable upscaling to 4K+ without "structure wobble" (no background warping)
+  - **Rebuilds fine skin texture detail** specifically — important for beauty content
+  - Addresses the main weakness of RIFE-based upscaling: background stability
+  - SaaS product (not open-source) — pricing TBD
+  - **Pipeline complement: Vmake AI 4K+ for final delivery upscaling on client-facing videos. RTX VSR in ComfyUI for batch intermediate upscaling; Vmake AI 4K+ for final stable 4K delivery.**
+
+- **📍 HunyuanVideo LoRA vs Wan LoRA — Face Likeness** (Reddit r/StableDiffusion, multiple posts):
+  - Community finding: **HunyuanVideo LoRA = significantly better face likeness** than Wan LoRA for character consistency
+  - Wan LoRA (musubi-tuner): "struggling to get facial likeness" on same datasets that work well with HunyuanVideo
+  - Root cause: Wan 2.x uses different attention architecture — LoRA face injection less precise
+  - **For video LoRA training**: train on HunyuanVideo (not Wan) for character face identity. Use Wan for general motion/style, not character-specific.
+
+- **📍 Pika 2.5 — Pikatwists + Physics** (pikalabsai.org, weshop.ai):
+  - Pika 2.5 current version as of March 2026
+  - New features: **Pikatwists** (style transformation effects) + **physics-based effects**
+  - Instagram: "Pika AI Selves — AI [feature]" launched (exact feature unclear from snippet)
+  - Strong for: "social-oriented, fast generation, stylized effects" (MensXP March 2026 review)
+  - **Niche use: Pika 2.5 for style-transformed social content (trend-based Pikatwist effects). Not replacing LTX-2.3/Kling for photorealistic product video.**
+
+- **📍 DLSS 4.5 Dynamic Multi Frame Gen — March 31** (NVIDIA GDC 2026 page):
+  - Confirmation: "DLSS 4.5 Dynamic Multi Frame Gen Available March 31" (NVIDIA GeForce GDC 2026 announcement)
+  - First title with full DLSS 4.5: 007 First Light + Industria 2 + 250+ games
+  - DLSS 4.5 Super Resolution already available now
+  - **RTX 50 series workflow impact: DLSS 4.5 MFG live on March 31. When TensorRT integrates DLSS 4.5, ComfyUI on RTX 5090 benefits from full DLSS 4.5 throughput stack.**
+
+### 🔧 ComfyUI — Run 154 — RTX VSR node Day 0 + Wan 2.2 TI2V 8GB VRAM + GlyphBanana text rendering pipeline + FLUX.2 Klein Raster-to-Vector
+
+- **🆕 RTX Video Super Resolution ComfyUI Node — Day 0 availability** (@comfyui Threads post):
+  - Install: ComfyUI Manager → search "RTX Video Super Resolution"
+  - Input: 1K video frames or images
+  - Output: 4K upscaled frames
+  - Speed: "in the blink of an eye" on RTX 4090 (hardware tensor core acceleration)
+  - Python Wheel: `pip install rtx-vsr-wheel` (developer integration path)
+  - **Workflow integration: Add RTX VSR node as final upscaling step in all image/video workflows. Replace: RealESRGAN 4x, Clarity Upscaler for images (RTX VSR faster, better quality). Keep RIFE for temporal interpolation (frame rate increase); RTX VSR for spatial resolution increase.**
+
+- **🆕 Wan 2.2-TI2V-5B on 8GB VRAM via ComfyUI Auto-Offloading** (ServerDirect blog, confirmed):
+  - Wan 2.2-TI2V-5B: "runs at 720p@24fps on just 8GB VRAM thanks to ComfyUI's auto-offloading system"
+  - This is the text-image-to-video 5B model (not 14B)
+  - **Practical: Wan 2.2-TI2V-5B = best quality I2V on 8GB VRAM as of March 2026. For GTX 1080/RTX 2080/RTX 3070 Ti users: Wan 2.2-TI2V-5B in ComfyUI with auto-offloading is the primary I2V path. Update wan22_img2vid.json with TI2V-5B model variant for 8GB VRAM config.**
+
+- **🆕 FLUX.2 Klein — Raster to Vector Image Workflow** (Facebook Stable Diffusion group, March 2026):
+  - New community workflow: FLUX.2 Klein → Raster-to-Vector image conversion with prompt control
+  - Uses XLabs-AI flux-controlnet-collections (ComfyUI built-in support updated)
+  - **Workflow: FLUX.2 Klein I2I + XLabs ControlNet → SVG-style output. Useful for: logo generation from rough sketches, style-guide vector-look product images.**
+
+- **📍 GlyphBanana pipeline in ComfyUI (anticipated)**:
+  - GlyphBanana uses FLUX.2-Klein-9B as Style-Refiner (I2I stage)
+  - Standard ComfyUI FLUX.2-Klein loader → I2I node chain can approximate GlyphBanana pipeline before official ComfyUI node
+  - **Manual pipeline**: generate draft image with text → extract text bounding boxes → frequency decomp (custom node or Python preprocessor) → FLUX.2-Klein-9B I2I with text-focused prompt → RTX VSR upscale. Monitor arXiv authors for official ComfyUI node release.
+
+### 🏗️ Pose / 3D — Run 154 — PROMO VTON flow-matching + JIT spatial DiT + GlyphBanana 3D text rendering
+
+- **📍 Pose/body estimation no major new release this week** (research sweep confirms):
+  - No new whole-body or 3D pose estimation model confirmed released March 13-15
+  - DWPose + RTMPose remain SOTA for ComfyUI ControlNet body pose
+  - ConsistentAvatar (ACM MM 2025): fully consistent talking avatar — existing work, not new this week
+  - **Status quo: DWPose for body, RTMPose for hand/face fine control. Monitor for InSpatio-WorldFM weights (arXiv:2603.11911, run 153) for multi-view consistent pose synthesis.**
+
+### 🎓 LoRA / Character — Run 154 — HunyuanVideo face LoRA better than Wan, OneTrainer status, regional training
+
+- **📍 HunyuanVideo LoRA confirmed superior to Wan LoRA for face identity**:
+  - Reddit consensus (multiple threads, March 2026): Wan LoRA "struggling" on facial likeness, HunyuanVideo LoRA "excellent"
+  - Same training dataset → HunyuanVideo = better face capture
+  - **LoRA training decision tree update**: Character/face LoRA → train on HunyuanVideo; Style/motion LoRA → train on Wan; Image LoRA → train on FLUX.2 (AI-Toolkit when #504 hotfix lands)
+
+- **📍 OneTrainer status March 2026**:
+  - No new OneTrainer major release confirmed March 13-15
+  - OneTrainer remains maintained and stable (GitHub active)
+  - **For LoRA training until AI-Toolkit issue #504 hotfix**: OneTrainer = viable alternative for FLUX.2 LoRA training
+
+- **📍 Regional/concept LoRA — no new technique this week**:
+  - No new regional LoRA training method published March 13-15
+  - Existing best: LoRAShop (training-free, FLUX.2 attention injection, run 152) for runtime regional concept mixing
+  - **Recommendation: Use LoRAShop for multi-concept regional application (no training). Use HunyuanVideo LoRA for trained video character. Use OneTrainer for FLUX.2 image character LoRA training.**
+
 ## 🏁 Run #153 Delta — 2026-03-15 01:04 Prague
 
 ### 🖼️ Image Gen — Run 153 — FLUX.2 Klein 9B-KV (KV-cache, 2× multi-ref, HuggingFace live) + FLUX.2 Klein 4B consistency LoRA + A²-Edit unified inpainting + VTEdit-Bench VTON + InSpatio-WorldFM + Meta Avocado delayed
