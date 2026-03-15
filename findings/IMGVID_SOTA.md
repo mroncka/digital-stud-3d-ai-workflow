@@ -1,4 +1,160 @@
-<!-- last_updated: 2026-03-15T01:30:13+01:00 run_154 -->
+<!-- last_updated: 2026-03-15T02:04:04+01:00 run_155 -->
+## 🏁 Run #155 Delta — 2026-03-15 02:04 Prague
+
+### 🖼️ Image Gen — Run 155 — HunyuanImage 3.0 (80B MoE open-source), WildActor ID-preservation, FireRed-Image-Edit, InternVL-U unified model, Nano Banana 2 speed king
+
+- **🆕 HunyuanImage 3.0 — 80B MoE Open-Source Image Generation** (Tencent, HuggingFace, March 6 2026):
+  - **80 billion parameter Mixture-of-Experts architecture** — largest open-source MoE image generation model
+  - Unified multimodal architecture: image generation + understanding in a single model
+  - Image-to-image capabilities included (I2I via HuggingFace)
+  - Available: HuggingFace (tencent/HunyuanImage-3.0)
+  - Comparison context: SD 3.5 Large Turbo ($0.006/image API), HunyuanImage 3.0 self-hosted free
+  - **Digital-Stud use: HunyuanImage 3.0 as a FLUX.2 alternative for high-realism portrait/product generation on capable hardware (80B = H100 required for fast inference). Benchmark HunyuanImage 3.0 vs FLUX.2 Dev on portrait realism. Most relevant for: studio-quality product shots where FLUX.2 style is too "illustrative".**
+
+- **🆕 WildActor — Full-Body Identity-Preserving Generation Without LoRA** (arXiv:~March 9 2026):
+  - **Asymmetric identity-preserving attention mechanism** — trained on Actor-18M dataset (18 million human images)
+  - Full-body identity preservation across multiple viewpoints without explicit LoRA training
+  - Viewport-adaptive Monte Carlo sampling for dynamic shots
+  - Alternative to InstantID/IP-Adapter for full-body human identity consistency
+  - **Digital-Stud use: WildActor for consistent full-body model images across multiple outfits/angles without LoRA training. Valuable for: fashion lookbooks requiring same model across 10+ outfit shots, brand campaign consistency. Monitor for weights/HuggingFace release.**
+
+- **🆕 FireRed-Image-Edit-1.0 — General-Purpose Instruction-Following Image Editing** (FireRedTeam, HuggingFace, March 2026):
+  - Available NOW on HuggingFace: `FireRedTeam/FireRed-Image-Edit-1.0`
+  - "High-fidelity and consistent editing across a wide range of scenarios"
+  - Text-instruction driven image editing (InstructPix2Pix paradigm)
+  - Multi-reference support (VTEdit-Bench paradigm — arXiv:2603.11734v1)
+  - **Digital-Stud action: Test FireRed-Image-Edit-1.0 immediately. Replace A²-Edit placeholder in workflows until A²-Edit weights release. Use for: product background replacement, clothing color changes, scene element editing via text instructions.**
+
+- **🆕 InternVL-U — 4B Unified Multimodal Model** (arXiv:2603.09877, HuggingFace, Week 11 trending):
+  - **4 billion parameters** — unified understanding + generation + editing in single model
+  - Combines visual generation with robust semantic understanding
+  - Text-to-image + image-to-image + visual question answering in one model
+  - **Efficiency angle: InternVL-U at 4B = deployable on RTX 4090 locally. Useful as a lightweight alternative to FLUX.2 for understanding-heavy tasks (describe and edit, object-aware generation).**
+
+- **🆕 Nano Banana 2 — Google Gemini 3.1 Flash Architecture, Best Speed+Subject Consistency** (LTX Studio model comparison, March 2026):
+  - Built on **Google Gemini 3.1 Flash architecture** — inference extremely fast
+  - LTX Studio model guide: "Best for speed, iteration, and subject consistency"
+  - "Nano Banana 2 — Google's newest image model" per LTX Studio comparison
+  - vadooai Instagram March 12: "Nano Banana 2 can now turn a sketch floor plan into a 4K visualization video" — strong for architectural visualization
+  - Weshop.ai: "99 Ways to Use Nano Banana 2" — broad commercial application taxonomy
+  - **Digital-Stud use: Nano Banana 2 for rapid iteration/prototyping (fast speed, good subject consistency). Use case: rapid concept previews before committing to FLUX.2 Klein 9B-KV-FP8 final generation. Architecture/interior visualization.**
+
+- **🆕 Anima Preview 2 — Base Model, Maximum Creative Breadth** (HuggingFace r/StableDiffusion, March 14-15 2026):
+  - New base model posted HuggingFace — "designed to be wild and creative, with maximum possible breadth of knowledge"
+  - No aesthetic tuning yet (base model, pre-fine-tune)
+  - Open-source — aesthetic fine-tuning expected to follow
+  - **Status: Early preview. Monitor r/StableDiffusion for fine-tuned Anima variants. Potentially competitive with SDXL-based models for creative/artistic styles once aesthetic fine-tuned.**
+
+- **🆕 Sora 1 deprecated March 13 → ChatGPT integration** (Reuters, OpenAI, March 13 2026):
+  - **Sora 1 no longer available to US users as of March 13, 2026**
+  - Sora video generation now **integrated directly into ChatGPT** (no more standalone Sora app)
+  - Sora 2 available via Atlas Cloud API (300+ models, single API key)
+  - **API path update: For Sora access, use ChatGPT API or Atlas Cloud API (not standalone Sora endpoint). Update api_test_replicate.py alternatives list.**
+
+### 🎬 Video Gen — Run 155 — DreamVideo-Omni (multi-subject ID), ConfCtrl (camera 3D control), Video2LoRA, Nano Banana 2 sketch-to-video
+
+- **🆕 DreamVideo-Omni — Multi-Subject Video Customization with Latent Identity RL** (arXiv:2603.12257v1, March 12 2026):
+  - **Omni-motion controlled** + **multi-subject** + **identity-consistent** video generation in a single framework
+  - **Latent Identity Reinforcement Learning (LIRL)**: novel training paradigm for video identity preservation
+  - Multi-granular motion control: camera movement + character motion + expression control simultaneously
+  - Unifies subject customization + motion control (prior methods treat these separately)
+  - "Perfect Character Consistency in High-Action Scenes" (YouTube, arXiv confirmed)
+  - **Digital-Stud use: DreamVideo-Omni for brand campaign videos with consistent multi-person scenes (model + product demonstrator in same frame, consistent across shots). Strong alternative to HunyuanVideo LoRA for video character consistency if LIRL weights release. Monitor GitHub.**
+
+- **🆕 ConfCtrl — Camera-Controlled Video with 3D Confidence Interpolation** (arXiv:2603.09819v1, ~March 12 2026):
+  - **Confidence-aware video interpolation framework** for precise camera control in video diffusion
+  - Uses projected point clouds from 3D foundation models
+  - Kalman filter-inspired "predict-update" mechanism for noisy geometric priors
+  - Novel view synthesis under large viewpoint changes with 3D consistency
+  - **Practical: ConfCtrl enables reliable camera orbit/pan/dolly in video generation. Key for: product orbit videos, 360° brand videos. Addresses the main weakness of Wan/LTX camera control (inconsistent 3D geometry under large viewpoint shifts). Monitor for weights.**
+
+- **🆕 Video2LoRA — Semantic Video-Controlled Generation via Per-Frame LoRA** (arXiv:2603.08210, March 2026):
+  - Unified controllable video generation via per-frame LoRA conditioning
+  - Scalable and generalizable — not condition-specific (works across motion, style, identity)
+  - Addresses the scalability limitation of condition-specific video control methods
+  - **Concept: Video2LoRA = video-level LoRA conditioning, not just frame-level. Potential: train a LoRA from a reference video and apply its "motion/style signature" to new generations. Monitor for open-source weights and ComfyUI integration.**
+
+- **📍 Identity-Driven Audio-Video Personalization with In-Context LoRA** (arXiv:2603.10256v1, March 2026):
+  - Preserves **visual AND audio identity** simultaneously in video personalization
+  - In-Context LoRA approach — personalize both face/appearance AND voice in generated video
+  - Addresses gap: prior methods preserve visual likeness but treat audio separately
+  - **Digital-Stud use: For product spokesperson avatar videos (consistent face + consistent cloned voice). Complement to TempoSyncDiff (temporal consistency) + this (audio-visual identity). Monitor for weights.**
+
+### 🔧 ComfyUI — Run 155 — FireRed-Image-Edit-1.0 via HuggingFace loader, Nano Banana 2 API, DreamVideo-Omni pipeline anticipation, VTEdit-Bench multi-reference
+
+- **🆕 FireRed-Image-Edit-1.0 in ComfyUI** (immediate, via HuggingFace loader):
+  - Available NOW: `ComfyUI-Manager → HuggingFace → FireRedTeam/FireRed-Image-Edit-1.0`
+  - Standard FLUX-compatible loader works for FireRed-Image-Edit
+  - **Workflow**: text prompt + source image → instruction-following edit output → RTX VSR upscale
+  - Replace A²-Edit placeholder in `face_refinement.json` with FireRed-Image-Edit-1.0 for immediate instruction-following editing capability.
+
+- **🆕 Nano Banana 2 API — Available via fal.ai** (per LTX Studio integration, March 2026):
+  - Nano Banana 2 accessible via fal.ai API endpoint (Google model, Gemini 3.1 Flash backend)
+  - LTX Studio uses Nano Banana 2 as their featured model for speed/iteration
+  - **ComfyUI path: ComfyUI-fal-API node → Nano Banana 2 endpoint. Add to api_test_fal.py test cases.**
+
+- **📍 VTEdit-Bench — Multi-Reference Image Editing Benchmark** (arXiv:2603.11734v1, March 2026):
+  - New comprehensive benchmark for multi-reference text-conditioned image editing
+  - FireRed-Image-Edit-1.0 is part of this benchmark
+  - Multi-reference = edit with multiple style/content reference images simultaneously
+  - **Quality signal: Models benchmarked on VTEdit-Bench are directly comparable on multi-reference editing quality. VTEdit-Bench score = new quality metric for instruction-following I2I models.**
+
+### 🏗️ 3D / Pose / Avatar — Run 155 — MuRE 3D pose SOTA, Hoi3DGen (3D human-object mesh), NBAvatar (hand-face avatar), Epic Games acquires Meshcapade (SMPL), Text-to-Skeleton cascade
+
+- **🆕 MuRE — Multi-Relationship Encoder for 3D Human Pose Estimation** (ScienceDirect CVIU, March 13 2026):
+  - **Available online March 13, 2026** — Computer Vision and Image Understanding journal
+  - **SOTA on Human3.6M and MPI-INF-3DHP** benchmarks
+  - Architecture: Adaptive Multi-Relationship Attention (AMuRA) + Graph Convolutional Network
+  - Three simultaneous joint relationship types: implicit spatial, explicit spatial (Self-Similarity Matrix), physical topological
+  - Lifts 2D pose sequences → 3D skeleton from single image
+  - **ControlNet input path: MuRE → 3D skeleton → ControlNet OpenPose conditioning. Higher-quality 3D pose reconstruction means better ControlNet conditioning for complex poses. Monitor for ComfyUI node.**
+
+- **🆕 Hoi3DGen — High-Quality 3D Human-Object Interaction Mesh Generation** (arXiv:2603.12126v1, March 13 2026):
+  - Framework for text-conditioned **textured 3D mesh** generation of human-object interactions
+  - Uses MLLM (Multimodal LLM) to curate high-quality HOI training data
+  - Overcomes text-consistency + quality limitations of prior 3D HOI methods
+  - SMPL body model integration for semantic+animation-ready output
+  - **Digital-Stud use: Hoi3DGen for 3D human-product interaction mockups (person holding/wearing/using product in 3D space). Useful for: AR/XR product visualization, 3D reference pose generation for ControlNet. Monitor for weights + Blender integration.**
+
+- **🆕 NBAvatar — Neural Billboards Avatar with Hand-Face Interaction** (arXiv:2603.12063v1, March 13 2026):
+  - **Realistic rendering of head avatars with hand-face interaction** (hand obstructing/touching face)
+  - Handles non-rigid deformations from hand-face contact (prior methods fail at this)
+  - Neural billboard rendering approach — real-time capable
+  - **Niche use: NBAvatar for product makeup/skincare demo videos (hand applying cream to face, etc.). Extends standard talking head avatars to include hand gesture interaction. Monitor for demo/weights.**
+
+- **🆕 Epic Games Acquires Meshcapade → SHUT DOWN** (@epicicgames Instagram, March 2026):
+  - Epic Games acquired Meshcapade (Max Planck SMPL startup, Tübingen Cyber Valley)
+  - **Meshcapade immediately shut down post-acquisition** — cloud SMPL tool gone
+  - Impact: Any pipeline using Meshcapade cloud API for SMPL body estimation → BROKEN
+  - **Digital-Stud action: If using Meshcapade API anywhere → migrate to SMPL-X local library or SMPLify-X. Epic will likely integrate SMPL tech into Unreal Engine MetaHuman pipeline (long-term positive, short-term disruption).**
+
+- **🆕 Controllable Complex Human Motion Video via Text-to-Skeleton Cascades** (arXiv:2603.08028v1, March 9 2026):
+  - Two-stage pipeline: (1) Autoregressive text-to-skeleton model → 2D pose sequence from text; (2) Skeleton-conditioned video diffusion for final output
+  - Enables complex motions: flips, multi-joint coordination, sport movements from text description
+  - Long-range temporal dependencies via autoregressive skeleton generation
+  - **Digital-Stud use: Text-to-Skeleton cascade for generating complex motion product videos (dancer wearing brand clothing, athlete performing while wearing apparel). Superior to standard ControlNet pose conditioning for complex/dynamic motion. Monitor for weights.**
+
+- **📍 Speed3R — Sparse Feed-Forward 3D Reconstruction** (GitHub Visual-AI, March 6 2026):
+  - Initial release March 6, 2026 (GitHub: Visual-AI/speed3r)
+  - Fast feed-forward 3D reconstruction from sparse inputs (few images)
+  - **Use: Speed3R for rapid 3D product mesh generation from 5-8 product photos. Faster than standard NeRF methods. Monitor for ComfyUI integration or Python API.**
+
+### 🎓 LoRA / Character — Run 155 — AI-Toolkit #504 still open, Identity-Driven Audio-Video LoRA, Video2LoRA concept, WildActor no-LoRA alternative
+
+- **📍 AI-Toolkit (Ostris) — Issue #504 status unchanged** (no new release March 13-15 confirmed):
+  - No hotfix or new AI-Toolkit release detected March 13-15
+  - Issue #504 remains open — FLUX.2 LoRA training still affected
+  - **Fallback: Continue with OneTrainer for FLUX.2 image LoRA. HunyuanVideo LoRA training (AI-Toolkit not needed — use musubi-tuner or dedicated HunyuanVideo fine-tune scripts).**
+
+- **🆕 WildActor as No-LoRA Identity Alternative** (Actor-18M, run 155 confirmation):
+  - WildActor eliminates the need for LoRA training for full-body character identity
+  - **Pipeline decision: If training time is the bottleneck → use WildActor (no training, asymmetric attention). If maximum identity fidelity is required → train LoRA on HunyuanVideo (video) or OneTrainer (image).**
+
+- **📍 Identity-Driven Audio-Video Personalization with In-Context LoRA** (arXiv:2603.10256v1):
+  - In-Context LoRA approach preserves both visual AND audio identity in video
+  - Novel: combined audio-visual LoRA personalization (face + cloned voice)
+  - **Extension: In-Context LoRA for video spokesperson. Train once → consistent face + voice across all product video lines.**
+
 ## 🏁 Run #154 Delta — 2026-03-15 01:30 Prague
 
 ### 🖼️ Image Gen — Run 154 — GlyphBanana (FLUX.2 text rendering 85.9% OCR), Midjourney V8 imminent, RTX VSR ComfyUI Day 0, JIT SAG-ODE DiT speedup, PROMO VTON, DALL-E 4 social evidence
