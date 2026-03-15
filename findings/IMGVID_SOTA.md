@@ -1,4 +1,140 @@
-<!-- last_updated: 2026-03-15T02:30:12+01:00 run_156 -->
+<!-- last_updated: 2026-03-15T03:01:30+01:00 run_157 -->
+## 🏁 Run #157 Delta — 2026-03-15 03:01 Prague
+
+### 🖼️ Image Gen — Run 157 — Nano Banana 2 (Gemini 3.1 Flash Image) GA, Qwen-Image 2.0 live, Neural4D Image-to-3D, AIMomentz benchmark platform
+
+- **🆕 Nano Banana 2 — Google Gemini 3.1 Flash Image — OFFICIALLY LAUNCHED March 14, 2026**
+  - **Half the cost of flagship models** (approximately 50% of Imagen 3 pricing)
+  - **4K output** resolution support
+  - Multi-turn conversational editing — describe iterative changes in conversation thread
+  - Multilingual text rendering (text-in-image)
+  - Available via Gemini API + Vertex AI + integrated into Adobe Firefly (March 10 launch confirmed)
+  - Fast turnaround — optimized for high-volume e-commerce product shots and ad creatives
+  - **Digital-Stud action: Integrate Nano Banana 2 into api_test_fal.py as the primary high-volume e-commerce image generation endpoint. Half the cost of flagship = run 2× as many iterations per budget. Test multi-turn editing for iterative product shot refinement. Add to image_gen_flux.json as a fallback/volume path.**
+
+- **🆕 Qwen-Image 2.0 — Alibaba, Live on Qwen App** (announced March 13, 2026)
+  - **Live image generation + editing** capabilities on Qwen App
+  - Multilingual text rendering support
+  - Direct competition to GPT-Image-1.5 and Nano Banana 2 at a potentially lower/free tier
+  - Integrated into Alibaba's Qwen ecosystem (potentially free-tier API via Alibaba Cloud DashScope)
+  - **Digital-Stud action: Check DashScope API (dashscope.aliyuncs.com) for qwen-image-2.0 model availability and pricing. If free tier available, add to api_test_replicate.py as a zero-cost image generation alternative. Relevant for: product photography, lifestyle backgrounds, ad creative generation.**
+
+- **🆕 AIMomentz — Human Preference Benchmark Platform for Image Generation** (launched March 9, publicized March 14, 2026)
+  - First-of-kind head-to-head **human preference benchmark** for image generators (covers OpenAI, xAI, Google, stability)
+  - Domain-specific rankings: anime, landscape, architecture, sci-fi, fashion/apparel
+  - CAP-SRP protocol with SHA-256 hash chain auditing (content authenticity)
+  - Diffusion-DPO export format for dataset API
+  - **Digital-Stud use: Use AIMomentz domain rankings for architecture/fashion category to select optimal model for product photography client projects. Track which models win on product/commercial photography domain as it evolves.**
+
+- **📍 Picsart AI Playground — 90+ Models, 24 Providers** (launched March 9, 2026)
+  - Unified AI generation hub: 90+ models from 24 providers under one subscription
+  - 130M+ MAU consumer platform
+  - Includes Google Nano Banana 2, OpenAI image models, Adobe Firefly models
+  - **Context: AI Playground as multi-model comparison platform. Useful for: rapid A/B testing of different model outputs on same product prompt without managing separate API keys.**
+
+- **📍 Ideogram 3.0 — Confirmed for March 2026** (Atlas Cloud API guide March 2026)
+  - Atlas Cloud image generation API guide confirms Ideogram 3.0 (also listed as Ideogram v3) is part of 2026 consolidated API landscape
+  - Specialized strength: text-in-image rendering (graphic design, poster, product label text accuracy)
+  - **Digital-Stud use: Ideogram 3.0 for product label/packaging design generation (accurate text rendering on product packaging image). Add to api_test_replicate.py for text-heavy product label tasks.**
+
+### 🎬 Video Gen — Run 157 — ShotVerse multi-shot camera control (claims Veo 3 SOTA), Grok Imagine 7-frame multi-reference, FramePack architecture, Luma Dream Machine video modify
+
+- **🆕 ShotVerse — Cinematic Camera Control for Multi-Shot Video Generation, Claims to Beat Veo 3** (arXiv:2603.11421v1, HKU + Tencent, March 2026)
+  - **Unified global coordinate system** across multiple shots — camera trajectory is globally consistent, not shot-local
+  - Precise pan/zoom/tilt/dolly trajectory control for multi-shot video narratives
+  - Addresses: transitions between shots maintain consistent scene geometry and camera position
+  - Chinese SD community roundup confirms claim: "surpasses Veo 3 on multi-shot cinematic quality"
+  - **Digital-Stud action: ShotVerse is the key camera-controlled multi-shot video paper this cycle. For product reveal video workflow (establishing shot → close-up → hero shot with smooth camera transitions), ShotVerse provides the trajectory specification framework. Monitor for weights. Integrate camera trajectory spec into skyreels_v4.json when available.**
+
+- **🆕 Grok Imagine — Up to 7 Reference Frames for Image-to-Video** (xAI, March 2026)
+  - Grok Imagine image-to-video now supports **up to 7 reference frames** for video generation
+  - First frame used as anchor; preceding and following frames are generated from reference set
+  - Enables: multi-angle product reference → coherent video with visual consistency locked from 7 reference images
+  - **Digital-Stud use: Grok Imagine 7-frame mode for character/product consistency videos. Upload: front/back/side/detail shots of product → generate consistent product demo video without LoRA training. API: $0.05/second (launched Jan 28 2026). Add Grok Imagine endpoint to api_test_fal.py.**
+
+- **🆕 FramePack — New Video Generation Architecture with Flash/Sage Attention** (community, March 2026)
+  - FramePack: emerging video generation architecture with integrated Flash Attention + Sage Attention support
+  - FramePack distro (standalone distribution) available with one-click Flash/Sage Attention installer for Triton + PyTorch 2.10 + CUDA 13
+  - Flash Attention / Sage Attention installation confirmed working in March 2026 FramePack distro
+  - Architecture focus: frame-packing for efficient temporal attention (reuse computed frame representations)
+  - **Digital-Stud action: Monitor FramePack GitHub for weights and ComfyUI node. If Flash Attention integration significantly speeds up WAN 2.2 or HunyuanVideo inference, install FramePack distro as primary video inference environment. Note: Triton+PyTorch 2.10+CUDA 13 environment needed.**
+
+- **🆕 Luma Dream Machine — Video Modify (Edit Existing Video)** (Luma AI, March 2026)
+  - Luma Dream Machine adds **video modification** — edit any existing video, not just extend from last frame
+  - New capabilities: modify video motion, timing, style while preserving subject identity
+  - Cinematic physics-aware motion rendering (Luma's existing strength applied to modification)
+  - **Digital-Stud use: Luma Dream Machine video modify for product video post-production. Refine: timing/pacing of product demo video after initial generation. Combine with Grok Imagine 7-frame reference for identity consistency + Luma Modify for motion refinement.**
+
+- **📍 Wan 2.2 — Local RTX 3060 12GB Confirmed Working** (Reddit r/LocalLLaMA, March 2026)
+  - Community confirms: Wan 2.2 runs locally on RTX 3060 12GB at ~30 minutes per 5-second clip
+  - HuggingFace weights available; viable for local deployment on consumer hardware
+  - **Digital-Stud context: RTX 3090/4090 would run significantly faster. Wan 2.2 local now confirmed viable without cloud API cost. Prefer: LTX-2.3 for speed-first, Wan 2.2 for quality-first local generation. Update api_test_fal.py with fallback logic: fal.ai API → local Wan 2.2 if API unavailable.**
+
+- **📍 ShotVerse vs Veo 3 — Context for NVIDIA GTC 2026 (March 17-21)**
+  - **NVIDIA GTC 2026 starts March 17** — major AI/video generation announcements expected
+  - Google Veo 3 details likely at GTC or Google I/O 2026 follow-up
+  - Watch: NVIDIA + video generation partners announcements (March 17-21 window)
+  - **Alert: Monitor GTC 2026 announcements closely in runs 158-164 (March 15-17). High probability of major new model, API, or framework announcements.**
+
+### 🔧 ComfyUI / Infrastructure — Run 157 — Triton+PyTorch 2.10+CUDA 13 env confirmed, Qwen GGUF LM Studio, Adobe Firefly multi-model hub, NVIDIA GTC 2026 imminent
+
+- **🆕 Triton + PyTorch 2.10 + CUDA 13 — Current Environment Baseline** (community March 2026)
+  - New baseline: Triton + PyTorch 2.10 + CUDA 13 stack confirmed operational in March 2026
+  - Flash Attention + xFormers + Sage Attention all installable on this stack
+  - Flash Attention for diffusion models: further speed improvements over xFormers for attention layers
+  - **Digital-Stud action: Upgrade local ComfyUI environment to PyTorch 2.10 + CUDA 13. Install Flash Attention via FramePack distro installer (proven method). Expected: additional inference speedup on RTX 4090 for both image (FLUX.2) and video (WAN 2.2, LTX-2.3) pipelines.**
+
+- **🆕 Adobe Firefly Multi-Model Hub — 25+ Models Including Nano Banana 2** (Adobe Blog, March 10, 2026)
+  - Adobe Firefly now hosts **25+ top AI models** including: Adobe commercial models, Google Nano Banana 2, OpenAI GPT-Image-1.5, Ideogram 3.0, Runway Gen-4.5
+  - Multi-model generation comparison in one unified prompt interface
+  - **Digital-Stud use: Adobe Firefly as a multi-model prompt comparison platform. Test same product prompt across 25+ models in one interface. Commercially safe Adobe models for any client deliverables requiring IP-safe outputs.**
+
+- **🆕 Qwen 3.5 GGUF — LM Studio Compatible Quantization Benchmarks** (Reddit r/LocalLLaMA + r/comfyui, March 2026)
+  - Qwen 3.5-9B GGUF quantization benchmarks live — LM Studio compatible (March 2026)
+  - Various GGUF quantization levels (Q4, Q5, Q8) benchmarked for speed/quality tradeoff on consumer hardware
+  - LM Studio: load Qwen 3.5-9B GGUF for local LLM-based prompt generation in ComfyUI (via Ollama or direct GGUF)
+  - **Digital-Stud use: Qwen 3.5-9B GGUF via LM Studio as local prompt enhancement LLM in ComfyUI workflow. Replace any cloud LLM in the prompt-enhancement step with local Qwen 3.5 GGUF — zero API cost, offline operation. Test with ComfyUI Cline MCP node for automated prompt generation.**
+
+- **📍 NVIDIA GTC 2026 — March 17-21, 2026 — High Alert for New Announcements**
+  - **NVIDIA GTC 2026 starts March 17** (San Jose) — major AI conference
+  - Confirmed attendees: NVIDIA RTX video tools team, Topaz NeuroStream, FPT AI platform, various XR/digital human companies
+  - Expected: new Blackwell GPU-based inference optimizations, new RTX video tools, potential new NVFP4 model releases
+  - **Pipeline action: Runs 158-164 should heavily monitor GTC 2026 announcements. Add specific GTC 2026 search queries to SOTA sweeps for March 17-21 window. Set alert for any new BFL/FLUX.2 × NVIDIA joint announcement at GTC.**
+
+### 🏗️ 3D / Motion / Avatar — Run 157 — Neural4D Image-to-3D production tool, ODEVideo temporal consistency, SMPL-X migration path confirmed
+
+- **🆕 Neural4D — Production Image-to-3D Engine with PBR Maps + Blender Export** (launched ~March 12, 2026)
+  - **Watertight manifold geometry** output (solves broken mesh topology issues from existing tools)
+  - **Pure albedo extraction** — strips environmental lighting from surface color (critical for Blender material workflow)
+  - Full **PBR map generation**: roughness, metallic, normal maps (game-ready assets)
+  - Export formats: .obj, .fbx, .glb, .usdz, .stl, **.blend** (direct Blender import with materials)
+  - Directly addresses pipeline gap: product photograph → 3D mesh → Blender → render
+  - **Digital-Stud action: Test Neural4D immediately. If watertight + PBR + .blend export holds, this replaces the current manual photogrammetry + UV-unwrap + texture-bake pipeline for product 3D. Single photo → ready-to-render Blender asset. Primary product 3D generation tool candidate.**
+
+- **🆕 ODEVideo — Neural ODE Temporal Consistency for Video Generation** (arXiv, March 2026)
+  - Applies Neural Ordinary Differential Equations to enforce smooth temporal trajectories in video diffusion
+  - Reduces object flicker and pose inconsistency between frames (addresses root cause, not post-processing)
+  - Continuous-time latent trajectory — objects follow mathematically smooth path through latent space
+  - **Digital-Stud use: ODEVideo temporal consistency method for product motion videos (hand picking up product, liquid pour, fabric drape). Reduced flicker = fewer rejected clips, lower cost. Monitor for ComfyUI node or HuggingFace implementation.**
+
+- **📍 SMPL-X Migration Path — pysmpl-x Library (Post-Meshcapade)**
+  - Community confirms: pysmpl-x (direct SMPL-X model library, no Meshcapade dependency) is the correct migration path after Meshcapade shutdown
+  - SMPLify-X and SMPL-X body model remain open-source on MPI-IS GitHub
+  - **Digital-Stud action: Replace all Meshcapade references in pose_controlnet.json with pysmpl-x. Add dependency note: `pip install pysmpl-x` or clone https://github.com/vchoutas/smplx. Update pipeline-execution-notes.md with migration path.**
+
+### 🎓 LoRA / Training — Run 157 — Qwen-Image 2.0 DashScope free-tier potential, Nano Banana 2 low-cost fine-tuning path, FramePack Flash Attention for video LoRA
+
+- **📍 Nano Banana 2 (Gemini 3.1 Flash Image) — Fine-Tuning Potential**
+  - Google Vertex AI: Nano Banana 2 / Gemini 3.1 Flash Image available for fine-tuning via Vertex AI training
+  - Supervised fine-tuning (SFT) on product-specific image sets supported
+  - Lower base model cost (50% of flagship) → lower fine-tuning compute cost
+  - **Digital-Stud use: Evaluate Nano Banana 2 fine-tuning via Vertex AI for brand-consistent product photography. If fine-tuning cost is <$50 for 100-image dataset, this competes with FLUX.2 LoRA on cost/quality tradeoff for commercial product clients.**
+
+- **📍 FramePack Flash Attention — Video Diffusion LoRA Training Speedup**
+  - Flash Attention 2 in PyTorch 2.10 environment significantly reduces memory per attention operation
+  - For video LoRA training (HunyuanVideo LoRA, LTX-2.3 fine-tuning): Flash Attention enables larger batch size per GPU
+  - **Digital-Stud action: When setting up next HunyuanVideo or LTX-2.3 LoRA training run, install Flash Attention 2 via FramePack distro first. Expected: 2-3× larger effective batch size on RTX 4090, improving gradient quality and reducing training time.**
+
 ## 🏁 Run #156 Delta — 2026-03-15 02:30 Prague
 
 ### 🖼️ Image Gen — Run 156 — MOG (Riemannian CFG replacement), MV-SAM3D multi-view, FLUX.2-klein-4B confirmed, UltraGen auto-rank LoRA
