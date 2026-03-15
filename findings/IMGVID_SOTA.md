@@ -1,4 +1,90 @@
-<!-- last_updated: 2026-03-15T05:01:39+01:00 run_161 -->
+<!-- last_updated: 2026-03-15T05:30:09+01:00 run_162 -->
+## 🔭 Run #162 Delta — 2026-03-15 05:30 Prague (GTC pre-keynote, ~14.5h to go)
+
+### 📡 GTC Pre-Keynote — Still Quiet (run 162 confirms no leaks)
+- NVIDIA live blog still shows March 13 8:30am PT as last update. No new posts from Rombach, Esser, or BFL.
+- No new arXiv preprints from NVIDIA Research on image/video generation.
+- **NemoClaw confirmed**: NVIDIA's open agentic platform (fully open) announced for GTC. Build-a-Claw hands-on demo at GTC. Expected to handle massive enterprise agentic workflows. Not directly image/video, but infrastructure for deploying vision AI agents at scale.
+- **NVIDIA $2B Nebius investment confirmed** (announced pre-GTC): Nebius Group (EU AI cloud, spun out of Yandex) — NVIDIA backing Nebius for AI cloud GPU hosting. Also backing Mira Murati's new venture.
+- **NVIDIA AI Chips Export Draft withdrawn** (US DoC, Friday pre-GTC): The AI chips export rule draft was withdrawn just before market close Friday — potentially positive catalyst for NVIDIA GPU sales internationally. Confirmed by Reuters. This removes a potential keynote headwind.
+- **US DoC Export Rule Withdrawal = bullish GTC context**: Analysts (BofA, SeekingAlpha) note keynote could "jolt markets" without the export drag.
+- **Alpamayo**: NVIDIA self-driving autonomous vehicle tech Jensen demoed pre-GTC (Alpamayo = next-gen AV stack). Not image/video.
+- **NEXT MONITORING WINDOW**: Run 163 (06:00 CET) — still pre-keynote (14h to go).
+
+### 🖼️ Image Gen — Run 162 — Consolidation day (Sunday arXiv quiet); Kling Image API noted
+
+- **arXiv Sunday status confirmed**: arXiv cs.CV most recent listing = Fri March 13 (151 entries). Sunday March 15 submissions would appear Monday morning. No new image gen papers today. Expected Monday wave after CVPR 2026 workshop deadlines (March 15).
+- **🆕 Kling Image v3 on fal.ai** (text-to-image, up to 2K, face element control)
+  - fal.ai endpoint: `fal-ai/kling-image/v3/text-to-image`
+  - Supports: multiple aspect ratios, up to 2K resolution, optional face reference element control
+  - **Digital-Stud: Kling Image v3 = complementary to FLUX.2 for client-facing product shots needing face consistency. Face element control = specify reference face → consistent model in all product shots. Add to api_test_fal.py as second image endpoint alongside FLUX.2.**
+
+- **📍 No net-new image gen model releases confirmed March 15 after 04:00 UTC** — expected Monday wave post-CVPR workshop deadlines.
+
+### 🎬 Video Gen — Run 162 — FlashMotion, FramePack-P1 roadmap, Kling 3.0 confirmed, Wan 2.7 planned, Runway $315M
+
+- **🆕 FlashMotion: Few-Step Controllable Video Generation with Trajectory Guidance (arXiv:2603.12146, March 12 2026)**
+  - Few-step video generation with explicit trajectory guidance control
+  - Control camera/object motion path via trajectory specification → fast synthesis
+  - arXiv: arxiv.org/abs/2603.12146
+  - **Digital-Stud: FlashMotion = fast product video with controlled motion path. Specify product rotation trajectory → few-step generation. Combine with FramePack for long-form product demo. Add to ComfyUI pipeline as motion control alternative to Time-To-Move.**
+
+- **🆕 EVGen: Trajectory-Conditioned Forward-View Video Generation (Springer Open Access, March 12 2026)**
+  - Trajectory-conditioned video generation under minimal visual observations
+  - Forward-view perspective control — specify camera trajectory as input
+  - doi: 10.1007/s44443-026-00627-4 (open access)
+  - **Digital-Stud: EVGen = complementary to FlashMotion for camera path control in product videos. Forward-view + trajectory = walkthrough-style product video (camera approaches product, orbits, pulls back). Useful for 3D product showcase without full 3D reconstruction.**
+
+- **🆕 FramePack-P1 — Next Version Officially Announced on GitHub**
+  - lllyasviel confirmed on GitHub: FramePack-P1 = next major version
+  - Two key designs planned: **(1) Planned Anti-Drifting** — prevents temporal drift in long videos, **(2) History Discretization** — more efficient encoding of past frames for context
+  - No release date given. Actively in development.
+  - **Digital-Stud: FramePack-P1 Anti-Drifting = critical for product videos >30s (current FramePack drifts visually after ~20-30s). History Discretization = lower VRAM usage for same sequence length. Monitor github.com/lllyasviel/FramePack for P1 release. Once released, update wan22_img2vid.json to use P1 instead of current FramePack.**
+
+- **🆕 Kling 3.0 on fal.ai — Confirmed Day-Zero Deployment**
+  - Kling 3.0 is currently the live version on fal.ai (NOT Kling 3.1 — clarification: fal.ai blog confirms "Kling 3.0, now available from day zero")
+  - Features: cinematic 1080p, native audio, multi-shot storyboarding, real-world physics
+  - API endpoint: fal.ai/kling-3
+  - **NOTE: State file previously said "Kling 3.1 primary" — this may be a version numbering discrepancy. Kling 3.0 = what's live on fal.ai. Will re-verify in next image/video sweep. Update api_test_fal.py to use correct fal.ai endpoint `fal-ai/kling-video/v3`.**
+
+- **🆕 Wan 2.7 — Planned for March 2026**
+  - Multiple sources reference Wan 2.7 planned for March 2026 with upgrade announcements
+  - WaveSpeedAI extensions and SVI 2.0 Pro already extending Wan 2.2
+  - No official Wan 2.7 release confirmed as of March 15 05:30 CET
+  - **Digital-Stud: Monitor for Wan 2.7 official release. WaveSpeedAI = alternative API path for Wan2.x inference if self-hosting is too heavy.**
+
+- **🆕 Runway $315M Series E at $5.3B valuation (TechCrunch, Feb 10 2026)**
+  - $315M raised, valuation $5.3B (nearly doubled)
+  - Focus: General World Models (GWM-1) research, cross-industry applications
+  - fal.ai hosting "Real-Time World Models" invite-only event March 17 2026 (San Jose, same week as GTC)
+  - **Digital-Stud: Runway GWM-1 world model = future product video "world simulation" (simulate product being used in a realistic world, not just a clip). Watch for API. GWM-1 is research-only as of Feb 2026, no public API. fal.ai March 17 event may announce real-time world model API — monitor.**
+
+- **📍 HunyuanVideo-1.5 confirmed latest on HuggingFace** (tencent/HunyuanVideo-1.5) — 8.3B params. No new fine-tunes or variants released March 15 after 04:00 UTC.
+
+- **📍 FramePack-SE** (TTPlanetPig) — community variant of FramePack. No new March 15 release detected.
+
+### 🔧 ComfyUI / Nodes — Run 162 — No v0.17.2 patch, no new GPT-Image-1 node, ABAW workshop deadline today
+
+- **📍 ComfyUI v0.17.2**: Still not released. Frontend 1.41.15 subgraph bug remains unpatched.
+- **📍 GPT-Image-1 ComfyUI node**: No community node detected March 15. Expected soon given GPT-Image-1 API now public.
+- **🆕 ABAW 10th Workshop (CVPR 2026) — Final submission deadline March 15 2026**
+  - 10th Affective Behaviour Analysis in the Wild (ABAW) workshop @ CVPR 2026
+  - Ambivalence/Hesitancy Video Recognition challenge deadline = March 15
+  - Winners announcement = March 17, Final paper deadline = March 18
+  - **Digital-Stud: ABAW CVPR 2026 = affective behavior recognition in video. Winning methods = detect model expression authenticity in generated product videos (does the AI-generated model look genuinely engaged vs robotic?). Watch March 17-18 for winning technique disclosures.**
+- **📍 fal.ai March 17 event** ("The Next Wave of AI is Real Time") — invite-only, San Jose. Real-time world models + conversations. Could announce new API features. Monitor fal.ai blog March 17.
+
+### 🎓 LoRA / Training — Run 162 — Quiet day; Kling 3.0 version clarification impacts api_test_fal.py
+
+- **📍 AI-Toolkit & OneTrainer**: No new commits detected March 15 after 04:00 UTC.
+- **📍 arXiv Sunday**: No new LoRA/training papers — expected Monday wave.
+- **🆕 Seedream 4.5 API Details — Partial Clarification**
+  - WaveSpeedAI (wavespeed.ai) confirmed as primary access point for Seedream 4.5
+  - Architecture: DiT-based (ByteDance proprietary, not published). Technical report not found on HuggingFace or arXiv as of March 15.
+  - No official ByteDance HuggingFace model card found for Seedream 4.5 (likely closed-weight API-only).
+  - No confirmed availability on fal.ai or replicate.com as of March 15.
+  - **Digital-Stud: For Seedream 4.5 API integration: use WaveSpeedAI API directly. Update api_test_replicate.py to add wavespeed.ai as a 3rd API platform. Document: Seedream 4.5 = closed-weight, API-only, no self-hosting. Alternate: if WaveSpeedAI adds to fal.ai, will appear in fal.ai model list.**
+
 ## 🔭 Run #161 Delta — 2026-03-15 05:01 Prague (GTC pre-keynote, ~15h to go)
 
 ### 📡 GTC Pre-Keynote — Still Quiet (no new leaks or embargo lifts since run 160)
